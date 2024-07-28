@@ -1,4 +1,4 @@
-import { pizzas } from "@/data";
+import { drops } from "@/data";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -6,7 +6,7 @@ import React from "react";
 const CategoryPage = () => {
   return (
     <div className="flex flex-wrap text-barriosecundary border-t-2 border-barriosecundary border-l-2">
-      {pizzas.map((item) => (
+      {drops.map((item) => (
         <Link
           className="w-full h-[40vh] border-r-2 border-b-2 border-barriosecundary sm:w-1/2 lg:w-1/3 p-4 flex flex-col justify-between group"
           href={`/product/${item.id}`}

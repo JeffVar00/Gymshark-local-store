@@ -11,7 +11,7 @@ const Offer = () => {
         </h1>
         <p className="text-websecundary xl:text-xl break-words">
           For locking in. For life. For the love of the game. For levelling up.
-          Go get it before it's gone.
+          Go get it before it’s gone.
         </p>
         <button className="bg-websecundary text-webprimary rounded-md py-3 px-6 font-bold w-full md:w-32">
           Shop Now

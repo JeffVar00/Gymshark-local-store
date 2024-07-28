@@ -7,7 +7,6 @@ import Header from "@/components/Header";
 import Offer from "@/components/Offer";
 
 import { featuredProducts } from "@/data";
-import { singleProduct } from "@/data";
 import { drops } from "@/data";
 
 export default function Home() {
