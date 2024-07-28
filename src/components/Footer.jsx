@@ -9,8 +9,8 @@ const Footer = () => {
       <div className="flex flex-col lg:flex-row items-center lg:gap-3">
         <PageIcon logo="black" />
         <SocialMedia />
-        <div className="flex 2xl:static 2xl:hidden text-websecundary font-bold mt-4 lg:mt-0 items-center gap-2 cursor-pointer bg-webprimary px-2 rounded-md">
-          <PhoneIcon classname="w-5 h-4 2xl:text-webprimary text-websecundary" />
+        <div className="flex 2xl:static text-websecundary font-bold mt-4 lg:mt-0 items-center gap-2 cursor-pointer bg-webprimary px-2 rounded-md">
+          <PhoneIcon classname="w-5 h-4 2xl:text-secundary text-websecundary" />
           <span>8422-6359</span>
         </div>
       </div>

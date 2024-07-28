@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import PhoneIcon from "./PhoneIcon";
 import PageIcon from "./PageIcon";
@@ -11,13 +11,13 @@ const Navbar = ({ user }) => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isSticky, setIsSticky] = useState(false);
 
-  const controlNavbar = () => {
+  const controlNavbar = useCallback(() => {
     if (typeof window !== "undefined") {
       const navbarReferencePoint = document.getElementById(
         "navbar-reference-point"
       );
       const referencePointOffset =
-        navbarReferencePoint?.getBoundingClientRect().top;
+        navbarReferencePoint?.getBoundingClientRect().bottom;
 
       if (referencePointOffset !== undefined) {
         if (referencePointOffset <= 0) {
@@ -40,7 +40,7 @@ const Navbar = ({ user }) => {
         setShowNavbar(true);
       }
     }
-  };
+  }, [lastScrollY]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -53,7 +53,7 @@ const Navbar = ({ user }) => {
         window.removeEventListener("resize", controlNavbar);
       };
     }
-  }, [lastScrollY]);
+  }, [controlNavbar]);
 
   return (
     <div
@@ -65,13 +65,9 @@ const Navbar = ({ user }) => {
     >
       {/* LEFT LINKS */}
       <div className="hidden lg:flex gap-4 flex-1">
-        <Link href="/">Inicio</Link>
-        <Link href="/collections/all-products">Productos</Link>
-        <Link href="/">Contactanos</Link>
-        <div className="hidden 2xl:static 2xl:flex items-center gap-2 cursor-pointer bg-webprimary 2xl:bg-websecundary 2xl:text-webprimary px-2 rounded-md">
-          <PhoneIcon classname="w-5 h-4 2xl:text-webprimary text-websecundary" />
-          <span>8422-6359</span>
-        </div>
+        <Link href="/">Home</Link>
+        <Link href="/collections/all-products">Products</Link>
+        <Link href="/">Contact</Link>
       </div>
 
       {/* LOGO */}
@@ -87,10 +83,10 @@ const Navbar = ({ user }) => {
       {/* RIGHT LINKS */}
       <div className="hidden lg:flex gap-4 items-center justify-end flex-1">
         {!user ? (
-          <Link href="/login">Iniciar Sesión</Link>
+          <Link href="/login">Login</Link>
         ) : (
           <div>
-            <Link href="/orders">Mis ordenes</Link>
+            <Link href="/orders">My Orders</Link>
           </div>
         )}
 
