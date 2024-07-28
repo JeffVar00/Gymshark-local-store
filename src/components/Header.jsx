@@ -38,7 +38,7 @@ const Header = ({ smsrc, mdsrc, nextSectionRef }) => {
         </h1>
         <p className="text-websecundary text-sm md:text-md xl:text-xl break-words max-w-sm xl:max-w-xl">
           For locking in. For life. For the love of the game. For levelling up.
-          Go get it before it's gone.
+          Go get it before it’s gone.
         </p>
         <button className="bg-websecundary text-webprimary rounded-full py-3 px-6 font-bold w-full md:w-48">
           Shop Now
