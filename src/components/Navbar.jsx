@@ -20,7 +20,7 @@ const Navbar = ({ user }) => {
         navbarReferencePoint?.getBoundingClientRect().bottom;
 
       if (referencePointOffset !== undefined) {
-        if (referencePointOffset <= 0) {
+        if (referencePointOffset <= 200) {
           setIsSticky(true);
         } else {
           setIsSticky(false);
@@ -47,7 +47,6 @@ const Navbar = ({ user }) => {
       window.addEventListener("scroll", controlNavbar);
       window.addEventListener("resize", controlNavbar);
 
-      // Cleanup function
       return () => {
         window.removeEventListener("scroll", controlNavbar);
         window.removeEventListener("resize", controlNavbar);
