@@ -47,7 +47,7 @@ export const featuredProducts = [
     id: 3,
     title: "American Muscle Extreme Oversized T-Shirt",
     desc: "extreme oversized fit",
-    img: "",
+    img: "/example2.jpg",
     price: 55,
     isNew: true,
     options: [
