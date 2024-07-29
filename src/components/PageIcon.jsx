@@ -12,9 +12,8 @@ const PageIcon = ({ logo }) => {
         <Image
           src={logoSrc}
           alt="Page icon"
-          fill
-          objectFit="contain"
-          className="w-full h-full"
+          fill="responsive"
+          className="w-full h-full object-contain"
         />
       </div>
     </Link>

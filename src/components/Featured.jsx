@@ -25,9 +25,8 @@ const Featured = ({ products, title, subtitle }) => {
                     <Image
                       src={item.img}
                       alt={item.title}
-                      layout="fill"
-                      objectFit="cover"
-                      className="w-full h-full"
+                      fill="responsive"
+                      className="w-full h-full object-cover"
                     />
                     {item.isNew && (
                       <div className="absolute bottom-0 left-0 bg-gray-800 text-white text-xs md:text-md px-2 py-1 rounded-md mb-2 ml-2">
