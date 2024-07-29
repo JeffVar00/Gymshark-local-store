@@ -1,24 +1,25 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const Header = ({ smsrc, mdsrc, nextSectionRef }) => {
+const Header = ({ details, nextSectionRef }) => {
   const [backgroundImageUrl, setBackgroundImageUrl] = useState("");
 
   useEffect(() => {
     const updateUrls = () => {
       if (window.innerWidth >= 768) {
         // For medium and larger screens
-        setBackgroundImageUrl(mdsrc);
+        setBackgroundImageUrl(details.mdsrc);
       } else {
         // For small screens
-        setBackgroundImageUrl(smsrc);
+        setBackgroundImageUrl(details.smsrc);
       }
     };
     updateUrls();
     window.addEventListener("resize", updateUrls);
 
     return () => window.removeEventListener("resize", updateUrls);
-  }, [smsrc, mdsrc]);
+  }, [details.smsrc, details.mdsrc]);
 
   const handleArrowClick = () => {
     if (nextSectionRef && nextSectionRef.current) {
@@ -34,15 +35,23 @@ const Header = ({ smsrc, mdsrc, nextSectionRef }) => {
       {/* TEXT CONTAINER */}
       <div className="flex-1 flex flex-col items-start text-start gap-4 pb-24 px-6 md:pb-0 md:px-14 justify-end relative z-10">
         <h1 className="text-websecundary text-2xl md:text-3xl max-w-md md:max-w-xl font-bold xl:text-6xl">
-          GYMSHARK MERCH
+          {details.title}
         </h1>
         <p className="text-websecundary text-sm md:text-md xl:text-xl break-words max-w-sm xl:max-w-xl">
-          For locking in. For life. For the love of the game. For levelling up.
-          Go get it before it’s gone.
+          {details.description}
         </p>
-        <button className="bg-websecundary text-webprimary rounded-full py-3 px-6 font-bold w-full md:w-48">
-          Shop Now
-        </button>
+        <div className="flex flex-row gap-4">
+          {details.buttons.map((button, index) => (
+            <Link key={index} href={button.ref}>
+              <button
+                backgroundimage={button.color}
+                className="bg-websecundary text-webprimary rounded-full py-3 px-6 font-bold w-full md:w-48"
+              >
+                {button.text}
+              </button>
+            </Link>
+          ))}
+        </div>
       </div>
       {/* ANIMATED ARROW */}
       <div className="hidden md:absolute md:flex bottom-6 left-1/2 transform -translate-x-1/2">

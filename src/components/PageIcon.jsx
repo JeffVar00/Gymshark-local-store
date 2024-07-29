@@ -8,7 +8,7 @@ const PageIcon = ({ logo }) => {
 
   return (
     <Link href="/" className="flex items-center gap-2">
-      <div className="relative w-16 h-16 lg:w-24 lg:h-24">
+      <div className="relative w-12 h-12 lg:w-16 lg:h-16">
         <Image
           src={logoSrc}
           alt="Page icon"

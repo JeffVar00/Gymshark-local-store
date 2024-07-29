@@ -20,7 +20,7 @@ const Navbar = ({ user }) => {
         navbarReferencePoint?.getBoundingClientRect().bottom;
 
       if (referencePointOffset !== undefined) {
-        if (referencePointOffset <= 200) {
+        if (referencePointOffset <= 0) {
           setIsSticky(true);
         } else {
           setIsSticky(false);
@@ -56,7 +56,7 @@ const Navbar = ({ user }) => {
 
   return (
     <div
-      className={`w-full z-50 h-16 p-4 flex justify-between items-center text-websecundary bg-webprimary font-bold lg:h-20 lg:px-20 xl:px-32 transition-transform duration-300 ${
+      className={`w-full z-50 h-16 p-4 flex justify-between items-center text-webprimary bg-websecundary font-bold lg:h-20 lg:px-20 xl:px-32 transition-transform duration-300 ${
         isSticky ? `fixed top-0` : ""
       } ${
         showNavbar ? "transform translate-y-0" : "transform -translate-y-full"
@@ -71,7 +71,7 @@ const Navbar = ({ user }) => {
 
       {/* LOGO */}
       <div className="flex-1 lg:flex lg:justify-center">
-        <PageIcon logo="white" />
+        <PageIcon logo="black" />
       </div>
 
       {/* MOBILE MENU */}
