@@ -10,7 +10,7 @@ const CartIcon = () => {
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          className="w-full h-full text-websecundary"
+          className="w-full h-full text-webprimary"
         >
           <path
             strokeLinecap="round"
@@ -20,8 +20,6 @@ const CartIcon = () => {
           />
         </svg>
       </div>
-
-      <span>Carrito {3}</span>
     </Link>
   );
 };

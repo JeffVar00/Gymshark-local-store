@@ -2,11 +2,12 @@
 
 import { useRef } from "react";
 
+import FeaturedCategories from "@/components/FeaturedCategories";
 import Featured from "@/components/Featured";
 import Header from "@/components/Header";
+import PageDescription from "@/components/PageDescription";
 
-import { featuredProducts } from "@/data";
-import { drops } from "@/data";
+import { featuredProducts, drops, categories } from "@/data";
 
 export default function Home() {
   const nextSectionRef = useRef(null);
@@ -56,8 +57,8 @@ export default function Home() {
         }}
       />
       <Featured products={drops} subtitle={""} title={"NEW MONTH, NEW DROPS"} />
-      {/* <Categories /> */}
-      {/* <PageDescription /> */}
+      <FeaturedCategories categories={categories} title={"How do you train?"} />
+      <PageDescription />
     </main>
   );
 }

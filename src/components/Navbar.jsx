@@ -2,9 +2,9 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import PhoneIcon from "./PhoneIcon";
 import PageIcon from "./PageIcon";
 import CartIcon from "./CartIcon";
+import UserIcon from "./UserIcon";
 
 const Navbar = ({ user }) => {
   const [showNavbar, setShowNavbar] = useState(true);
@@ -56,22 +56,22 @@ const Navbar = ({ user }) => {
 
   return (
     <div
-      className={`w-full z-50 h-16 p-4 flex justify-between items-center text-webprimary bg-websecundary font-bold lg:h-20 lg:px-20 xl:px-32 transition-transform duration-300 ${
+      className={`w-full z-50 p-4 flex justify-between items-center text-webprimary bg-websecundary font-bold h-14 px-16 lg:h-16 lg:px-20 xl:px-32 transition-transform duration-300 ${
         isSticky ? `fixed top-0` : ""
       } ${
         showNavbar ? "transform translate-y-0" : "transform -translate-y-full"
       }`}
     >
-      {/* LEFT LINKS */}
-      <div className="hidden lg:flex gap-4 flex-1">
-        <Link href="/">Home</Link>
-        <Link href="/collections/all-products">Products</Link>
-        <Link href="/">Contact</Link>
+      {/* Left LOGO */}
+      <div className="flex-1 justify-center md:flex md:justify-start ">
+        <PageIcon logo="black" />
       </div>
 
-      {/* LOGO */}
-      <div className="flex-1 lg:flex lg:justify-center">
-        <PageIcon logo="black" />
+      {/* CENTER HUB */}
+      <div className="hidden text-sm md:flex gap-8 flex-1 justify-center">
+        <Link href="/">WOMEN`S</Link>
+        <Link href="/">MEN`S</Link>
+        <Link href="/">ACCESORIES`S</Link>
       </div>
 
       {/* MOBILE MENU */}
@@ -80,15 +80,8 @@ const Navbar = ({ user }) => {
       </div> */}
 
       {/* RIGHT LINKS */}
-      <div className="hidden lg:flex gap-4 items-center justify-end flex-1">
-        {!user ? (
-          <Link href="/login">Login</Link>
-        ) : (
-          <div>
-            <Link href="/orders">My Orders</Link>
-          </div>
-        )}
-
+      <div className="hidden md:flex gap-4 items-center justify-end flex-1">
+        <UserIcon />
         <CartIcon />
       </div>
     </div>

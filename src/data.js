@@ -298,29 +298,29 @@ export const singleProduct = {
   ],
 };
 
-export const products = [
+export const categories = [
   {
     id: 1,
-    slug: "coctels",
-    title: "Cócteles del Barrio",
-    desc: "¡Llevá la fiesta a tu barrio con nuestros nuevos cócteles!",
-    img: "",
-    color: "barrioprimary",
+    ref: "/",
+    title: "Lifting",
+    img: "/category_banner.jpg",
   },
   {
     id: 2,
-    slug: "burgers",
-    title: "Las mejores hamburguesas",
-    desc: "¡A cualquier hora nuestras hamburguesa son de lo más sabrosas!",
-    img: "",
-    color: "barrioprimary",
+    ref: "/",
+    title: "Running",
+    img: "/category_banner.jpg",
   },
   {
     id: 3,
-    slug: "fast_food",
-    title: "Para todos los gustos",
-    desc: "¡No hay excusas, tenemos opciones para todos: alitas, nachos, papas, quesadillas y más! ",
-    img: "",
-    color: "barrioprimary",
+    ref: "/",
+    title: "Yoga",
+    img: "/category_banner.jpg",
+  },
+  {
+    id: 4,
+    ref: "/",
+    title: "Functional",
+    img: "/category_banner.jpg",
   },
 ];

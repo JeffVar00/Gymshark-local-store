@@ -7,8 +7,8 @@ const PageIcon = ({ logo }) => {
     logo === "white" ? "/pageiconwhite.png" : "/pageiconblack.png";
 
   return (
-    <Link href="/" className="flex items-center gap-2">
-      <div className="relative w-12 h-12 lg:w-16 lg:h-16">
+    <Link href="/" className="flex items-center justify-center">
+      <div className="relative w-10 h-10 lg:w-12 lg:h-12">
         <Image
           src={logoSrc}
           alt="Page icon"
