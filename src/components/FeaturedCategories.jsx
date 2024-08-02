@@ -6,8 +6,8 @@ const FeaturedCategories = ({ categories, title }) => {
   return (
     <div className="w-auto flex flex-col mt-10 mb-10 mx-4 md:mx-12 md:my-24 xl:mx-24 xl:my-20">
       {/* TITLE */}
-      <div className="flex-1 flex flex-col items-start text-start px-1 justify-end z-10">
-        <h1 className="text-3xl font-bold">{title}</h1>
+      <div className="flex-1 flex flex-col items-start text-start px-1 justify-end z-10 uppercase">
+        <h1 className="text-xl lg:text-2xl font-bold">{title}</h1>
       </div>
       <div className="overflow-x-scroll text-webprimary flex flex-col mt-2 mb-8">
         {/* WRAPPER */}
