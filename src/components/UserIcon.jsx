@@ -7,7 +7,7 @@ const UserIcon = ({ user }) => {
       href={!user ? "/login" : "/orders"}
       className="flex items-center gap-2"
     >
-      <div className="relative w-8 h-8 md:w-5 md:h-5">
+      <div className="relative w-6 h-6 md:w-7 md:h-7">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

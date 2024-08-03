@@ -324,3 +324,24 @@ export const categories = [
     img: "/category_banner.jpg",
   },
 ];
+
+export const main_categories = [
+  {
+    id: 1,
+    ref: "/",
+    title: "Women",
+    img: "/women_category_banner.jpg",
+  },
+  {
+    id: 2,
+    ref: "/",
+    title: "Men",
+    img: "/men_category_banner.jpg",
+  },
+  {
+    id: 3,
+    ref: "/",
+    title: "Accesories",
+    img: "/accesories_category_banner.jpg",
+  }
+];

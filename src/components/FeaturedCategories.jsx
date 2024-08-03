@@ -9,7 +9,7 @@ const FeaturedCategories = ({ categories, title }) => {
       <div className="flex-1 flex flex-col items-start text-start px-1 justify-end z-10 uppercase">
         <h1 className="text-xl lg:text-2xl font-bold">{title}</h1>
       </div>
-      <div className="overflow-x-scroll text-webprimary flex flex-col mt-2 mb-8">
+      <div className="overflow-x-scroll text-webprimary flex flex-col mb-8">
         {/* WRAPPER */}
         <div className="w-max flex animate-scroll-indicator mt-4">
           {/* SINGLE ITEM */}
@@ -29,11 +29,11 @@ const FeaturedCategories = ({ categories, title }) => {
                       className="w-full h-full object-cover rounded-md"
                     />
                     <div className="flex flex-col absolute bottom-0 left-0 m-6">
-                      <h1 className=" text-websecundary font-bold w-full text-2xl md:w-48 uppercase">
+                      <h1 className=" text-websecundary font-bold w-full text-xl md:text-2xl md:w-48 uppercase">
                         {item.title}
                       </h1>
                       <Link href={item.ref}>
-                        <button className="bg-websecundary text-webprimary rounded-full text-sm py-3 font-bold w-full md:w-36 mt-4 uppercase">
+                        <button className="bg-websecundary text-webprimary rounded-full text-sm py-3 font-bold w-40 md:w-36 mt-4 uppercase">
                           Shop Now
                         </button>
                       </Link>
