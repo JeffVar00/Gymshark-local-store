@@ -19,21 +19,22 @@ const FeaturedCategories = ({ categories, title }) => {
               className="w-[80vw] mx-1 text-webprimary flex flex-col justify-around transition-all duration-300 md:w-[42vw] xl:w-[29vw]"
             >
               {/* IMAGE CONTAINER */}
-              <div className="relative w-full h-[100vw] md:h-[50vw] xl:h-[35vw]">
+              <div className="relative w-full h-[100vw] md:h-[50vw] xl:h-[35vw] mb-2">
                 {item.img ? (
                   <div className="relative w-full h-full">
                     <Image
                       src={item.img}
                       alt={item.title}
                       fill="responsive"
+                      sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
                       className="w-full h-full object-cover rounded-md"
                     />
-                    <div className="flex flex-col absolute bottom-0 left-0 m-6">
-                      <h1 className=" text-websecundary font-bold w-full text-xl md:text-2xl md:w-48 uppercase">
+                    <div className="absolute bottom-0 w-full bg-gradient-to-t from-webprimary via-transparent to-transparent h-3/4 flex flex-col p-5">
+                      <h1 className="text-white font-bold w-full text-xl md:text-2xl uppercase mt-auto">
                         {item.title}
                       </h1>
                       <Link href={item.ref}>
-                        <button className="bg-websecundary text-webprimary rounded-full text-sm py-3 font-bold w-40 md:w-36 mt-4 uppercase">
+                        <button className="bg-websecundary text-webprimary rounded-full text-xs lg:text-sm py-3 px-6 lg:px-8 font-bold mt-2 uppercase">
                           Shop Now
                         </button>
                       </Link>

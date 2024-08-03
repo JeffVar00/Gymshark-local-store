@@ -22,7 +22,7 @@ const MainCategories = ({ categories }) => {
                 />
                 <div className="flex flex-col absolute bottom-0 left-0 m-6">
                   <Link href={category.ref}>
-                    <button className="bg-websecundary px-6 text-webprimary rounded-full text-sm py-3 font-bold md:w-auto mt-4 uppercase">
+                    <button className="bg-websecundary text-webprimary rounded-full text-xs py-3 px-6 md:px-2 font-bold md:w-36 mt-4 uppercase">
                       Shop {category.title}
                     </button>
                   </Link>

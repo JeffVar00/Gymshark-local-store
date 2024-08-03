@@ -26,6 +26,7 @@ const Featured = ({ products, title, subtitle }) => {
                       src={item.img}
                       alt={item.title}
                       fill="responsive"
+                      sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
                       className="w-full h-full object-cover"
                     />
                     {item.isNew && (

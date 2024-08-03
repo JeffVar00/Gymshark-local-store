@@ -16,32 +16,6 @@ export default function Home() {
     <main>
       <Header
         details={{
-          title: "GYMSHARK MERCH",
-          description:
-            "For locking in. For life. For the love of the game. For levelling up. Go get it before it’s gone.",
-          smsrc: "/banner.jpg",
-          mdsrc: "/banner2.jpg",
-          buttons: [
-            {
-              text: "Shop Now",
-              ref: "/",
-            },
-          ],
-        }}
-        nextSectionRef={nextSectionRef}
-      />
-      <div ref={nextSectionRef}>
-        <Featured
-          products={featuredProducts}
-          subtitle={"Everybody's Favourite"}
-          title={"GYMSHARK SEASON"}
-        />
-      </div>
-
-      <FeaturedCategories categories={categories} title={"How do you train?"} />
-
-      <Header
-        details={{
           title: "NEW STUFF JUST DROPPED",
           description:
             "We all know you’re gonna be wearing these next time you go gym. Might as well grab them now.",
@@ -54,6 +28,33 @@ export default function Home() {
             },
             {
               text: "Shop Women",
+              ref: "/",
+            },
+          ],
+        }}
+        nextSectionRef={nextSectionRef}
+      />
+
+      <div ref={nextSectionRef}>
+        <Featured
+          products={featuredProducts}
+          subtitle={"Everybody's Favourite"}
+          title={"GYMSHARK SEASON"}
+        />
+      </div>
+
+      <FeaturedCategories categories={categories} title={"How do you train?"} />
+
+      <Header
+        details={{
+          title: "GYMSHARK MERCH",
+          description:
+            "For locking in. For life. For the love of the game. For levelling up. Go get it before it’s gone.",
+          smsrc: "/banner.jpg",
+          mdsrc: "/banner2.jpg",
+          buttons: [
+            {
+              text: "Shop Now",
               ref: "/",
             },
           ],

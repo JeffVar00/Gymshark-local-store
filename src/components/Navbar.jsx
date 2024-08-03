@@ -12,6 +12,7 @@ import CartIcon from "./CartIcon";
 import UserIcon from "./UserIcon";
 import MobileMenu from "./MobileMenu";
 import SearchMenu from "./SearchMenu";
+import { main_categories } from "@/data";
 
 const Navbar = ({ user }) => {
   const [showNavbar, setShowNavbar] = useState(true);
@@ -123,11 +124,17 @@ const Navbar = ({ user }) => {
           <PageIcon logo="black" />
         </div>
 
-        {/* CENTER HUB CHANGEEEEEEE FOR DINAMIC FOR 3 MAIN CATEGORIES*/}
-        <div className="hidden text-sm md:flex gap-8 flex-1 justify-center">
-          <Link href="/">WOMEN`S</Link>
-          <Link href="/">MEN`S</Link>
-          <Link href="/">ACCESORIES</Link>
+        {/* CENTER HUB */}
+        <div className="hidden text-sm md:flex gap-8 flex-1 justify-center uppercase">
+          {main_categories.map((category) => (
+            <Link
+              key={category.id}
+              href={category.ref}
+              className="text-webprimary relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[3px] after:bg-webprimary after:rounded-full after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100"
+            >
+              {category.title}
+            </Link>
+          ))}
         </div>
 
         {/* RIGHT LINKS */}

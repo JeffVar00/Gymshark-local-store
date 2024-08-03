@@ -13,7 +13,12 @@ const SocialMedia = () => {
         target="_blank"
       >
         <div className="relative w-6 h-6 md:w-8 md:h-8">
-          <Image src="/facebook.svg" alt="facebook" fill />
+          <Image
+            src="/facebook.svg"
+            alt="facebook"
+            fill="responsive"
+            sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
+          />
         </div>
       </Link>
 

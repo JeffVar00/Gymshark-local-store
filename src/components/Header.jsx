@@ -33,28 +33,26 @@ const Header = ({ details, nextSectionRef }) => {
       style={{ backgroundImage: `url(${backgroundImageUrl})` }}
     >
       {/* TEXT CONTAINER */}
-      <div className="flex-1 flex flex-col items-start text-start gap-4 pb-24 px-6 md:pb-0 md:px-14 justify-end relative z-10">
-        <h1 className="text-websecundary text-2xl md:text-3xl max-w-md md:max-w-xl font-bold xl:text-6xl">
+      <div className="flex-1 flex flex-col items-start bg-gradient-to-t md:bg-gradient-to-r from-webprimary via-transparent to-transparent text-start gap-4 p-6 justify-end md:justify-center md:pb-0 md:px-14 relative z-10 h-full">
+        <h1 className="text-websecundary text-2xl font-bold md:text-3xl md:max-w-xl xl:text-6xl">
           {details.title}
         </h1>
-        <p className="text-websecundary text-sm md:text-md xl:text-xl break-words max-w-sm xl:max-w-xl">
+        <p className="text-websecundary break-words md:max-w-sm text-md xl:max-w-xl xl:text-xl">
           {details.description}
         </p>
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-col md:flex-row gap-4 mt-2 lg:mt-6 w-full">
           {details.buttons.map((button, index) => (
             <Link key={index} href={button.ref}>
-              <button
-                backgroundimage={button.color}
-                className="bg-websecundary text-webprimary rounded-full py-3 px-6 font-bold w-full md:w-48"
-              >
+              <button className="bg-websecundary text-sm text-webprimary rounded-full py-3 px-8 font-bold w-full lg:w-48 uppercase">
                 {button.text}
               </button>
             </Link>
           ))}
         </div>
       </div>
+
       {/* ANIMATED ARROW */}
-      <div className="hidden md:absolute md:flex bottom-6 left-1/2 transform -translate-x-1/2">
+      <div className="hidden md:absolute md:flex bottom-6 left-1/2 transform -translate-x-1/2 z-20">
         <div
           className="animate-bounce text-websecundary cursor-pointer"
           onClick={handleArrowClick}
