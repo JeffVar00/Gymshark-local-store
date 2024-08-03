@@ -7,7 +7,8 @@ import Featured from "@/components/Featured";
 import Header from "@/components/Header";
 import PageDescription from "@/components/PageDescription";
 
-import { featuredProducts, drops, categories } from "@/data";
+import { featuredProducts, drops, categories, main_categories } from "@/data";
+import MainCategories from "@/components/MainCategories";
 
 export default function Home() {
   const nextSectionRef = useRef(null);
@@ -32,10 +33,12 @@ export default function Home() {
       <div ref={nextSectionRef}>
         <Featured
           products={featuredProducts}
-          subtitle={"Women's"}
+          subtitle={"Everybody's Favourite"}
           title={"GYMSHARK SEASON"}
         />
       </div>
+
+      <FeaturedCategories categories={categories} title={"How do you train?"} />
 
       <Header
         details={{
@@ -56,8 +59,9 @@ export default function Home() {
           ],
         }}
       />
-      <Featured products={drops} subtitle={""} title={"NEW MONTH, NEW DROPS"} />
-      <FeaturedCategories categories={categories} title={"How do you train?"} />
+
+      <MainCategories categories={main_categories} />
+
       <PageDescription />
     </main>
   );
