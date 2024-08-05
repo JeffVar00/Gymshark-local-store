@@ -41,7 +41,7 @@ const AuthPage = () => {
       </div>
 
       <div className="w-full  flex flex-1 justify-center items-center">
-        <div className="w-96 flex flex-col gap-6 justify-center ">
+        <div className="w-96 flex flex-col gap-6 justify-center mx-12">
           <div className="flex flex-col gap-4 items-center justify-center ">
             <div className="hidden lg:flex relative w-16 h-16">
               <Image
@@ -96,7 +96,7 @@ const AuthPage = () => {
           </div>
           <div className="flex flex-col justify-center font-semibold gap-3 text-websecundary">
             <button className="flex items-center px-2 py-2 gap-3 border rounded-md bg-google ">
-              <div className="p-2 bg-white rounded-lg mr-1">
+              <div className="p-1 md:p-2 bg-white rounded-lg mr-1">
                 <Image
                   src="/google.png"
                   alt="Google"
@@ -108,7 +108,7 @@ const AuthPage = () => {
               Continue with Google
             </button>
             <button className="flex items-center px-2 py-2 gap-3 border rounded-md bg-facebook">
-              <div className="p-2 bg-white rounded-lg mr-1">
+              <div className="p-1 md:p-2 bg-white rounded-lg mr-1">
                 <Image
                   src="/facebook.png"
                   alt="Facebook"
