@@ -40,7 +40,7 @@ const SingUpForm = () => {
         </div>
         <button
           type="submit"
-          className="w-full py-2 bg-webprimary text-websecundary rounded-full font-bold"
+          className="w-full text-sm md:text-base py-2 bg-webprimary text-websecundary rounded-full font-bold"
         >
           LOG IN
         </button>

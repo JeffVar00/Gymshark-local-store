@@ -43,7 +43,7 @@ const SingUpForm = () => {
       <div className="flex flex-col items-center mt-8">
         <button
           type="submit"
-          className="w-full py-2 bg-webprimary text-websecundary rounded-full font-bold"
+          className="w-full py-2 text-sm md:text-base bg-webprimary text-websecundary rounded-full font-bold"
         >
           SIGN UP
         </button>
