@@ -13,6 +13,7 @@ const PageIcon = ({ logo }) => {
           src={logoSrc}
           alt="Page icon"
           fill="responsive"
+          sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
           className="w-full h-full object-contain"
         />
       </div>

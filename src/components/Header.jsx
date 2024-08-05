@@ -29,7 +29,7 @@ const Header = ({ details, nextSectionRef }) => {
 
   return (
     <div
-      className="flex flex-col h-[calc(100vh-6rem)] md:h-auto md:aspect-[21/9] bg-cover bg-center md:flex-row bg-[url({smsrc}')] md:bg-[url('/banner.png')] md:items-center relative"
+      className="flex flex-col h-[calc(100vh-6rem)] md:h-auto md:aspect-[21/9] bg-cover bg-center md:flex-row md:items-center relative"
       style={{ backgroundImage: `url(${backgroundImageUrl})` }}
     >
       {/* TEXT CONTAINER */}

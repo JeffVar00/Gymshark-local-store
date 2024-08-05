@@ -11,7 +11,9 @@ module.exports = {
         // Add your personalized colors here
         webprimary: '#0B1215',
         websecundary: '#f5f5f5',
-        noimagebackground: "#e8e8e8"
+        noimagebackground: "#e8e8e8",
+        google : "#0085f8",
+        facebook: "#25589a",
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
