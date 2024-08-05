@@ -41,7 +41,7 @@ const AuthPage = () => {
       </div>
 
       <div className="w-full  flex flex-1 justify-center items-center">
-        <div className="w-96 flex flex-col gap-6 justify-center mx-12">
+        <div className="w-96 flex flex-col gap-6 justify-center mx-6">
           <div className="flex flex-col gap-4 items-center justify-center ">
             <div className="hidden lg:flex relative w-16 h-16">
               <Image
@@ -60,12 +60,12 @@ const AuthPage = () => {
                 className={`absolute z-10 bottom-0 mb-1 left-0 w-1/2 h-8 bg-white rounded-full shadow transition-transform duration-300 ${
                   isLogin
                     ? "transform translate-x-0 ml-1"
-                    : "transform translate-x-full"
+                    : "transform translate-x-97"
                 }`}
               ></div>
               <div className="flex flex-row w-full">
                 <button
-                  className={`w-full py-3 text-xs font-bold relative focus:outline-none flex justify-center ${
+                  className={`w-full py-3 text-xs font-bold relative no-tap-highlight flex justify-center ${
                     isLogin ? "text-webprimary" : "text-gray-700"
                   }`}
                   onClick={() => setIsLogin(true)}
@@ -73,7 +73,7 @@ const AuthPage = () => {
                   <span className="z-20">LOG IN</span>
                 </button>
                 <button
-                  className={`w-full  py-3 relative text-xs font-bold focus:outline-none flex justify-center ${
+                  className={`w-full  py-3 relative text-xs font-bold no-tap-highlight flex justify-center ${
                     !isLogin ? "text-webprimary" : "text-gray-700"
                   }`}
                   onClick={() => setIsLogin(false)}
