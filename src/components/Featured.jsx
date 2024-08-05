@@ -35,7 +35,7 @@ const Featured = ({ products, title, subtitle }) => {
                       </div>
                     )}
                     {/* SIZE SELECTION */}
-                    <div className="hidden absolute bottom-0 left-0 w-full h-1/3 bg-opacity-100 bg-websecundary lg:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-8 ">
+                    <div className="hidden bottom-0 left-0 w-full h-1/3 bg-opacity-100 bg-websecundary lg:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-8 ">
                       <div className="grid grid-cols-4 gap-2 w-full">
                         {["XS", "S", "M", "L", "XL", "XXL", "3XL"].map(
                           (size) => (
