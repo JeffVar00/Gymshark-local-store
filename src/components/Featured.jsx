@@ -16,7 +16,7 @@ const Featured = ({ products, title, subtitle }) => {
           {products.map((item) => (
             <div
               key={item.id}
-              className="w-[80vw] mx-1 text-webprimary flex flex-col justify-around transition-all duration-300 md:w-[23vw] xl:w-[22vw]"
+              className="w-[80vw] mx-1 text-webprimary flex flex-col justify-around transition-all duration-300 md:w-[23vw] xl:w-[22vw] group"
             >
               {/* IMAGE CONTAINER */}
               <div className="relative w-full h-[100vw] md:h-[30vw] xl:h-[28vw]">
@@ -34,6 +34,26 @@ const Featured = ({ products, title, subtitle }) => {
                         NEW
                       </div>
                     )}
+                    {/* SIZE SELECTION */}
+                    <div className="absolute bottom-0 left-0 w-full h-1/4 bg-opacity-100 bg-websecundary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-8">
+                      <div className="grid grid-cols-5 gap-2 w-full">
+                        {["XS", "S", "M", "L", "XL", "XXL", "3XL"].map(
+                          (size) => (
+                            <button
+                              key={size}
+                              className={`px-4 py-3 text-sm  ${
+                                item.availableSizes.includes(size)
+                                  ? "bg-white text-webprimary hover:text-websecundary hover:bg-webprimary"
+                                  : "bg-gray-200 text-gray-500 cursor-not-allowed"
+                              }`}
+                              disabled={!item.availableSizes.includes(size)}
+                            >
+                              {size}
+                            </button>
+                          )
+                        )}
+                      </div>
+                    </div>
                   </div>
                 ) : (
                   <div className="absolute inset-0 bg-noimagebackground flex items-center justify-center">

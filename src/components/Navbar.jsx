@@ -21,20 +21,6 @@ const Navbar = ({ user }) => {
 
   const controlNavbar = useCallback(() => {
     if (typeof window !== "undefined") {
-      const navbarReferencePoint = document.getElementById(
-        "navbar-reference-point"
-      );
-      const referencePointOffset =
-        navbarReferencePoint?.getBoundingClientRect().bottom;
-
-      if (referencePointOffset !== undefined) {
-        if (referencePointOffset <= 0) {
-          setIsSticky(true);
-        } else {
-          setIsSticky(false);
-        }
-      }
-
       if (window.innerWidth < 1000) {
         if (window.scrollY > lastScrollY) {
           // Scroll down
@@ -91,9 +77,7 @@ const Navbar = ({ user }) => {
   return (
     <div>
       <nav
-        className={`w-full z-50 flex justify-between items-center text-webprimary bg-websecundary font-bold h-14 px-4 lg:h-16 lg:px-20 xl:px-32 transition-transform duration-300 ${
-          isSticky ? `fixed top-0` : ""
-        } ${
+        className={`w-full  z-50 flex justify-between items-center text-webprimary bg-websecundary font-bold h-14 px-4 lg:h-16 lg:px-20 xl:px-32 transition-transform duration-300 fixed top-0 ${
           showNavbar ? "transform translate-y-0" : "transform -translate-y-full"
         }`}
       >

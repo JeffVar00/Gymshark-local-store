@@ -1,54 +1,151 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+"use client";
 
-const LoginPage = () => {
+// pages/auth.js
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+
+import PageIcon from "@/components/PageIcon";
+import Image from "next/image";
+
+const AuthPage = () => {
+  const [isLogin, setIsLogin] = useState(true);
+  // const router = useRouter();
+
+  useEffect(() => {
+    // Redirect if already logged in
+    const userLoggedIn = false; // Replace with actual login check
+    if (userLoggedIn) {
+      // router.push("/profile");
+    }
+  }, []);
+
   return (
-    <div className="p-4 h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex items-center justify-center">
-      {/* BOX */}
-      <div className=" h-auto shadow-2xl rounded-lg flex flex-col lg:flex-row lg:h-[70%] lg:w-[90%] xl:w-[75%] 2xl:w-[60%]">
-        {/* IMAGE CONTAINER */}
-        <div className="relative h-1/3 w-full md:h-full md:w-1/2 bg-black rounded-lg">
-          <Image
-            src="/gymsharkbanner.jpg"
-            alt=""
-            fill
-            className="object-cover rounded-lg"
-          />
+    <div className="h-screen flex lg:flex-row">
+      <div
+        className="bg-cover hidden lg:flex flex-1 bg-center"
+        style={{ backgroundImage: "url(/path-to-your-image.jpg)" }}
+      >
+        <div className="w-full flex items-center justify-center  h-full bg-black bg-opacity-50">
+          <div className="text-white text-center">
+            <h1 className="text-4xl font-bold">SAVE WHAT YOU SEE</h1>
+            <p className="mt-4">
+              Save your most-loved activewear pieces to build your perfect
+              outfit
+            </p>
+          </div>
         </div>
-        {/* FORM CONTAINER */}
-        <div className="p-10 flex flex-col gap-4 lg:w-1/2 bg-websecundary text-webprimary justify-center rounded-lg ">
-          <h1 className="font-bold text-xl lg:text-3xl">Inicia sesión</h1>
-          <button className="flex gap-4 p-4 ring-1 ring-red-500 rounded-md bg-white">
-            <Image
-              src="/google.png"
-              alt=""
-              width={20}
-              height={20}
-              className="object-contain"
-            />
-            <span className="text-webprimary">Ingresa con Google</span>
-          </button>
-          <button className="flex gap-4 p-4 ring-1 ring-blue-500 rounded-md bg-white">
-            <Image
-              src="/facebook.png"
-              alt=""
-              width={20}
-              height={20}
-              className="object-contain"
-            />
-            <span className="text-webprimary">Ingresa con Facebook</span>
-          </button>
-          <p className="text-sm">
-            Tienes problemas para iniciar sesión?{" "}
-            <Link className="underline" href="/">
-              Contactanos
-            </Link>
-          </p>
+      </div>
+
+      <div className="w-full  flex flex-1 justify-center items-center">
+        <div className="w-96 flex flex-col gap-6 justify-center ">
+          <div className="flex flex-col gap-4 items-center justify-center ">
+            <div className="relative w-16 h-16">
+              <Image
+                src="/pageiconblack.png"
+                alt="Page icon"
+                fill="responsive"
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <h2 className="text-center text-xl font-bold uppercase">
+              My Gymshark
+            </h2>
+            <div className="flex justify-center bg-gray-200 rounded-full relative w-3/4 text-center items-center">
+              <div
+                className={`absolute z-10 bottom-0 mb-1 left-0 w-1/2 h-8 bg-white rounded-full shadow transition-transform duration-300 ${
+                  isLogin
+                    ? "transform translate-x-0 ml-1"
+                    : "transform translate-x-full"
+                }`}
+              ></div>
+              <div className="flex flex-row w-full">
+                <button
+                  className={`w-full py-3 text-xs font-bold relative focus:outline-none flex justify-center ${
+                    isLogin ? "text-black" : "text-gray-700"
+                  }`}
+                  onClick={() => setIsLogin(true)}
+                >
+                  <span className="z-20">LOG IN</span>
+                </button>
+                <button
+                  className={`w-full  py-3 relative text-xs font-bold focus:outline-none flex justify-center ${
+                    !isLogin ? "text-black" : "text-gray-700"
+                  }`}
+                  onClick={() => setIsLogin(false)}
+                >
+                  <span className="z-20">SIGN UP</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <form
+            className="transition-opacity duration-300"
+            style={{ opacity: isLogin ? 1 : 0.7 }}
+          >
+            {!isLogin && (
+              <div className="mb-4">
+                <label className="block text-gray-700">Full Name</label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-2 border rounded"
+                />
+              </div>
+            )}
+            <div className="mb-4">
+              <label className="block text-gray-700">Email Address</label>
+              <input type="email" className="w-full px-4 py-2 border rounded" />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700">Password</label>
+              <input
+                type="password"
+                className="w-full px-4 py-2 border rounded"
+              />
+            </div>
+            {isLogin && (
+              <div className="text-right mb-4">
+                <a href="#" className="text-sm text-blue-500">
+                  Forgot Password?
+                </a>
+              </div>
+            )}
+            <button className="w-full py-2 bg-black text-white rounded">
+              {isLogin ? "LOG IN" : "SIGN UP"}
+            </button>
+          </form>
+          <div className="flex items-center justify-between my-4">
+            <hr className="w-full border-t border-gray-300" />
+            <span className="mx-4">OR</span>
+            <hr className="w-full border-t border-gray-300" />
+          </div>
+          <div className="flex justify-around">
+            <button className="flex items-center px-4 py-2 border rounded">
+              <Image
+                src="/google.png"
+                alt="Google"
+                width={20}
+                height={20}
+                className="object-contain"
+              />
+              Google
+            </button>
+            <button className="flex items-center px-4 py-2 border rounded">
+              <Image
+                src="/facebook.png"
+                alt="Facebook"
+                width={20}
+                height={20}
+                className="object-contain"
+              />
+              Facebook
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default LoginPage;
+export default AuthPage;

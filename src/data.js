@@ -8,19 +8,8 @@ export const featuredProducts = [
     img: "/clothexample.avif",
     price: 55,
     isNew: true,
-    options: [
-      {
-        title: "XS",
-        additionalPrice: 0,
-      },
-      {
-        title: "S",
-        additionalPrice: 0,
-      },
-      {
-        title: "M",
-        additionalPrice: 0,
-      },
+    availableSizes: [
+      "XS", "S", "L", "XXL", "3XL"  
     ],
   },
   {
@@ -30,19 +19,8 @@ export const featuredProducts = [
     img: "/clothexample1.avif",
     price: 55,
     isNew: true,
-    options: [
-      {
-        title: "XS",
-        additionalPrice: 0,
-      },
-      {
-        title: "S",
-        additionalPrice: 0,
-      },
-      {
-        title: "M",
-        additionalPrice: 0,
-      },
+    availableSizes: [
+      "XS", "S", "M", "XL"
     ],
   },
   {
@@ -52,19 +30,8 @@ export const featuredProducts = [
     img: "/clothexample3.jpg",
     price: 55,
     isNew: true,
-    options: [
-      {
-        title: "XS",
-        additionalPrice: 0,
-      },
-      {
-        title: "S",
-        additionalPrice: 0,
-      },
-      {
-        title: "M",
-        additionalPrice: 0,
-      },
+    availableSizes: [
+      "M", "XL", "L"
     ],
   },
   {
@@ -73,19 +40,8 @@ export const featuredProducts = [
     desc: "Black/Asphalt Grey",
     img: "/clothexample6.jpg",
     price: 55,
-    options: [
-      {
-        title: "XS",
-        additionalPrice: 0,
-      },
-      {
-        title: "S",
-        additionalPrice: 0,
-      },
-      {
-        title: "M",
-        additionalPrice: 0,
-      },
+    availableSizes: [
+      "XS", "S", "M", "XL", "L", "XXL", "3XL"  
     ],
   },
   {
@@ -94,19 +50,8 @@ export const featuredProducts = [
     desc: "Black/Asphalt Grey",
     img: "/clothexample5.avif",
     price: 55,
-    options: [
-      {
-        title: "XS",
-        additionalPrice: 0,
-      },
-      {
-        title: "S",
-        additionalPrice: 0,
-      },
-      {
-        title: "M",
-        additionalPrice: 0,
-      },
+    availableSizes: [
+      "XS", "S", "M", "XL", "L", "XXL", "3XL"  
     ],
   },
   {
@@ -115,19 +60,8 @@ export const featuredProducts = [
     desc: "Black/Asphalt Grey",
     img: "/clothexample4.avif",
     price: 55,
-    options: [
-      {
-        title: "XS",
-        additionalPrice: 0,
-      },
-      {
-        title: "S",
-        additionalPrice: 0,
-      },
-      {
-        title: "M",
-        additionalPrice: 0,
-      },
+    availableSizes: [
+      "XS", "S", "M", "XL", "L", "XXL", "3XL"  
     ],
   },
   {
@@ -136,19 +70,8 @@ export const featuredProducts = [
     desc: "Black/Asphalt Grey",
     img: "/clothexample7.avif",
     price: 55,
-    options: [
-      {
-        title: "XS",
-        additionalPrice: 0,
-      },
-      {
-        title: "S",
-        additionalPrice: 0,
-      },
-      {
-        title: "M",
-        additionalPrice: 0,
-      },
+    availableSizes: [
+      "XS", "S", "M", "XL", "L", "XXL", "3XL"  
     ],
   },
   {
@@ -157,19 +80,8 @@ export const featuredProducts = [
     desc: "Black/Asphalt Grey",
     img: "/clothexample8.avif",
     price: 55,
-    options: [
-      {
-        title: "XS",
-        additionalPrice: 0,
-      },
-      {
-        title: "S",
-        additionalPrice: 0,
-      },
-      {
-        title: "M",
-        additionalPrice: 0,
-      },
+    availableSizes: [
+      "XS", "S", "M", "XL", "L", "XXL", "3XL"  
     ],
   },
   {
@@ -178,19 +90,8 @@ export const featuredProducts = [
     desc: "Black/Asphalt Grey",
     img: "/clothexample9.avif",
     price: 55,
-    options: [
-      {
-        title: "XS",
-        additionalPrice: 0,
-      },
-      {
-        title: "S",
-        additionalPrice: 0,
-      },
-      {
-        title: "M",
-        additionalPrice: 0,
-      },
+    availableSizes: [
+      "XS", "S", "M", "XL", "L", "XXL", "3XL"  
     ],
   },
 ];

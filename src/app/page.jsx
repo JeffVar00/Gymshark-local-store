@@ -6,14 +6,15 @@ import FeaturedCategories from "@/components/FeaturedCategories";
 import Featured from "@/components/Featured";
 import Header from "@/components/Header";
 import PageDescription from "@/components/PageDescription";
-
-import { featuredProducts, drops, categories, main_categories } from "@/data";
+import Notification from "@/components/Notification";
+import { featuredProducts, categories, main_categories } from "@/data";
 import MainCategories from "@/components/MainCategories";
 
 export default function Home() {
   const nextSectionRef = useRef(null);
   return (
     <main>
+      <Notification />
       <Header
         details={{
           title: "NEW STUFF JUST DROPPED",
