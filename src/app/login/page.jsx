@@ -83,11 +83,21 @@ const AuthPage = () => {
               </div>
             </div>
           </div>
-          <div className={isLogin ? "hidden" : ""}>
-            <LoginForm />
-          </div>
-          <div className={isLogin ? "" : "hidden"}>
-            <SignUpForm />
+          <div className="relative">
+            <div
+              className={`transition-opacity transition-max-height duration-1000 ease-in-out overflow-hidden ${
+                isLogin ? "opacity-0 max-h-0" : "opacity-100 max-h-screen"
+              }`}
+            >
+              <LoginForm />
+            </div>
+            <div
+              className={`transition-opacity transition-max-height duration-1000 ease-in-out overflow-hidden ${
+                isLogin ? "opacity-100 max-h-screen" : "opacity-0 max-h-0"
+              }`}
+            >
+              <SignUpForm />
+            </div>
           </div>
           <div className="flex items-center justify-between my-4">
             <hr className="w-full border-t border-gray-300" />
