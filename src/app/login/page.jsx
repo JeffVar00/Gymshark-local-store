@@ -3,7 +3,6 @@
 // pages/auth.js
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-
 import SignUpForm from "@/components/SignUpForm";
 import LoginForm from "@/components/LoginForm";
 import Image from "next/image";
@@ -21,15 +20,15 @@ const AuthPage = () => {
   }, []);
 
   return (
-    <div className="h-screen flex lg:flex-row">
+    <div className="min-h-screen flex flex-col lg:flex-row">
       <div
-        className="bg-cover hidden lg:flex flex-1 bg-center "
+        className="bg-cover hidden lg:flex flex-1 bg-center"
         style={{ backgroundImage: "url(/banner.jpg)" }}
       >
-        <div className="w-full flex items-center justify-start h-full bg-webprimary bg-opacity-50">
+        <div className="w-full flex items-center justify-start h-full bg-webprimary bg-opacity-50 p-4">
           <div className="text-white ml-8 xl:ml-12">
             <p className="text-xs mb-4">Your account. Your rules.</p>
-            <h1 className="text-4xl xl:text-5xl font-bold">
+            <h1 className="text-3xl xl:text-4xl font-bold">
               SAVE WHAT YOU SEE
             </h1>
             <p className="text-sm mt-4">
@@ -40,10 +39,10 @@ const AuthPage = () => {
         </div>
       </div>
 
-      <div className="w-full  flex flex-1 justify-center items-center">
-        <div className="w-96 flex flex-col gap-6 justify-center mx-6">
-          <div className="flex flex-col gap-4 items-center justify-center ">
-            <div className="hidden lg:flex relative w-16 h-16">
+      <div className="w-full flex flex-1 justify-center items-center p-4">
+        <div className="w-full max-w-md flex flex-col gap-4 justify-center mx-6">
+          <div className="flex flex-col gap-4 items-center justify-center">
+            <div className="hidden xl:flex relative w-16 h-16">
               <Image
                 src="/pageiconblack.png"
                 alt="Page icon"
@@ -52,7 +51,7 @@ const AuthPage = () => {
                 className="w-full h-full object-contain"
               />
             </div>
-            <h2 className="text-center text-xl font-bold uppercase">
+            <h2 className="text-center text-lg font-bold uppercase">
               My Gymshark
             </h2>
             <div className="flex justify-center bg-websecundary rounded-full relative w-3/4 text-center items-center">
@@ -73,7 +72,7 @@ const AuthPage = () => {
                   <span className="z-20">LOG IN</span>
                 </button>
                 <button
-                  className={`w-full  py-3 relative text-xs font-bold no-tap-highlight flex justify-center ${
+                  className={`w-full py-3 relative text-xs font-bold no-tap-highlight flex justify-center ${
                     !isLogin ? "text-webprimary" : "text-gray-700"
                   }`}
                   onClick={() => setIsLogin(false)}
@@ -89,42 +88,42 @@ const AuthPage = () => {
                 isLogin ? "opacity-0 max-h-0" : "opacity-100 max-h-screen"
               }`}
             >
-              <LoginForm />
+              <SignUpForm />
             </div>
             <div
               className={`transition-opacity transition-max-height duration-1000 ease-in-out overflow-hidden ${
                 isLogin ? "opacity-100 max-h-screen" : "opacity-0 max-h-0"
               }`}
             >
-              <SignUpForm />
+              <LoginForm />
             </div>
           </div>
-          <div className="flex items-center justify-between my-4">
+          <div className="flex items-center justify-between my-2">
             <hr className="w-full border-t border-gray-300" />
-            <span className="mx-4">OR</span>
+            <span className="mx-2 text-sm">OR</span>
             <hr className="w-full border-t border-gray-300" />
           </div>
-          <div className="flex flex-col justify-center font-semibold gap-3 text-websecundary">
-            <button className="flex text-sm md:text-base items-center px-2 py-2 gap-3 border rounded-md bg-google ">
-              <div className="p-1 md:p-2 bg-white rounded-lg mr-1">
+          <div className="flex flex-col justify-center font-semibold gap-2 text-webprimary">
+            <button className="flex text-sm items-center px-2 py-2 gap-2 border-2  rounded-md bg-white border-webprimary">
+              <div className="p-1">
                 <Image
                   src="/google.png"
                   alt="Google"
-                  width={25}
-                  height={25}
-                  className="object-contain "
+                  width={23}
+                  height={23}
+                  className="object-contain"
                 />
               </div>
               Continue with Google
             </button>
-            <button className="flex text-sm md:text-base items-center px-2 py-2 gap-3 border rounded-md bg-facebook">
-              <div className="p-1 md:p-2 bg-white rounded-lg mr-1">
+            <button className="flex text-sm items-center px-2 py-2 gap-2 border-2 rounded-md bg-white border-webprimary">
+              <div className="p-1">
                 <Image
                   src="/facebook.png"
                   alt="Facebook"
-                  width={25}
-                  height={25}
-                  className="object-contain "
+                  width={23}
+                  height={23}
+                  className="object-contain"
                 />
               </div>
               Continue with Facebook
