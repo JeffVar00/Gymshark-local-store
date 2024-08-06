@@ -16,7 +16,7 @@ const Featured = ({ products, title, subtitle }) => {
           {products.map((item) => (
             <div
               key={item.id}
-              className="w-[80vw] mx-1 text-webprimary flex flex-col justify-around transition-all duration-300 md:w-[23vw] xl:w-[22vw] group"
+              className="w-[80vw] mx-1 h-full text-webprimary flex flex-col justify-around transition-all duration-300 md:w-[23vw] xl:w-[22vw] group"
             >
               {/* IMAGE CONTAINER */}
               <div className="relative w-full h-[100vw] md:h-[30vw] xl:h-[28vw]">
