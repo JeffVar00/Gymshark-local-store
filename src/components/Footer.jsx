@@ -15,7 +15,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-websecundary text-webprimary mt-8">
-      <div className="px-4 lg:px-8 lg:py-8 lg:border-t-2 border-b-2">
+      <div className="px-4 lg:px-16 lg:py-8 lg:border-t-2 border-b-2">
         <div className="flex flex-col lg:flex-row justify-start lg:gap-6 xl:gap-8">
           <div className="w-full lg:w-auto border-y-2 lg:border-0 lg:pr-4">
             <div
@@ -131,10 +131,10 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex flex-col md:flex-row justify-start md:justify-between items-center py-4 px-6 text-center">
-        <p className="text-xs font-semibold text-gray-500 ">
+        <p className="text-xs  xl:text-sm  font-semibold text-gray-500 ">
           © 2024 Gymshark Limited | All Rights Reserved. | We Do Gym.
         </p>
-        <div className="hidden lg:flex justify-center space-x-4 text-xs font-semibold text-gray-500">
+        <div className="hidden lg:flex justify-center space-x-4 text-xs xl:text-sm font-semibold text-gray-500">
           <a href="#">Terms and Conditions</a>
           <a href="#">Terms of Use</a>
           <a href="#">Privacy Notice</a>
