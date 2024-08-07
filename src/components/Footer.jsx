@@ -114,10 +114,10 @@ const Footer = () => {
           <div>
             <div className="flex flex-col md:flex-row-reverse md:gap-4 justify-center items-center">
               <SocialMedia />
-              <div className="flex text-sm text-websecundary font-bold mt-2 md:mt-0 lg:mt-0 items-center gap-2 cursor-pointer bg-webprimary py-1 px-2 rounded-md">
+              {/* <div className="flex text-sm text-websecundary font-bold mt-2 md:mt-0 lg:mt-0 items-center gap-2 cursor-pointer bg-webprimary py-1 px-2 rounded-md">
                 <PhoneIcon classname="w-5 h-4 text-websecundary" />
                 <span>8422-6359</span>
-              </div>
+              </div> */}
             </div>
           </div>
 
