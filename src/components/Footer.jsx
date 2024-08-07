@@ -48,7 +48,7 @@ const Footer = () => {
                 <a href="#">Orders</a>
               </li>
               <li>
-                <a href="#">Submit a Fake</a>
+                <a href="#">Submit A Fake</a>
               </li>
             </ul>
           </div>
