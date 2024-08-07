@@ -4,15 +4,15 @@ import Link from "next/link";
 
 const SocialMedia = () => {
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row gap-1">
       <Link
         href="https://www.facebook.com/profile.php?id=100087813451202"
-        className="flex items-center gap-2"
+        className="flex items-center "
         passHref
         rel="noopener noreferrer"
         target="_blank"
       >
-        <div className="relative w-6 h-6 md:w-8 md:h-8">
+        <div className="relative w-7 h-7 lg:w-8 lg:h-8">
           <Image
             src="/facebook.svg"
             alt="facebook"
@@ -24,12 +24,12 @@ const SocialMedia = () => {
 
       <Link
         href="https://www.instagram.com/elbarriocr/"
-        className="flex items-center gap-2"
+        className="flex items-center "
         passHref
         rel="noopener noreferrer"
         target="_blank"
       >
-        <div className="relative w-6 h-6 md:w-8 md:h-8">
+        <div className="relative w-7 h-7 lg:w-8 lg:h-8">
           <Image
             src="/instagram.png"
             alt="instagram"
