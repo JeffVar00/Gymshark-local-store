@@ -44,7 +44,7 @@ export default function Home() {
       <div ref={nextSectionRef}>
         <Featured
           products={featuredProducts}
-          subtitle={"Everybody's Favourite"}
+          subtitle={"Everybody's Favorite"}
           title={"GYMSHARK SEASON"}
         />
       </div>
@@ -70,7 +70,7 @@ export default function Home() {
       <MainCategories categories={main_categories} />
 
       <PageDescription />
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center mb-8">
         <button
           onClick={scrollToTop}
           className="flex items-center mt-4 md:mt-0 font-semibold text-webprimary hover:text-gray-500"

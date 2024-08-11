@@ -77,7 +77,7 @@ const Navbar = ({ user }) => {
   return (
     <div>
       <nav
-        className={`w-full  z-50 flex justify-between items-center text-webprimary bg-websecundary font-bold h-14 px-4 lg:h-16 lg:px-20 xl:px-32 transition-transform duration-300 fixed top-0 ${
+        className={`w-full  z-50 flex justify-between items-center text-webprimary bg-websecundary font-bold h-14 px-4 lg:h-16 lg:px-16 transition-transform duration-300 fixed top-0 ${
           showNavbar ? "transform translate-y-0" : "transform -translate-y-full"
         }`}
       >

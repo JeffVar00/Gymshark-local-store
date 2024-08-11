@@ -240,7 +240,7 @@ export const main_categories = [
   },
   {
     id: 2,
-    ref: "/",
+    ref: "/collections/men",
     title: "Men",
     img: "/men_category_banner.avif",
   },

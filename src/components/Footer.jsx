@@ -14,7 +14,7 @@ const Footer = () => {
   const togglePages = () => setPagesOpen(!pagesOpen);
 
   return (
-    <footer className="bg-websecundary text-webprimary mt-8">
+    <footer className="bg-websecundary text-webprimary">
       <div className="px-4 lg:px-16 lg:py-8 lg:border-t-2 border-b-2">
         <div className="flex flex-col lg:flex-row justify-start lg:gap-6 xl:gap-8">
           <div className="w-full lg:w-auto border-y-2 lg:border-0 lg:pr-4">

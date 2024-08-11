@@ -7,7 +7,7 @@ const PageDescription = () => {
         <h1 className="text-2xl md:text-3xl font-bold">
           WORKOUT CLOTHES & GYM CLOTHES
         </h1>
-        <p className="text-xs md:text-base mt-2">
+        <p className="text-xs md:text-base mt-2 ">
           Workout Clothes designed to help you become your personal best.
           Because when it comes to performing at your max, there should be no
           obstacles – least of all your workout clothes.

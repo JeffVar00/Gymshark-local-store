@@ -20,7 +20,7 @@ const AuthPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row">
+    <div className="min-h-screen h-full flex flex-col lg:flex-row">
       <div
         className="bg-cover hidden lg:flex flex-1 bg-center"
         style={{ backgroundImage: "url(/banner.jpg)" }}
