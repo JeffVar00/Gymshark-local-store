@@ -157,7 +157,7 @@ const ProductPage = ({ category }) => {
                     item={product}
                     imageSize={`${
                       isGrid ? "h-[60vw]" : "h-[120vw]"
-                    } h-[60vw] md:h-[40vw] lg:h-[30vw] xl:h-[26vw] 2xl:h-[20vw]`}
+                    } md:h-[40vw] lg:h-[30vw] xl:h-[26vw] 2xl:h-[20vw]`}
                   />
                 </div>
               ))}
