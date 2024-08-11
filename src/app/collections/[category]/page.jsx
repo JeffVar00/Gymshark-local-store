@@ -45,6 +45,8 @@ const ProductPage = ({ category }) => {
     setPage(newPage);
   };
 
+  const [isGrid, setIsGrid] = useState(false);
+
   return (
     <div className="flex flex-col mx-auto">
       <Notification />
@@ -61,6 +63,40 @@ const ProductPage = ({ category }) => {
             Stock up on your workout wardrobe or test a fresh `fit. Shop all
             men`s Gymshark products here.
           </p>
+        </div>
+
+        <div className="flex flex-row lg:hidden px-2 gap-2">
+          <div className="flex justify-center bg-websecundary rounded-full relative w-full text-center items-center">
+            <div
+              className={`absolute z-10 bottom-0 mb-1 left-0 w-1/2 h-8 bg-white rounded-full shadow transition-transform duration-300 ${
+                isGrid
+                  ? "transform translate-x-0 ml-1"
+                  : "transform translate-x-97"
+              }`}
+            ></div>
+            <div className="flex flex-row w-full">
+              <button
+                className={`w-full py-3 text-xs font-bold relative no-tap-highlight flex justify-center ${
+                  isGrid ? "text-webprimary" : "text-gray-700"
+                }`}
+                onClick={() => setIsGrid(true)}
+              >
+                <span className="z-20 uppercase">Grid</span>
+              </button>
+              <button
+                className={`w-full py-3 relative text-xs font-bold no-tap-highlight flex justify-center ${
+                  !isGrid ? "text-webprimary" : "text-gray-700"
+                }`}
+                onClick={() => setIsGrid(false)}
+              >
+                <span className="z-20 uppercase">Single</span>
+              </button>
+            </div>
+          </div>
+          <button className="w-full py-3 relative text-xs bg-websecundary rounded-full font-bold flex justify-center uppercase">
+            Filter & Sort
+          </button>
+          <div></div>
         </div>
 
         <div className="flex flex-row py-2 px-2 lg:px-6 2xl:px-16">
@@ -107,7 +143,11 @@ const ProductPage = ({ category }) => {
             </div>
           </aside>
           <div className="w-full">
-            <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2">
+            <div
+              className={`grid  md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 ${
+                isGrid ? "grid-cols-2" : "grid-cols-1"
+              }`}
+            >
               {featuredProducts.map((product) => (
                 <div
                   key={product.id}
@@ -115,7 +155,9 @@ const ProductPage = ({ category }) => {
                 >
                   <ProductCard
                     item={product}
-                    imageSize="h-[100vw] md:h-[40vw] lg:h-[30vw] xl:h-[26vw] 2xl:h-[20vw]"
+                    imageSize={`${
+                      isGrid ? "h-[60vw]" : "h-[120vw]"
+                    } h-[60vw] md:h-[40vw] lg:h-[30vw] xl:h-[26vw] 2xl:h-[20vw]`}
                   />
                 </div>
               ))}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
 const ProductCard = ({ item, imageSize }) => {
@@ -51,7 +51,7 @@ const ProductCard = ({ item, imageSize }) => {
       <div className="text-start my-4">
         <h2 className="text-xs md:text-md">{item.title}</h2>
         <p className="text-xs  text-gray-400">{item.desc}</p>
-        <p className="text-md font-bold">US${item.price}</p>
+        <p className="text-xs md:text-md font-bold">US${item.price}</p>
       </div>
     </div>
   );
