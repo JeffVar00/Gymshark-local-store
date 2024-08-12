@@ -21,22 +21,30 @@ const ProductCard = ({ item, imageSize }) => {
               </div>
             )}
             {/* SIZE SELECTION */}
-            <div className="hidden absolute bottom-0 left-0 w-full h-1/3 bg-opacity-100 bg-websecundary xl:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-2">
-              <div className="grid grid-cols-4 gap-1 xl:gap-2 w-full py-1">
-                {["XS", "S", "M", "L", "XL", "XXL", "3XL"].map((size) => (
-                  <button
-                    key={size}
-                    className={`flex items-center justify-center p-3 xl:px-4 text-xs lg:text-sm ${
-                      item.availableSizes.includes(size)
-                        ? "bg-white text-webprimary hover:text-websecundary hover:bg-webprimary"
-                        : "bg-gray-200 text-gray-500 cursor-not-allowed"
-                    }`}
-                    disabled={!item.availableSizes.includes(size)}
-                  >
-                    {size}
-                  </button>
-                ))}
-              </div>
+            <div
+              className={`hidden absolute bottom-0 left-0 w-full bg-opacity-100 bg-websecundary lg:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+            >
+              {item.availableSizes.length === 0 ? (
+                <button className="m-4 w-full text-lg rounded-xl flex items-center justify-center p-3 bg-webprimary text-websecundary">
+                  Add to Bag
+                </button>
+              ) : (
+                <div className="grid grid-cols-4 xl:grid-cols-5 gap-2 m-4">
+                  {["XS", "S", "M", "L", "XL", "XXL", "3XL"].map((size) => (
+                    <button
+                      key={size}
+                      className={`flex items-center justify-center p-3 text-xs sm:text-sm md:text-base rounded-sm ${
+                        item.availableSizes.includes(size)
+                          ? "bg-white text-webprimary hover:text-websecundary hover:bg-webprimary"
+                          : "bg-gray-200 text-gray-500 cursor-not-allowed"
+                      }`}
+                      disabled={!item.availableSizes.includes(size)}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         ) : (

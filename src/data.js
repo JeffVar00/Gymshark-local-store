@@ -8,9 +8,7 @@ export const featuredProducts = [
     img: "/clothexample.avif",
     price: 55,
     isNew: true,
-    availableSizes: [
-      "XS", "S", "L", "XXL", "3XL"  
-    ],
+    availableSizes: [],
   },
   {
     id: 2,

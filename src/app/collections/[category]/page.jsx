@@ -234,6 +234,7 @@ const ProductPage = ({ category }) => {
         className={`fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 transition-opacity duration-300 ease-in-out ${
           isFilterOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         } lg:hidden`}
+        onClick={toggleFilter}
       ></div>
       {/* Filter Mobile Menu */}
       <div

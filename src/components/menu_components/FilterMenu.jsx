@@ -99,7 +99,7 @@ export const FilterMenu = ({
             className="flex justify-between items-center cursor-pointer py-4 no-tap-highlight"
             onClick={toggleCategories}
           >
-            <h4 className="text-sm font-bold uppercase">Category</h4>
+            <h4 className="text-sm font-bold uppercase">Product Type</h4>
             <span className="text-xl font-bold ">
               {categoryOpen ? "-" : "+"}
             </span>
