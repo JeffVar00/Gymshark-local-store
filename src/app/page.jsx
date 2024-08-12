@@ -30,11 +30,11 @@ export default function Home() {
           buttons: [
             {
               text: "Shop Men",
-              ref: "/",
+              ref: "/collections/men",
             },
             {
               text: "Shop Women",
-              ref: "/",
+              ref: "/collections/women",
             },
           ],
         }}
@@ -61,7 +61,7 @@ export default function Home() {
           buttons: [
             {
               text: "Shop Now",
-              ref: "/",
+              ref: "/collections/men",
             },
           ],
         }}

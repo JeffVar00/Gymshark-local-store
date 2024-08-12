@@ -21,12 +21,12 @@ const ProductCard = ({ item, imageSize }) => {
               </div>
             )}
             {/* SIZE SELECTION */}
-            <div className="hidden absolute bottom-0 left-0 w-full h-1/3 bg-opacity-100 bg-websecundary lg:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-8 ">
-              <div className="grid grid-cols-4 gap-2 w-full">
+            <div className="hidden absolute bottom-0 left-0 w-full h-1/3 bg-opacity-100 bg-websecundary xl:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-2">
+              <div className="grid grid-cols-4 gap-1 xl:gap-2 w-full py-1">
                 {["XS", "S", "M", "L", "XL", "XXL", "3XL"].map((size) => (
                   <button
                     key={size}
-                    className={`p-2 xl:p-4 text-xs lg:text-sm ${
+                    className={`flex items-center justify-center p-3 xl:px-4 text-xs lg:text-sm ${
                       item.availableSizes.includes(size)
                         ? "bg-white text-webprimary hover:text-websecundary hover:bg-webprimary"
                         : "bg-gray-200 text-gray-500 cursor-not-allowed"

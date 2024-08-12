@@ -201,31 +201,31 @@ export const singleProduct = {
 export const categories = [
   {
     id: 1,
-    ref: "/",
+    ref: "/collections/lifting",
     title: "Lifting",
     img: "/category1.avif",
   },
   {
     id: 2,
-    ref: "/",
+    ref: "/collections/running",
     title: "Running",
     img: "/category2.avif",
   },
   {
     id: 3,
-    ref: "/",
+    ref: "/collections/yoga",
     title: "Yoga",
     img: "/category3.avif",
   },
   {
     id: 4,
-    ref: "/",
+    ref: "/collections/hiit",
     title: "Hiit",
     img: "/category4.avif",
   },
   {
     id: 5,
-    ref: "/",
+    ref: "/collections/functional",
     title: "Functional",
     img: "/category5.avif",
   },
@@ -234,7 +234,7 @@ export const categories = [
 export const main_categories = [
   {
     id: 1,
-    ref: "/",
+    ref: "/collections/women",
     title: "Women",
     img: "/women_category_banner.avif",
   },
@@ -246,7 +246,7 @@ export const main_categories = [
   },
   {
     id: 3,
-    ref: "/",
+    ref: "/collections/accesories",
     title: "Accesories",
     img: "/accesories_category_banner.avif",
   }
