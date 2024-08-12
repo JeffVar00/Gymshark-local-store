@@ -3,8 +3,8 @@
 // pages/auth.js
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import SignUpForm from "@/components/SignUpForm";
-import LoginForm from "@/components/LoginForm";
+import SignUpForm from "@/components/form_components/SignUpForm";
+import LoginForm from "@/components/form_components/LoginForm";
 import Image from "next/image";
 
 const AuthPage = () => {

@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import React, { useState, useEffect, useCallback } from "react";
 import { featuredProducts } from "@/data";
-import ProductCard from "@/components/ProductCard";
-import Notification from "@/components/Notification";
+import ProductCard from "@/components/card_components/ProductCard";
+import Notification from "@/components/section_components/Notification";
+import FilterMenu from "@/components/menu_components/FilterMenu";
 // import axios from "axios";
 
 const ProductPage = ({ category }) => {
@@ -12,7 +12,7 @@ const ProductPage = ({ category }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [filters, setFilters] = useState({ sort: "relevancy" });
+  const [filters, setFilters] = useState({ sort: "relevancy", categories: [] });
 
   const itemsPerPage = 50; // Adjust as necessary
 
@@ -36,8 +36,25 @@ const ProductPage = ({ category }) => {
     // fetchProducts();
   }, [category, page, filters]);
 
-  const handleFilterChange = (e) => {
-    setFilters({ ...filters, [e.target.name]: e.target.value });
+  const handleSortChange = (value) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      sort: value,
+    }));
+    setPage(1);
+  };
+
+  const handleCategoryChange = (value) => {
+    setFilters((prevFilters) => {
+      const isCategorySelected = prevFilters.categories.includes(value);
+
+      return {
+        ...prevFilters,
+        categories: isCategorySelected
+          ? prevFilters.categories.filter((category) => category !== value)
+          : [...prevFilters.categories, value],
+      };
+    });
     setPage(1);
   };
 
@@ -45,7 +62,56 @@ const ProductPage = ({ category }) => {
     setPage(newPage);
   };
 
+  const clearAllFilters = () => {
+    setFilters({ sort: "relevancy", categories: [] });
+    setPage(1);
+  };
+
   const [isGrid, setIsGrid] = useState(false);
+  const [isFilterOpen, setFilterOpen] = useState(false);
+
+  const toggleFilter = () => {
+    setFilterOpen(!isFilterOpen);
+  };
+
+  useEffect(() => {
+    if (isFilterOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => (document.body.style.overflow = "");
+  }, [isFilterOpen]);
+
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const controlNavbar = useCallback(() => {
+    if (typeof window !== "undefined") {
+      if (window.innerWidth < 1000) {
+        if (window.scrollY > lastScrollY) {
+          setShowNavbar(false);
+        } else {
+          setShowNavbar(true);
+        }
+        setLastScrollY(window.scrollY);
+      } else {
+        setShowNavbar(true);
+      }
+    }
+  }, [lastScrollY]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", controlNavbar);
+      window.addEventListener("resize", controlNavbar);
+
+      return () => {
+        window.removeEventListener("scroll", controlNavbar);
+        window.removeEventListener("resize", controlNavbar);
+      };
+    }
+  }, [controlNavbar]);
 
   return (
     <div className="flex flex-col mx-auto">
@@ -65,8 +131,14 @@ const ProductPage = ({ category }) => {
           </p>
         </div>
 
-        <div className="flex flex-row lg:hidden px-2 gap-2">
-          <div className="flex justify-center bg-websecundary rounded-full relative w-full text-center items-center">
+        <div
+          className={`flex flex-row sticky z-20 bg-white py-4 justify-between lg:hidden px-2 gap-2 transition-transform duration-300 ease-in-out`}
+          style={{
+            top: showNavbar ? `55px` : `20px`,
+            transform: showNavbar ? "translateY(0)" : "translateY(-20px)",
+          }}
+        >
+          <div className="flex md:hidden justify-center bg-websecundary rounded-full relative w-full text-center items-center">
             <div
               className={`absolute z-10 bottom-0 mb-1 left-0 w-1/2 h-8 bg-white rounded-full shadow transition-transform duration-300 ${
                 isGrid
@@ -93,55 +165,28 @@ const ProductPage = ({ category }) => {
               </button>
             </div>
           </div>
-          <button className="w-full py-3 relative text-xs bg-websecundary rounded-full font-bold flex justify-center uppercase">
+          <button
+            className="w-full py-3 relative text-xs bg-websecundary rounded-full font-bold flex justify-center uppercase"
+            onClick={toggleFilter}
+          >
             Filter & Sort
           </button>
-          <div></div>
         </div>
 
         <div className="flex flex-row py-2 px-2 lg:px-6 2xl:px-16">
-          <aside className="hidden w-72 lg:flex p-4 flex-col items-start">
-            <h2 className="font-bold uppercase">Filter & Sort</h2>
-            <div className="flex flex-col">
-              <label>
-                <input
-                  type="radio"
-                  name="sort"
-                  value="priceLowHigh"
-                  onChange={handleFilterChange}
-                />
-                Price: Low to High
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="sort"
-                  value="priceHighLow"
-                  onChange={handleFilterChange}
-                />
-                Price: High to Low
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="sort"
-                  value="relevancy"
-                  onChange={handleFilterChange}
-                  defaultChecked
-                />
-                Relevancy
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="sort"
-                  value="newest"
-                  onChange={handleFilterChange}
-                />
-                Newest
-              </label>
+          <div className="hidden w-72 lg:flex flex-col items-start mr-2">
+            <div
+              className="sticky top-0 max-h-screen overflow-y-auto"
+              style={{ top: "64px", maxHeight: `calc(100vh - 64px)` }}
+            >
+              <FilterMenu
+                filters={filters}
+                onSortChange={handleSortChange}
+                onCategoryChange={handleCategoryChange}
+                clearAllFilters={clearAllFilters}
+              />
             </div>
-          </aside>
+          </div>
           <div className="w-full">
             <div
               className={`grid  md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 ${
@@ -162,24 +207,53 @@ const ProductPage = ({ category }) => {
                 </div>
               ))}
             </div>
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between mt-4 text-center items-center px-2">
               <button
                 disabled={page === 1}
                 onClick={() => handlePageChange(page - 1)}
+                className="w-32 md: py-2 bg-webprimary text-white rounded-full"
               >
                 Previous
               </button>
               <span>
-                Page {page} of {totalPages}
+                {page} of {totalPages}
               </span>
               <button
                 disabled={page === totalPages}
                 onClick={() => handlePageChange(page + 1)}
+                className="w-32 py-2 bg-webprimary text-white rounded-full"
               >
                 Next
               </button>
             </div>
           </div>
+        </div>
+      </div>
+      {/* Background Blur */}
+      <div
+        className={`fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 transition-opacity duration-300 ease-in-out ${
+          isFilterOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        } lg:hidden`}
+      ></div>
+      {/* Filter Mobile Menu */}
+      <div
+        className={`fixed lg:hidden inset-x-0 bottom-0 bg-websecundary z-50 transform ${
+          isFilterOpen ? "translate-y-0" : "translate-y-full"
+        } transition-transform duration-300 ease-in-out rounded-t-lg`}
+        style={{ height: "90%" }}
+      >
+        <div className="relative h-full overflow-y-auto">
+          {isFilterOpen && (
+            <div className="p-4">
+              <FilterMenu
+                filters={filters}
+                onSortChange={handleSortChange}
+                onCategoryChange={handleCategoryChange}
+                clearAllFilters={clearAllFilters}
+                toggleFilter={toggleFilter}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>

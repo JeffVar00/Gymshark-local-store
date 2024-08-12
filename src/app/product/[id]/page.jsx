@@ -1,4 +1,4 @@
-import Price from "@/components/Price";
+import Price from "@/components/section_components/Price";
 import { singleProduct } from "@/data";
 import Image from "next/image";
 import React from "react";

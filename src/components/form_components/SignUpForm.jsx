@@ -1,22 +1,30 @@
-import FormInput from "@/components/FormInput";
+import FormInput from "@/components/form_components/FormInput";
 import { useState } from "react";
 
 const SingUpForm = () => {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const handleLogin = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      await auth.signInWithEmailAndPassword(email, password);
+      await auth.createUserWithEmailAndPassword(email, password);
     } catch (error) {
       setError(error.message);
     }
   };
 
   return (
-    <form className="transition-opacity duration-300" onSubmit={handleLogin}>
+    <form className="transition-opacity duration-300" onSubmit={handleSignUp}>
+      <FormInput
+        label="Full Name"
+        type="text"
+        overlay="Enter your full name"
+        handleChange={(e) => setName(e.target.value)}
+        required={true}
+      />
       <FormInput
         label="Email Address"
         type="email"
@@ -33,16 +41,11 @@ const SingUpForm = () => {
       />
 
       <div className="flex flex-col items-center mt-8">
-        <div className="text-right mb-4">
-          <a href="#" className="text-sm text-webprimary underline font-bold">
-            Forgot Password?
-          </a>
-        </div>
         <button
           type="submit"
-          className="w-full text-sm md:text-base py-2 bg-webprimary text-websecundary rounded-full font-bold"
+          className="w-full py-2 text-sm md:text-base bg-webprimary text-websecundary rounded-full font-bold"
         >
-          LOG IN
+          SIGN UP
         </button>
         {error && <p className="text-red-500 font-semibold mt-4">*{error}*</p>}
       </div>

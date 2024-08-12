@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCard from "./ProductCard";
+import ProductCard from "../card_components/ProductCard";
 
 const Featured = ({ products, title, subtitle }) => {
   return (

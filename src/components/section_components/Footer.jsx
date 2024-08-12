@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import PhoneIcon from "./PhoneIcon";
+import { useState, useEffect } from "react";
+import PhoneIcon from "../icon_components/PhoneIcon";
 import SocialMedia from "./SocialMedia";
 
 const Footer = () => {
@@ -13,14 +13,25 @@ const Footer = () => {
   const toggleAccount = () => setAccountOpen(!accountOpen);
   const togglePages = () => setPagesOpen(!pagesOpen);
 
+  const [isMdOrSmaller, setIsMdOrSmaller] = useState(false);
+
+  useEffect(() => {
+    // Check screen size on the client side only
+    const handleResize = () => setIsMdOrSmaller(window.innerWidth <= 1025);
+    handleResize(); // Set initial value
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <footer className="bg-websecundary text-webprimary">
       <div className="px-4 lg:px-16 lg:py-8 lg:border-t-2 border-b-2">
         <div className="flex flex-col lg:flex-row justify-start lg:gap-6 xl:gap-8">
           <div className="w-full lg:w-auto border-y-2 lg:border-0 lg:pr-4">
             <div
-              className="flex justify-between items-center cursor-pointer lg:cursor-default py-4 lg:py-0"
-              onClick={toggleHelp}
+              className="flex justify-between items-center cursor-pointer lg:cursor-default py-4 lg:py-0 no-tap-highlight"
+              onClick={isMdOrSmaller ? toggleHelp : undefined}
             >
               <h4 className="text-sm font-bold lg:mb-4">HELP</h4>
               <span className="text-xl font-bold lg:hidden">
@@ -28,9 +39,11 @@ const Footer = () => {
               </span>
             </div>
             <ul
-              className={`text-sm font-semibold text-gray-500 space-y-2 transition-all duration-500 ease-in-out ${
-                helpOpen ? "max-h-screen mb-4 " : "max-h-0 overflow-hidden"
-              } lg:max-h-screen`}
+              className={`text-sm font-semibold text-gray-500 space-y-2 transition-all duration-300 ease-in-out ${
+                helpOpen
+                  ? "max-h-screen mb-4 opacity-100"
+                  : "max-h-0 opacity-0 overflow-hidden"
+              } lg:max-h-screen lg:opacity-100`}
             >
               <li>
                 <a href="#">FAQ</a>
@@ -54,8 +67,8 @@ const Footer = () => {
           </div>
           <div className="w-full lg:w-auto lg:border-0 lg:pr-4">
             <div
-              className="flex justify-between items-center cursor-pointer lg:cursor-default py-4 lg:py-0"
-              onClick={toggleAccount}
+              className="flex justify-between items-center cursor-pointer lg:cursor-default py-4 lg:py-0 no-tap-highlight"
+              onClick={isMdOrSmaller ? toggleAccount : undefined}
             >
               <h4 className="text-sm font-bold lg:mb-4">MY ACCOUNT</h4>
               <span className="text-xl font-bold lg:hidden">
@@ -63,9 +76,11 @@ const Footer = () => {
               </span>
             </div>
             <ul
-              className={`text-sm font-semibold text-gray-500 space-y-2 transition-all duration-500 ease-in-out ${
-                accountOpen ? "max-h-screen mb-4 " : "max-h-0 overflow-hidden"
-              } lg:max-h-screen`}
+              className={`text-sm font-semibold text-gray-500 space-y-2 transition-all duration-300 ease-in-out ${
+                accountOpen
+                  ? "max-h-screen mb-4 opacity-100"
+                  : "max-h-0 opacity-0 overflow-hidden"
+              } lg:max-h-screen lg:opacity-100`}
             >
               <li>
                 <a href="#">Login</a>
@@ -77,8 +92,8 @@ const Footer = () => {
           </div>
           <div className="w-full lg:w-auto border-y-2 lg:border-0 lg:pr-4">
             <div
-              className="flex justify-between items-center cursor-pointer lg:cursor-default py-4 lg:py-0"
-              onClick={togglePages}
+              className="flex justify-between items-center cursor-pointer lg:cursor-default py-4 lg:py-0 no-tap-highlight"
+              onClick={isMdOrSmaller ? togglePages : undefined}
             >
               <h4 className="text-sm font-bold lg:mb-4">PAGES</h4>
               <span className="text-xl font-bold lg:hidden">
@@ -86,9 +101,11 @@ const Footer = () => {
               </span>
             </div>
             <ul
-              className={`text-sm font-semibold text-gray-500 space-y-2 transition-all duration-500 ease-in-out ${
-                pagesOpen ? "max-h-screen mb-4 " : "max-h-0 overflow-hidden"
-              } lg:max-h-screen`}
+              className={`text-sm font-semibold text-gray-500 space-y-2 transition-all duration-300 ease-in-out ${
+                pagesOpen
+                  ? "max-h-screen mb-4 opacity-100"
+                  : "max-h-0 opacity-0 overflow-hidden"
+              } lg:max-h-screen lg:opacity-100`}
             >
               <li>
                 <a href="#">Gymshark Central</a>

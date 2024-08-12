@@ -2,13 +2,13 @@
 
 import { useRef } from "react";
 
-import FeaturedCategories from "@/components/FeaturedCategories";
-import Featured from "@/components/Featured";
-import Header from "@/components/Header";
-import PageDescription from "@/components/PageDescription";
-import Notification from "@/components/Notification";
+import FeaturedCategories from "@/components/section_components/FeaturedCategories";
+import Featured from "@/components/section_components/Featured";
+import Header from "@/components/section_components/Header";
+import PageDescription from "@/components/section_components/PageDescription";
+import Notification from "@/components/section_components/Notification";
 import { featuredProducts, categories, main_categories } from "@/data";
-import MainCategories from "@/components/MainCategories";
+import MainCategories from "@/components/section_components/MainCategories";
 
 export default function Home() {
   const nextSectionRef = useRef(null);

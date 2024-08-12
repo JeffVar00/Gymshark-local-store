@@ -7,9 +7,9 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import PageIcon from "./PageIcon";
-import CartIcon from "./CartIcon";
-import UserIcon from "./UserIcon";
+import PageIcon from "../icon_components/PageIcon";
+import CartIcon from "../icon_components/CartIcon";
+import UserIcon from "../icon_components/UserIcon";
 import MobileMenu from "./MobileMenu";
 import SearchMenu from "./SearchMenu";
 import { main_categories } from "@/data";
@@ -17,7 +17,6 @@ import { main_categories } from "@/data";
 const Navbar = ({ user }) => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [isSticky, setIsSticky] = useState(false);
 
   const controlNavbar = useCallback(() => {
     if (typeof window !== "undefined") {
@@ -77,7 +76,7 @@ const Navbar = ({ user }) => {
   return (
     <div>
       <nav
-        className={`w-full  z-50 flex justify-between items-center text-webprimary bg-websecundary font-bold h-14 px-4 lg:h-16 lg:px-16 transition-transform duration-300 fixed top-0 ${
+        className={`w-full z-50 flex justify-between items-center text-webprimary bg-websecundary font-bold h-14 px-4 lg:h-16 lg:px-16 transition-transform duration-300 fixed top-0 ${
           showNavbar ? "transform translate-y-0" : "transform -translate-y-full"
         }`}
       >
@@ -128,7 +127,7 @@ const Navbar = ({ user }) => {
         </div>
       </nav>
       <div
-        className={`fixed inset-0 bg-websecundary z-50 transform ${
+        className={`fixed  lg:hidden inset-0 bg-websecundary z-50 transform ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         } ${
           isSearchOpen ? "translate-x-0" : "-translate-x-full"
