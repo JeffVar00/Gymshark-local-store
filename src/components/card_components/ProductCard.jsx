@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const ProductCard = ({ item, imageSize }) => {
   return (
-    <div className="h-full">
+    <Link href={`/products/${item.id}`} className="h-full">
       {/* IMAGE CONTAINER */}
       <div className={`relative w-full ${imageSize}`}>
-        {item.img ? (
+        {item.imgs && item.imgs.length > 0 ? (
           <div className={`relative w-full h-full`}>
             <Image
-              src={item.img}
+              src={item.imgs[0]}
               alt={item.title}
               fill="responsive"
               sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
@@ -25,7 +26,7 @@ const ProductCard = ({ item, imageSize }) => {
               className={`hidden absolute bottom-0 left-0 w-full bg-opacity-100 bg-websecundary lg:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
             >
               {item.availableSizes.length === 0 ? (
-                <button className="m-4 w-full text-lg rounded-xl flex items-center justify-center p-3 bg-webprimary text-websecundary">
+                <button className="m-4 w-full font-bold rounded-xl flex items-center justify-center p-3 bg-webprimary text-websecundary">
                   Add to Bag
                 </button>
               ) : (
@@ -61,7 +62,7 @@ const ProductCard = ({ item, imageSize }) => {
         <p className="text-xs  text-gray-400">{item.desc}</p>
         <p className="text-xs md:text-md font-bold">US${item.price}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 

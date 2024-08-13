@@ -12,10 +12,10 @@ const MainCategories = ({ categories }) => {
         >
           {/* IMAGE CONTAINER */}
           <div className="w-full h-[100vw] md:h-[50vw] xl:h-[35vw] rounded-lg m-2">
-            {category.img ? (
+            {category.imgs && category.imgs.length > 0 ? (
               <div className="relative w-full h-full">
                 <Image
-                  src={category.img}
+                  src={category.imgs[0]}
                   alt={category.title}
                   fill="responsive"
                   className="w-full h-full object-cover rounded-md"

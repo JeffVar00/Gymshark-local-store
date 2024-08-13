@@ -20,10 +20,10 @@ const FeaturedCategories = ({ categories, title }) => {
             >
               {/* IMAGE CONTAINER */}
               <div className="relative w-full h-[100vw] md:h-[50vw] xl:h-[35vw] mb-2">
-                {item.img ? (
+                {item.imgs && item.imgs.length > 0 ? (
                   <div className="relative w-full h-full">
                     <Image
-                      src={item.img}
+                      src={item.imgs[0]}
                       alt={item.title}
                       fill="responsive"
                       sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
