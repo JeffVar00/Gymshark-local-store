@@ -176,7 +176,7 @@ const ProductPage = ({ category }) => {
         <div className="flex flex-row py-2 px-2 lg:px-6 2xl:px-16">
           <div className="hidden w-72 lg:flex flex-col items-start mr-2">
             <div
-              className="sticky top-0 max-h-screen overflow-y-auto"
+              className="sticky top-0 h-full overflow-y-auto"
               style={{ top: "64px", maxHeight: `calc(100vh - 64px)` }}
             >
               <FilterMenu
