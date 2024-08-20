@@ -157,7 +157,7 @@ const ProductPage = ({ params }) => {
                 <div
                   className={`absolute w-32 left-1/2 transform -translate-x-1/2 -top-14 bg-black text-white text-sm px-3 py-1 rounded opacity-0 animate-fadeInOut`}
                 >
-                  <div className="relative p-2 w-full">
+                  <div className="relative p-2 w-full font-bold">
                     Link copied!
                     <div className="absolute left-1/2 transform -translate-x-1/2 top-8 w-2.5 h-2.5 bg-black rotate-45"></div>
                   </div>
