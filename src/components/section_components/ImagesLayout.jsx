@@ -29,7 +29,7 @@ const ProductCarousel = ({ product }) => {
 
   return (
     <div className="w-full md:w-1/2 overflow-y-auto mt-6 md:mt-0">
-      <div className="relative h-full overflow-hidden">
+      <div className="md:hidden relative h-full overflow-hidden">
         {/* Carousel */}
         <div
           className="md:hidden relative flex h-full whitespace-nowrap overflow-auto scrollbar-hide snap-x snap-mandatory"
