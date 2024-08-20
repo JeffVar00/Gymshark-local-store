@@ -25,36 +25,45 @@ const ProductCarousel = ({ product }) => {
         carouselElement.removeEventListener("scroll", handleScroll);
       };
     }
-  }, []);
+  }, [currentIndex]);
 
   return (
-    <div className="w-full md:w-1/2 xl:w-5/6 overflow-y-auto md:custom-scrollbar">
-      {/* Carousel for small devices */}
-      <div
-        className="md:hidden relative h-full overflow-x-scroll snap-x snap-mandatory flex"
-        ref={carouselRef}
-      >
-        {product.imgs.map((image, index) => (
-          <div
-            key={index}
-            className="snap-center flex-shrink-0 w-full h-[120vw] relative"
-          >
-            <Image
-              src={image}
-              alt={`Product Image ${index + 1}`}
-              fill="responsive"
-              sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        ))}
+    <div className="w-full md:w-1/2 overflow-y-auto mt-6 md:mt-0">
+      <div className="relative h-full overflow-hidden">
+        {/* Carousel */}
+        <div
+          className="md:hidden relative flex h-full whitespace-nowrap overflow-auto scrollbar-hide snap-x snap-mandatory"
+          ref={carouselRef}
+        >
+          {product.imgs.map((image, index) => (
+            <div
+              key={index}
+              className="snap-center flex-shrink-0 w-full h-[120vw] relative"
+            >
+              <Image
+                src={image}
+                alt={`Product Image ${index + 1}`}
+                fill="responsive"
+                sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
+
         {/* Indicators */}
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        <div
+          className={`absolute bottom-4 rounded-lg left-1/2 transform -translate-x-1/2 flex space-x-2 z-10 px-4 py-1 transition-all ${
+            currentIndex === 0
+              ? "bg-transparent bg-fade-out"
+              : "bg-websecundary bg-fade-in"
+          }`}
+        >
           {product.imgs.map((_, index) => (
             <span
               key={index}
-              className={`block h-2 w-2 rounded-full ${
-                currentIndex === index ? "bg-white" : "bg-gray-500"
+              className={`block h-1 rounded-full transition-all duration-300 ${
+                currentIndex === index ? "bg-webprimary w-4" : "bg-gray-400 w-1"
               }`}
             ></span>
           ))}

@@ -24,35 +24,21 @@
         overflow: hidden;
     }
 
-/* Custom Scrollbar */
-.custom-scrollbar::-webkit-scrollbar {
-    width: 12px;
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 6px;
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
+.bg-fade-out {
+  transition: background-color 0.3s ease-out 1s;
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background-color: transparent; /* Track color */
-}
-
-/* For Firefox */
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: #ccc transparent;
-}
-
-.custom-scrollbar::-moz-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 10px;
-}
-
-.custom-scrollbar:hover::-moz-scrollbar-thumb {
-  background-color: #888;
+.bg-fade-in {
+  transition: background-color 0.3s ease-out;
 }

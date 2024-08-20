@@ -22,12 +22,17 @@ module.exports = {
       },
       animation: {
         'scroll-indicator': 'scroll-indicator 6s ease',
+        'fadeInOut': 'fadeInOut 5s ease-in-out',
       },
       keyframes: {
         'scroll-indicator': {
           '0%': { transform: 'translateX(0)' },
           '25%': { transform: 'translateX(-30px)' },
           '50%': { transform: 'translateX(0)' },
+        },
+        fadeInOut: {
+          '0%, 100%': { opacity: 0 },
+          '10%': { opacity: 1 },
         }
       }
     },
