@@ -218,12 +218,18 @@ const ProductPage = ({ params }) => {
               Please select a size.
             </div>
           )}
-          <button className="mt-8 py-5 text-sm bg-webprimary text-websecundary hidden md:flex justify-center font-bold rounded-full mb-6 uppercase">
+          <button
+            onClick={handleAddToBag}
+            className="mt-8 py-5 text-sm bg-webprimary text-websecundary hidden md:flex justify-center font-bold rounded-full mb-6 uppercase"
+          >
             Add to Bag
           </button>
         </div>
       </div>
-      <button className="my-3 py-5 text-xs bg-webprimary text-websecundary font-bold rounded-full mb-6 uppercase sticky bottom-2 w-[98%] px-4 mx-auto md:hidden">
+      <button
+        className="my-3 py-5 text-xs bg-webprimary text-websecundary font-bold rounded-full mb-6 uppercase sticky bottom-2 w-[98%] px-4 mx-auto md:hidden"
+        onClick={handleAddToBag}
+      >
         Add to Bag
       </button>
     </div>
