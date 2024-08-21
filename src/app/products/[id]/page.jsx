@@ -15,18 +15,15 @@ const ProductPage = ({ params }) => {
     price: 55,
     products: [
       {
+        code: "12345",
         title: "Flare Orange/Sorbet Orange",
-        imgs: [
-          "/clothexample5.avif",
-          "/clothexample5.avif",
-          "/clothexample5.avif",
-          "/clothexample5.avif",
-          "/clothexample5.avif",
-        ],
+        imgs: ["/clothexample5.avif", "/clothexample5.avif"],
         availableSizes: ["XS", "S", "M", "XL", "L", "XXL", "3XL"],
         isNew: true,
+        desc: "Black/Asphalt Grey 1",
       },
       {
+        code: "32131",
         title: "Contour Heart Seamless Tank",
         imgs: [
           "/clothexample5.avif",
@@ -37,13 +34,16 @@ const ProductPage = ({ params }) => {
         ],
         availableSizes: ["XS", "S", "M", "XL", "L", "XXL", "3XL"],
         isNew: true,
+        desc: "Black/Asphalt Grey 2",
       },
     ],
   };
 
+  const [currentProduct, setCurrentProduct] = useState(product.products[0]);
+
   // handle product change
-  const handleProductChange = (index) => {
-    console.log("Product changed to: ", product.products[index]);
+  const handleProductChange = (product) => {
+    setCurrentProduct(product);
   };
 
   const [isCopied, setIsCopied] = useState(false);
@@ -93,32 +93,14 @@ const ProductPage = ({ params }) => {
     }
   };
 
-  const [isSticky, setIsSticky] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.innerWidth <= 768) {
-        setIsSticky(window.scrollY > 200); // Adjust the scrollY value based on when you want to trigger stickiness
-      } else {
-        setIsSticky(false); // Reset sticky state for larger screens
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   if (!product) {
     return <div>Product not found</div>;
   }
 
   return (
-    <div className="flex flex-col md:flex-row md:pr-4 pt-8 md:pt-6 lg:pt-8 md:mt-8 mb-4 md:mb-0">
+    <div className="flex flex-col md:flex-row md:h-screen md:pr-4 pt-8 md:pt-14 lg:pt-16 mb-4 md:mb-0">
       {/* Left Section - Image Grid */}
-      <ProductCarousel product={product.products[0]} />
+      <ProductCarousel product={currentProduct} />
 
       {/* Right Section - Product Details */}
       <div className="flex flex-col w-full md:w-1/2 md:pl-4 items-center justify-evenly">
@@ -167,21 +149,34 @@ const ProductPage = ({ params }) => {
           </div>
           {/* Related Products */}
           <div className="flex flex-col gap-0 justify-center items-center mt-8">
-            <div className="flex flex-row justify-center items-center">
+            <div
+              className={`${
+                product.products.length >= 5
+                  ? "grid grid-cols-5 gap-2"
+                  : "flex flex-row justify-center gap-2"
+              } items-center`}
+            >
               {product.products.map((relatedProduct, index) => (
-                <div key={index} className="flex w-16 h-16 relative">
+                <div
+                  key={index}
+                  className={`flex w-14 h-16 relative cursor-pointer ${
+                    currentProduct.code === relatedProduct.code
+                      ? "border-2 border-webprimary"
+                      : "border-0 border-webprimary"
+                  }`}
+                  onClick={() => handleProductChange(relatedProduct)}
+                >
                   <Image
                     src={relatedProduct.imgs[0]}
                     alt={relatedProduct.title}
                     fill="responsive"
                     sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
-                    objectFit="contain"
-                    className="rounded-md"
+                    className="object-contain"
                   />
                 </div>
               ))}
             </div>
-            <p className="text-xs mt-4 text-gray-500 ">{product.desc}</p>
+            <p className="text-xs mt-4 text-gray-500 ">{currentProduct.desc}</p>
           </div>
         </div>
 
@@ -198,13 +193,13 @@ const ProductPage = ({ params }) => {
               <button
                 key={size}
                 className={`flex items-center justify-center w-[12vw] h-12 md:h-12 md:w-12 lg:w-12 my-1 p-3 text-xs rounded-sm border-webprimary ${
-                  product.products[0].availableSizes.includes(size)
+                  currentProduct.availableSizes.includes(size)
                     ? selectedSize === size
                       ? "bg-webprimary text-websecundary"
                       : "bg-white text-webprimary hover:text-websecundary hover:bg-webprimary"
                     : "bg-gray-200 text-gray-500 cursor-not-allowed"
                 }`}
-                disabled={!product.products[0].availableSizes.includes(size)}
+                disabled={!currentProduct.availableSizes.includes(size)}
                 onClick={() => handleSizeClick(size)}
               >
                 <span>{size}</span>
