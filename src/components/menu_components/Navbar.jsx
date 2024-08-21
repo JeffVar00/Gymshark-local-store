@@ -1,11 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import {
-  MagnifyingGlassIcon,
-  Bars3Icon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import PageIcon from "../icon_components/PageIcon";
 import CartIcon from "../icon_components/CartIcon";
@@ -54,6 +50,10 @@ const Navbar = ({ user }) => {
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
+  };
+
+  const handleSearch = (e) => {
+    setSearchText(e.target.value);
   };
 
   // MOBILE MENU LOGIC
@@ -129,13 +129,27 @@ const Navbar = ({ user }) => {
       <div
         className={`fixed  lg:hidden inset-0 bg-websecundary z-50 transform ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } ${
+        } transition-transform duration-300 ease-in-out`}
+      >
+        {isMenuOpen && (
+          <MobileMenu
+            toggleMenu={toggleMenu}
+            searchText={searchText}
+            toggleSearch={toggleSearch}
+          />
+        )}
+      </div>
+      <div
+        className={`fixed  lg:hidden inset-0 bg-websecundary z-50 transform ${
           isSearchOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
-        {isMenuOpen && <MobileMenu Icon={XMarkIcon} toggleMenu={toggleMenu} />}
         {isSearchOpen && (
-          <SearchMenu Icon={XMarkIcon} toggleMenu={toggleSearch} />
+          <SearchMenu
+            toggleMenu={toggleSearch}
+            searchText={searchText}
+            handleSearch={handleSearch}
+          />
         )}
       </div>
     </div>

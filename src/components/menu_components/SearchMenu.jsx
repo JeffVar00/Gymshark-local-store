@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
+import { XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 const SearchMenu = ({ Icon, toggleMenu }) => {
   return (
     <div>
       <div className="flex justify-end p-4">
         <button onClick={toggleMenu} className="text-gray-700">
-          <Icon className="h-6 w-6" />
+          <XMarkIcon className="h-6 w-6" />
         </button>
       </div>
       {/* Add your menu content here */}
