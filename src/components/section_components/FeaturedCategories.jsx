@@ -33,9 +33,12 @@ const FeaturedCategories = ({ categories, title }) => {
                       <h1 className="text-white font-bold w-full text-xl md:text-2xl uppercase mt-auto">
                         {item.title}
                       </h1>
-                      <button className="bg-websecundary text-webprimary md:w-36 rounded-full text-xs lg:text-sm py-3 px-6 lg:px-8 font-bold mt-2 uppercase">
-                        <Link href={item.ref}>Shop Now</Link>
-                      </button>
+                      <Link
+                        href={item.ref}
+                        className="bg-websecundary text-webprimary md:w-36 rounded-full text-xs lg:text-sm py-3 px-6 lg:px-8 font-bold mt-2 uppercase"
+                      >
+                        Shop Now
+                      </Link>
                     </div>
                   </div>
                 ) : (
