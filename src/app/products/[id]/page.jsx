@@ -17,14 +17,6 @@ const ProductPage = ({ params }) => {
       {
         code: "12345",
         title: "Flare Orange/Sorbet Orange",
-        imgs: ["/clothexample5.avif", "/clothexample5.avif"],
-        availableSizes: ["XS", "S", "M", "XL", "L", "XXL", "3XL"],
-        isNew: true,
-        desc: "Black/Asphalt Grey 1",
-      },
-      {
-        code: "32131",
-        title: "Contour Heart Seamless Tank",
         imgs: [
           "/clothexample5.avif",
           "/clothexample5.avif",
@@ -32,6 +24,14 @@ const ProductPage = ({ params }) => {
           "/clothexample5.avif",
           "/clothexample5.avif",
         ],
+        availableSizes: ["XS", "S", "M", "XL", "L", "XXL", "3XL"],
+        isNew: true,
+        desc: "Black/Asphalt Grey 1",
+      },
+      {
+        code: "32131",
+        title: "Contour Heart Seamless Tank",
+        imgs: ["/clothexample5.avif"],
         availableSizes: ["XS", "S", "M", "XL", "L", "XXL", "3XL"],
         isNew: true,
         desc: "Black/Asphalt Grey 2",
