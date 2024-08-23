@@ -8,6 +8,7 @@ import CartIcon from "../icon_components/CartIcon";
 import UserIcon from "../icon_components/UserIcon";
 import MobileMenu from "./MobileMenu";
 import SearchMenu from "./SearchMenu";
+import DesktopSearchMenu from "./DesktopSearchMenu";
 import { main_categories } from "@/data";
 
 const Navbar = ({ user }) => {
@@ -46,10 +47,15 @@ const Navbar = ({ user }) => {
   // SEARCH MENU LOGIC
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
+  };
+
+  const toggleDesktopSearch = () => {
+    setIsDesktopSearchOpen(!isDesktopSearchOpen);
   };
 
   const handleSearch = (e) => {
@@ -64,7 +70,6 @@ const Navbar = ({ user }) => {
   };
 
   // SHARED MENU LOGIC
-
   useEffect(() => {
     if (isMenuOpen || isSearchOpen) {
       document.body.classList.add("no-scroll");
@@ -83,7 +88,7 @@ const Navbar = ({ user }) => {
         {/* MOBILE MENU */}
         <div className="flex gap-4 items-center justify-start flex-1 md:hidden">
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={toggleMenu}
             className="rounded-xl text-webprimary hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             aria-controls="mobile-menu"
             aria-expanded="false"
@@ -92,7 +97,7 @@ const Navbar = ({ user }) => {
             <Bars3Icon className="block h-6 w-6" />
           </button>
           <button
-            onClick={() => setIsSearchOpen(!isSearchOpen)}
+            onClick={toggleSearch}
             className="rounded-xl text-webprimary hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             aria-controls="mobile-menu"
             aria-expanded="false"
@@ -121,13 +126,22 @@ const Navbar = ({ user }) => {
         </div>
 
         {/* RIGHT LINKS */}
-        <div className="flex gap-4 items-center justify-end flex-1 ">
+        <div className="flex gap-4 items-center justify-end flex-1">
+          <button
+            className="hidden md:flex justify-end xl:justify-start items-center h-12 xl:w-64 xl:p-4 xl:bg-gray-200 rounded-md text-start font-normal"
+            onClick={toggleDesktopSearch}
+          >
+            <MagnifyingGlassIcon className="block h-6 w-6" />
+            <span className="hidden xl:flex ml-3 text-sm bg-transparent outline-none text-gray-500 w-full">
+              {searchText ? searchText : "Search for a Product"}
+            </span>
+          </button>
           <UserIcon />
           <CartIcon />
         </div>
       </nav>
       <div
-        className={`fixed  lg:hidden inset-0 bg-websecundary z-50 transform ${
+        className={`fixed  md:hidden inset-0 bg-websecundary z-50 transform ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
@@ -140,13 +154,33 @@ const Navbar = ({ user }) => {
         )}
       </div>
       <div
-        className={`fixed  lg:hidden inset-0 bg-websecundary z-50 transform ${
+        className={`fixed md:hidden inset-0 bg-websecundary z-50 transform ${
           isSearchOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
         {isSearchOpen && (
           <SearchMenu
             toggleMenu={toggleSearch}
+            searchText={searchText}
+            handleSearch={handleSearch}
+          />
+        )}
+      </div>
+      <div
+        className={`hidden md:fixed md:block inset-0 bg-black bg-opacity-50 z-50 transition-opacity duration-300 ease-in-out ${
+          isDesktopSearchOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={toggleDesktopSearch}
+      ></div>
+      <div
+        className={`hidden md:fixed md:block inset-x-0 top-0 bg-websecundary z-50 transform ${
+          isDesktopSearchOpen ? "translate-y-0" : "-translate-y-full"
+        } transition-transform duration-300 ease-in-out rounded-b-lg`}
+        style={{ height: "40%" }}
+      >
+        {isDesktopSearchOpen && (
+          <DesktopSearchMenu
+            toggleMenu={toggleDesktopSearch}
             searchText={searchText}
             handleSearch={handleSearch}
           />

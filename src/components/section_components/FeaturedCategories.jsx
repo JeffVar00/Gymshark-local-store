@@ -35,7 +35,7 @@ const FeaturedCategories = ({ categories, title }) => {
                       </h1>
                       <Link
                         href={item.ref}
-                        className="bg-websecundary text-webprimary md:w-36 rounded-full text-xs lg:text-sm py-3 px-6 lg:px-8 font-bold mt-2 uppercase"
+                        className="bg-websecundary text-center text-webprimary md:w-36 rounded-full text-xs lg:text-sm py-3 px-6 lg:px-8 font-bold mt-2 uppercase"
                       >
                         Shop Now
                       </Link>

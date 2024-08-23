@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-const SearchMenu = ({ Icon, toggleMenu }) => {
+const SearchMenu = ({ toggleMenu }) => {
   return (
     <div>
       <div className="flex justify-end p-4">
