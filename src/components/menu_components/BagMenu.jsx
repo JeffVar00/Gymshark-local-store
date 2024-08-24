@@ -109,6 +109,11 @@ const BagMenu = ({ toggleMenu }) => {
     setCurrentCart(newCart);
   };
 
+  const handleRemove = (index) => {
+    const updatedCart = currentCart.filter((_, i) => i !== index);
+    setCurrentCart(updatedCart);
+  };
+
   return (
     <div
       className={`h-screen flex flex-col overflow-y-auto items-center lg:gap-4`}
@@ -166,7 +171,10 @@ const BagMenu = ({ toggleMenu }) => {
                 <p className="font-bold">US${item.price}</p>
                 {/* Quantity selector as dropdown */}
                 <div className="flex flex-col sm:flex-row justify-start items-start sm:justify-between sm:items-center mt-5 gap-3 sm:gap-0">
-                  <button className="text-webprimary rounded-full bg-gray-200 hover:bg-gray-300 p-2">
+                  <button
+                    onClick={() => handleRemove(index)}
+                    className="text-webprimary rounded-full bg-gray-200 hover:bg-gray-300 p-2"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
