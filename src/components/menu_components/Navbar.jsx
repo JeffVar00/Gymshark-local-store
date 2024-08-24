@@ -8,7 +8,6 @@ import CartIcon from "../icon_components/CartIcon";
 import UserIcon from "../icon_components/UserIcon";
 import MobileMenu from "./MobileMenu";
 import SearchMenu from "./SearchMenu";
-import DesktopSearchMenu from "./DesktopSearchMenu";
 import { main_categories } from "@/data";
 
 const Navbar = ({ user }) => {
@@ -47,8 +46,8 @@ const Navbar = ({ user }) => {
   // SEARCH MENU LOGIC
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false);
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
@@ -58,8 +57,8 @@ const Navbar = ({ user }) => {
     setIsDesktopSearchOpen(!isDesktopSearchOpen);
   };
 
-  const handleSearch = (e) => {
-    setSearchText(e.target.value);
+  const setGlobalSearch = (e) => {
+    setSearchText(e);
   };
 
   // MOBILE MENU LOGIC
@@ -86,7 +85,7 @@ const Navbar = ({ user }) => {
         }`}
       >
         {/* MOBILE MENU */}
-        <div className="flex gap-4 items-center justify-start flex-1 md:hidden">
+        <div className="flex gap-4 items-center justify-start flex-1 lg:hidden">
           <button
             onClick={toggleMenu}
             className="rounded-xl text-webprimary hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
@@ -108,12 +107,12 @@ const Navbar = ({ user }) => {
         </div>
 
         {/* Left LOGO */}
-        <div className="flex-1 justify-center md:flex md:justify-start ">
+        <div className="flex-1 justify-center lg:flex lg:justify-start ">
           <PageIcon logo="black" />
         </div>
 
         {/* CENTER HUB */}
-        <div className="hidden text-sm md:flex gap-8 flex-1 justify-center uppercase">
+        <div className="hidden text-sm lg:flex gap-8 flex-1 justify-center uppercase">
           {main_categories.map((category) => (
             <Link
               key={category.id}
@@ -128,7 +127,7 @@ const Navbar = ({ user }) => {
         {/* RIGHT LINKS */}
         <div className="flex gap-4 items-center justify-end flex-1">
           <button
-            className="hidden md:flex justify-end xl:justify-start items-center h-12 xl:w-64 xl:p-4 xl:bg-gray-200 rounded-md text-start font-normal"
+            className="hidden lg:flex justify-end xl:justify-start items-center h-12 xl:w-64 xl:p-4 xl:bg-gray-200 rounded-md text-start font-normal"
             onClick={toggleDesktopSearch}
           >
             <MagnifyingGlassIcon className="block h-6 w-6" />
@@ -141,7 +140,7 @@ const Navbar = ({ user }) => {
         </div>
       </nav>
       <div
-        className={`fixed  md:hidden inset-0 bg-websecundary z-50 transform ${
+        className={`fixed  lg:hidden inset-0 bg-websecundary z-50 transform ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
@@ -154,35 +153,34 @@ const Navbar = ({ user }) => {
         )}
       </div>
       <div
-        className={`fixed md:hidden inset-0 bg-websecundary z-50 transform ${
+        className={`fixed lg:hidden inset-0 bg-websecundary z-50 transform ${
           isSearchOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
         {isSearchOpen && (
           <SearchMenu
             toggleMenu={toggleSearch}
-            searchText={searchText}
-            handleSearch={handleSearch}
+            historySearch={searchText}
+            setGlobalSearch={setGlobalSearch}
           />
         )}
       </div>
       <div
-        className={`hidden md:fixed md:block inset-0 bg-black bg-opacity-50 z-50 transition-opacity duration-300 ease-in-out ${
+        className={`hidden lg:fixed lg:block inset-0 bg-black bg-opacity-50 z-50 transition-opacity duration-300 ease-in-out ${
           isDesktopSearchOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={toggleDesktopSearch}
       ></div>
       <div
-        className={`hidden md:fixed md:block inset-x-0 top-0 bg-websecundary z-50 transform ${
+        className={`hidden lg:fixed lg:block inset-x-0 top-0 bg-websecundary z-50 transform ${
           isDesktopSearchOpen ? "translate-y-0" : "-translate-y-full"
         } transition-transform duration-300 ease-in-out rounded-b-lg`}
-        style={{ height: "40%" }}
       >
         {isDesktopSearchOpen && (
-          <DesktopSearchMenu
+          <SearchMenu
             toggleMenu={toggleDesktopSearch}
-            searchText={searchText}
-            handleSearch={handleSearch}
+            historySearch={searchText}
+            setGlobalSearch={setGlobalSearch}
           />
         )}
       </div>

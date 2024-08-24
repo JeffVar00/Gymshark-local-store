@@ -1,4 +1,14 @@
 
+export const recomendedSearches = [
+  "Shorts",
+  "T-Shirts",
+  "Leggings",
+  "Sweatshirts",
+  "Sports Bras",
+  "Jackets",
+  "Hoodies",
+  "Joggers"
+];
 
 export const featuredProducts = [
   {

@@ -7,9 +7,9 @@ import Notification from "@/components/section_components/Notification";
 import FilterMenu from "@/components/menu_components/FilterMenu";
 // import axios from "axios";
 
-const ProductDisplay = ({ category }) => {
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+const ProductDisplay = ({ products }) => {
+  const [currentProducts, setCurrentProducts] = useState(products);
+  const [filteredProducts, setFilteredProducts] = useState(products);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [filters, setFilters] = useState({ sort: "relevancy", categories: [] });
@@ -34,7 +34,7 @@ const ProductDisplay = ({ category }) => {
     //   }
     // };
     // fetchProducts();
-  }, [category, page, filters]);
+  }, [products, page, filters]);
 
   const handleSortChange = (value) => {
     setFilters((prevFilters) => ({
