@@ -1,9 +1,8 @@
 import React from "react";
-import Link from "next/link";
 
-const CartIcon = () => {
+const CartIcon = ({ onClick }) => {
   return (
-    <Link href="/" className="flex items-center gap-2">
+    <button onClick={onClick} className="flex items-center gap-2">
       <div className="relative w-6 h-6">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +19,7 @@ const CartIcon = () => {
           />
         </svg>
       </div>
-    </Link>
+    </button>
   );
 };
 

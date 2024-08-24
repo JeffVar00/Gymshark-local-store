@@ -8,6 +8,7 @@ import CartIcon from "../icon_components/CartIcon";
 import UserIcon from "../icon_components/UserIcon";
 import MobileMenu from "./MobileMenu";
 import SearchMenu from "./SearchMenu";
+import BagMenu from "./BagMenu";
 import { main_categories } from "@/data";
 
 const Navbar = ({ user }) => {
@@ -68,14 +69,21 @@ const Navbar = ({ user }) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // MOBILE MENU LOGIC
+  const [isBagOpen, setIsBagOpen] = useState(false);
+
+  const toggleBag = () => {
+    setIsBagOpen(!isBagOpen);
+  };
+
   // SHARED MENU LOGIC
   useEffect(() => {
-    if (isMenuOpen || isSearchOpen) {
+    if (isMenuOpen || isSearchOpen || isDesktopSearchOpen || isBagOpen) {
       document.body.classList.add("no-scroll");
     } else {
       document.body.classList.remove("no-scroll");
     }
-  }, [isMenuOpen, isSearchOpen]);
+  }, [isMenuOpen, isSearchOpen, isDesktopSearchOpen, isBagOpen]);
 
   return (
     <div>
@@ -136,7 +144,7 @@ const Navbar = ({ user }) => {
             </span>
           </button>
           <UserIcon />
-          <CartIcon />
+          <CartIcon onClick={toggleBag} />
         </div>
       </nav>
       <div
@@ -183,6 +191,27 @@ const Navbar = ({ user }) => {
             setGlobalSearch={setGlobalSearch}
           />
         )}
+      </div>
+      <div
+        className={`fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity duration-300 ease-in-out ${
+          isBagOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={toggleBag}
+      ></div>
+      <div
+        className={`h-[90%] lg:h-full fixed bottom-0 lg:bottom-auto lg:top-0 lg:right-0 w-full lg:w-[40%] xl:w-[25%] bg-websecundary z-50 transform ${
+          isBagOpen
+            ? "translate-y-0 lg:translate-x-0"
+            : "translate-y-full lg:translate-x-full lg:translate-y-0"
+        } transition-transform duration-300 ease-in-out `}
+      >
+        <div className="relative h-full">
+          {isBagOpen && (
+            <div className="p-4">
+              <BagMenu />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

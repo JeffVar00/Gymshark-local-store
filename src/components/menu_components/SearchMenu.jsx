@@ -169,7 +169,7 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
           ))}
         </div>
         <div
-          className={`pb-8 py-4 w-full flex justify-end items-center ${
+          className={`pb-8 mb-8 my-4 w-full flex justify-end items-center ${
             searchText === "" ? "hidden" : ""
           }`}
         >
