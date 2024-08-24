@@ -151,7 +151,7 @@ const BagMenu = ({ toggleMenu }) => {
           </Link>
         </div>
       ) : (
-        <div className="w-full px-4 flex flex-col gap-6 mb-48 mt-16 lg:mb-24">
+        <div className="w-full px-4 flex flex-col gap-6 mb-60 mt-16 lg:mb-24">
           {currentCart.map((item, index) => (
             <div
               key={index}
