@@ -199,7 +199,7 @@ const Navbar = ({ user }) => {
         onClick={toggleBag}
       ></div>
       <div
-        className={`h-[90%] lg:h-full fixed bottom-0 lg:bottom-auto lg:top-0 lg:right-0 w-full lg:w-[40%] xl:w-[25%] bg-websecundary z-50 transform ${
+        className={`h-[90%] lg:h-full fixed bottom-0 lg:bottom-auto lg:top-0 lg:right-0 w-full lg:w-[40%] xl:w-[30%] bg-white z-50 transform ${
           isBagOpen
             ? "translate-y-0 lg:translate-x-0"
             : "translate-y-full lg:translate-x-full lg:translate-y-0"
@@ -208,7 +208,7 @@ const Navbar = ({ user }) => {
         <div className="relative h-full">
           {isBagOpen && (
             <div className="p-4">
-              <BagMenu />
+              <BagMenu toggleMenu={toggleBag} />
             </div>
           )}
         </div>
