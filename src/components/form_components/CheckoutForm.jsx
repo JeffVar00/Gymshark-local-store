@@ -102,15 +102,43 @@ const CheckoutForm = ({ showPopup, shippingMethod }) => {
         }
         required={true}
       />
-      <FormInput
-        label="Address"
-        type="text"
-        overlay="Enter your address"
-        handleChange={(e) =>
-          setShippingInfo({ ...shippingInfo, address: e.target.value })
-        }
-        required={true}
-      />
+
+      <div className="mb-4">
+        <label className="block text-webprimary font-bold text-sm lg:text-base ">
+          Country
+        </label>
+        <select
+          className="w-full p-2 border border-gray-200 rounded"
+          onChange={(e) =>
+            setShippingInfo({ ...shippingInfo, country: e.target.value })
+          }
+        >
+          <option value="Costa Rica" selected>
+            Costa Rica
+          </option>
+        </select>
+      </div>
+      <div className="mb-4">
+        <label className="block text-webprimary font-bold text-sm lg:text-base ">
+          State
+        </label>
+        <select
+          className="w-full p-2 border border-gray-200 rounded"
+          onChange={(e) =>
+            setShippingInfo({ ...shippingInfo, state: e.target.value })
+          }
+        >
+          <option value="Alajuela" selected>
+            Alajuela
+          </option>
+          <option value="San Jose">San Jose</option>
+          <option value="Cartago">Cartago</option>
+          <option value="Heredia">Heredia</option>
+          <option value="Guanacaste">Guanacaste</option>
+          <option value="Puntarenas">Puntarenas</option>
+          <option value="Limon">Limon</option>
+        </select>
+      </div>
       <FormInput
         label="City"
         type="text"
@@ -121,11 +149,11 @@ const CheckoutForm = ({ showPopup, shippingMethod }) => {
         required={true}
       />
       <FormInput
-        label="State"
+        label="Address"
         type="text"
-        overlay="Enter your state"
+        overlay="Enter your address"
         handleChange={(e) =>
-          setShippingInfo({ ...shippingInfo, state: e.target.value })
+          setShippingInfo({ ...shippingInfo, address: e.target.value })
         }
         required={true}
       />
@@ -135,15 +163,6 @@ const CheckoutForm = ({ showPopup, shippingMethod }) => {
         overlay="Enter your zip code"
         handleChange={(e) =>
           setShippingInfo({ ...shippingInfo, zipCode: e.target.value })
-        }
-        required={true}
-      />
-      <FormInput
-        label="Country"
-        type="text"
-        overlay="Enter your country"
-        handleChange={(e) =>
-          setShippingInfo({ ...shippingInfo, country: e.target.value })
         }
         required={true}
       />
