@@ -16,7 +16,20 @@ const FilterButton = ({ label, value, selected, onClick }) => {
   );
 };
 
-export const FilterMenu = ({
+const getSubCategories = async () => {
+  //needs to receive the parent category
+  const res = await fetch("https://localhost:3000/api/subCategories", {
+    cache: "no-cache",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch product types");
+  }
+
+  return res.json();
+};
+
+export const FilterMenu = async ({
   filters,
   onSortChange,
   onCategoryChange,
@@ -28,6 +41,8 @@ export const FilterMenu = ({
 
   const toggleCategories = () => setCategoryOpen(!categoryOpen);
   const toggleSort = () => setSortOpen(!sortOpen);
+
+  // const categories = await getSubCategories();
 
   return (
     <aside className="text-webprimary w-full lg:pr-10">

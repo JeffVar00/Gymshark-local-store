@@ -21,11 +21,24 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+const getCategories = async () => {
+  const res = await fetch("https://localhost:3000/api/categories", {
+    cache: "no-cache",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch categories");
+  }
+
+  return res.json();
+};
+export default async function RootLayout({ children }) {
+  // const mainCategories = await getCategories();
+  const mainCategories = [];
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
+        <Navbar mainCategories={mainCategories} />
         {children}
         <Footer />
       </body>

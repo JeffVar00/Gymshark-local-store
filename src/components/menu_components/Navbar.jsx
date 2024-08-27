@@ -11,7 +11,8 @@ import SearchMenu from "./SearchMenu";
 import BagMenu from "./BagMenu";
 import { main_categories } from "@/data";
 
-const Navbar = ({ user }) => {
+const Navbar = () => {
+  //{ main_categories }
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 

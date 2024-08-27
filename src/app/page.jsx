@@ -1,8 +1,4 @@
-"use client";
-
-import { useRef } from "react";
-
-import FeaturedCategories from "@/components/section_components/FeaturedCategories";
+import FeaturedCategories from "../components/section_components/FeaturedCategories";
 import Featured from "@/components/section_components/Featured";
 import Header from "@/components/section_components/Header";
 import PageDescription from "@/components/section_components/PageDescription";
@@ -10,13 +6,20 @@ import Notification from "@/components/section_components/Notification";
 import { featuredProducts, categories, main_categories } from "@/data";
 import MainCategories from "@/components/section_components/MainCategories";
 
-export default function Home() {
-  const nextSectionRef = useRef(null);
+const getCategories = async () => {
+  const res = await fetch("https://localhost:3000/api/categories", {
+    cache: "no-cache",
+  });
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  if (!res.ok) {
+    throw new Error("Failed to fetch categories");
+  }
 
+  return res.json();
+};
+
+export default async function Home() {
+  // const MainCategories = await getCategories();
   return (
     <main>
       <Notification />
@@ -38,10 +41,9 @@ export default function Home() {
             },
           ],
         }}
-        nextSectionRef={nextSectionRef}
       />
 
-      <div ref={nextSectionRef}>
+      <div>
         <Featured
           products={featuredProducts}
           subtitle={"Everybody's Favorite"}
@@ -70,28 +72,6 @@ export default function Home() {
       <MainCategories categories={main_categories} />
 
       <PageDescription />
-      <div className="flex flex-col items-center justify-center mb-8">
-        <button
-          onClick={scrollToTop}
-          className="flex items-center mt-4 md:mt-0 font-semibold text-webprimary hover:text-gray-500"
-        >
-          Back to Top
-          <svg
-            className="w-4 h-4 ml-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M5 15l7-7 7 7"
-            ></path>
-          </svg>
-        </button>
-      </div>
     </main>
   );
 }

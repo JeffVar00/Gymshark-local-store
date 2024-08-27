@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const Header = ({ details, nextSectionRef }) => {
+const Header = ({ details }) => {
   const [backgroundImageUrl, setBackgroundImageUrl] = useState("");
 
   useEffect(() => {
@@ -20,12 +20,6 @@ const Header = ({ details, nextSectionRef }) => {
 
     return () => window.removeEventListener("resize", updateUrls);
   }, [details.smsrc, details.mdsrc]);
-
-  const handleArrowClick = () => {
-    if (nextSectionRef && nextSectionRef.current) {
-      nextSectionRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <div
@@ -53,10 +47,7 @@ const Header = ({ details, nextSectionRef }) => {
 
       {/* ANIMATED ARROW */}
       <div className="hidden md:absolute md:flex bottom-6 left-1/2 transform -translate-x-1/2 z-20">
-        <div
-          className="animate-bounce text-websecundary cursor-pointer"
-          onClick={handleArrowClick}
-        >
+        <div className="animate-bounce text-websecundary cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"

@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  createdAt   DateTime  @default(now())
+  title        String
+  img          String
+  slug       String @unique
+  products    ParentProduct[]
+  subCategories SubCategory[]
+}
+
+model SubCategory {
+  id          String    @id @default(cuid())
+  createdAt   DateTime  @default(now())
+  title        String
+  img          String
+  isFeatured Boolean   @default(false)
+  slug       String @unique
+  category    Category @relation(fields: [categorySlug], references: [slug])
+  categorySlug  String
+  products    ParentProduct[]
+}
+
+model ParentProduct {
+  id          String    @id @default(cuid())
+  createdAt   DateTime  @default(now())
+  title        String
+  banner         String?
+  desc        String
+  slug       String @unique
+  isFeatured Boolean   @default(false)
+  category    Category @relation(fields: [categorySlug], references: [slug])
+  categorySlug  String
+  subCategory    SubCategory @relation(fields: [subCategorySlug], references: [slug])
+  subCategorySlug  String
+  subProducts SubProducts[]
+}
+
+model SubProducts {
+  id          String    @id @default(cuid())
+  code       String @unique
+  createdAt   DateTime  @default(now())
+  title        String
+  imgs         String[]
+  price       Decimal
+  isNew   Boolean   @default(false)
+  sizesAvailable  String[]
+  slug       String @unique
+  parentProduct ParentProduct @relation(fields: [parentProductSlug], references: [slug])
+  parentProductSlug  String
+}
+
+model Order {
+  id          String    @id @default(cuid())
+  createdAt   DateTime  @default(now())
+  status      String
+  total       Decimal
+  products    Json[]
+  intent_id String @unique
+  // user       User @relation(fields: [userId], references: [id])
+}
