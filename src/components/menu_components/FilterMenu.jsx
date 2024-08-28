@@ -21,14 +21,17 @@ export const FilterMenu = ({
   filters,
   onSortChange,
   onCategoryChange,
+  onGenreChange,
   clearAllFilters,
   toggleFilter,
 }) => {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
+  const [genreOpen, setGenreOpen] = useState(false);
 
   const toggleCategories = () => setCategoryOpen(!categoryOpen);
   const toggleSort = () => setSortOpen(!sortOpen);
+  const toggleGenre = () => setGenreOpen(!genreOpen);
 
   // const categories = await getSubCategories();
 
@@ -65,7 +68,7 @@ export const FilterMenu = ({
             <span className="text-xl font-bold ">{sortOpen ? "-" : "+"}</span>
           </div>
           <div
-            className={`flex flex-col lg:flex-wrap lg:flex-row text-sm font-semibold text-gray-500 space-y-2 transition-all duration-300 ease-in-out ${
+            className={`flex flex-col lg:flex-wrap lg:flex-row text-sm font-semibold text-gray-500 transition-all duration-300 ease-in-out ${
               sortOpen
                 ? "max-h-screen mb-4 opacity-100"
                 : "max-h-0 opacity-0 overflow-hidden"
@@ -97,34 +100,71 @@ export const FilterMenu = ({
             />
           </div>
         </div>
-        <div className="w-full border-b">
+        <div className="w-full border-b lg:border-y">
           <div
             className="flex justify-between items-center cursor-pointer py-4 no-tap-highlight"
-            onClick={toggleCategories}
+            onClick={toggleGenre}
           >
-            <h4 className="text-sm font-bold uppercase">Product Type</h4>
-            <span className="text-xl font-bold ">
-              {categoryOpen ? "-" : "+"}
-            </span>
+            <h4 className="text-sm font-bold uppercase">Genre</h4>
+            <span className="text-xl font-bold ">{genreOpen ? "-" : "+"}</span>
           </div>
           <div
-            className={`text-sm flex flex-col font-semibold text-gray-500 transition-all duration-300 ease-in-out ${
-              categoryOpen
+            className={`flex flex-col lg:flex-wrap lg:flex-row text-sm font-semibold text-gray-500 transition-all duration-300 ease-in-out ${
+              genreOpen
                 ? "max-h-screen mb-4 opacity-100"
                 : "max-h-0 opacity-0 overflow-hidden"
-            } lg:flex-wrap lg:flex-row`}
+            }`}
           >
-            {sub_categories.map((sub_category) => (
-              <FilterButton
-                key={sub_category.id}
-                label={sub_category.title}
-                value={sub_category.title}
-                selected={filters.categories.includes(sub_category.title)}
-                onClick={onCategoryChange}
-              />
-            ))}
+            <FilterButton
+              label="Unisex"
+              value="unisex"
+              selected={filters.genre === "unisex"}
+              onClick={onGenreChange}
+            />
+            <FilterButton
+              label="Women"
+              value="women"
+              selected={filters.genre === "women"}
+              onClick={onGenreChange}
+            />
+            <FilterButton
+              label="Men"
+              value="men"
+              selected={filters.genre === "men"}
+              onClick={onGenreChange}
+            />
           </div>
         </div>
+        {sub_categories.length > 0 && (
+          <div className="w-full border-b">
+            <div
+              className="flex justify-between items-center cursor-pointer py-4 no-tap-highlight"
+              onClick={toggleCategories}
+            >
+              <h4 className="text-sm font-bold uppercase">Product Type</h4>
+              <span className="text-xl font-bold ">
+                {categoryOpen ? "-" : "+"}
+              </span>
+            </div>
+            <div
+              className={`text-sm flex flex-col font-semibold text-gray-500 transition-all duration-300 ease-in-out ${
+                categoryOpen
+                  ? "max-h-screen mb-4 opacity-100"
+                  : "max-h-0 opacity-0 overflow-hidden"
+              } lg:flex-wrap lg:flex-row`}
+            >
+              {sub_categories.map((sub_category) => (
+                <FilterButton
+                  key={sub_category.id}
+                  label={sub_category.title}
+                  value={sub_category.title}
+                  selected={filters.categories.includes(sub_category.title)}
+                  onClick={onCategoryChange}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </aside>
   );

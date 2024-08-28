@@ -14,11 +14,24 @@ const getSubCategories = async (category) => {
   return res.json();
 };
 
+const getProducts = async (cat) => {
+  const res = await fetch(`http://localhost:3000/api/products?cat=${cat}`, {
+    cache: "no-cache",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch featured products");
+  }
+
+  return res.json();
+};
+
 const ProductCategoryPage = async ({ params }) => {
   const { category } = params;
   const sub_categories = await getSubCategories(category);
-  const products = [];
-  // MAKE CALL OF PRODUCTS PER CATEGORY, IF CATEGORY NOT EXISTS SHOW 404 PAGE
+  const products = await getProducts(category);
+
+  console.log(products);
   return (
     <div className="flex flex-col mx-auto">
       <Notification />
@@ -29,7 +42,7 @@ const ProductCategoryPage = async ({ params }) => {
             <h1 className="text-xl md:text-4xl font-bold uppercase">
               All Products
             </h1>
-            <p className="text-xs text-gray-400">1124 Products</p>
+            <p className="text-xs text-gray-500">{products.total} products</p>
           </div>
           <p className="text-xs md:text-sm py-4">
             Stock up on your workout wardrobe or test a fresh `fit. Shop all

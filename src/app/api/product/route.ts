@@ -4,7 +4,7 @@ import { prisma } from '@/utils/connnect';
 export const GET = async () => {
 
     try {
-        const sub_products = await prisma.SubProduct.findMany();
+        const sub_products = await prisma.product.findMany();
         return new NextResponse(
             JSON.stringify(sub_products),
             { status: 200 }

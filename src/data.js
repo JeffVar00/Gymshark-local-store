@@ -18,7 +18,7 @@ export const featuredProducts = [
     imgs: ["/clothexample.avif"],
     price: 55,
     isNew: true,
-    availableSizes: [],
+    sizesAvailable: [],
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ export const featuredProducts = [
     imgs: ["/clothexample1.avif"],
     price: 55,
     isNew: true,
-    availableSizes: [
+    sizesAvailable: [
       "XS", "S", "M", "XL"
     ],
   },
@@ -38,7 +38,7 @@ export const featuredProducts = [
     imgs: ["/clothexample3.jpg"],
     price: 55,
     isNew: true,
-    availableSizes: [
+    sizesAvailable: [
       "M", "XL", "L"
     ],
   },
@@ -48,7 +48,7 @@ export const featuredProducts = [
     desc: "Black/Asphalt Grey",
     imgs: ["/clothexample6.jpg"],
     price: 55,
-    availableSizes: [
+    sizesAvailable: [
       "XS", "S", "M", "XL", "L", "XXL", "3XL"  
     ],
   },
@@ -58,7 +58,7 @@ export const featuredProducts = [
     desc: "Black/Asphalt Grey",
     imgs: ["/clothexample5.avif"],
     price: 55,
-    availableSizes: [
+    sizesAvailable: [
       "XS", "S", "M", "XL", "L", "XXL", "3XL"  
     ],
   },
@@ -68,7 +68,7 @@ export const featuredProducts = [
     desc: "Black/Asphalt Grey",
     imgs: ["/clothexample4.avif"],
     price: 55,
-    availableSizes: [
+    sizesAvailable: [
       "XS", "S", "M", "XL", "L", "XXL", "3XL"  
     ],
   },
@@ -78,7 +78,7 @@ export const featuredProducts = [
     desc: "Black/Asphalt Grey",
     imgs: ["/clothexample7.avif"],
     price: 55,
-    availableSizes: [
+    sizesAvailable: [
       "XS", "S", "M", "XL", "L", "XXL", "3XL"  
     ],
   },
@@ -88,7 +88,7 @@ export const featuredProducts = [
     desc: "Black/Asphalt Grey",
     imgs: ["/clothexample8.avif"],
     price: 55,
-    availableSizes: [
+    sizesAvailable: [
       "XS", "S", "M", "XL", "L", "XXL", "3XL"  
     ],
   },
@@ -98,7 +98,7 @@ export const featuredProducts = [
     desc: "Black/Asphalt Grey",
     imgs: ["/clothexample9.avif"],
     price: 55,
-    availableSizes: [
+    sizesAvailable: [
       "XS", "S", "M", "XL", "L", "XXL", "3XL"  
     ],
   },

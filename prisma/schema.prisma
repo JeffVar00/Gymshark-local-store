@@ -19,7 +19,7 @@ model Category {
   title        String
   img          String
   slug       String @unique
-  products    ParentProduct[]
+  products    Product[]
   subCategories SubCategory[]
 }
 
@@ -32,37 +32,27 @@ model SubCategory {
   slug       String @unique
   category    Category @relation(fields: [categorySlug], references: [slug])
   categorySlug  String
-  products    ParentProduct[]
+  products    Product[]
 }
 
-model ParentProduct {
+model Product {
   id          String    @id @default(cuid())
-  createdAt   DateTime  @default(now())
+  code       String @unique
   title        String
-  banner         String?
-  genre        String?
   desc        String
-  slug       String @unique
   isFeatured Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  isNew   Boolean   @default(false)
+  genre        String?
+  appareance        String
+  imgs         String[]
+  price       Decimal
+  sizesAvailable  String[]
+  slug       String @unique
   category    Category @relation(fields: [categorySlug], references: [slug])
   categorySlug  String
   subCategory    SubCategory @relation(fields: [subCategorySlug], references: [slug])
   subCategorySlug  String
-  subProducts SubProduct[]
-}
-
-model SubProduct {
-  id          String    @id @default(cuid())
-  code       String @unique
-  createdAt   DateTime  @default(now())
-  title        String
-  imgs         String[]
-  price       Decimal
-  isNew   Boolean   @default(false)
-  sizesAvailable  String[]
-  slug       String @unique
-  parentProduct ParentProduct @relation(fields: [parentProductSlug], references: [slug])
-  parentProductSlug  String
 }
 
 model Order {

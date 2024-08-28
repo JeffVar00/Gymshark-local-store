@@ -9,7 +9,7 @@ const ProductCard = ({ item, imageSize }) => {
       <div className={`relative w-full ${imageSize}`}>
         {item.imgs && item.imgs.length > 0 ? (
           <div className={`relative w-full h-full`}>
-            <Link href={`/products/${item.id}`}>
+            <Link href={`/products/${item.slug}`}>
               <Image
                 src={item.imgs[0]}
                 alt={item.title}
@@ -28,7 +28,7 @@ const ProductCard = ({ item, imageSize }) => {
             <div
               className={`hidden absolute bottom-0 left-0 w-full bg-opacity-100 bg-websecundary lg:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
             >
-              {item.availableSizes.length === 0 ? (
+              {item.sizesAvailable.length === 0 ? (
                 <button className="m-4 w-full font-bold rounded-xl flex items-center justify-center p-3 bg-webprimary text-websecundary">
                   Add to Bag
                 </button>
@@ -38,11 +38,11 @@ const ProductCard = ({ item, imageSize }) => {
                     <button
                       key={size}
                       className={`flex items-center justify-center p-3 text-xs sm:text-sm md:text-base rounded-sm ${
-                        item.availableSizes.includes(size)
+                        item.sizesAvailable.includes(size)
                           ? "bg-white text-webprimary hover:text-websecundary hover:bg-webprimary"
                           : "bg-gray-200 text-gray-500 cursor-not-allowed"
                       }`}
-                      disabled={!item.availableSizes.includes(size)}
+                      disabled={!item.sizesAvailable.includes(size)}
                     >
                       {size}
                     </button>
@@ -60,10 +60,11 @@ const ProductCard = ({ item, imageSize }) => {
       </div>
 
       {/* TEXT CONTAINER */}
-      <Link href={`/products/${item.id}`}>
+      <Link href={`/products/${item.slug}`}>
         <div className="text-start py-4">
           <h2 className="text-xs md:text-md">{item.title}</h2>
           <p className="text-xs  text-gray-400">{item.desc}</p>
+          <p className="text-xs  text-gray-400">{item.appareance}</p>
           <p className="text-xs md:text-md font-bold">US${item.price}</p>
         </div>
       </Link>

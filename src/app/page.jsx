@@ -3,7 +3,6 @@ import Featured from "@/components/section_components/Featured";
 import Header from "@/components/section_components/Header";
 import PageDescription from "@/components/section_components/PageDescription";
 import Notification from "@/components/section_components/Notification";
-import { featuredProducts } from "@/data";
 import MainCategories from "@/components/section_components/MainCategories";
 
 const getCategories = async () => {
@@ -26,9 +25,22 @@ const getFeaturedCategories = async () => {
   return res.json();
 };
 
+const getFeaturedProducts = async () => {
+  const res = await fetch("http://localhost:3000/api/products", {
+    cache: "no-cache",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch featured products");
+  }
+
+  return res.json();
+};
+
 export default async function Home() {
   const main_categories = await getCategories();
   const featured_sub_categories = await getFeaturedCategories();
+  const featuredProducts = await getFeaturedProducts();
   return (
     <main>
       <Notification />
@@ -54,7 +66,7 @@ export default async function Home() {
 
       <div>
         <Featured
-          products={featuredProducts}
+          products={featuredProducts.products}
           subtitle={"Everybody's Favorite"}
           title={"GYMSHARK SEASON"}
         />

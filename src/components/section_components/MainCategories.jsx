@@ -19,6 +19,7 @@ const MainCategories = ({ categories }) => {
                   alt={category.title}
                   fill="responsive"
                   className="w-full h-full object-cover rounded-md"
+                  sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
                 />
               ) : (
                 <div className="w-full h-full rounded-lg bg-noimagebackground flex items-center justify-center">

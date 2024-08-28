@@ -2,10 +2,24 @@ import React from "react";
 import Notification from "@/components/section_components/Notification";
 import ProductsDisplay from "@/components/section_components/ProductsDisplay";
 
-const ProductSearchPage = ({ params }) => {
+const getProducts = async (query) => {
+  const res = await fetch(
+    `http://localhost:3000/api/products?search=${query}`,
+    {
+      cache: "no-cache",
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch featured products");
+  }
+
+  return res.json();
+};
+
+const ProductSearchPage = async ({ params }) => {
   const { query } = params;
-  const products = [];
-  // MAKE CALL OF PRODUCTS PER QUERY, IF NO RESULTS SHOW NO RESULTS PAGE
+  const products = await getProducts(query);
   return (
     <div className="flex flex-col mx-auto">
       <Notification />
@@ -16,10 +30,10 @@ const ProductSearchPage = ({ params }) => {
             <h1 className="text-lg font-bold uppercase">
               <q>{query}</q>
             </h1>
-            <p className="text-xs text-gray-400">1124 Products</p>
+            <p className="text-xs text-gray-400">{products.total} Products</p>
           </div>
         </div>
-        <ProductsDisplay products={products} />
+        <ProductsDisplay products={products} sub_categories={[]} />
       </div>
     </div>
   );
