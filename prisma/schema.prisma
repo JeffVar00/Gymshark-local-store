@@ -40,6 +40,7 @@ model ParentProduct {
   createdAt   DateTime  @default(now())
   title        String
   banner         String?
+  genre        String?
   desc        String
   slug       String @unique
   isFeatured Boolean   @default(false)
@@ -47,10 +48,10 @@ model ParentProduct {
   categorySlug  String
   subCategory    SubCategory @relation(fields: [subCategorySlug], references: [slug])
   subCategorySlug  String
-  subProducts SubProducts[]
+  subProducts SubProduct[]
 }
 
-model SubProducts {
+model SubProduct {
   id          String    @id @default(cuid())
   code       String @unique
   createdAt   DateTime  @default(now())

@@ -1,15 +1,14 @@
-import { NextResponse } from 'next/server';
+import { NextResponse,NextRequest } from 'next/server';
 import { prisma } from '@/utils/connnect';
 
 export const GET = async () => {
-    try {
 
-        const categories = await prisma.category.findMany()
+    try {
+        const sub_products = await prisma.SubProduct.findMany();
         return new NextResponse(
-            JSON.stringify(categories),
+            JSON.stringify(sub_products),
             { status: 200 }
         );
-
     } catch (error : any) {
         return new NextResponse(
             JSON.stringify({ error: error.message }),

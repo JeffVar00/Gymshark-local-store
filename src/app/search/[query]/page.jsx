@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Notification from "@/components/section_components/Notification";
 import ProductsDisplay from "@/components/section_components/ProductsDisplay";

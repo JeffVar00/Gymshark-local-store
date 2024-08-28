@@ -12,28 +12,29 @@ const MainCategories = ({ categories }) => {
         >
           {/* IMAGE CONTAINER */}
           <div className="w-full h-[100vw] md:h-[50vw] xl:h-[35vw] rounded-lg m-2">
-            {category.imgs && category.imgs.length > 0 ? (
-              <div className="relative w-full h-full">
+            <div className="relative w-full h-full">
+              {category.img ? (
                 <Image
-                  src={category.imgs[0]}
+                  src={category.img}
                   alt={category.title}
                   fill="responsive"
                   className="w-full h-full object-cover rounded-md"
                 />
-                <div className="flex flex-col absolute bottom-0 left-0 m-6">
-                  <Link href={category.ref}>
-                    <button className="bg-websecundary text-webprimary rounded-full text-xs py-3 px-6 md:px-2 font-bold md:w-36 mt-4 uppercase">
-                      Shop {category.title}
-                    </button>
-                  </Link>
+              ) : (
+                <div className="w-full h-full rounded-lg bg-noimagebackground flex items-center justify-center">
+                  {/* Placeholder for no image */}
+                  <span className="text-webprimary">No Image</span>
                 </div>
+              )}
+
+              <div className="flex flex-col absolute bottom-0 left-0 m-6">
+                <Link href={`/collections/${category.slug}`}>
+                  <button className="bg-websecundary text-webprimary rounded-full text-xs py-3 px-6 md:px-2 font-bold md:w-36 mt-4 uppercase">
+                    Shop {category.title}
+                  </button>
+                </Link>
               </div>
-            ) : (
-              <div className="absolute inset-0 bg-noimagebackground flex items-center justify-center">
-                {/* Placeholder for no image */}
-                <span className="text-webprimary">No Image</span>
-              </div>
-            )}
+            </div>
           </div>
         </div>
       ))}

@@ -3,13 +3,11 @@ import Featured from "@/components/section_components/Featured";
 import Header from "@/components/section_components/Header";
 import PageDescription from "@/components/section_components/PageDescription";
 import Notification from "@/components/section_components/Notification";
-import { featuredProducts, categories, main_categories } from "@/data";
+import { featuredProducts } from "@/data";
 import MainCategories from "@/components/section_components/MainCategories";
 
 const getCategories = async () => {
-  const res = await fetch("https://localhost:3000/api/categories", {
-    cache: "no-cache",
-  });
+  const res = await fetch("http://localhost:3000/api/categories");
 
   if (!res.ok) {
     throw new Error("Failed to fetch categories");
@@ -18,8 +16,19 @@ const getCategories = async () => {
   return res.json();
 };
 
+const getFeaturedCategories = async () => {
+  const res = await fetch("http://localhost:3000/api/sub_categories");
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch featured sub_categories");
+  }
+
+  return res.json();
+};
+
 export default async function Home() {
-  // const MainCategories = await getCategories();
+  const main_categories = await getCategories();
+  const featured_sub_categories = await getFeaturedCategories();
   return (
     <main>
       <Notification />
@@ -51,7 +60,10 @@ export default async function Home() {
         />
       </div>
 
-      <FeaturedCategories categories={categories} title={"How do you train?"} />
+      <FeaturedCategories
+        categories={featured_sub_categories}
+        title={"How do you train?"}
+      />
 
       <Header
         details={{

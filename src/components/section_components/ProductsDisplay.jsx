@@ -7,7 +7,7 @@ import Notification from "@/components/section_components/Notification";
 import FilterMenu from "@/components/menu_components/FilterMenu";
 // import axios from "axios";
 
-const ProductDisplay = ({ products }) => {
+const ProductDisplay = ({ products, sub_categories }) => {
   const [currentProducts, setCurrentProducts] = useState(products);
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [page, setPage] = useState(1);
@@ -195,6 +195,7 @@ const ProductDisplay = ({ products }) => {
               style={{ top: "64px", maxHeight: `calc(100vh - 64px)` }}
             >
               <FilterMenu
+                sub_categories={sub_categories}
                 filters={filters}
                 onSortChange={handleSortChange}
                 onCategoryChange={handleCategoryChange}
@@ -262,6 +263,7 @@ const ProductDisplay = ({ products }) => {
           {isFilterOpen && (
             <div className="p-4">
               <FilterMenu
+                sub_categories={sub_categories}
                 filters={filters}
                 onSortChange={handleSortChange}
                 onCategoryChange={handleCategoryChange}

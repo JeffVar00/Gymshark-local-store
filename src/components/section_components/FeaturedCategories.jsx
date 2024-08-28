@@ -20,33 +20,34 @@ const FeaturedCategories = ({ categories, title }) => {
             >
               {/* IMAGE CONTAINER */}
               <div className="relative w-full h-[100vw] md:h-[50vw] xl:h-[35vw] mb-2">
-                {item.imgs && item.imgs.length > 0 ? (
-                  <div className="relative w-full h-full">
+                <div className="relative w-full h-full">
+                  {item.img ? (
                     <Image
-                      src={item.imgs[0]}
+                      src={item.img}
                       alt={item.title}
                       fill="responsive"
                       sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
                       className="w-full h-full object-cover rounded-md"
                     />
-                    <div className="absolute bottom-0 w-full bg-gradient-to-t from-webprimary via-transparent to-transparent h-3/4 flex flex-col p-5">
-                      <h1 className="text-white font-bold w-full text-xl md:text-2xl uppercase mt-auto">
-                        {item.title}
-                      </h1>
-                      <Link
-                        href={item.ref}
-                        className="bg-websecundary text-center text-webprimary md:w-36 rounded-full text-xs lg:text-sm py-3 px-6 lg:px-8 font-bold mt-2 uppercase"
-                      >
-                        Shop Now
-                      </Link>
+                  ) : (
+                    <div className="w-full h-full bg-noimagebackground flex items-center justify-center">
+                      {/* Placeholder for no image */}
+                      <span className="text-webprimary">No Image</span>
                     </div>
+                  )}
+
+                  <div className="absolute bottom-0 w-full bg-gradient-to-t from-webprimary via-transparent to-transparent h-3/4 flex flex-col p-5">
+                    <h1 className="text-white font-bold w-full text-xl md:text-2xl uppercase mt-auto">
+                      {item.title}
+                    </h1>
+                    <Link
+                      href={`collections/${item.slug}`}
+                      className="bg-websecundary text-center text-webprimary md:w-36 rounded-full text-xs lg:text-sm py-3 px-6 lg:px-8 font-bold mt-2 uppercase"
+                    >
+                      Shop Now
+                    </Link>
                   </div>
-                ) : (
-                  <div className="absolute inset-0 bg-noimagebackground flex items-center justify-center">
-                    {/* Placeholder for no image */}
-                    <span className="text-webprimary">No Image</span>
-                  </div>
-                )}
+                </div>
               </div>
             </div>
           ))}

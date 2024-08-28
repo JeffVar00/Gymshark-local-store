@@ -2,10 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import { main_categories } from "@/data";
 import { XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 const subcategories = [
+  // Should I add this so It can load all of the subcategories nad display them?
   "Trending",
   "Leggings",
   "Products",
@@ -13,15 +13,12 @@ const subcategories = [
   "Accessories",
 ];
 
-let Links = [
-  { name: "HOME", link: "/" },
-  { name: "SERVICE", link: "/" },
-  { name: "ABOUT", link: "/" },
-  { name: "BLOG'S", link: "/" },
-  { name: "CONTACT", link: "/" },
-];
-
-const MobileMenu = ({ toggleMenu, searchText, toggleSearch }) => {
+const MobileMenu = ({
+  main_categories,
+  toggleMenu,
+  searchText,
+  toggleSearch,
+}) => {
   return (
     <div className="flex flex-col justify-center ">
       <div className="flex justify-end p-4">
@@ -46,7 +43,7 @@ const MobileMenu = ({ toggleMenu, searchText, toggleSearch }) => {
         {main_categories.map((category) => (
           <Link
             key={category.id}
-            href={category.ref}
+            href={`/collections/${category.slug}`}
             onClick={toggleMenu}
             className=" text-webprimary font-bold relative after:content-[''] after:absolute after:left-0 after:bottom-[-16px] after:w-full after:h-[3px] after:bg-webprimary after:rounded-full after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100"
           >

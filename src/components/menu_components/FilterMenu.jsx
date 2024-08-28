@@ -5,7 +5,7 @@ const FilterButton = ({ label, value, selected, onClick }) => {
   return (
     <button
       onClick={() => onClick(value)}
-      className={`px-4 py-2 rounded-md mx-1 no-tap-highlight  ${
+      className={`px-4 py-2 rounded-md m-1 no-tap-highlight  ${
         selected
           ? "bg-black text-white"
           : "bg-gray-200 text-black hover:border-2 hover:border-webprimary"
@@ -16,20 +16,8 @@ const FilterButton = ({ label, value, selected, onClick }) => {
   );
 };
 
-const getSubCategories = async () => {
-  //needs to receive the parent category
-  const res = await fetch("https://localhost:3000/api/subCategories", {
-    cache: "no-cache",
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch product types");
-  }
-
-  return res.json();
-};
-
-export const FilterMenu = async ({
+export const FilterMenu = ({
+  sub_categories,
   filters,
   onSortChange,
   onCategoryChange,
@@ -120,36 +108,21 @@ export const FilterMenu = async ({
             </span>
           </div>
           <div
-            className={`text-sm flex flex-col font-semibold text-gray-500 space-y-2 transition-all duration-300 ease-in-out ${
+            className={`text-sm flex flex-col font-semibold text-gray-500 transition-all duration-300 ease-in-out ${
               categoryOpen
                 ? "max-h-screen mb-4 opacity-100"
                 : "max-h-0 opacity-0 overflow-hidden"
             } lg:flex-wrap lg:flex-row`}
           >
-            <FilterButton
-              label="Category 1"
-              value="category1"
-              selected={filters.categories.includes("category1")}
-              onClick={onCategoryChange}
-            />
-            <FilterButton
-              label="Category 2"
-              value="category2"
-              selected={filters.categories.includes("category2")}
-              onClick={onCategoryChange}
-            />
-            <FilterButton
-              label="Category 3"
-              value="category3"
-              selected={filters.categories.includes("category3")}
-              onClick={onCategoryChange}
-            />
-            <FilterButton
-              label="Category 4"
-              value="category4"
-              selected={filters.categories.includes("category4")}
-              onClick={onCategoryChange}
-            />
+            {sub_categories.map((sub_category) => (
+              <FilterButton
+                key={sub_category.id}
+                label={sub_category.title}
+                value={sub_category.title}
+                selected={filters.categories.includes(sub_category.title)}
+                onClick={onCategoryChange}
+              />
+            ))}
           </div>
         </div>
       </div>

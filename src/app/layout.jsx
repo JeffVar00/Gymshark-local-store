@@ -22,7 +22,8 @@ export const metadata = {
 };
 
 const getCategories = async () => {
-  const res = await fetch("https://localhost:3000/api/categories", {
+  //move to client side fetch
+  const res = await fetch("http://localhost:3000/api/categories", {
     cache: "no-cache",
   });
 
@@ -33,12 +34,11 @@ const getCategories = async () => {
   return res.json();
 };
 export default async function RootLayout({ children }) {
-  // const mainCategories = await getCategories();
-  const mainCategories = [];
+  const mainCategories = await getCategories();
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar mainCategories={mainCategories} />
+        <Navbar main_categories={mainCategories} />
         {children}
         <Footer />
       </body>

@@ -1,11 +1,22 @@
-"use client";
-
 import React from "react";
 import Notification from "@/components/section_components/Notification";
 import ProductsDisplay from "@/components/section_components/ProductsDisplay";
 
-const ProductCategoryPage = ({ params }) => {
+const getSubCategories = async (category) => {
+  const res = await fetch(
+    `http://localhost:3000/api/sub_categories?cat=${category}`
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch featured sub_categories");
+  }
+
+  return res.json();
+};
+
+const ProductCategoryPage = async ({ params }) => {
   const { category } = params;
+  const sub_categories = await getSubCategories(category);
   const products = [];
   // MAKE CALL OF PRODUCTS PER CATEGORY, IF CATEGORY NOT EXISTS SHOW 404 PAGE
   return (
@@ -25,7 +36,7 @@ const ProductCategoryPage = ({ params }) => {
             men`s Gymshark products here.
           </p>
         </div>
-        <ProductsDisplay products={products} />
+        <ProductsDisplay products={products} sub_categories={sub_categories} />
       </div>
     </div>
   );

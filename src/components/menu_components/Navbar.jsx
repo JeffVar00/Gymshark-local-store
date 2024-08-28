@@ -9,10 +9,8 @@ import UserIcon from "../icon_components/UserIcon";
 import MobileMenu from "./MobileMenu";
 import SearchMenu from "./SearchMenu";
 import BagMenu from "./BagMenu";
-import { main_categories } from "@/data";
 
-const Navbar = () => {
-  //{ main_categories }
+const Navbar = ({ main_categories }) => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -125,7 +123,7 @@ const Navbar = () => {
           {main_categories.map((category) => (
             <Link
               key={category.id}
-              href={category.ref}
+              href={`/collections/${category.slug}`}
               className="text-webprimary relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[3px] after:bg-webprimary after:rounded-full after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100"
             >
               {category.title}
@@ -155,6 +153,7 @@ const Navbar = () => {
       >
         {isMenuOpen && (
           <MobileMenu
+            main_categories={main_categories}
             toggleMenu={toggleMenu}
             searchText={searchText}
             toggleSearch={toggleSearch}
