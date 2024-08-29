@@ -30,7 +30,6 @@ const ProductSearchPage = async ({ params }) => {
             <h1 className="text-lg font-bold uppercase">
               <q>{query}</q>
             </h1>
-            <p className="text-xs text-gray-400">{products.total} Products</p>
           </div>
         </div>
         <ProductsDisplay products={products} sub_categories={[]} />

@@ -31,7 +31,6 @@ const ProductCategoryPage = async ({ params }) => {
   const sub_categories = await getSubCategories(category);
   const products = await getProducts(category);
 
-  console.log(products);
   return (
     <div className="flex flex-col mx-auto">
       <Notification />
@@ -42,7 +41,6 @@ const ProductCategoryPage = async ({ params }) => {
             <h1 className="text-xl md:text-4xl font-bold uppercase">
               All Products
             </h1>
-            <p className="text-xs text-gray-500">{products.total} products</p>
           </div>
           <p className="text-xs md:text-sm py-4">
             Stock up on your workout wardrobe or test a fresh `fit. Shop all

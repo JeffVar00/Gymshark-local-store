@@ -132,10 +132,8 @@ const BagMenu = ({ toggleMenu }) => {
   };
 
   return (
-    <div
-      className={`h-screen flex flex-col overflow-y-auto items-center lg:gap-4`}
-    >
-      <div className="bg-white fixed w-full px-6 flex flex-row justify-between gap-6 py-2 z-50 items-center">
+    <div className={`w-full h-screen flex flex-col items-center lg:gap-4`}>
+      <div className="bg-white w-full fixed px-6 flex flex-row justify-between gap-6 py-2 z-50 items-center">
         <div className="flex font-bold text-xl"></div>
         <div className="flex font-bold uppercase">Your Bag</div>
         <div className="flex justify-end ">
@@ -169,7 +167,7 @@ const BagMenu = ({ toggleMenu }) => {
             </Link>
           </div>
         ) : (
-          <div className="w-full px-4 flex flex-col gap-6 mb-60 mt-16 lg:mb-24">
+          <div className="w-full px-4 flex flex-col gap-6 pb-52 mt-16 lg:pb-24 overflow-y-auto">
             {currentCart.map((item, index) => (
               <div
                 key={index}

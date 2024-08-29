@@ -4,7 +4,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import ProductCard from "@/components/card_components/ProductCard";
 import Link from "next/link";
 import FilterMenu from "@/components/menu_components/FilterMenu";
-// import axios from "axios";
 
 const ProductDisplay = ({ products, sub_categories }) => {
   const [currentProducts, setCurrentProducts] = useState(products.products);
@@ -13,7 +12,7 @@ const ProductDisplay = ({ products, sub_categories }) => {
   const [totalPages, setTotalPages] = useState(products.pagination.total);
   const [filters, setFilters] = useState({
     genre: "unisex",
-    sort: "",
+    sort: "relevancy",
     categories: [],
   });
 
@@ -146,7 +145,11 @@ const ProductDisplay = ({ products, sub_categories }) => {
   };
 
   const clearAllFilters = () => {
-    setFilters({ sort: "relevancy", categories: [] });
+    setFilters({
+      genre: "unisex",
+      sort: "",
+      categories: [],
+    });
     setPage(1);
   };
 
@@ -154,6 +157,12 @@ const ProductDisplay = ({ products, sub_categories }) => {
     <div className="flex flex-col mx-auto">
       {currentProducts.length > 0 ? (
         <>
+          <div className="flex items-center justify-start w-full px-4 lg:px-8 2xl:px-16">
+            <p className="text-xs md:text-sm text-gray-600">
+              {totalCount} products available
+            </p>
+          </div>
+
           <div>
             <div
               className={`flex flex-row sticky z-20 bg-white py-4 justify-between lg:hidden px-2 gap-2 transition-transform duration-300 ease-in-out`}
