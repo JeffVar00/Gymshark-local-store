@@ -3,6 +3,7 @@ import "./globals.css";
 
 import Navbar from "@/components/menu_components/Navbar";
 import Footer from "@/components/section_components/Footer";
+import AuthProvider from "@/components/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,9 +39,13 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar main_categories={mainCategories} />
-        {children}
-        <Footer />
+        <AuthProvider>
+          <div>
+            <Navbar main_categories={mainCategories} />
+            {children}
+            <Footer />
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );

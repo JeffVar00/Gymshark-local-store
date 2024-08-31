@@ -1,23 +1,27 @@
 "use client";
 
 // pages/auth.js
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
+import Image from "next/image";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 import SignUpForm from "@/components/form_components/SignUpForm";
 import LoginForm from "@/components/form_components/LoginForm";
-import Image from "next/image";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
-  // const router = useRouter();
+  const router = useRouter();
 
-  useEffect(() => {
-    // Redirect if already logged in
-    const userLoggedIn = false; // Replace with actual login check
-    if (userLoggedIn) {
-      // router.push("/profile");
-    }
-  }, []);
+  const { status } = useSession();
+
+  if (status === "loading") {
+    <p>Loading...</p>;
+  }
+
+  if (status === "authenticated") {
+    router.push("/");
+  }
 
   return (
     <div className="min-h-screen h-full flex flex-col lg:flex-row">
@@ -104,7 +108,10 @@ const AuthPage = () => {
             <hr className="w-full border-t border-gray-300" />
           </div>
           <div className="flex flex-col justify-center font-semibold gap-2 text-webprimary">
-            <button className="flex text-sm items-center px-2 py-2 gap-2 border-2  rounded-md bg-white border-webprimary">
+            <button
+              className="flex text-sm items-center px-2 py-2 gap-2 border-2  rounded-md bg-white border-webprimary"
+              onClick={() => signIn("google")}
+            >
               <div className="p-1">
                 <Image
                   src="/google.png"
@@ -116,7 +123,10 @@ const AuthPage = () => {
               </div>
               Continue with Google
             </button>
-            <button className="flex text-sm items-center px-2 py-2 gap-2 border-2 rounded-md bg-white border-webprimary">
+            <button
+              className="flex text-sm items-center px-2 py-2 gap-2 border-2 rounded-md bg-white border-webprimary"
+              onClick={() => signIn("facebook")}
+            >
               <div className="p-1">
                 <Image
                   src="/facebook.png"
