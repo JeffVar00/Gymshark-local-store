@@ -40,7 +40,7 @@ const MobileMenu = ({
         </button>
       </div>
       <div className="px-4 mt-2 overflow-x-auto scrollbar-hide flex gap-6 justify-evenly bg-white pb-4 pt-6 bg-gradient-to-b from-gray-200 via-transparent to-transparent">
-        {main_categories.map((category) => (
+        {/* {main_categories.map((category) => (
           <Link
             key={category.id}
             href={`/collections/${category.slug}`}
@@ -49,7 +49,7 @@ const MobileMenu = ({
           >
             {category.title}
           </Link>
-        ))}
+        ))} */}
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/menu_components/Navbar";
 import Footer from "@/components/section_components/Footer";
 import AuthProvider from "@/components/AuthProvider";
+import { WixClientContextProvider } from "@/context/wixContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,30 +23,15 @@ export const metadata = {
   },
 };
 
-const getCategories = async () => {
-  //move to client side fetch
-  const res = await fetch("http://localhost:3000/api/categories", {
-    cache: "no-cache",
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch categories");
-  }
-
-  return res.json();
-};
-export default async function RootLayout({ children }) {
-  const mainCategories = await getCategories();
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-          <div>
-            <Navbar main_categories={mainCategories} />
-            {children}
-            <Footer />
-          </div>
-        </AuthProvider>
+        <WixClientContextProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </WixClientContextProvider>
       </body>
     </html>
   );

@@ -118,7 +118,7 @@ const Navbar = ({ main_categories }) => {
           <PageIcon logo="black" />
         </div>
 
-        {/* CENTER HUB */}
+        {/* CENTER HUB
         <div className="hidden text-sm lg:flex gap-8 flex-1 justify-center uppercase">
           {main_categories.map((category) => (
             <Link
@@ -129,7 +129,7 @@ const Navbar = ({ main_categories }) => {
               {category.title}
             </Link>
           ))}
-        </div>
+        </div> */}
 
         {/* RIGHT LINKS */}
         <div className="flex gap-4 items-center justify-end flex-1">
@@ -153,7 +153,6 @@ const Navbar = ({ main_categories }) => {
       >
         {isMenuOpen && (
           <MobileMenu
-            main_categories={main_categories}
             toggleMenu={toggleMenu}
             searchText={searchText}
             toggleSearch={toggleSearch}
@@ -201,10 +200,10 @@ const Navbar = ({ main_categories }) => {
       <div
         className={`h-[90%] lg:h-full fixed bottom-0 lg:bottom-auto lg:top-0 lg:right-0 w-full lg:w-[40%] xl:w-[30%] bg-white z-50 transform ${
           isBagOpen
-            ? window.innerWidth >= 1024
+            ? typeof window !== "undefined" && window.innerWidth >= 1024
               ? "translate-x-0"
               : "translate-y-0"
-            : window.innerWidth >= 1024
+            : typeof window !== "undefined" && window.innerWidth >= 1024
             ? "translate-x-full"
             : "translate-y-full"
         } transition-transform duration-300 ease-in-out `}

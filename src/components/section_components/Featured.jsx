@@ -1,7 +1,16 @@
 import React from "react";
 import ProductCard from "../card_components/ProductCard";
+import { wixClientServer } from "@/lib/wixClientServer";
 
-const Featured = ({ products, title, subtitle }) => {
+const PRODUCT_PER_PAGE = 20;
+const Featured = async ({ categoryId, limit, title, subtitle }) => {
+  const wixClient = await wixClientServer();
+  const res = await wixClient.products
+    .queryProducts()
+    .eq("collectionIds", categoryId)
+    .limit(limit || PRODUCT_PER_PAGE)
+    .find();
+
   return (
     <div className="w-auto flex flex-col mt-10 mb-10 mx-4 md:mx-12 md:my-24 xl:mx-24 xl:my-20">
       {/* TITLE */}
@@ -13,9 +22,9 @@ const Featured = ({ products, title, subtitle }) => {
         {/* WRAPPER */}
         <div className="w-max flex animate-scroll-indicator mt-4">
           {/* SINGLE ITEM */}
-          {products.map((product) => (
+          {res.items.map((product) => (
             <div
-              key={product.id}
+              key={product._id}
               className="w-[80vw] mx-1 text-webprimary flex flex-col
           justify-around transition-all duration-300 md:w-[23vw]
           xl:w-[22vw] group"

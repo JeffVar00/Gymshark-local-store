@@ -4,43 +4,11 @@ import Header from "@/components/section_components/Header";
 import PageDescription from "@/components/section_components/PageDescription";
 import Notification from "@/components/section_components/Notification";
 import MainCategories from "@/components/section_components/MainCategories";
+import Spinner from "@/components/icon_components/Spinner";
 
-const getCategories = async () => {
-  const res = await fetch("http://localhost:3000/api/categories");
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch categories");
-  }
-
-  return res.json();
-};
-
-const getFeaturedCategories = async () => {
-  const res = await fetch("http://localhost:3000/api/sub_categories");
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch featured sub_categories");
-  }
-
-  return res.json();
-};
-
-const getFeaturedProducts = async () => {
-  const res = await fetch("http://localhost:3000/api/products", {
-    cache: "no-cache",
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch featured products");
-  }
-
-  return res.json();
-};
+import { Suspense } from "react";
 
 export default async function Home() {
-  const main_categories = await getCategories();
-  const featured_sub_categories = await getFeaturedCategories();
-  const featuredProducts = await getFeaturedProducts();
   return (
     <main>
       <Notification />
@@ -64,18 +32,22 @@ export default async function Home() {
         }}
       />
 
-      <div>
-        <Featured
-          products={featuredProducts.products}
-          subtitle={"Everybody's Favorite"}
-          title={"GYMSHARK SEASON"}
-        />
-      </div>
+      <Suspense fallback={<Spinner></Spinner>}>
+        <div>
+          <Featured
+            title={"Our favorites"}
+            subtitle={"See what the people wants the most"}
+            categoryId={process.env.NEXT_PUBLIC_FEATURED_PRODUCTS_CATEGORY_ID}
+            limit={10}
+          />
+        </div>
+      </Suspense>
 
-      <FeaturedCategories
-        categories={featured_sub_categories}
-        title={"How do you train?"}
-      />
+      <Suspense fallback={<Spinner></Spinner>}>
+        <div>
+          <FeaturedCategories title={"How do you train?"} />
+        </div>
+      </Suspense>
 
       <Header
         details={{
@@ -87,13 +59,22 @@ export default async function Home() {
           buttons: [
             {
               text: "Shop Now",
-              ref: "/collections/men",
+              ref: "/collections/clothes?brand=Gymshark",
             },
           ],
         }}
       />
 
-      <MainCategories categories={main_categories} />
+      <Suspense fallback={<Spinner></Spinner>}>
+        <div>
+          <Featured
+            title={"GYMSHARK SEASON"}
+            subtitle={"Everybody's Favorite"}
+            categoryId={process.env.NEXT_PUBLIC_GYMSHARK_PRODUCTS_CATEGORY_ID}
+            limit={10}
+          />
+        </div>
+      </Suspense>
 
       <PageDescription />
     </main>

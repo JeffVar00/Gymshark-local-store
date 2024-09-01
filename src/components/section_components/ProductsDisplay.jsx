@@ -1,170 +1,30 @@
-"use client";
-
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 import ProductCard from "@/components/card_components/ProductCard";
 import Link from "next/link";
 import FilterMenu from "@/components/menu_components/FilterMenu";
+import BackToTop from "@/components/icon_components/BackToTop";
+import { wixClientServer } from "@/lib/wixClientServer";
 
-const ProductDisplay = ({ products, sub_categories }) => {
-  const [currentProducts, setCurrentProducts] = useState(products.products);
-  const [page, setPage] = useState(products.pagination.currentPage);
-  const [totalCount, setTotalCount] = useState(products.total);
-  const [totalPages, setTotalPages] = useState(products.pagination.total);
-  const [filters, setFilters] = useState({
-    genre: "unisex",
-    sort: "relevancy",
-    categories: [],
-  });
-
-  useEffect(() => {
-    // const fetchProducts = async () => {
-    //   try {
-    //     const response = await axios.get("/api/products", {
-    //       params: {
-    //         category,
-    //         page,
-    //         ...filters,
-    //       },
-    //     });
-    //     setProducts(response.data.products);
-    //     setTotalPages(response.data.totalPages);
-    //     setFilteredProducts(response.data.products);
-    //   } catch (error) {
-    //     console.error("Error fetching products:", error);
-    //   }
-    // };
-    // fetchProducts();
-  }, [products, page, filters]);
-
-  const [isGrid, setIsGrid] = useState(false);
-  const [isFilterOpen, setFilterOpen] = useState(false);
-
-  const toggleFilter = () => {
-    setFilterOpen(!isFilterOpen);
-  };
-
-  useEffect(() => {
-    if (isFilterOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => (document.body.style.overflow = "");
-  }, [isFilterOpen]);
-
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  const controlNavbar = useCallback(() => {
-    if (typeof window !== "undefined") {
-      if (window.innerWidth < 1000) {
-        if (window.scrollY > lastScrollY) {
-          setShowNavbar(false);
-        } else {
-          setShowNavbar(true);
-        }
-        setLastScrollY(window.scrollY);
-      } else {
-        setShowNavbar(true);
-      }
-    }
-  }, [lastScrollY]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", controlNavbar);
-      window.addEventListener("resize", controlNavbar);
-
-      return () => {
-        window.removeEventListener("scroll", controlNavbar);
-        window.removeEventListener("resize", controlNavbar);
-      };
-    }
-  }, [controlNavbar]);
-
-  const handleSortChange = (value) => {
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      sort: value,
-    }));
-    sortProducts(value);
-    setPage(1);
-  };
-
-  const sortProducts = (value) => {
-    switch (value) {
-      case "relevancy":
-        setCurrentProducts((prevProducts) =>
-          prevProducts.sort((a, b) => (a.isFeatured < b.isFeatured ? 1 : -1))
-        );
-        break;
-      case "newest":
-        setCurrentProducts((prevProducts) =>
-          prevProducts.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
-        );
-        break;
-      case "price-low":
-        setCurrentProducts((prevProducts) =>
-          prevProducts.sort((a, b) => (a.price > b.price ? 1 : -1))
-        );
-        break;
-      case "price-high":
-        setCurrentProducts((prevProducts) =>
-          prevProducts.sort((a, b) => (a.price < b.price ? 1 : -1))
-        );
-        break;
-      default:
-        break;
-    }
-  };
-
-  const handleGenreChange = (value) => {
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      genre: value,
-    }));
-    setPage(1);
-  };
-
-  const handleCategoryChange = (value) => {
-    setFilters((prevFilters) => {
-      const isCategorySelected = prevFilters.categories.includes(value);
-
-      return {
-        ...prevFilters,
-        categories: isCategorySelected
-          ? prevFilters.categories.filter((category) => category !== value)
-          : [...prevFilters.categories, value],
-      };
-    });
-    setPage(1);
-  };
-
-  const handlePageChange = (newPage) => {
-    setPage(newPage);
-  };
-
-  const clearAllFilters = () => {
-    setFilters({
-      genre: "unisex",
-      sort: "",
-      categories: [],
-    });
-    setPage(1);
-  };
+const ProductDisplay = async ({ category_id, limit, searchParams }) => {
+  const wixClient = await wixClientServer();
+  const res = await wixClient.products
+    .queryProducts()
+    .eq("collectionIds", category_id)
+    .limit(limit || PRODUCT_PER_PAGE)
+    .find();
 
   return (
     <div className="flex flex-col mx-auto">
-      {currentProducts.length > 0 ? (
+      {res.items.length > 0 ? (
         <>
           <div className="flex items-center justify-start w-full px-4 lg:px-8 2xl:px-16">
             <p className="text-xs md:text-sm text-gray-600">
-              {totalCount} products available
+              {/* {totalCount} products available */}
             </p>
           </div>
 
           <div>
-            <div
+            {/* <div
               className={`flex flex-row sticky z-20 bg-white py-4 justify-between lg:hidden px-2 gap-2 transition-transform duration-300 ease-in-out`}
               style={{
                 top: showNavbar ? `55px` : `20px`,
@@ -228,64 +88,42 @@ const ProductDisplay = ({ products, sub_categories }) => {
                   </button>
                 </div>
               </div>
-              <button
-                className="w-full py-3 relative text-xs bg-websecundary rounded-full font-bold flex justify-center items-center uppercase"
-                onClick={toggleFilter}
-              >
-                Filter & Sort
-              </button>
-            </div>
+            </div> */}
 
-            <div className="flex flex-row py-2 px-2 lg:px-6 2xl:px-16">
-              <div className="hidden w-72 lg:flex flex-col items-start mr-2">
-                <div
-                  className="sticky top-0 h-full overflow-y-auto"
-                  style={{ top: "64px", maxHeight: `calc(100vh - 64px)` }}
-                >
-                  <FilterMenu
-                    sub_categories={sub_categories}
-                    filters={filters}
-                    onGenreChange={handleGenreChange}
-                    onSortChange={handleSortChange}
-                    onCategoryChange={handleCategoryChange}
-                    clearAllFilters={clearAllFilters}
-                  />
+            <div className="flex flex-col lg:flex-row py-2 px-2 lg:px-6 2xl:px-16">
+              <div className="w-full lg:w-72 flex flex-col items-start pb-6 lg:pb-0 px-2 md:px-6 lg:px-0">
+                <div className="w-full lg:sticky h-full lg:overflow-y-auto top-[64px] max-h-[calc(100vh-64px)]">
+                  <FilterMenu />
                 </div>
               </div>
               <div className="w-full">
                 <div
-                  className={`grid  md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 ${
-                    isGrid ? "grid-cols-2" : "grid-cols-1"
-                  }`}
+                  className={`grid  md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 grid-cols-2`}
                 >
-                  {currentProducts.map((product) => (
+                  {res.items.map((product) => (
                     <div
-                      key={product.id}
+                      key={product._id}
                       className="h-full text-webprimary flex flex-col justify-around transition-all duration-300 group"
                     >
                       <ProductCard
                         item={product}
-                        imageSize={`${
-                          isGrid ? "h-[60vw]" : "h-[120vw]"
-                        } md:h-[40vw] lg:h-[30vw] xl:h-[26vw] 2xl:h-[20vw]`}
+                        imageSize={`h-[60vw] md:h-[40vw] lg:h-[30vw] xl:h-[26vw] 2xl:h-[20vw]`}
                       />
                     </div>
                   ))}
                 </div>
                 <div className="flex justify-between mt-4 text-center items-center px-2">
                   <button
-                    disabled={page === 1}
-                    onClick={() => handlePageChange(page - 1)}
+                    disabled={true}
+                    onClick={null}
                     className="w-32 md: py-2 bg-webprimary text-white rounded-full"
                   >
                     Previous
                   </button>
-                  <span>
-                    {page} of {totalPages}
-                  </span>
+                  <span>{/* {page} of {totalPages} */}</span>
                   <button
-                    disabled={page === totalPages}
-                    onClick={() => handlePageChange(page + 1)}
+                    disabled={true}
+                    onClick={null}
                     className="w-32 py-2 bg-webprimary text-white rounded-full"
                   >
                     Next
@@ -294,36 +132,7 @@ const ProductDisplay = ({ products, sub_categories }) => {
               </div>
             </div>
           </div>
-          {/* Background Blur */}
-          <div
-            className={`fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 transition-opacity duration-300 ease-in-out ${
-              isFilterOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-            } lg:hidden`}
-            onClick={toggleFilter}
-          ></div>
-          {/* Filter Mobile Menu */}
-          <div
-            className={`fixed lg:hidden inset-x-0 bottom-0 bg-websecundary z-50 transform ${
-              isFilterOpen ? "translate-y-0" : "translate-y-full"
-            } transition-transform duration-300 ease-in-out rounded-t-lg`}
-            style={{ height: "90%" }}
-          >
-            <div className="relative h-full overflow-y-auto">
-              {isFilterOpen && (
-                <div className="p-4">
-                  <FilterMenu
-                    sub_categories={sub_categories}
-                    filters={filters}
-                    onGenreChange={handleGenreChange}
-                    onSortChange={handleSortChange}
-                    onCategoryChange={handleCategoryChange}
-                    clearAllFilters={clearAllFilters}
-                    toggleFilter={toggleFilter}
-                  />
-                </div>
-              )}
-            </div>
-          </div>
+          <BackToTop />
         </>
       ) : (
         <div className="flex flex-col items-center h-full justify-center gap-3 my-32">

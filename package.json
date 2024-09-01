@@ -15,6 +15,8 @@
     "@wix/bookings": "^1.0.429",
     "@wix/sdk": "^1.12.12",
     "@wix/stores": "^1.0.203",
+    "isomorphic-dompurify": "^2.15.0",
+    "js-cookie": "^3.0.5",
     "next": "^14.2.5",
     "next-auth": "^4.24.7",
     "react": "^18.2.0",
@@ -22,6 +24,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^22.5.0",
     "@types/react": "18.3.4",
     "autoprefixer": "^10",

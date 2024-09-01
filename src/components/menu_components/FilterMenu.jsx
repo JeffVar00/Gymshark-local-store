@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -16,18 +18,12 @@ const FilterButton = ({ label, value, selected, onClick }) => {
   );
 };
 
-export const FilterMenu = ({
-  sub_categories,
-  filters,
-  onSortChange,
-  onCategoryChange,
-  onGenreChange,
-  clearAllFilters,
-  toggleFilter,
-}) => {
+export const FilterMenu = ({ filters, toggleFilter }) => {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
   const [genreOpen, setGenreOpen] = useState(false);
+
+  const sub_categories = [];
 
   const toggleCategories = () => setCategoryOpen(!categoryOpen);
   const toggleSort = () => setSortOpen(!sortOpen);
@@ -37,22 +33,16 @@ export const FilterMenu = ({
 
   return (
     <aside className="text-webprimary w-full lg:pr-10">
-      <div className="flex flex-row items-center justify-between text-sm pb-6 lg:py-6 border-gray-200 ">
-        <button
-          className="lg:hidden text-webprimary z-50"
-          onClick={toggleFilter}
-        >
-          <XMarkIcon className="h-6 w-6" />
-        </button>
+      <div className="flex flex-row items-center justify-between text-sm pb-4 lg:py-6 border-gray-200 ">
         <h2 className="font-bold uppercase">Filter & Sort</h2>
         <button
           className={`text-webprimary ${
-            filters.categories.length === 0
+            filters?.categories.length === 0
               ? "cursor-not-allowed opacity-50"
               : ""
           }`}
-          disabled={filters.categories.length === 0}
-          onClick={clearAllFilters}
+          disabled={filters?.categories.length === 0}
+          onClick={null}
         >
           Clear All
         </button>
@@ -77,26 +67,26 @@ export const FilterMenu = ({
             <FilterButton
               label="Price: Low to High"
               value="priceLowHigh"
-              selected={filters.sort === "priceLowHigh"}
-              onClick={onSortChange}
+              selected={filters?.sort === "priceLowHigh"}
+              onClick={null}
             />
             <FilterButton
               label="Price: High to Low"
               value="priceHighLow"
-              selected={filters.sort === "priceHighLow"}
-              onClick={onSortChange}
+              selected={filters?.sort === "priceHighLow"}
+              onClick={null}
             />
             <FilterButton
               label="Relevancy"
               value="relevancy"
-              selected={filters.sort === "relevancy"}
-              onClick={onSortChange}
+              selected={filters?.sort === "relevancy"}
+              onClick={null}
             />
             <FilterButton
               label="Newest"
               value="newest"
-              selected={filters.sort === "newest"}
-              onClick={onSortChange}
+              selected={filters?.sort === "newest"}
+              onClick={null}
             />
           </div>
         </div>
@@ -118,20 +108,20 @@ export const FilterMenu = ({
             <FilterButton
               label="Unisex"
               value="unisex"
-              selected={filters.genre === "unisex"}
-              onClick={onGenreChange}
+              selected={filters?.genre === "unisex"}
+              onClick={null}
             />
             <FilterButton
               label="Women"
               value="women"
-              selected={filters.genre === "women"}
-              onClick={onGenreChange}
+              selected={filters?.genre === "women"}
+              onClick={null}
             />
             <FilterButton
               label="Men"
               value="men"
-              selected={filters.genre === "men"}
-              onClick={onGenreChange}
+              selected={filters?.genre === "men"}
+              onClick={null}
             />
           </div>
         </div>
@@ -158,7 +148,7 @@ export const FilterMenu = ({
                   key={sub_category.id}
                   label={sub_category.title}
                   value={sub_category.title}
-                  selected={filters.categories.includes(sub_category.title)}
+                  selected={filters?.categories.includes(sub_category.title)}
                   onClick={onCategoryChange}
                 />
               ))}
