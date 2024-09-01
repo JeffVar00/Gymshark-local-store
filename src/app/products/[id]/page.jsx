@@ -35,7 +35,7 @@ const ProductPage = async ({ params }) => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row md:h-auto md:pr-4 mt-8 md:mt-14 lg:mt-16 mb-4 md:mb-0">
+    <div className="flex flex-col md:flex-row md:h-auto md:pr-4 mt-8  mb-4 md:mb-0">
       {/* Left Section - Image Grid */}
 
       <ProductCarousel imgs={product.media?.items} />
@@ -48,7 +48,9 @@ const ProductPage = async ({ params }) => {
               {product.ribbon}
             </div>
           )}
-          <h1 className="text-xl md:text-2xl font-bold">{product.name}</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-center">
+            {product.name}
+          </h1>
           <div
             className="text-sm text-gray-500  text-center"
             dangerouslySetInnerHTML={{

@@ -47,9 +47,11 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
   return (
     <div className="flex flex-col gap-6 items-center justify-center text-center h-full w-full">
       {productOptions.map((option) => (
-        <div className="flex flex-col gap-4" key={option.name}>
-          <h4 className="font-medium">Choose a {option.name}</h4>
-          <ul className="flex items-center gap-3 justify-center text-center">
+        <div className="flex flex-col gap-4 " key={option.name}>
+          <h4 className="block text-xs font-medium text-gray-500 ml-2">
+            Select a {option.name}
+          </h4>
+          <ul className="flex items-center gap-3 justify-center text-center rounded-lg border-grey-200 border-2 px-2 py-1">
             {option.choices?.map((choice) => {
               const disabled = !isVariantInStock({
                 ...selectedOptions,
@@ -82,15 +84,15 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
                 </li>
               ) : (
                 <li
-                  className="ring-1 rounded-md py-1 px-4 text-sm"
+                  className={`flex items-center justify-center w-[12vw] h-12 md:h-12 md:w-12 lg:w-12 my-1 p-3 text-xs rounded-sm border-webprimary ${
+                    disabled
+                      ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                      : selected
+                      ? "bg-webprimary text-websecundary"
+                      : "bg-white text-webprimary hover:text-websecundary hover:bg-webprimary"
+                  }`}
                   style={{
                     cursor: disabled ? "not-allowed" : "pointer",
-                    backgroundColor: selected
-                      ? "#f35c7a"
-                      : disabled
-                      ? "#FBCFE8"
-                      : "white",
-                    color: selected || disabled ? "white" : "#f35c7a",
                     boxShadow: disabled ? "none" : "",
                   }}
                   key={choice.description}
@@ -103,14 +105,14 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
           </ul>
         </div>
       ))}
-      {sizes && (
+      {/* {sizes && (
         <div>
           <label className="block mb-2 text-xs font-medium text-gray-500 ml-2">
             Select a size
           </label>
           <SizeSelector availableSizes={sizes} />
         </div>
-      )}
+      )} */}
       <Add
         productId={productId}
         variantId={

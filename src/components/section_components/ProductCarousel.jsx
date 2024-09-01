@@ -98,12 +98,14 @@ const ProductCarousel = ({ imgs }) => {
           ))}
         </div>
       ) : imgs.length > 0 ? (
-        <div className={`hidden h-screen md:grid md:grid-cols-1 gap-1 } `}>
+        <div
+          className={` items-center hidden h-screen md:grid md:grid-cols-1 gap-1 } `}
+        >
           {imgs.map((image, index) => (
             <div
               key={index}
               className={`w-auto ${
-                imgs.length == 2 ? "h-[56vw] lg:h-[48vw]" : " h-[42vw] my-12"
+                imgs.length == 2 ? "h-[56vw] lg:h-[48vw]" : " h-[42vw]"
               }
            relative`}
             >
