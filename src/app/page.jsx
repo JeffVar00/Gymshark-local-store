@@ -3,7 +3,6 @@ import Featured from "@/components/section_components/Featured";
 import Header from "@/components/section_components/Header";
 import PageDescription from "@/components/section_components/PageDescription";
 import Notification from "@/components/section_components/Notification";
-import MainCategories from "@/components/section_components/MainCategories";
 import Spinner from "@/components/icon_components/Spinner";
 
 import { Suspense } from "react";

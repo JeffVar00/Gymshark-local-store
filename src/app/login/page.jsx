@@ -3,7 +3,7 @@
 // pages/auth.js
 import React, { useState } from "react";
 import Image from "next/image";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import SignUpForm from "@/components/form_components/SignUpForm";
@@ -13,7 +13,7 @@ const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
   const router = useRouter();
 
-  const { status } = useSession();
+  const { status } = "";
 
   if (status === "loading") {
     <p>Loading...</p>;
@@ -101,43 +101,6 @@ const AuthPage = () => {
             >
               <LoginForm />
             </div>
-          </div>
-          <div className="flex items-center justify-between my-2">
-            <hr className="w-full border-t border-gray-300" />
-            <span className="mx-2 text-sm">OR</span>
-            <hr className="w-full border-t border-gray-300" />
-          </div>
-          <div className="flex flex-col justify-center font-semibold gap-2 text-webprimary">
-            <button
-              className="flex text-sm items-center px-2 py-2 gap-2 border-2  rounded-md bg-white border-webprimary"
-              onClick={() => signIn("google")}
-            >
-              <div className="p-1">
-                <Image
-                  src="/google.png"
-                  alt="Google"
-                  width={23}
-                  height={23}
-                  className="object-contain"
-                />
-              </div>
-              Continue with Google
-            </button>
-            <button
-              className="flex text-sm items-center px-2 py-2 gap-2 border-2 rounded-md bg-white border-webprimary"
-              onClick={() => signIn("facebook")}
-            >
-              <div className="p-1">
-                <Image
-                  src="/facebook.png"
-                  alt="Facebook"
-                  width={23}
-                  height={23}
-                  className="object-contain"
-                />
-              </div>
-              Continue with Facebook
-            </button>
           </div>
         </div>
       </div>

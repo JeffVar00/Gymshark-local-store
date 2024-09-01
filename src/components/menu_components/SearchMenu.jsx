@@ -1,16 +1,27 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useContext,
+} from "react";
 import { XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { recomendedSearches } from "@/data";
-import ProductCard from "../card_components/ProductCard";
-import { featuredProducts } from "@/data";
+import ProductCard from "@/components/card_components/ProductCard";
 import Link from "next/link";
+import Spinner from "@/components/icon_components/Spinner";
+import { WixClientContext } from "@/context/wixContext";
+
+const SEARCH_LIMIT = 4;
 
 const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
   const inputRef = useRef(null);
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [noResults, setNoResults] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (historySearch) {
@@ -23,6 +34,7 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
       inputRef.current.value = "";
       setSearch({ target: { value: "" } });
       setSearchResults([]);
+      setNoResults(false);
     }
   };
 
@@ -38,20 +50,39 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
     setGlobalSearch(e.target.value);
   };
 
+  const wixClient = useContext(WixClientContext);
+
   const handleSearch = useCallback(() => {
-    /// SEARCH FUNCTION USING searchText STATE
-    if (searchText != "") {
-      setSearchResults(featuredProducts);
-    }
-  }, [searchText]);
+    const getProducts = async () => {
+      const res = await wixClient.products
+        .queryProducts()
+        .startsWith("name", searchText)
+        .limit(SEARCH_LIMIT)
+        .find();
+      setSearchResults(res.items);
+
+      if (res.items.length === 0) {
+        setNoResults(true);
+      }
+
+      setLoading(false);
+    };
+    getProducts();
+  }, [wixClient, searchText]);
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      handleSearch();
+      if (searchText !== "") {
+        setLoading(true);
+        handleSearch();
+      }
     }, 600);
-
     return () => clearTimeout(delayDebounceFn);
   }, [searchText, handleSearch]);
+
+  if (loading === true) {
+    return <Spinner></Spinner>;
+  }
 
   return (
     <div
@@ -111,7 +142,6 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
           Trending Searches
         </h2>
       </div>
-
       <div
         className={`px-4 w-full lg:w-2/3 flex flex-row ${
           searchText === "" ? "" : "hidden"
@@ -142,49 +172,59 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
           ))}
         </div>
       </div>
-
-      <div
-        className={`w-full px-3 h-screen overflow-y-auto lg:overflow-y-none lg:w-auto text-webprimary flex flex-col  ${
-          searchText === "" ? "hidden" : ""
-        }`}
-      >
-        <div className={`py-2 px-1 w-full flex justify-start items-center`}>
-          <h2 className="text-sm uppercase font-bold text-start mt-3">
-            Products
-          </h2>
-        </div>
-        {/* WRAPPER */}
-        <div className="mr-2 grid grid-cols-2 gap-2 lg:gap-0 lg:flex lg:pt-4 border-b lg:border-y border-gray-300 ">
-          {/* SINGLE ITEM */}
-          {/* {searchResults.slice(0, 4).map((product) => (
-            <div
-              key={product.id}
-              className="mx-1 text-webprimary flex flex-col justify-around w-full lg:w-[22vw] xl:w-[18vw] group"
-            >
-              <ProductCard
-                item={product}
-                imageSize="h-[60vw] md:h-[60vw] lg:h-[30vw] xl:h-[22vw] 2xl:h-[24vw]"
-              />
-            </div>
-          ))} */}
-        </div>
+      {searchResults.length > 0 ? (
         <div
-          className={`pb-8 mb-8 my-4 w-full flex justify-end items-center ${
+          className={`w-full px-3 h-full overflow-y-auto lg:overflow-y-none lg:w-auto text-webprimary flex flex-col  ${
             searchText === "" ? "hidden" : ""
           }`}
         >
-          <Link
-            href={`/collections?query=${searchText}`}
-            className="text-sm text-gray-700"
-            onClick={toggleMenu}
+          <div className={`py-2 px-1 w-full flex justify-start items-center`}>
+            <h2 className="text-sm uppercase font-bold text-start mt-3">
+              Products
+            </h2>
+          </div>
+          {/* WRAPPER */}
+          <div className="mr-2 grid grid-cols-2 gap-2 lg:gap-0 lg:flex lg:pt-4 border-b lg:border-y border-gray-300 ">
+            {/* SINGLE ITEM */}
+            {searchResults.map((product) => (
+              <div
+                key={product.id}
+                className="mx-1 text-webprimary flex flex-col justify-around w-full lg:w-[22vw] xl:w-[18vw] group"
+              >
+                <ProductCard
+                  item={product}
+                  imageSize="h-[60vw] md:h-[60vw] lg:h-[30vw] xl:h-[22vw] 2xl:h-[24vw]"
+                />
+              </div>
+            ))}
+          </div>
+          <div
+            className={`pb-8 mb-8 my-4 w-full flex justify-end items-center ${
+              searchText === "" ? "hidden" : ""
+            }`}
           >
-            View All{" "}
-            <q>
-              <span className="underline font-bold">{searchText}</span>
-            </q>
-          </Link>
+            <Link
+              href={`/collections?query=${searchText}`}
+              className="text-sm text-gray-700"
+              onClick={toggleMenu}
+            >
+              View All <span className="underline font-bold">{searchText}</span>
+            </Link>
+          </div>
         </div>
-      </div>
+      ) : noResults ? (
+        <div className="flex flex-col items-center h-full justify-center gap-3 my-32">
+          <h2 className="font-bold uppercase">No results found</h2>
+          <div className="text-gray-700 text-sm text-center mx-6">
+            <span className="block">
+              Sorry, we can`t find any products that match your filters.
+            </span>
+            <span className="block">Please search for something else.</span>
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

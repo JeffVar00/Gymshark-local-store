@@ -3,7 +3,6 @@ import "./globals.css";
 
 import Navbar from "@/components/menu_components/Navbar";
 import Footer from "@/components/section_components/Footer";
-import AuthProvider from "@/components/AuthProvider";
 import { WixClientContextProvider } from "@/context/wixContext";
 
 const inter = Inter({ subsets: ["latin"] });
