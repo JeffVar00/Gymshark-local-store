@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useContext, useEffect, useState, useCallback } from "react";
 import { MagnifyingGlassIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import PageIcon from "../icon_components/PageIcon";
@@ -10,7 +10,20 @@ import MobileMenu from "./MobileMenu";
 import SearchMenu from "./SearchMenu";
 import BagMenu from "./BagMenu";
 
-const Navbar = ({ main_categories }) => {
+import { WixClientContext } from "@/context/wixContext";
+
+const Navbar = () => {
+  const [categories, setCategories] = useState([]);
+
+  const wixClient = useContext(WixClientContext);
+  useEffect(() => {
+    const getCategories = async () => {
+      const res = await wixClient.collections.queryCollections().find();
+      setCategories(res.items);
+    };
+    getCategories();
+  }, [wixClient]);
+
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -153,6 +166,7 @@ const Navbar = ({ main_categories }) => {
       >
         {isMenuOpen && (
           <MobileMenu
+            categories={categories}
             toggleMenu={toggleMenu}
             searchText={searchText}
             toggleSearch={toggleSearch}

@@ -1,4 +1,5 @@
 import React, { Suspense } from "react";
+import { notFound } from "next/navigation";
 import Notification from "@/components/section_components/Notification";
 import ProductsDisplay from "@/components/section_components/ProductsDisplay";
 import { wixClientServer } from "@/lib/wixClientServer";
@@ -8,9 +9,16 @@ const PRODUCTS_PER_PAGE = 50;
 
 const ProductCategoryPage = async ({ searchParams }) => {
   const wixClient = await wixClientServer();
-  const category = await wixClient.collections.getCollectionBySlug(
-    searchParams.cat || "all-products"
-  );
+  let category;
+
+  try {
+    category = await wixClient.collections.getCollectionBySlug(
+      searchParams.cat || "all-products"
+    );
+  } catch (error) {
+    // If there's an error, trigger the 404 page
+    notFound();
+  }
 
   return (
     <div className="flex flex-col mx-auto">

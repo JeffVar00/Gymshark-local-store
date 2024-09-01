@@ -13,19 +13,19 @@ export default async function Home() {
       <Notification />
       <Header
         details={{
-          title: "NEW STUFF JUST DROPPED",
+          title: "Fashion just arrived",
           description:
-            "We all know you’re gonna be wearing these next time you go gym. Might as well grab them now.",
-          smsrc: "/bannerbottom.jpg",
+            "We all know you’re gonna be wearing this days. Might as well grab them now.",
+          smsrc: "/banner.jpg",
           mdsrc: "/banner.jpg",
           buttons: [
             {
               text: "Shop Men",
-              ref: "/collections/men",
+              ref: "/collections?cat=men",
             },
             {
               text: "Shop Women",
-              ref: "/collections/women",
+              ref: "/collections?cat=women",
             },
           ],
         }}
@@ -53,12 +53,12 @@ export default async function Home() {
           title: "GYMSHARK MERCH",
           description:
             "For locking in. For life. For the love of the game. For levelling up. Go get it before it’s gone.",
-          smsrc: "/banner.jpg",
+          smsrc: "/bannerbottom.jpg",
           mdsrc: "/banner2.jpg",
           buttons: [
             {
               text: "Shop Now",
-              ref: "/collections/clothes?brand=Gymshark",
+              ref: "/collections?cat=gymshark",
             },
           ],
         }}

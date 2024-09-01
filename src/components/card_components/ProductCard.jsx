@@ -39,7 +39,7 @@ const ProductCard = ({ item, imageSize }) => {
                 </button>
               ) : (
                 <div className="grid grid-cols-4 xl:grid-cols-5 gap-2 m-4 z-50">
-                  {["XS", "S", "M", "L", "XL", "XXL", "3XL"].map((size) => (
+                  {["XXS", "XS", "S", "M", "L", "XL", "XXL"].map((size) => (
                     <button
                       key={size}
                       className={`flex items-center justify-center p-3 text-xs sm:text-sm md:text-base rounded-sm ${

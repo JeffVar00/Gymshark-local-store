@@ -7,9 +7,11 @@ import { wixClientServer } from "@/lib/wixClientServer";
 
 const ProductDisplay = async ({ category_id, limit, searchParams }) => {
   const wixClient = await wixClientServer();
+
   const res = await wixClient.products
     .queryProducts()
     .eq("collectionIds", category_id)
+    .startsWith("name", searchParams?.query || "")
     .limit(limit || PRODUCT_PER_PAGE)
     .find();
 

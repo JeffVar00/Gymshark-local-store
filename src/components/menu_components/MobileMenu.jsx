@@ -1,23 +1,12 @@
 "use client";
 
-import React, { useContext, useState, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import { XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { WixClientContext } from "@/context/wixContext";
+
 import Image from "next/image";
 
-const MobileMenu = ({ toggleMenu, searchText, toggleSearch }) => {
-  const [categories, setCategories] = useState([]);
-
-  const wixClient = useContext(WixClientContext);
-  useEffect(() => {
-    const getCategories = async () => {
-      const res = await wixClient.collections.queryCollections().find();
-      setCategories(res.items);
-    };
-    getCategories();
-  }, [wixClient]);
-
+const MobileMenu = ({ categories, toggleMenu, searchText, toggleSearch }) => {
   return (
     <div className="flex flex-col  h-full overflow-y-auto ">
       <div className="sticky top-0 bg-white z-20">
