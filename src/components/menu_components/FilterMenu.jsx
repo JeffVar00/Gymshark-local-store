@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import FormInput from "@/components/form_components/FormInput";
 
 const FilterButton = ({ label, value, selected, onClick }) => {
   return (
@@ -18,16 +18,22 @@ const FilterButton = ({ label, value, selected, onClick }) => {
   );
 };
 
-export const FilterMenu = ({ filters, toggleFilter }) => {
+export const FilterMenu = () => {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
-  const [genreOpen, setGenreOpen] = useState(false);
+  const [sizeOpen, setsizeOpen] = useState(false);
 
   const sub_categories = [];
 
   const toggleCategories = () => setCategoryOpen(!categoryOpen);
   const toggleSort = () => setSortOpen(!sortOpen);
-  const toggleGenre = () => setGenreOpen(!genreOpen);
+  const toggleGenre = () => setsizeOpen(!sizeOpen);
+
+  const [filters, setFilters] = useState({
+    genre: "unisex",
+    sort: "relevancy",
+    categories: [],
+  });
 
   // const categories = await getSubCategories();
 
@@ -88,6 +94,22 @@ export const FilterMenu = ({ filters, toggleFilter }) => {
               selected={filters?.sort === "newest"}
               onClick={null}
             />
+            <div className="mt-2">
+              <FormInput
+                label=""
+                type="number"
+                overlay="Min Price"
+                handleChange={null}
+                required={false}
+              />
+              <FormInput
+                label=""
+                type="number"
+                overlay="Max Price"
+                handleChange={null}
+                required={false}
+              />
+            </div>
           </div>
         </div>
         <div className="w-full border-b lg:border-y">
@@ -95,34 +117,26 @@ export const FilterMenu = ({ filters, toggleFilter }) => {
             className="flex justify-between items-center cursor-pointer py-4 no-tap-highlight"
             onClick={toggleGenre}
           >
-            <h4 className="text-sm font-bold uppercase">Genre</h4>
-            <span className="text-xl font-bold ">{genreOpen ? "-" : "+"}</span>
+            <h4 className="text-sm font-bold uppercase">Size</h4>
+            <span className="text-xl font-bold ">{sizeOpen ? "-" : "+"}</span>
           </div>
           <div
             className={`flex flex-col lg:flex-wrap lg:flex-row text-sm font-semibold text-gray-500 transition-all duration-300 ease-in-out ${
-              genreOpen
+              sizeOpen
                 ? "max-h-screen mb-4 opacity-100"
                 : "max-h-0 opacity-0 overflow-hidden"
             }`}
           >
-            <FilterButton
-              label="Unisex"
-              value="unisex"
-              selected={filters?.genre === "unisex"}
-              onClick={null}
-            />
-            <FilterButton
-              label="Women"
-              value="women"
-              selected={filters?.genre === "women"}
-              onClick={null}
-            />
-            <FilterButton
-              label="Men"
-              value="men"
-              selected={filters?.genre === "men"}
-              onClick={null}
-            />
+            {["XXS", "XS", "S", "M", "L", "XL", "XXL"].map((size) => (
+              <div key={size}>
+                <FilterButton
+                  label={size}
+                  value={size}
+                  selected={filters?.genre === "unisex"}
+                  onClick={null}
+                />
+              </div>
+            ))}
           </div>
         </div>
         {sub_categories.length > 0 && (

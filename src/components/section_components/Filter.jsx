@@ -46,11 +46,7 @@ const Filter = ({ searchParams }) => {
       };
     }
   }, [controlNavbar]);
-  const [filters, setFilters] = useState({
-    genre: "unisex",
-    sort: "relevancy",
-    categories: [],
-  });
+
   return (
     <div className="flex flex-col mx-auto">
       <div
