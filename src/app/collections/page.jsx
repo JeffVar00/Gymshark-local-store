@@ -17,14 +17,13 @@ const ProductCategoryPage = async ({ searchParams }) => {
       <Notification />
       <div className="py-4">
         <div className="px-4 md:px-8 2xl:px-16">
-          {searchParams.cat && (
-            <p className="text-xs font-bold md:py-2 uppercase">
-              Category {">"} {category.collection?.name}
-            </p>
-          )}
+          <p className="text-xs font-bold md:py-2 uppercase">
+            Category {">"} {category?.collection?.name || "All Products"}
+          </p>
           {searchParams.query && (
-            <p className="text-xs font-bold md:pt-2">
-              Search results for {searchParams.query}
+            <p className="text-xs md:pt-2">
+              Search results for{" "}
+              <span className="font-bold">{searchParams.query}</span>
             </p>
           )}
           <div className="flex flex-col md:flex-row md:items-center md:gap-4">

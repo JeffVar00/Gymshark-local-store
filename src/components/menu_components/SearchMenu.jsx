@@ -156,7 +156,7 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
         {/* WRAPPER */}
         <div className="mr-2 grid grid-cols-2 gap-2 lg:gap-0 lg:flex lg:pt-4 border-b lg:border-y border-gray-300 ">
           {/* SINGLE ITEM */}
-          {searchResults.slice(0, 4).map((product) => (
+          {/* {searchResults.slice(0, 4).map((product) => (
             <div
               key={product.id}
               className="mx-1 text-webprimary flex flex-col justify-around w-full lg:w-[22vw] xl:w-[18vw] group"
@@ -166,7 +166,7 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
                 imageSize="h-[60vw] md:h-[60vw] lg:h-[30vw] xl:h-[22vw] 2xl:h-[24vw]"
               />
             </div>
-          ))}
+          ))} */}
         </div>
         <div
           className={`pb-8 mb-8 my-4 w-full flex justify-end items-center ${
@@ -174,7 +174,7 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
           }`}
         >
           <Link
-            href={`/search/${searchText}`}
+            href={`/collections?query=${searchText}`}
             className="text-sm text-gray-700"
             onClick={toggleMenu}
           >
