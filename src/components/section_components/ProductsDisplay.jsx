@@ -13,15 +13,13 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
     .limit(limit || PRODUCT_PER_PAGE)
     .find();
 
-  console.log(res);
-
   return (
     <div className="flex flex-col mx-auto">
       {res.items.length > 0 ? (
         <>
-          <div className="flex items-center justify-start w-full px-4 lg:px-8 2xl:px-16">
+          <div className="flex items-center justify-start w-full px-4 md:px-8 2xl:px-16 mb-6 lg:mb-0">
             <p className="text-xs md:text-sm text-gray-600">
-              {/* {totalCount} products available */}
+              {res._totalCount} products available
             </p>
           </div>
 

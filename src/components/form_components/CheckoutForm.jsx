@@ -15,12 +15,12 @@ const CheckoutForm = ({ showPopup, shippingMethod }) => {
     lastName: "",
     address: "",
     city: "",
-    state: "",
+    state: "Alajuela",
     zipCode: "",
-    country: "",
+    country: "Costa Rica",
   });
 
-  const [paymentMethod, setPaymentMethod] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("SINPE");
   const [error, setError] = useState(null);
 
   const handlePaymentChange = (event) => {
@@ -109,13 +109,12 @@ const CheckoutForm = ({ showPopup, shippingMethod }) => {
         </label>
         <select
           className="w-full p-2 border border-gray-200 rounded"
+          value={shippingInfo.country}
           onChange={(e) =>
             setShippingInfo({ ...shippingInfo, country: e.target.value })
           }
         >
-          <option value="Costa Rica" selected>
-            Costa Rica
-          </option>
+          <option value="Costa Rica">Costa Rica</option>
         </select>
       </div>
       <div className="mb-4">
@@ -127,10 +126,9 @@ const CheckoutForm = ({ showPopup, shippingMethod }) => {
           onChange={(e) =>
             setShippingInfo({ ...shippingInfo, state: e.target.value })
           }
+          value={shippingInfo.state}
         >
-          <option value="Alajuela" selected>
-            Alajuela
-          </option>
+          <option value="Alajuela">Alajuela</option>
           <option value="San Jose">San Jose</option>
           <option value="Cartago">Cartago</option>
           <option value="Heredia">Heredia</option>
@@ -172,9 +170,7 @@ const CheckoutForm = ({ showPopup, shippingMethod }) => {
         value={paymentMethod}
         onChange={handlePaymentChange}
       >
-        <option value="SINPE" selected>
-          SINPE
-        </option>
+        <option value="SINPE">SINPE</option>
         <option value="Bank">Bank Transfer</option>
         <option value="Paypal">Paypal</option>
       </select>

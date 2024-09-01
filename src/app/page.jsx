@@ -44,7 +44,7 @@ export default async function Home() {
 
       <Suspense fallback={<Spinner></Spinner>}>
         <div>
-          <FeaturedCategories title={"How do you train?"} />
+          <FeaturedCategories title={"What you are looking for"} />
         </div>
       </Suspense>
 

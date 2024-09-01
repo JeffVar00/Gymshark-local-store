@@ -243,9 +243,7 @@ const BagMenu = ({ toggleMenu }) => {
               value={shippingMethod}
               onChange={handleShippingChange}
             >
-              <option value="Standard" selected>
-                Standard Shipping
-              </option>
+              <option value="Standard">Standard Shipping</option>
               <option value="Express">Express Shipping</option>
               <option value="Overnight">Overnight Shipping</option>
             </select>

@@ -198,15 +198,11 @@ const Navbar = ({ main_categories }) => {
         onClick={toggleBag}
       ></div>
       <div
-        className={`h-[90%] lg:h-full fixed bottom-0 lg:bottom-auto lg:top-0 lg:right-0 w-full lg:w-[40%] xl:w-[30%] bg-white z-50 transform ${
+        className={`h-[90%] lg:h-full fixed ${
           isBagOpen
-            ? typeof window !== "undefined" && window.innerWidth >= 1024
-              ? "translate-x-0"
-              : "translate-y-0"
-            : typeof window !== "undefined" && window.innerWidth >= 1024
-            ? "translate-x-full"
-            : "translate-y-full"
-        } transition-transform duration-300 ease-in-out `}
+            ? "bottom-0 lg:top-0 lg:right-0 translate-y-0 lg:translate-x-0"
+            : "bottom-0 lg:top-0 lg:right-[-100%] translate-y-full lg:translate-x-full"
+        } w-full lg:w-[40%] xl:w-[30%] bg-white z-50 transition-transform duration-300 ease-in-out`}
       >
         <div className="relative h-full">
           {isBagOpen && (
