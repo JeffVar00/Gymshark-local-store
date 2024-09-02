@@ -7,7 +7,7 @@ const FilterButton = ({ label, value, selected, onClick }) => {
   return (
     <button
       onClick={() => onClick(value)}
-      className={`px-4 py-2 rounded-md m-1 no-tap-highlight  ${
+      className={`w-full px-4 py-2 rounded-md m-1 no-tap-highlight  ${
         selected
           ? "bg-black text-white"
           : "bg-gray-200 text-black hover:border-2 hover:border-webprimary"
@@ -27,7 +27,7 @@ export const FilterMenu = () => {
 
   const toggleCategories = () => setCategoryOpen(!categoryOpen);
   const toggleSort = () => setSortOpen(!sortOpen);
-  const toggleGenre = () => setsizeOpen(!sizeOpen);
+  const toggleSizes = () => setsizeOpen(!sizeOpen);
 
   const [filters, setFilters] = useState({
     genre: "unisex",
@@ -115,13 +115,13 @@ export const FilterMenu = () => {
         <div className="w-full border-b lg:border-y">
           <div
             className="flex justify-between items-center cursor-pointer py-4 no-tap-highlight"
-            onClick={toggleGenre}
+            onClick={toggleSizes}
           >
             <h4 className="text-sm font-bold uppercase">Size</h4>
             <span className="text-xl font-bold ">{sizeOpen ? "-" : "+"}</span>
           </div>
           <div
-            className={`flex flex-col lg:flex-wrap lg:flex-row text-sm font-semibold text-gray-500 transition-all duration-300 ease-in-out ${
+            className={`flex  flex-col lg:flex-wrap lg:flex-row text-sm font-semibold text-gray-500 transition-all duration-300 ease-in-out gap-1 ${
               sizeOpen
                 ? "max-h-screen mb-4 opacity-100"
                 : "max-h-0 opacity-0 overflow-hidden"

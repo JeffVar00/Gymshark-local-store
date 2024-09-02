@@ -9,6 +9,20 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
   const [selectedVariant, setSelectedVariant] = useState();
 
   useEffect(() => {
+    if (variants && variants.length > 0) {
+      const defaultVariant = variants.find((variant) => isValidStock(variant));
+      if (defaultVariant) {
+        const initialSelectedOptions = {};
+        Object.entries(defaultVariant.choices).forEach(([key, value]) => {
+          initialSelectedOptions[key] = value;
+        });
+        setSelectedOptions(initialSelectedOptions);
+        setSelectedVariant(defaultVariant);
+      }
+    }
+  }, [variants]);
+
+  useEffect(() => {
     const variant = variants.find((v) => {
       const variantChoices = v.choices;
       if (!variantChoices) return false;
@@ -48,13 +62,13 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
   };
 
   return (
-    <div className="flex flex-col gap-6 items-center justify-center text-center h-full">
+    <div className="flex flex-col gap-6 items-center justify-center text-center h-full w-full">
       {productOptions.map((option) => (
-        <div className="flex flex-col gap-4 " key={option.name}>
+        <div className="flex flex-col gap-4" key={option.name}>
           <h4 className="block text-xs font-medium text-gray-500 ml-2">
             Select a {option.name}
           </h4>
-          <ul className="flex items-center justify-center text-center rounded-lg border-grey-200 border-2 px-2 py-1">
+          <ul className="flex items-center justify-center text-center gap-1 rounded-lg border-grey-200 border-2 px-2 py-1">
             {option.choices?.map((choice) => {
               const disabled = !isVariantInStock({
                 ...selectedOptions,
@@ -70,7 +84,7 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
 
               return option.name === "Color" ? (
                 <li
-                  className="w-8 h-8 rounded-full ring-1 ring-gray-300 relative mx-2 my-2 flex flex-row flex-wrap"
+                  className="w-8 h-8 rounded-full ring-1 ring-gray-300 relative mx-1 my-2"
                   style={{
                     backgroundColor: choice.value,
                     cursor: disabled ? "not-allowed" : "pointer",
@@ -87,7 +101,7 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
                 </li>
               ) : (
                 <li
-                  className={`flex items-center justify-center w-[12vw] h-12 md:h-12 md:w-12 lg:w-12 my-1 p-3 text-xs rounded-sm border-webprimary ${
+                  className={`flex flex-row flex-wrap items-center justify-center w-[12vw] h-12 md:h-12 md:w-12 lg:w-12 my-1 p-3 text-xs rounded-sm border-webprimary ${
                     disabled
                       ? "bg-gray-200 text-gray-500 cursor-not-allowed"
                       : selected
@@ -118,7 +132,7 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
             ? true
             : selectedVariant?.stock?.inStock || false
         }
-        stockNumber={selectedVariant?.stock?.quantity || 0}
+        stockNumber={selectedVariant?.stock?.quantity || null}
       />
       {/* COLOR SKELETON */}
       {/* 

@@ -3,7 +3,10 @@ import ProductCard from "@/components/card_components/ProductCard";
 import Link from "next/link";
 import FilterMenu from "@/components/menu_components/FilterMenu";
 import BackToTop from "@/components/icon_components/BackToTop";
+import Pagination from "@/components/section_components/Pagination";
 import { wixClientServer } from "@/lib/wixClientServer";
+
+const PRODUCT_PER_PAGE = 30;
 
 const ProductDisplay = async ({ category_id, limit, searchParams }) => {
   const wixClient = await wixClientServer();
@@ -14,6 +17,11 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
     .startsWith("name", searchParams?.query || "")
     .limit(limit || PRODUCT_PER_PAGE)
     .find();
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(res._totalCount / (limit || PRODUCT_PER_PAGE))
+  );
 
   return (
     <div className="flex flex-col mx-auto">
@@ -48,23 +56,14 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
                     </div>
                   ))}
                 </div>
-                <div className="flex justify-between mt-4 text-center items-center px-2">
-                  <button
-                    disabled={true}
-                    onClick={null}
-                    className="w-32 md: py-2 bg-webprimary text-white rounded-full"
-                  >
-                    Previous
-                  </button>
-                  <span>{/* {page} of {totalPages} */}</span>
-                  <button
-                    disabled={true}
-                    onClick={null}
-                    className="w-32 py-2 bg-webprimary text-white rounded-full"
-                  >
-                    Next
-                  </button>
-                </div>
+                {searchParams?.cat || searchParams?.name ? (
+                  <Pagination
+                    currentPage={res.currentPage || 0}
+                    totalPages={totalPages}
+                    hasPrev={res.hasPrev()}
+                    hasNext={res.hasNext()}
+                  />
+                ) : null}
               </div>
             </div>
           </div>
