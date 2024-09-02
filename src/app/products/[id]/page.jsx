@@ -84,8 +84,8 @@ const ProductPage = async ({ params }) => {
               variantId="00000000-0000-0000-0000-000000000000"
               stockStatus={
                 product.stock?.trackInventory
-                  ? "IN_STOCK"
-                  : product.stock?.inventoryStatus || "OUT_OF_STOCK"
+                  ? true
+                  : product.stock?.inventoryStatus || false
               }
               stockNumber={product.stock?.quantity || 0}
             />

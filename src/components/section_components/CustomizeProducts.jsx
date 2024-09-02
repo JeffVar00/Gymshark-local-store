@@ -2,7 +2,6 @@
 
 import { products } from "@wix/stores";
 import { useEffect, useState } from "react";
-import SizeSelector from "@/components/form_components/SizeSelector";
 import Add from "@/components/menu_components/Add";
 
 const CustomizeProducts = ({ productId, variants, productOptions }) => {
@@ -24,6 +23,17 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
     setSelectedOptions((prev) => ({ ...prev, [optionType]: choice }));
   };
 
+  const isValidStock = (variant) => {
+    if (variant.stock?.inStock) {
+      if (variant.stock?.quantity == null) {
+        return true;
+      } else if (variant.stock.quantity > 0) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   const isVariantInStock = (choices) => {
     return variants.some((variant) => {
       const variantChoices = variant.choices;
@@ -32,26 +42,19 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
       return (
         Object.entries(choices).every(
           ([key, value]) => variantChoices[key] === value
-        ) &&
-        variant.stock?.inStock &&
-        variant.stock?.quantity &&
-        variant.stock?.quantity > 0
+        ) && isValidStock(variant)
       );
     });
   };
 
-  const sizes = productOptions.find(
-    (option) => option.name === "Size"
-  )?.choices;
-
   return (
-    <div className="flex flex-col gap-6 items-center justify-center text-center h-full w-full">
+    <div className="flex flex-col gap-6 items-center justify-center text-center h-full">
       {productOptions.map((option) => (
         <div className="flex flex-col gap-4 " key={option.name}>
           <h4 className="block text-xs font-medium text-gray-500 ml-2">
             Select a {option.name}
           </h4>
-          <ul className="flex items-center gap-3 justify-center text-center rounded-lg border-grey-200 border-2 px-2 py-1">
+          <ul className="flex items-center justify-center text-center rounded-lg border-grey-200 border-2 px-2 py-1">
             {option.choices?.map((choice) => {
               const disabled = !isVariantInStock({
                 ...selectedOptions,
@@ -67,7 +70,7 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
 
               return option.name === "Color" ? (
                 <li
-                  className="w-8 h-8 rounded-full ring-1 ring-gray-300 relative"
+                  className="w-8 h-8 rounded-full ring-1 ring-gray-300 relative mx-2 my-2 flex flex-row flex-wrap"
                   style={{
                     backgroundColor: choice.value,
                     cursor: disabled ? "not-allowed" : "pointer",
@@ -105,14 +108,6 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
           </ul>
         </div>
       ))}
-      {/* {sizes && (
-        <div>
-          <label className="block mb-2 text-xs font-medium text-gray-500 ml-2">
-            Select a size
-          </label>
-          <SizeSelector availableSizes={sizes} />
-        </div>
-      )} */}
       <Add
         productId={productId}
         variantId={
@@ -125,7 +120,7 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
         }
         stockNumber={selectedVariant?.stock?.quantity || 0}
       />
-      {/* COLOR */}
+      {/* COLOR SKELETON */}
       {/* 
           <ul className="flex items-center gap-3">
             <li className="w-8 h-8 rounded-full ring-1 ring-gray-300 cursor-pointer relative bg-red-500">
@@ -136,19 +131,6 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
               <div className="absolute w-10 h-[2px] bg-red-400 rotate-45 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
             </li>
           </ul> */}
-      {/* OTHERS */}
-      {/* <h4 className="font-medium">Choose a size</h4>
-      <ul className="flex items-center gap-3">
-        <li className="ring-1 ring-lama text-lama rounded-md py-1 px-4 text-sm cursor-pointer">
-          Small
-        </li>
-        <li className="ring-1 ring-lama text-white bg-lama rounded-md py-1 px-4 text-sm cursor-pointer">
-          Medium
-        </li>
-        <li className="ring-1 ring-pink-200 text-white bg-pink-200 rounded-md py-1 px-4 text-sm cursor-not-allowed">
-          Large
-        </li>
-      </ul> */}
     </div>
   );
 };
