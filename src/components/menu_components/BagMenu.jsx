@@ -167,7 +167,7 @@ const BagMenu = ({ toggleMenu }) => {
             </Link>
           </div>
         ) : (
-          <div className="w-full px-4 flex flex-col gap-6 pb-52 mt-16 lg:pb-24 overflow-y-auto">
+          <div className="w-full px-4 flex flex-col gap-6 pb-36 mt-16 lg:pb-24 overflow-y-auto">
             {currentCart.map((item, index) => (
               <div
                 key={index}
@@ -280,7 +280,7 @@ const BagMenu = ({ toggleMenu }) => {
         <div className="flex flex-col items-center h-full justify-center gap-3 mb-20">
           <h2 className="font-bold uppercase">Thanks for your preference!</h2>
           <p className="text-gray-700 text-sm">Want to continue shopping?</p>
-          <Link href="/collections/women">
+          <Link href="/collections?cat=women">
             <button
               onClick={toggleMenu}
               className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase"
@@ -288,7 +288,7 @@ const BagMenu = ({ toggleMenu }) => {
               Shop Men
             </button>
           </Link>
-          <Link href="/collections/men">
+          <Link href="/collections?cat=men">
             <button
               onClick={toggleMenu}
               className="text-sm w-60  font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase"

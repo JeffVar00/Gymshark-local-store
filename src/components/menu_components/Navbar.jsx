@@ -212,10 +212,10 @@ const Navbar = () => {
         onClick={toggleBag}
       ></div>
       <div
-        className={`h-[90%] lg:h-full fixed ${
+        className={`h-full fixed ${
           isBagOpen
-            ? "bottom-0 lg:top-0 lg:right-0 translate-y-0 lg:translate-x-0"
-            : "bottom-0 lg:top-0 lg:right-[-100%] translate-y-full lg:translate-x-full"
+            ? "top-0 right-0 translate-x-0"
+            : "top-0 right-[-100%] translate-x-full"
         } w-full lg:w-[40%] xl:w-[30%] bg-white z-50 transition-transform duration-300 ease-in-out`}
       >
         <div className="relative h-full">

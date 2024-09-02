@@ -39,7 +39,7 @@ const CheckoutForm = ({ showPopup, shippingMethod }) => {
 
   return (
     <form
-      className="h-screen w-full overflow-y-auto transition-opacity duration-300 flex flex-col pt-16 pb-64 lg:pb-32"
+      className="h-screen w-full overflow-y-auto transition-opacity duration-300 flex flex-col pt-16 pb-36 lg:pb-32"
       onSubmit={handleCheckout}
     >
       <div className="mb-4 font-bold uppercase text-center">
