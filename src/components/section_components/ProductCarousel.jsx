@@ -99,13 +99,15 @@ const ProductCarousel = ({ imgs }) => {
         </div>
       ) : imgs.length > 0 ? (
         <div
-          className={` items-center hidden h-screen md:grid md:grid-cols-1 gap-1 } `}
+          className={`items-center hidden h-screen md:grid md:grid-cols-1 gap-1 } `}
         >
           {imgs.map((image, index) => (
             <div
               key={index}
               className={`w-auto ${
-                imgs.length == 2 ? "h-[56vw] lg:h-[48vw]" : " h-[42vw]"
+                imgs.length == 2
+                  ? "h-[56vw] lg:h-[48vw]"
+                  : "ml-6 h-[78vw] lg:h-[64vw] xl:h-[42vw]"
               }
            relative`}
             >
@@ -114,7 +116,11 @@ const ProductCarousel = ({ imgs }) => {
                 alt={`Product Image ${index + 1}`}
                 fill="responsive"
                 sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
-                className={imgs.length == 2 ? "object-cover" : "object-contain"}
+                className={
+                  imgs.length == 2
+                    ? "object-cover"
+                    : "object-cover lg:object-contain lg:ml-12"
+                }
               />
             </div>
           ))}

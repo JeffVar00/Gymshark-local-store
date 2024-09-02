@@ -35,7 +35,7 @@ const ProductPage = async ({ params }) => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row md:h-auto md:pr-4 mt-8  mb-4 md:mb-0">
+    <div className="flex flex-col md:flex-row md:h-auto md:pr-4 mt-8 mb-4 md:mb-0">
       {/* Left Section - Image Grid */}
       <ProductCarousel imgs={product.media?.items} />
 
