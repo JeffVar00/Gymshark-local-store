@@ -79,7 +79,7 @@ const ProductCarousel = ({ imgs }) => {
       {/* Grid for medium and up */}
 
       {imgs.length > 2 ? (
-        <div className="hidden md:grid grid-cols-1 h-screen lg:grid-cols-2 gap-1">
+        <div className="hidden md:grid grid-cols-1 h-screen lg:grid-cols-2 gap-1 mt-6 lg:mt-8">
           {imgs.map((image, index) => (
             <div
               key={index}
@@ -99,14 +99,16 @@ const ProductCarousel = ({ imgs }) => {
         </div>
       ) : imgs.length > 0 ? (
         <div
-          className={`items-center hidden h-screen md:grid md:grid-cols-1 gap-1 } `}
+          className={`items-center hidden h-screen md:grid md:grid-cols-1 gap-1 ${
+            imgs.length == 2 ? "mt-6 lg:mt-8" : ""
+          } `}
         >
           {imgs.map((image, index) => (
             <div
               key={index}
               className={`w-auto ${
                 imgs.length == 2
-                  ? "h-[56vw] lg:h-[48vw]"
+                  ? "h-[56vw] lg:h-[48vw] "
                   : "ml-6 h-[78vw] lg:h-[64vw] xl:h-[42vw]"
               }
            relative`}

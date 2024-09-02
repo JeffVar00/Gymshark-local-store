@@ -8,7 +8,7 @@ import React, {
   useContext,
 } from "react";
 import { XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { recomendedSearches } from "@/data";
+// import { recomendedSearches } from "@/data";
 import ProductCard from "@/components/card_components/ProductCard";
 import Link from "next/link";
 import Spinner from "@/components/icon_components/Spinner";
@@ -56,7 +56,7 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
     const getProducts = async () => {
       const res = await wixClient.products
         .queryProducts()
-        .startsWith("name", searchText)
+        .startsWith("name", searchText || "")
         .limit(SEARCH_LIMIT)
         .find();
       setSearchResults(res.items);
@@ -133,7 +133,9 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
           </button>
         </div>
       </div>
-      <div
+
+      {/* TRENDING SEARCHES */}
+      {/* <div
         className={`px-4 w-full lg:w-2/3 flex flex-row ${
           searchText === "" ? "" : "hidden"
         } justify-start items-center gap-4`}
@@ -171,7 +173,8 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
             </button>
           ))}
         </div>
-      </div>
+      </div> */}
+
       {searchResults.length > 0 ? (
         <div
           className={`w-full px-3 h-full overflow-y-auto lg:overflow-y-none lg:w-auto text-webprimary flex flex-col  ${

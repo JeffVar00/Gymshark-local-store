@@ -11,12 +11,30 @@ const PRODUCT_PER_PAGE = 30;
 const ProductDisplay = async ({ category_id, limit, searchParams }) => {
   const wixClient = await wixClientServer();
 
-  const res = await wixClient.products
+  let productQuery = wixClient.products
     .queryProducts()
-    .eq("collectionIds", category_id)
     .startsWith("name", searchParams?.query || "")
+    .eq("collectionIds", category_id)
+    .gt("priceData.price", searchParams?.min || 0)
+    .lt("priceData.price", searchParams?.max || 999999)
     .limit(limit || PRODUCT_PER_PAGE)
-    .find();
+    .skip(
+      searchParams?.page
+        ? parseInt(searchParams.page) * (limit || PRODUCT_PER_PAGE)
+        : 0
+    );
+
+  // Determine sorting based on `searchParams.sort`
+  if (searchParams?.sort) {
+    const [sortType, sortBy] = searchParams.sort.split(" ");
+    if (sortType === "asc") {
+      productQuery = productQuery.ascending(sortBy);
+    } else if (sortType === "desc") {
+      productQuery = productQuery.descending(sortBy);
+    }
+  }
+
+  const res = await productQuery.find();
 
   const totalPages = Math.max(
     1,

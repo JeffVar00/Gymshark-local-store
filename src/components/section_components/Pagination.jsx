@@ -16,7 +16,7 @@ const Pagination = ({ currentPage, totalPages, hasPrev, hasNext }) => {
   return (
     <div className="mt-12 flex justify-between w-full items-center">
       <button
-        className="rounded-md bg-lama text-white p-2 text-sm w-20 cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-300"
+        className="rounded-md bg-webprimary text-white p-2 text-sm w-20 cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-300"
         disabled={!hasPrev}
         onClick={() => createPageUrl(currentPage - 1)}
       >
@@ -24,7 +24,7 @@ const Pagination = ({ currentPage, totalPages, hasPrev, hasNext }) => {
       </button>
       Page {currentPage + 1} of {totalPages}
       <button
-        className="rounded-md bg-lama text-white p-2 text-sm w-20 cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-300"
+        className="rounded-md bg-webprimary text-white p-2 text-sm w-20 cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-300"
         disabled={!hasNext}
         onClick={() => createPageUrl(currentPage + 1)}
       >

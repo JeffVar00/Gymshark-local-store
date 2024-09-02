@@ -1,149 +1,80 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import PhoneIcon from "../icon_components/PhoneIcon";
-import SocialMedia from "./SocialMedia";
+import ListToBottomList from "@/components/menu_components/ListToBottomList";
+import Contact from "@/components/section_components/Contact";
 
 const Footer = () => {
-  const [helpOpen, setHelpOpen] = useState(false);
-  const [accountOpen, setAccountOpen] = useState(false);
-  const [pagesOpen, setPagesOpen] = useState(false);
-
-  const toggleHelp = () => setHelpOpen(!helpOpen);
-  const toggleAccount = () => setAccountOpen(!accountOpen);
-  const togglePages = () => setPagesOpen(!pagesOpen);
-
-  const [isMdOrSmaller, setIsMdOrSmaller] = useState(false);
-
-  useEffect(() => {
-    // Check screen size on the client side only
-    const handleResize = () => setIsMdOrSmaller(window.innerWidth <= 1025);
-    handleResize(); // Set initial value
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
     <footer className="bg-websecundary text-webprimary">
-      <div className="px-4 lg:px-16 lg:py-8 lg:border-t-2 border-b-2">
-        <div className="flex flex-col lg:flex-row justify-start lg:gap-6 xl:gap-8">
-          <div className="w-full lg:w-auto border-y-2 lg:border-0 lg:pr-4">
-            <div
-              className="flex justify-between items-center cursor-pointer lg:cursor-default py-4 lg:py-0 no-tap-highlight"
-              onClick={isMdOrSmaller ? toggleHelp : undefined}
-            >
-              <h4 className="text-sm font-bold lg:mb-4">HELP</h4>
-              <span className="text-xl font-bold lg:hidden">
-                {helpOpen ? "-" : "+"}
-              </span>
-            </div>
-            <ul
-              className={`text-sm font-semibold text-gray-500 space-y-2 transition-all duration-300 ease-in-out ${
-                helpOpen
-                  ? "max-h-screen mb-4 opacity-100"
-                  : "max-h-0 opacity-0 overflow-hidden"
-              } lg:max-h-screen lg:opacity-100`}
-            >
-              <li>
-                <a href="#">FAQ</a>
-              </li>
-              <li>
-                <a href="#">Delivery Information</a>
-              </li>
-              <li>
-                <a href="#">Returns Policy</a>
-              </li>
-              <li>
-                <a href="#">Make A Return</a>
-              </li>
-              <li>
-                <a href="#">Orders</a>
-              </li>
-              <li>
-                <a href="#">Submit A Fake</a>
-              </li>
-            </ul>
+      <div className="px-4 lg:px-16 lg:py-8 border-t-2 border-b-2">
+        <div className="flex flex-col lg:flex-row justify-between lg:gap-6 xl:gap-8">
+          <div className="flex flex-col lg:flex-row justify-start lg:gap-4">
+            <ListToBottomList
+              title={"SHOP"}
+              references={[
+                { id: 1, title: "Shop Central", link: "/" },
+                {
+                  id: 2,
+                  title: "All Products",
+                  link: "/collections?cat=all-products",
+                },
+                {
+                  id: 3,
+                  title: "Featured",
+                  link: "/collections?cat=featured",
+                },
+                {
+                  id: 4,
+                  title: "Home",
+                  link: "/collections?cat=home",
+                },
+                {
+                  id: 5,
+                  title: "Clothes",
+                  link: "/collections?cat=clothes",
+                },
+              ]}
+            />
+            <ListToBottomList
+              title={"HELP"}
+              references={[
+                {
+                  id: 1,
+                  title: "Terms and Conditions",
+                  link: "/pages/terms-and-conditions",
+                },
+                { id: 2, title: "Terms of use", link: "/pages/terms-of-use" },
+
+                {
+                  id: 3,
+                  title: "Cookies Policy",
+                  link: "/pages/cookie-policy",
+                },
+              ]}
+            />
+            <ListToBottomList
+              title={"US"}
+              references={[
+                { id: 1, title: "Contact Us", link: "/pages/contact-us" },
+                { id: 2, title: "About Us", link: "/pages/about-us" },
+              ]}
+            />
           </div>
-          <div className="w-full lg:w-auto lg:border-0 lg:pr-4">
-            <div
-              className="flex justify-between items-center cursor-pointer lg:cursor-default py-4 lg:py-0 no-tap-highlight"
-              onClick={isMdOrSmaller ? toggleAccount : undefined}
-            >
-              <h4 className="text-sm font-bold lg:mb-4">MY ACCOUNT</h4>
-              <span className="text-xl font-bold lg:hidden">
-                {accountOpen ? "-" : "+"}
-              </span>
-            </div>
-            <ul
-              className={`text-sm font-semibold text-gray-500 space-y-2 transition-all duration-300 ease-in-out ${
-                accountOpen
-                  ? "max-h-screen mb-4 opacity-100"
-                  : "max-h-0 opacity-0 overflow-hidden"
-              } lg:max-h-screen lg:opacity-100`}
-            >
-              <li>
-                <a href="#">Login</a>
-              </li>
-              <li>
-                <a href="#">Register</a>
-              </li>
-            </ul>
+          <div className="hidden lg:flex ">
+            <Contact />
           </div>
-          <div className="w-full lg:w-auto border-y-2 lg:border-0 lg:pr-4">
-            <div
-              className="flex justify-between items-center cursor-pointer lg:cursor-default py-4 lg:py-0 no-tap-highlight"
-              onClick={isMdOrSmaller ? togglePages : undefined}
-            >
-              <h4 className="text-sm font-bold lg:mb-4">PAGES</h4>
-              <span className="text-xl font-bold lg:hidden">
-                {pagesOpen ? "-" : "+"}
-              </span>
-            </div>
-            <ul
-              className={`text-sm font-semibold text-gray-500 space-y-2 transition-all duration-300 ease-in-out ${
-                pagesOpen
-                  ? "max-h-screen mb-4 opacity-100"
-                  : "max-h-0 opacity-0 overflow-hidden"
-              } lg:max-h-screen lg:opacity-100`}
-            >
-              <li>
-                <a href="#">Gymshark Central</a>
-              </li>
-              <li>
-                <a href="#">Careers</a>
-              </li>
-              <li>
-                <a href="#">About Us</a>
-              </li>
-              <li>
-                <a href="#">Student Discount</a>
-              </li>
-              <li>
-                <a href="#">Factory List</a>
-              </li>
-            </ul>
-          </div>
-          <div className=""></div>
         </div>
-
-        <div className="flex flex-col gap-5 md:gap-2 md:flex-row-reverse md:justify-between my-8 lg:my-0 mx-2">
-          <div>
-            <div className="flex flex-col md:flex-row-reverse md:gap-4 justify-center items-center">
-              <SocialMedia />
-              {/* <div className="flex text-sm text-websecundary font-bold mt-2 md:mt-0 lg:mt-0 items-center gap-2 cursor-pointer bg-webprimary py-1 px-2 rounded-md">
-                <PhoneIcon classname="w-5 h-4 text-websecundary" />
-                <span>8422-6359</span>
-              </div> */}
-            </div>
+        <div className="flex flex-col gap-5 md:gap-2 items-center md:items-end md:flex-row md:justify-between my-8 lg:my-0 mx-2">
+          <div className="flex lg:hidden">
+            <Contact />
           </div>
-
-          <div className="flex flex-col gap-2 lg:hidden items-center md:items-start  text-sm font-bold text-gray-500">
-            <a href="#">Terms and Conditions</a>
-            <a href="#">Terms of Use</a>
-            <a href="#">Privacy Notice</a>
-            <a href="#">Cookie Policy</a>
-            <a href="#">Modern Slavery</a>
+          <div className="flex flex-col gap-2 lg:hidden items-center md:items-end text-sm text-gray-500 font-semibold">
+            <div className="flex flex-row">
+              <span className="hidden md:flex font-bold mr-4">Language</span>
+              <span className="">United States | English</span>
+            </div>
+            <div className="flex flex-row">
+              <span className="hidden md:flex font-bold mr-4">Currency</span>
+              <span className="">₡ CRC</span>
+            </div>
           </div>
         </div>
       </div>
@@ -152,11 +83,16 @@ const Footer = () => {
           © 2024 Gymshark Limited | All Rights Reserved. | We Do Gym.
         </p>
         <div className="hidden lg:flex justify-center space-x-4 text-xs xl:text-sm font-semibold text-gray-500">
-          <a href="#">Terms and Conditions</a>
-          <a href="#">Terms of Use</a>
-          <a href="#">Privacy Notice</a>
-          <a href="#">Cookie Policy</a>
-          <a href="#">Modern Slavery</a>
+          <div className="flex flex-col gap-8 md:flex-row">
+            <div className="">
+              <span className="font-bold mr-4">Language</span>
+              <span className="font-medium">United States | English</span>
+            </div>
+            <div className="">
+              <span className="font-bold mr-4">Currency</span>
+              <span className="font-medium">₡ CRC</span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

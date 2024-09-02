@@ -20,16 +20,6 @@ const ProductPage = async ({ params }) => {
 
   const product = products.items[0];
 
-  //const [showWarning, setShowWarning] = useState(false);
-
-  const handleAddToBag = () => {
-    // if (!selectedSize) {
-    //   // setShowWarning(true);
-    // } else {
-    //   // Proceed with adding the product to the bag using the selected size
-    // }
-  };
-
   if (!product) {
     return <div>Product not found</div>;
   }

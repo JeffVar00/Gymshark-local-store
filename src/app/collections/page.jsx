@@ -16,7 +16,6 @@ const ProductCategoryPage = async ({ searchParams }) => {
       searchParams.cat || "all-products"
     );
   } catch (error) {
-    // If there's an error, trigger the 404 page
     notFound();
   }
 

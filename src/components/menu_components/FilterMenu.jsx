@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
-import FormInput from "@/components/form_components/FormInput";
+import React, { useState, useRef } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-const FilterButton = ({ label, value, selected, onClick }) => {
+const FilterButton = ({ name, label, value, selected, onClick }) => {
   return (
     <button
-      onClick={() => onClick(value)}
+      onClick={() => onClick({ target: { name: name, value: value } })}
       className={`w-full px-4 py-2 rounded-md m-1 no-tap-highlight  ${
         selected
           ? "bg-black text-white"
@@ -21,19 +21,60 @@ const FilterButton = ({ label, value, selected, onClick }) => {
 export const FilterMenu = () => {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
-  const [sizeOpen, setsizeOpen] = useState(false);
+  // const [sizeOpen, setsizeOpen] = useState(false);
 
   const sub_categories = [];
+  const inputRefs = useRef([]);
+
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
 
   const toggleCategories = () => setCategoryOpen(!categoryOpen);
   const toggleSort = () => setSortOpen(!sortOpen);
-  const toggleSizes = () => setsizeOpen(!sizeOpen);
+  // const toggleSizes = () => setsizeOpen(!sizeOpen);
 
   const [filters, setFilters] = useState({
-    genre: "unisex",
-    sort: "relevancy",
+    sort: "",
     categories: [],
   });
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters({ ...filters, [name]: value });
+    const params = new URLSearchParams(searchParams);
+    params.set(name, value);
+    if (name === "min" || name === "max") {
+      if (value === "") {
+        params.delete(name);
+      }
+    }
+    replace(`${pathname}?${params.toString()}`);
+  };
+
+  const areFiltersEmpty = () => {
+    return (
+      filters?.categories.length === 0 &&
+      filters?.sort === "" &&
+      inputRefs.current.every((ref) => !ref.value)
+    );
+  };
+
+  const handleClearFilters = () => {
+    setFilters({
+      sort: "",
+      categories: [],
+    });
+    const params = new URLSearchParams(searchParams);
+    params.delete("sort");
+    params.delete("categories");
+    params.delete("min");
+    params.delete("max");
+    inputRefs.current.forEach((ref) => {
+      if (ref) ref.value = "";
+    });
+    replace(`${pathname}?${params.toString()}`);
+  };
 
   // const categories = await getSubCategories();
 
@@ -43,12 +84,10 @@ export const FilterMenu = () => {
         <h2 className="font-bold uppercase">Filter & Sort</h2>
         <button
           className={`text-webprimary ${
-            filters?.categories.length === 0
-              ? "cursor-not-allowed opacity-50"
-              : ""
+            areFiltersEmpty ? "cursor-not-allowed opacity-50" : ""
           }`}
-          disabled={filters?.categories.length === 0}
-          onClick={null}
+          disabled={areFiltersEmpty()}
+          onClick={handleClearFilters}
         >
           Clear All
         </button>
@@ -71,48 +110,56 @@ export const FilterMenu = () => {
             }`}
           >
             <FilterButton
+              name="sort"
               label="Price: Low to High"
-              value="priceLowHigh"
-              selected={filters?.sort === "priceLowHigh"}
-              onClick={null}
+              value="asc price"
+              selected={filters?.sort === "asc price"}
+              onClick={handleFilterChange}
             />
             <FilterButton
+              name="sort"
               label="Price: High to Low"
-              value="priceHighLow"
-              selected={filters?.sort === "priceHighLow"}
-              onClick={null}
+              value="desc price"
+              selected={filters?.sort === "desc price"}
+              onClick={handleFilterChange}
             />
             <FilterButton
-              label="Relevancy"
-              value="relevancy"
-              selected={filters?.sort === "relevancy"}
-              onClick={null}
-            />
-            <FilterButton
+              name="sort"
               label="Newest"
-              value="newest"
-              selected={filters?.sort === "newest"}
-              onClick={null}
+              value="desc lastUpdated"
+              selected={filters?.sort === "desc lastUpdated"}
+              onClick={handleFilterChange}
+            />
+            <FilterButton
+              name="sort"
+              label="Oldest"
+              value="asc lastUpdated"
+              selected={filters?.sort === "asc lastUpdated"}
+              onClick={handleFilterChange}
             />
             <div className="mt-2">
-              <FormInput
-                label=""
+              <input
+                ref={(el) => (inputRefs.current[0] = el)}
+                name="min"
                 type="number"
-                overlay="Min Price"
-                handleChange={null}
+                className="w-full px-4 py-2 border border-double text-sm rounded mb-2"
+                placeholder="Min Price"
+                onChange={handleFilterChange}
                 required={false}
               />
-              <FormInput
-                label=""
+              <input
+                ref={(el) => (inputRefs.current[1] = el)}
+                name="max"
                 type="number"
-                overlay="Max Price"
-                handleChange={null}
+                className="w-full px-4 py-2 border border-double text-sm rounded"
+                placeholder="Max Price"
+                onChange={handleFilterChange}
                 required={false}
               />
             </div>
           </div>
         </div>
-        <div className="w-full border-b lg:border-y">
+        {/* <div className="w-full border-b lg:border-y">
           <div
             className="flex justify-between items-center cursor-pointer py-4 no-tap-highlight"
             onClick={toggleSizes}
@@ -138,7 +185,7 @@ export const FilterMenu = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
         {sub_categories.length > 0 && (
           <div className="w-full border-b">
             <div
