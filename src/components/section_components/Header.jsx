@@ -27,7 +27,7 @@ const Header = ({ details }) => {
       style={{ backgroundImage: `url(${backgroundImageUrl})` }}
     >
       {/* TEXT CONTAINER */}
-      <div className="flex-1 flex flex-col items-start bg-gradient-to-t md:bg-gradient-to-r from-webprimary via-transparent to-transparent text-start gap-4 p-6 justify-end md:justify-center md:pb-0 md:px-14 relative z-10 h-full">
+      <div className="flex-1 flex flex-col items-start bg-gradient-to-t md:bg-gradient-to-r via-80%  from-webprimary via-transparent to-transparent text-start gap-4 p-6 justify-end md:justify-center md:pb-0 md:px-14 relative z-10 h-full">
         <h1 className="text-websecundary text-2xl font-bold md:text-3xl md:max-w-xl xl:text-6xl">
           {details.title}
         </h1>
