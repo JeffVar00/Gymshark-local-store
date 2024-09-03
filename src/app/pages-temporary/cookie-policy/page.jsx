@@ -1,5 +1,4 @@
 import React from "react";
-import { BsClock } from "react-icons/bs";
 
 const CookiePolicy = () => {
   return (
@@ -8,7 +7,7 @@ const CookiePolicy = () => {
         COOKIE POLICY
       </h1>
       <div className="flex items-center mt-4 text-gray-500">
-        <BsClock className="mr-2" />
+        {/* Clock Icon */}
         <p>Last updated: 29 Mar 2021</p>
       </div>
       <div className="max-w-3xl mt-12 space-y-8 text-left text-gray-800">
