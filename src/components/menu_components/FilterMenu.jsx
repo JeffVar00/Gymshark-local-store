@@ -18,12 +18,9 @@ const FilterButton = ({ name, label, value, selected, onClick }) => {
   );
 };
 
-export const FilterMenu = () => {
+export const FilterMenu = ({ sub_categories = [] }) => {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
-  // const [sizeOpen, setsizeOpen] = useState(false);
-
-  const sub_categories = [];
   const inputRefs = useRef([]);
 
   const pathname = usePathname();
@@ -32,7 +29,6 @@ export const FilterMenu = () => {
 
   const toggleCategories = () => setCategoryOpen(!categoryOpen);
   const toggleSort = () => setSortOpen(!sortOpen);
-  // const toggleSizes = () => setsizeOpen(!sizeOpen);
 
   const [filters, setFilters] = useState({
     sort: "",
@@ -41,14 +37,32 @@ export const FilterMenu = () => {
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
-    setFilters({ ...filters, [name]: value });
     const params = new URLSearchParams(searchParams);
-    params.set(name, value);
-    if (name === "min" || name === "max") {
-      if (value === "") {
-        params.delete(name);
+    if (name === "collections") {
+      const categories = [...filters.categories];
+      if (categories.includes(value)) {
+        categories.splice(categories.indexOf(value), 1);
+      } else {
+        categories.push(value);
+      }
+      setFilters({ ...filters, categories });
+
+      if (categories.length > 0) {
+        params.set("collections", categories.join(","));
+      } else {
+        params.delete("collections");
+      }
+    } else {
+      setFilters({ ...filters, [name]: value });
+      params.set(name, value);
+
+      if (name === "min" || name === "max") {
+        if (value === "") {
+          params.delete(name);
+        }
       }
     }
+
     replace(`${pathname}?${params.toString()}`);
   };
 
@@ -75,8 +89,6 @@ export const FilterMenu = () => {
     });
     replace(`${pathname}?${params.toString()}`);
   };
-
-  // const categories = await getSubCategories();
 
   return (
     <aside className="text-webprimary w-full lg:pr-10">
@@ -159,33 +171,6 @@ export const FilterMenu = () => {
             </div>
           </div>
         </div>
-        {/* <div className="w-full border-b lg:border-y">
-          <div
-            className="flex justify-between items-center cursor-pointer py-4 no-tap-highlight"
-            onClick={toggleSizes}
-          >
-            <h4 className="text-sm font-bold uppercase">Size</h4>
-            <span className="text-xl font-bold ">{sizeOpen ? "-" : "+"}</span>
-          </div>
-          <div
-            className={`flex  flex-col lg:flex-wrap lg:flex-row text-sm font-semibold text-gray-500 transition-all duration-300 ease-in-out gap-1 ${
-              sizeOpen
-                ? "max-h-screen mb-4 opacity-100"
-                : "max-h-0 opacity-0 overflow-hidden"
-            }`}
-          >
-            {["XXS", "XS", "S", "M", "L", "XL", "XXL"].map((size) => (
-              <div key={size}>
-                <FilterButton
-                  label={size}
-                  value={size}
-                  selected={filters?.genre === "unisex"}
-                  onClick={null}
-                />
-              </div>
-            ))}
-          </div>
-        </div> */}
         {sub_categories.length > 0 && (
           <div className="w-full border-b">
             <div
@@ -206,11 +191,12 @@ export const FilterMenu = () => {
             >
               {sub_categories.map((sub_category) => (
                 <FilterButton
-                  key={sub_category.id}
-                  label={sub_category.title}
-                  value={sub_category.title}
-                  selected={filters?.categories.includes(sub_category.title)}
-                  onClick={onCategoryChange}
+                  key={sub_category}
+                  name="collections"
+                  label={sub_category}
+                  value={sub_category}
+                  selected={filters?.categories.includes(sub_category)}
+                  onClick={handleFilterChange}
                 />
               ))}
             </div>

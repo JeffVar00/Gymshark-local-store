@@ -3,9 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { wixClientServer } from "@/lib/wixClientServer";
 
-const FeaturedCategories = async ({ title }) => {
+const FeaturedCategories = async ({ title, search_categories }) => {
   const wixClient = await wixClientServer();
-  const categories = await wixClient.collections.queryCollections().find();
+  const categories = await wixClient.collections
+    .queryCollections()
+    .hasSome("name", search_categories)
+    .find();
 
   return (
     <div className="w-auto flex flex-col mt-10 mb-10 mx-4 md:mx-12 md:my-24 xl:mx-24 xl:my-20">

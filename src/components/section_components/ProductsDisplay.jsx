@@ -11,6 +11,19 @@ const PRODUCT_PER_PAGE = 30;
 const ProductDisplay = async ({ category_id, limit, searchParams }) => {
   const wixClient = await wixClientServer();
 
+  const collectionNames = searchParams?.collections
+    ? searchParams.collections.split(",")
+    : [];
+  let collectionIds = [];
+
+  if (collectionNames.length > 0) {
+    const collections = await wixClient.collections
+      .queryCollections()
+      .hasSome("name", collectionNames)
+      .find();
+    collectionIds = collections.items.map((collection) => collection._id);
+  }
+
   let productQuery = wixClient.products
     .queryProducts()
     .startsWith("name", searchParams?.query || "")
@@ -24,6 +37,10 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
         : 0
     );
 
+  if (collectionIds.length > 0) {
+    productQuery = productQuery.hasSome("collectionIds", collectionIds);
+  }
+
   // Determine sorting based on `searchParams.sort`
   if (searchParams?.sort) {
     const [sortType, sortBy] = searchParams.sort.split(" ");
@@ -35,6 +52,23 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
   }
 
   const res = await productQuery.find();
+
+  const allCollectionIds = res.items.map((item) => item.collectionIds);
+  const flattenedCollectionIds = allCollectionIds.flat();
+  const uniqueCollectionIds = [...new Set(flattenedCollectionIds)];
+
+  const collections = await wixClient.collections
+    .queryCollections()
+    .hasSome("_id", uniqueCollectionIds)
+    .find();
+
+  const namesToRemove = ["All Products", "Featured", searchParams.cat].map(
+    (name) => name.toLowerCase()
+  );
+
+  const filter_collectionNames = collections.items
+    .map((collection) => collection.name)
+    .filter((name) => !namesToRemove.includes(name.toLowerCase()));
 
   const totalPages = Math.max(
     1,
@@ -55,7 +89,7 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
             <div className="flex flex-col lg:flex-row py-2 px-2 lg:px-6 2xl:px-16">
               <div className="w-full lg:w-72 flex flex-col items-start pb-6 lg:pb-0 px-2 md:px-6 lg:px-0">
                 <div className="w-full lg:sticky h-full lg:overflow-y-auto top-[64px] max-h-[calc(100vh-64px)]">
-                  <FilterMenu />
+                  <FilterMenu sub_categories={filter_collectionNames} />
                 </div>
               </div>
               <div className="w-full">
