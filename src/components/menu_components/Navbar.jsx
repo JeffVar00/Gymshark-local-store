@@ -2,7 +2,6 @@
 
 import { useContext, useEffect, useState, useCallback } from "react";
 import { MagnifyingGlassIcon, Bars3Icon } from "@heroicons/react/24/outline";
-import Link from "next/link";
 import PageIcon from "../icon_components/PageIcon";
 import CartIcon from "../icon_components/CartIcon";
 import UserIcon from "../icon_components/UserIcon";

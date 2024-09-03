@@ -1,15 +1,36 @@
-import React from "react";
-import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
+import React, { useContext, useState } from "react";
+import { useRouter } from "next/navigation";
+import { WixClientContext } from "@/context/wixContext";
+import Cookies from "js-cookie";
 
 const UserIcon = () => {
-  const { status } = useSession;
+  const wixClient = useContext(WixClientContext);
+  const isLoggedIn = wixClient.auth.loggedIn();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    setIsLoading(true);
+    Cookies.remove("refreshToken");
+    const { logoutUrl } = await wixClient.auth.logout(window.location.href);
+    setIsLoading(false);
+    router.push(logoutUrl);
+  };
+
+  const handleProfile = () => {
+    if (!isLoggedIn) {
+      router.push("/login");
+    } else {
+      router.push("/profile");
+    }
+  };
 
   return (
     <div>
-      {status === "authenticated" ? (
+      {isLoggedIn ? (
         <div className="flex flex-row gap-4">
-          <Link href="/admin" className="flex items-center gap-2">
+          <button onClick={handleProfile} className="flex items-center gap-2">
             <div className="relative w-6 h-6">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -25,8 +46,8 @@ const UserIcon = () => {
                 <circle cx="12" cy="7" r="4" />
               </svg>
             </div>
-          </Link>
-          <button onClick={() => signOut()}>
+          </button>
+          <button disabled={isLoading ? true : false} onClick={handleLogout}>
             <div className="relative w-6 h-6">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +67,7 @@ const UserIcon = () => {
           </button>
         </div>
       ) : (
-        <Link href="/login" className="flex items-center gap-2">
+        <button onClick={handleProfile} className="flex items-center gap-2">
           <div className="relative w-6 h-6">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +84,7 @@ const UserIcon = () => {
               />
             </svg>
           </div>
-        </Link>
+        </button>
       )}
     </div>
   );

@@ -1,7 +1,11 @@
 import ListToBottomList from "@/components/menu_components/ListToBottomList";
 import Contact from "@/components/section_components/Contact";
+import { wixClientServer } from "@/lib/wixClientServer";
 
-const Footer = () => {
+const Footer = async () => {
+  const wixClient = await wixClientServer();
+  const isLoggedIn = wixClient.auth.loggedIn();
+
   return (
     <footer className="bg-websecundary text-webprimary">
       <div className="px-4 lg:px-16 lg:py-8 border-t-2 border-b-2">
@@ -51,11 +55,22 @@ const Footer = () => {
               ]}
             />
             <ListToBottomList
-              title={"US"}
+              title={"Company"}
               references={[
                 { id: 1, title: "Contact Us", link: "/pages/contact-us" },
                 { id: 2, title: "About Us", link: "/pages/about-us" },
               ]}
+            />
+            <ListToBottomList
+              title={"My Account"}
+              references={
+                !isLoggedIn
+                  ? [
+                      { id: 1, title: "Login", link: "/login" },
+                      { id: 2, title: "Register", link: "/login?mode=signUp" },
+                    ]
+                  : [{ id: 1, title: "My Profile", link: "/profile" }]
+              }
             />
           </div>
           <div className="hidden lg:flex ">

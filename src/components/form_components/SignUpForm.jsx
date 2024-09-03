@@ -1,21 +1,15 @@
 import FormInput from "@/components/form_components/FormInput";
-import { useState } from "react";
 
-const SingUpForm = () => {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-
-  const handleSignUp = async (e) => {
-    e.preventDefault();
-    try {
-      await auth.createUserWithEmailAndPassword(email, password);
-    } catch (error) {
-      setError(error.message);
-    }
-  };
-
+const SingUpForm = ({
+  name,
+  setName,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  error,
+  handleSignUp,
+}) => {
   return (
     <form className="transition-opacity duration-300" onSubmit={handleSignUp}>
       <FormInput
