@@ -1,10 +1,19 @@
 import ListToBottomList from "@/components/menu_components/ListToBottomList";
 import Contact from "@/components/section_components/Contact";
 import { wixClientServer } from "@/lib/wixClientServer";
+import { members } from "@wix/members";
 
 const Footer = async () => {
   const wixClient = await wixClientServer();
-  const isLoggedIn = wixClient.auth.loggedIn();
+
+  let user;
+  try {
+    user = await wixClient.members.getCurrentMember({
+      fieldsets: [members.Set.FULL],
+    });
+  } catch (error) {
+    user = null;
+  }
 
   return (
     <footer className="bg-websecundary text-webprimary">
@@ -64,7 +73,7 @@ const Footer = async () => {
             <ListToBottomList
               title={"My Account"}
               references={
-                !isLoggedIn
+                !user?.member?.contactId
                   ? [
                       { id: 1, title: "Login", link: "/login" },
                       { id: 2, title: "Register", link: "/login?mode=signUp" },

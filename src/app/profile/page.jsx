@@ -3,13 +3,15 @@ import { updateUser } from "@/lib/actions";
 import { wixClientServer } from "@/lib/wixClientServer";
 import { members } from "@wix/members";
 import Link from "next/link";
-import { format } from "timeago.js";
 
 const ProfilePage = async () => {
   const wixClient = await wixClientServer();
-  const isLoggedIn = wixClient.auth.loggedIn();
-
-  if (!isLoggedIn) {
+  let user;
+  try {
+    user = await wixClient.members.getCurrentMember({
+      fieldsets: [members.Set.FULL],
+    });
+  } catch (error) {
     return (
       <div className="relative h-screen flex flex-col items-center justify-center mt-12 overflow-hidden">
         <div
@@ -52,20 +54,6 @@ const ProfilePage = async () => {
       </div>
     );
   }
-
-  const user = await wixClient.members.getCurrentMember({
-    fieldsets: [members.Set.FULL],
-  });
-
-  if (!user.member?.contactId) {
-    return <div className="">Not logged in!</div>;
-  }
-
-  const orderRes = await wixClient.orders.searchOrders({
-    search: {
-      filter: { "buyerInfo.contactId": { $eq: user.member?.contactId } },
-    },
-  });
 
   return (
     <div className="flex flex-col justify-center gap-24 md:h-[calc(100vh-60px)] items-center px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">

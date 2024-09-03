@@ -17,7 +17,7 @@ const UserMenu = ({ toggleMenu }) => {
     Cookies.remove("refreshToken");
     const { logoutUrl } = await wixClient.auth.logout(window.location.href);
     setIsLoading(false);
-    router.push(logoutUrl);
+    router.push("/");
   };
 
   const handleProfile = () => {

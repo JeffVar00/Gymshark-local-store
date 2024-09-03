@@ -1,5 +1,3 @@
-import UpdateButton from "@/components/form_components/UpdateButton";
-import { updateUser } from "@/lib/actions";
 import { wixClientServer } from "@/lib/wixClientServer";
 import { members } from "@wix/members";
 import Link from "next/link";
@@ -7,9 +5,12 @@ import { format } from "timeago.js";
 
 const OrdersPage = async () => {
   const wixClient = await wixClientServer();
-  const isLoggedIn = wixClient.auth.loggedIn();
-
-  if (!isLoggedIn) {
+  let user;
+  try {
+    user = await wixClient.members.getCurrentMember({
+      fieldsets: [members.Set.FULL],
+    });
+  } catch (error) {
     return (
       <div className="relative h-screen flex flex-col items-center justify-center mt-12 overflow-hidden">
         <div
@@ -51,14 +52,6 @@ const OrdersPage = async () => {
         </div>
       </div>
     );
-  }
-
-  const user = await wixClient.members.getCurrentMember({
-    fieldsets: [members.Set.FULL],
-  });
-
-  if (!user.member?.contactId) {
-    return <div className="">Not logged in!</div>;
   }
 
   const orderRes = await wixClient.orders.searchOrders({
