@@ -2,9 +2,11 @@
 
 import { useContext, useEffect, useState, useCallback } from "react";
 import { MagnifyingGlassIcon, Bars3Icon } from "@heroicons/react/24/outline";
+import { useRouter } from "next/navigation";
 import PageIcon from "../icon_components/PageIcon";
 import CartIcon from "../icon_components/CartIcon";
 import UserIcon from "../icon_components/UserIcon";
+import UserMenu from "./UserMenu";
 import MobileMenu from "./MobileMenu";
 import SearchMenu from "./SearchMenu";
 import BagMenu from "./BagMenu";
@@ -13,8 +15,25 @@ import { WixClientContext } from "@/context/wixContext";
 
 const Navbar = () => {
   const [categories, setCategories] = useState([]);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  const toggleProfile = () => {
+    setIsProfileOpen(!isProfileOpen);
+  };
 
   const wixClient = useContext(WixClientContext);
+  const router = useRouter();
+
+  let isLoggedIn = wixClient.auth.loggedIn();
+  const handleProfile = () => {
+    isLoggedIn = wixClient.auth.loggedIn();
+    if (!isLoggedIn) {
+      router.push("/login");
+    } else {
+      toggleProfile();
+    }
+  };
+
   useEffect(() => {
     const getCategories = async () => {
       const res = await wixClient.collections.queryCollections().find();
@@ -89,12 +108,18 @@ const Navbar = () => {
 
   // SHARED MENU LOGIC
   useEffect(() => {
-    if (isMenuOpen || isSearchOpen || isDesktopSearchOpen || isBagOpen) {
+    if (
+      isMenuOpen ||
+      isSearchOpen ||
+      isDesktopSearchOpen ||
+      isBagOpen ||
+      isProfileOpen
+    ) {
       document.body.classList.add("no-scroll");
     } else {
       document.body.classList.remove("no-scroll");
     }
-  }, [isMenuOpen, isSearchOpen, isDesktopSearchOpen, isBagOpen]);
+  }, [isMenuOpen, isSearchOpen, isDesktopSearchOpen, isBagOpen, isProfileOpen]);
 
   return (
     <div>
@@ -130,19 +155,6 @@ const Navbar = () => {
           <PageIcon logo="black" />
         </div>
 
-        {/* CENTER HUB
-        <div className="hidden text-sm lg:flex gap-8 flex-1 justify-center uppercase">
-          {main_categories.map((category) => (
-            <Link
-              key={category.id}
-              href={`/collections/${category.slug}`}
-              className="text-webprimary relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[3px] after:bg-webprimary after:rounded-full after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100"
-            >
-              {category.title}
-            </Link>
-          ))}
-        </div> */}
-
         {/* RIGHT LINKS */}
         <div className="flex gap-4 items-center justify-end flex-1">
           <button
@@ -154,7 +166,8 @@ const Navbar = () => {
               {searchText ? searchText : "Search for a Product"}
             </span>
           </button>
-          <UserIcon />
+
+          <UserIcon onClick={handleProfile} />
           <CartIcon onClick={toggleBag} />
         </div>
       </nav>
@@ -224,6 +237,19 @@ const Navbar = () => {
             </div>
           )}
         </div>
+      </div>
+      <div
+        className={`fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity duration-300 ease-in-out ${
+          isProfileOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={toggleProfile}
+      ></div>
+      <div
+        className={`fixed w-full lg:w-[40%] xl:w-[30%] inset-y-0 right-0 bg-websecundary z-50 transform ${
+          isProfileOpen ? "translate-x-0" : "translate-x-full"
+        } transition-transform duration-300 ease-in-out`}
+      >
+        {isProfileOpen && <UserMenu toggleMenu={toggleProfile} />}
       </div>
     </div>
   );

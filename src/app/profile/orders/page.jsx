@@ -5,7 +5,7 @@ import { members } from "@wix/members";
 import Link from "next/link";
 import { format } from "timeago.js";
 
-const ProfilePage = async () => {
+const OrdersPage = async () => {
   const wixClient = await wixClientServer();
   const isLoggedIn = wixClient.auth.loggedIn();
 
@@ -68,66 +68,59 @@ const ProfilePage = async () => {
   });
 
   return (
-    <div className="flex flex-col justify-center gap-24 md:h-[calc(100vh-60px)] items-center px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
-      <div className="w-full ">
-        <div className="flex flex-row justify-between">
-          <h1 className="text-2xl font-bold">Your Profile Information</h1>
-          <div className="flex justify-end">
-            <Link
-              href="/profile/orders"
-              className="text-webprimary font-bold hover:underline"
-            >
-              Go to your orders {"->"}
-            </Link>
-          </div>
+    <div className="flex flex-col md:flex-row gap-24 md:h-[calc(100vh-180px)] items-center px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
+      <div className="w-full">
+        <div className="flex justify-start">
+          <Link
+            href="/profile"
+            className="text-webprimary font-bold hover:underline"
+          >
+            {"<-"} Go back to profile
+          </Link>
         </div>
-
-        <form action={updateUser} className="mt-12 flex flex-col gap-4">
-          <input type="text" hidden name="id" value={user.member.contactId} />
-          <label className="text-sm text-gray-700">Username</label>
-          <input
-            type="text"
-            name="username"
-            placeholder={user.member?.profile?.nickname || ""}
-            className="ring-1 ring-gray-300 rounded-md p-2 max-w-96"
-          />
-          <label className="text-sm text-gray-700 font-bold">First Name</label>
-          <input
-            type="text"
-            name="firstName"
-            placeholder={user.member?.contact?.firstName || ""}
-            className="ring-1 ring-gray-300 rounded-md p-2 max-w-96"
-          />
-          <label className="text-sm text-gray-700 font-bold">Surname</label>
-          <input
-            type="text"
-            name="lastName"
-            placeholder={user.member?.contact?.lastName || ""}
-            className="ring-1 ring-gray-300 rounded-md p-2 max-w-96"
-          />
-          <label className="text-sm text-gray-700 font-bold">Phone</label>
-          <input
-            type="text"
-            name="phone"
-            placeholder={
-              (user.member?.contact?.phones &&
-                user.member?.contact?.phones[0]) ||
-              ""
-            }
-            className="ring-1 ring-gray-300 rounded-md p-2 max-w-96"
-          />
-          <label className="text-sm text-gray-700 font-bold">E-mail</label>
-          <input
-            type="email"
-            name="email"
-            placeholder={user.member?.loginEmail || "john@gmail.com"}
-            className="ring-1 ring-gray-300 rounded-md p-2 max-w-96"
-          />
-          <UpdateButton />
-        </form>
+        <h1 className="text-2xl font-bold">Your Orders</h1>
+        <div className="mt-12 flex flex-col">
+          {orderRes.orders.length > 0 ? (
+            orderRes.orders.map((order) => (
+              <Link
+                href={`/orders/${order._id}`}
+                key={order._id}
+                className="flex justify-between px-2 py-6 rounded-md hover:bg-green-50 even:bg-slate-100"
+              >
+                <span className="w-1/4">{order._id?.substring(0, 10)}...</span>
+                <span className="w-1/4">
+                  ${order.priceSummary?.subtotal?.amount}
+                </span>
+                {order._createdDate && (
+                  <span className="w-1/4">{format(order._createdDate)}</span>
+                )}
+                <span className="w-1/4">{order.status}</span>
+              </Link>
+            ))
+          ) : (
+            <div className="flex flex-col items-center h-full justify-center gap-3 my-20">
+              <h2 className="font-bold uppercase">
+                You haven`t made any order yet
+              </h2>
+              <p className="text-gray-700 text-sm">
+                Shop now and get the best deals
+              </p>
+              <Link href="/collections?cat=women">
+                <button className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase">
+                  Shop Men
+                </button>
+              </Link>
+              <Link href="/collections?cat=men">
+                <button className="text-sm w-60  font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase">
+                  Shop Women
+                </button>
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
-export default ProfilePage;
+export default OrdersPage;

@@ -1,11 +1,12 @@
 "use client";
 
-// pages/auth.js
 import React, { useState } from "react";
 import Image from "next/image";
 import { useWixClient } from "@/hooks/useWixClient";
+import { LoginState } from "@wix/sdk";
 import { useRouter } from "next/navigation";
 import FormInput from "@/components/form_components/FormInput";
+import Cookies from "js-cookie";
 
 const MODE = {
   SIGNIN: "SIGNIN",
@@ -29,19 +30,42 @@ const AuthPage = ({ searchParams }) => {
     MODE[mode_param] ? (MODE[mode_param] === "SIGNIN" ? true : false) : true
   );
   const [mode, setMode] = useState(MODE[mode_param] || MODE.SIGNIN);
-
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const [emailCode, setEmailCode] = useState("");
   const [message, setMessage] = useState("");
 
+  const handlePassword = (password) => {
+    let error = "";
+
+    if (password.length < 8) {
+      error = "Password must be at least 8 characters long";
+    }
+    if (!/[A-Z]/.test(password)) {
+      error = "Password must include at least one uppercase letter";
+    }
+    if (!/[a-z]/.test(password)) {
+      error = "Password must include at least one lowercase letter";
+    }
+    if (!/\d/.test(password)) {
+      error = "Password must include at least one number";
+    }
+    if (error) {
+      setError(error);
+    } else {
+      setPassword(password);
+      setError("");
+    }
+  };
+
   const buttonTitle =
     mode === MODE.SIGNIN
       ? "Login"
-      : mode === MODE.REGISTER
+      : mode === MODE.SIGNUP
       ? "Register"
       : mode === MODE.RESET_PASSWORD
       ? "Reset"
@@ -53,6 +77,8 @@ const AuthPage = ({ searchParams }) => {
     } else {
       setMode(MODE.SIGNUP);
     }
+    setError("");
+    setMessage("");
     setIsLogin(!isLogin);
   };
 
@@ -71,7 +97,7 @@ const AuthPage = ({ searchParams }) => {
             password,
           });
           break;
-        case MODE.REGISTER:
+        case MODE.SIGNUP:
           response = await wixClient.auth.register({
             email,
             password,
@@ -94,38 +120,40 @@ const AuthPage = ({ searchParams }) => {
           break;
       }
 
-      switch (response?.loginState) {
-        case LoginState.SUCCESS:
-          setMessage("Successful! You are being redirected.");
-          const tokens = await wixClient.auth.getMemberTokensForDirectLogin(
-            response.data.sessionToken
-          );
-
-          Cookies.set("refreshToken", JSON.stringify(tokens.refreshToken), {
-            expires: 2,
-          });
-          wixClient.auth.setTokens(tokens);
-          router.push("/");
-          break;
-        case LoginState.FAILURE:
-          if (
-            response.errorCode === "invalidEmail" ||
-            response.errorCode === "invalidPassword"
-          ) {
-            setError("Invalid email or password!");
-          } else if (response.errorCode === "emailAlreadyExists") {
-            setError("Email already exists!");
-          } else if (response.errorCode === "resetPassword") {
-            setError("You need to reset your password!");
-          } else {
-            setError("Something went wrong!");
-          }
-        case LoginState.EMAIL_VERIFICATION_REQUIRED:
-          setMode(MODE.EMAIL_VERIFICATION);
-        case LoginState.OWNER_APPROVAL_REQUIRED:
-          setMessage("Your account is pending approval");
-        default:
-          break;
+      if (response?.loginState === LoginState.SUCCESS) {
+        setMessage("Successful! You are being redirected.");
+        const tokens = await wixClient.auth.getMemberTokensForDirectLogin(
+          response.data.sessionToken
+        );
+        Cookies.set("refreshToken", JSON.stringify(tokens.refreshToken), {
+          expires: 2,
+        });
+        wixClient.auth.setTokens(tokens);
+        router.push("/");
+      } else if (response?.loginState === LoginState.FAILURE) {
+        console.log(response?.errorCode);
+        if (
+          response.errorCode === "invalidEmail" ||
+          response.errorCode === "invalidPassword"
+        ) {
+          setError("Invalid email or password!");
+        } else if (response.errorCode === "emailAlreadyExists") {
+          setError("Email already exists!");
+        } else if (response.errorCode === "resetPassword") {
+          setError("You need to reset your password!");
+        } else {
+          setError("Something went wrong!");
+        }
+      } else if (
+        response?.loginState === LoginState.EMAIL_VERIFICATION_REQUIRED
+      ) {
+        setMode(MODE.EMAIL_VERIFICATION);
+        setMessage(
+          "Your account is pending approval, please check your email!"
+        );
+      } else if (response?.loginState === LoginState.OWNER_APPROVAL_REQUIRED) {
+        setMessage("Your account is pending approval");
+      } else {
       }
     } catch (err) {
       console.log(err);
@@ -229,7 +257,7 @@ const AuthPage = ({ searchParams }) => {
                     label="Password"
                     type="password"
                     overlay="Enter your password"
-                    handleChange={(e) => setPassword(e.target.value)}
+                    handleChange={(e) => handlePassword(e.target.value)}
                     required={true}
                   />
 
@@ -240,11 +268,6 @@ const AuthPage = ({ searchParams }) => {
                     >
                       {isLoading ? "Loading..." : buttonTitle}
                     </button>
-                    {error && (
-                      <p className="text-red-500 font-semibold mt-4">
-                        *{error}*
-                      </p>
-                    )}
                   </div>
                 </form>
               </div>
@@ -288,22 +311,19 @@ const AuthPage = ({ searchParams }) => {
                     >
                       {isLoading ? "Loading..." : buttonTitle}
                     </button>
-                    {error && (
-                      <p className="text-red-500 font-semibold mt-4">
-                        *{error}*
-                      </p>
-                    )}
                   </div>
                 </form>
               </div>
             </div>
           ) : null}
           {mode === MODE.RESET_PASSWORD ? (
-            <div className="relative">
-              <form onSubmit={handleSubmit}>
-                <h1 className="text-xl font-semibold mb-4">
+            <div className="relative flex-col flex items-center justify-center">
+              <div className="flex w-3/4 bg-websecundary py-1 rounded-full items-center text-center justify-center mb-4">
+                <h1 className="text-sm font-bold w-[96%] px-1 py-1 bg-white rounded-full">
                   Reset Your Password
                 </h1>
+              </div>
+              <form onSubmit={handleSubmit} className="w-full">
                 <FormInput
                   label="Email Address"
                   type="email"
@@ -323,20 +343,18 @@ const AuthPage = ({ searchParams }) => {
                   >
                     {isLoading ? "Loading..." : buttonTitle}
                   </button>
-
-                  {error && (
-                    <p className="text-red-500 font-semibold mt-4">*{error}*</p>
-                  )}
                 </div>
               </form>
             </div>
           ) : null}
           {mode === MODE.EMAIL_VERIFICATION ? (
-            <div className="relative">
-              <form onSubmit={handleSubmit}>
-                <h1 className="text-xl font-semibold mb-4">
+            <div className="relative flex-col flex items-center justify-center">
+              <div className="flex w-3/4 bg-websecundary py-1 rounded-full items-center text-center justify-center mb-4">
+                <h1 className="text-sm font-bold w-[96%] px-1 py-1 bg-white rounded-full">
                   Email Verification
                 </h1>
+              </div>
+              <form onSubmit={handleSubmit} className="w-full">
                 <FormInput
                   label="Email Code"
                   type="text"
@@ -351,14 +369,20 @@ const AuthPage = ({ searchParams }) => {
                   >
                     {isLoading ? "Loading..." : buttonTitle}
                   </button>
-                  {error && (
-                    <p className="text-red-500 font-semibold mt-4">*{error}*</p>
-                  )}
                 </div>
               </form>
             </div>
           ) : null}
-          {message && <div className="text-green-600 text-sm">{message}</div>}
+          {error && (
+            <p className="text-red-500 font-semibold mt-2 text-center">
+              *{error}*
+            </p>
+          )}
+          {message && (
+            <div className="text-green-600 font-semibold text-center">
+              {message}
+            </div>
+          )}
         </div>
       </div>
     </div>

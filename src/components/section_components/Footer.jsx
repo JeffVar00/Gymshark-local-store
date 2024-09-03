@@ -69,7 +69,7 @@ const Footer = async () => {
                       { id: 1, title: "Login", link: "/login" },
                       { id: 2, title: "Register", link: "/login?mode=signUp" },
                     ]
-                  : [{ id: 1, title: "My Profile", link: "/profile" }]
+                  : [{ id: 1, title: "Profile", link: "/profile" }]
               }
             />
           </div>
