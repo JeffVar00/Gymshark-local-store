@@ -43,6 +43,7 @@ export default async function Home() {
       <Suspense fallback={<Spinner></Spinner>}>
         <div>
           <Featured
+            categoryName={"featured"}
             title={"Our favorites"}
             subtitle={"See what the people wants the most"}
             categoryId={process.env.NEXT_PUBLIC_FEATURED_PRODUCTS_CATEGORY_ID}
@@ -79,6 +80,7 @@ export default async function Home() {
       <Suspense fallback={<Spinner></Spinner>}>
         <div>
           <Featured
+            categoryName={"gymshark"}
             title={"GYMSHARK SEASON"}
             subtitle={"Everybody's Favorite"}
             categoryId={process.env.NEXT_PUBLIC_GYMSHARK_PRODUCTS_CATEGORY_ID}

@@ -1,9 +1,16 @@
 import React from "react";
 import ProductCard from "../card_components/ProductCard";
 import { wixClientServer } from "@/lib/wixClientServer";
+import Link from "next/link";
 
 const PRODUCT_PER_PAGE = 20;
-const Featured = async ({ categoryId, limit, title, subtitle }) => {
+const Featured = async ({
+  categoryName,
+  categoryId,
+  limit,
+  title,
+  subtitle,
+}) => {
   const wixClient = await wixClientServer();
   const res = await wixClient.products
     .queryProducts()
@@ -16,7 +23,17 @@ const Featured = async ({ categoryId, limit, title, subtitle }) => {
       {/* TITLE */}
       <div className="flex-1 flex flex-col items-start text-start px-1 justify-end z-10">
         <h3 className="text-md md:font-bold">{subtitle}</h3>
-        <h1 className="text-xl lg:text-2xl font-bold">{title}</h1>
+        <div className="flex flex-row gap-4 items-end">
+          <h1 className="text-xl lg:text-2xl font-bold">{title}</h1>
+          {categoryName && (
+            <Link
+              href={`collections?cat=${categoryName}`}
+              className="font-bold underline hover:text-gray-600"
+            >
+              See more
+            </Link>
+          )}
+        </div>
       </div>
       <div className="overflow-x-scroll text-webprimary flex flex-col ">
         {/* WRAPPER */}
