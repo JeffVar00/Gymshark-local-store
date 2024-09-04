@@ -29,8 +29,8 @@ const ProductCard = ({ item, imageSize }) => {
               )}
             </Link>
 
-            {/* SIZE SELECTION */}
-            <div
+            {/* SIZE SELECTION FOR FUTURE */}
+            {/* <div
               className={`hidden absolute bottom-0 left-0 w-full bg-opacity-100 bg-websecundary lg:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
             >
               {!sizes ? (
@@ -54,7 +54,7 @@ const ProductCard = ({ item, imageSize }) => {
                   ))}
                 </div>
               )}
-            </div>
+            </div> */}
           </div>
         ) : (
           <div className="absolute inset-0 bg-noimagebackground flex items-center justify-center">

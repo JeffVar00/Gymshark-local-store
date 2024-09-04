@@ -1,4 +1,17 @@
 const UserIcon = ({ onClick }) => {
+  // AUTH WITH WIX-MANAGED AUTH
+
+  // const wixClient = useWixClient();
+
+  // const login = async () => {
+  //   const loginRequestData = wixClient.auth.generateOAuthData(
+  //     "http://localhost:3000"
+  //   );
+
+  //   localStorage.setItem("oAuthRedirectData", JSON.stringify(loginRequestData));
+  //   const { authUrl } = await wixClient.auth.getAuthUrl(loginRequestData);
+  //   window.location.href = authUrl;
+  // };
   return (
     <div>
       <div className="flex flex-row gap-4">

@@ -1,6 +1,5 @@
 "use client";
 
-import { products } from "@wix/stores";
 import { useEffect, useState } from "react";
 import Add from "@/components/menu_components/Add";
 
@@ -134,7 +133,7 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
         }
         stockNumber={selectedVariant?.stock?.quantity || null}
       />
-      {/* COLOR SKELETON */}
+      {/* COLOR SELECTOR SKELETON */}
       {/* 
           <ul className="flex items-center gap-3">
             <li className="w-8 h-8 rounded-full ring-1 ring-gray-300 cursor-pointer relative bg-red-500">

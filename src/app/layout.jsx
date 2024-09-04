@@ -1,9 +1,12 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-
-import Navbar from "@/components/menu_components/Navbar";
 import Footer from "@/components/section_components/Footer";
 import { WixClientContextProvider } from "@/context/wixContext";
+import dynamic from "next/dynamic";
+
+const Navbar = dynamic(() =>
+  import("@/components/menu_components/Navbar", { ssr: false })
+);
 
 const inter = Inter({ subsets: ["latin"] });
 

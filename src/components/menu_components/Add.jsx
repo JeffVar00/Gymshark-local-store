@@ -1,8 +1,9 @@
 "use client";
 
-// import { useCartStore } from "@/hooks/useCartStore";
+import { useCartStore } from "@/hooks/useCartStore";
 import { useWixClient } from "@/hooks/useWixClient";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Spinner from "@/components/icon_components/Spinner";
 
 const Add = ({ productId, variantId, stockStatus, stockNumber }) => {
   const [quantity, setQuantity] = useState(1);
@@ -11,7 +12,7 @@ const Add = ({ productId, variantId, stockStatus, stockNumber }) => {
     if (type === "d" && quantity > 1) {
       setQuantity((prev) => prev - 1);
     }
-    if (type === "i" && (quantity < stockNumber || stockStatus === true)) {
+    if (type === "i" && (quantity < stockNumber || isValidStock)) {
       setQuantity((prev) => prev + 1);
     }
   };
@@ -28,8 +29,11 @@ const Add = ({ productId, variantId, stockStatus, stockNumber }) => {
   };
 
   const wixClient = useWixClient();
+  const { addItem, getCart, isLoading } = useCartStore();
 
-  //const { addItem, isLoading } = useCartStore();
+  useEffect(() => {
+    getCart(wixClient);
+  }, [wixClient, getCart]);
 
   return (
     <div className="flex flex-col gap-4 w-full">
@@ -51,7 +55,7 @@ const Add = ({ productId, variantId, stockStatus, stockNumber }) => {
             <button
               className="cursor-pointer text-xl disabled:cursor-not-allowed disabled:opacity-20"
               onClick={() => handleQuantity("i")}
-              disabled={quantity === stockNumber || isValidStock() === false}
+              disabled={quantity === stockNumber || !isValidStock()}
             >
               +
             </button>
@@ -69,13 +73,17 @@ const Add = ({ productId, variantId, stockStatus, stockNumber }) => {
             )
           )}
         </div>
-        <button
-          onClick={null}
-          disabled={isValidStock() ? false : true}
-          className="w-full mt-8 p-5 text-sm bg-webprimary text-websecundary font-bold rounded-full mb-6 uppercase justify-center  md:mb-6 md:mx-auto md:w-[98%] disabled:bg-gray-200 disabled:ring-0 disabled:text-white disabled:ring-none"
-        >
-          Add to Bag
-        </button>
+        {!isLoading ? (
+          <button
+            onClick={() => addItem(wixClient, productId, variantId, quantity)}
+            disabled={isValidStock() ? false : true || isLoading}
+            className="w-full mt-8 p-5 text-sm bg-webprimary text-websecundary font-bold rounded-full mb-6 uppercase justify-center  md:mb-6 md:mx-auto md:w-[98%] disabled:bg-gray-200 disabled:ring-0 disabled:text-white disabled:ring-none"
+          >
+            Add to Bag
+          </button>
+        ) : (
+          <Spinner />
+        )}
       </div>
     </div>
   );

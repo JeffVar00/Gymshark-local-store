@@ -21,7 +21,7 @@ const Footer = async () => {
         <div className="flex flex-col lg:flex-row justify-between lg:gap-6 xl:gap-8">
           <div className="flex flex-col lg:flex-row justify-start lg:gap-4">
             <ListToBottomList
-              title={"SHOP"}
+              title={"Shop"}
               references={[
                 { id: 1, title: "Shop Central", link: "/" },
                 {
@@ -47,7 +47,7 @@ const Footer = async () => {
               ]}
             />
             <ListToBottomList
-              title={"HELP"}
+              title={"Help"}
               references={[
                 {
                   id: 1,

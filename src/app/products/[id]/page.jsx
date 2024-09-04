@@ -61,6 +61,7 @@ const ProductPage = async ({ params }) => {
             </div>
           )}
           <CopyButton />
+
           {product.variants && product.productOptions ? (
             <CustomizeProducts
               productId={product._id}

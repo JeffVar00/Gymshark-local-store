@@ -3,15 +3,16 @@
 import { useContext, useEffect, useState, useCallback } from "react";
 import { MagnifyingGlassIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
-import PageIcon from "../icon_components/PageIcon";
-import CartIcon from "../icon_components/CartIcon";
-import UserIcon from "../icon_components/UserIcon";
-import UserMenu from "./UserMenu";
+import PageIcon from "@/components/icon_components/PageIcon";
+import CartIcon from "@/components/icon_components/CartIcon";
+import UserIcon from "@/components/icon_components/UserIcon";
 import MobileMenu from "./MobileMenu";
 import SearchMenu from "./SearchMenu";
 import BagMenu from "./BagMenu";
 
-import { WixClientContext } from "@/context/wixContext";
+import { useWixClient } from "@/hooks/useWixClient";
+import dynamic from "next/dynamic";
+const UserMenu = dynamic(() => import("./UserMenu"), { ssr: false });
 
 const Navbar = () => {
   const [categories, setCategories] = useState([]);
@@ -21,7 +22,7 @@ const Navbar = () => {
     setIsProfileOpen(!isProfileOpen);
   };
 
-  const wixClient = useContext(WixClientContext);
+  const wixClient = useWixClient();
   const router = useRouter();
 
   let isLoggedIn = wixClient.auth.loggedIn();

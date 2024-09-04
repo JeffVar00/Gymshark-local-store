@@ -56,11 +56,11 @@ const ProfilePage = async () => {
   }
 
   return (
-    <div className="flex flex-col justify-center gap-24 md:h-[calc(100vh-60px)] items-center px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
+    <div className="flex flex-col justify-center gap-24 md:mt-0 h-screen  md:h-[calc(100vh-60px)] items-center px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
       <div className="w-full ">
-        <div className="flex flex-row justify-between">
-          <h1 className="text-2xl font-bold">Your Profile Information</h1>
-          <div className="flex justify-end">
+        <div className="flex flex-col md:flex-row items-start md:justify-between md:items-center">
+          <h1 className="text-2xl font-bold ">Your Profile Information</h1>
+          <div className="flex justify-end mt-4 md:mt-0">
             <Link
               href="/profile/orders"
               className="text-webprimary font-bold hover:underline"
@@ -71,7 +71,13 @@ const ProfilePage = async () => {
         </div>
 
         <form action={updateUser} className="mt-12 flex flex-col gap-4">
-          <input type="text" hidden name="id" value={user.member.contactId} />
+          <input
+            type="text"
+            hidden
+            readOnly={true}
+            name="id"
+            value={user.member.contactId}
+          />
           <label className="text-sm text-gray-700">Username</label>
           <input
             type="text"
