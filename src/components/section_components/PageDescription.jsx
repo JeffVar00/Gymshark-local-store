@@ -1,4 +1,5 @@
 import React from "react";
+import BackToTop from "@/components/icon_components/BackToTop";
 
 const PageDescription = () => {
   return (
@@ -77,6 +78,7 @@ const PageDescription = () => {
           just in the designs, it`s in the people who wear them.
         </p>
       </section>
+      <BackToTop />
     </div>
   );
 };

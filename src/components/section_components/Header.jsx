@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const Header = ({ details, nextSectionRef }) => {
+const Header = ({ details }) => {
   const [backgroundImageUrl, setBackgroundImageUrl] = useState("");
 
   useEffect(() => {
@@ -21,19 +21,13 @@ const Header = ({ details, nextSectionRef }) => {
     return () => window.removeEventListener("resize", updateUrls);
   }, [details.smsrc, details.mdsrc]);
 
-  const handleArrowClick = () => {
-    if (nextSectionRef && nextSectionRef.current) {
-      nextSectionRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <div
       className="flex flex-col h-[calc(100vh-6rem)] md:h-auto md:aspect-[21/9] bg-cover bg-center md:flex-row md:items-center relative"
       style={{ backgroundImage: `url(${backgroundImageUrl})` }}
     >
       {/* TEXT CONTAINER */}
-      <div className="flex-1 flex flex-col items-start bg-gradient-to-t md:bg-gradient-to-r from-webprimary via-transparent to-transparent text-start gap-4 p-6 justify-end md:justify-center md:pb-0 md:px-14 relative z-10 h-full">
+      <div className="flex-1 flex flex-col items-start bg-gradient-to-t md:bg-gradient-to-r via-80%  from-webprimary via-transparent to-transparent text-start gap-4 p-6 justify-end md:justify-center md:pb-0 md:px-14 relative z-10 h-full">
         <h1 className="text-websecundary text-2xl font-bold md:text-3xl md:max-w-xl xl:text-6xl">
           {details.title}
         </h1>
@@ -53,10 +47,7 @@ const Header = ({ details, nextSectionRef }) => {
 
       {/* ANIMATED ARROW */}
       <div className="hidden md:absolute md:flex bottom-6 left-1/2 transform -translate-x-1/2 z-20">
-        <div
-          className="animate-bounce text-websecundary cursor-pointer"
-          onClick={handleArrowClick}
-        >
+        <div className="animate-bounce text-websecundary cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10"

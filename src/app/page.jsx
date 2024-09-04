@@ -1,97 +1,83 @@
-"use client";
-
-import { useRef } from "react";
-
-import FeaturedCategories from "@/components/section_components/FeaturedCategories";
+import FeaturedCategories from "../components/section_components/FeaturedCategories";
 import Featured from "@/components/section_components/Featured";
 import Header from "@/components/section_components/Header";
 import PageDescription from "@/components/section_components/PageDescription";
 import Notification from "@/components/section_components/Notification";
-import { featuredProducts, categories, main_categories } from "@/data";
-import MainCategories from "@/components/section_components/MainCategories";
+import Spinner from "@/components/icon_components/Spinner";
 
-export default function Home() {
-  const nextSectionRef = useRef(null);
+import { Suspense } from "react";
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
+export default async function Home() {
   return (
     <main>
       <Notification />
       <Header
         details={{
-          title: "NEW STUFF JUST DROPPED",
+          title: "Fashion just arrived",
           description:
-            "We all know you’re gonna be wearing these next time you go gym. Might as well grab them now.",
-          smsrc: "/bannerbottom.jpg",
+            "We all know you’re gonna be wearing this days. Might as well grab them now.",
+          smsrc: "/banner.jpg",
           mdsrc: "/banner.jpg",
           buttons: [
             {
               text: "Shop Men",
-              ref: "/collections/men",
+              ref: "/collections?cat=men",
             },
             {
               text: "Shop Women",
-              ref: "/collections/women",
+              ref: "/collections?cat=women",
             },
           ],
         }}
-        nextSectionRef={nextSectionRef}
       />
 
-      <div ref={nextSectionRef}>
-        <Featured
-          products={featuredProducts}
-          subtitle={"Everybody's Favorite"}
-          title={"GYMSHARK SEASON"}
-        />
-      </div>
+      <Suspense fallback={<Spinner></Spinner>}>
+        <div>
+          <Featured
+            categoryName={"featured"}
+            title={"Our favorites"}
+            subtitle={"See what the people wants the most"}
+            categoryId={process.env.NEXT_PUBLIC_FEATURED_PRODUCTS_CATEGORY_ID}
+            limit={10}
+          />
+        </div>
+      </Suspense>
 
-      <FeaturedCategories categories={categories} title={"How do you train?"} />
+      <Suspense fallback={<Spinner></Spinner>}>
+        <div>
+          <FeaturedCategories title={"What you are looking for"} />
+        </div>
+      </Suspense>
 
       <Header
         details={{
           title: "GYMSHARK MERCH",
           description:
             "For locking in. For life. For the love of the game. For levelling up. Go get it before it’s gone.",
-          smsrc: "/banner.jpg",
+          smsrc: "/bannerbottom.jpg",
           mdsrc: "/banner2.jpg",
           buttons: [
             {
               text: "Shop Now",
-              ref: "/collections/men",
+              ref: "/collections?cat=gymshark",
             },
           ],
         }}
       />
 
-      <MainCategories categories={main_categories} />
+      <Suspense fallback={<Spinner></Spinner>}>
+        <div>
+          <Featured
+            categoryName={"gymshark"}
+            title={"GYMSHARK SEASON"}
+            subtitle={"Everybody's Favorite"}
+            categoryId={process.env.NEXT_PUBLIC_GYMSHARK_PRODUCTS_CATEGORY_ID}
+            limit={10}
+          />
+        </div>
+      </Suspense>
 
       <PageDescription />
-      <div className="flex flex-col items-center justify-center mb-8">
-        <button
-          onClick={scrollToTop}
-          className="flex items-center mt-4 md:mt-0 font-semibold text-webprimary hover:text-gray-500"
-        >
-          Back to Top
-          <svg
-            className="w-4 h-4 ml-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M5 15l7-7 7 7"
-            ></path>
-          </svg>
-        </button>
-      </div>
     </main>
   );
 }

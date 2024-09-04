@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+"use client";
 
-const FilterButton = ({ label, value, selected, onClick }) => {
+import React, { useState, useRef } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
+const FilterButton = ({ name, label, value, selected, onClick }) => {
   return (
     <button
-      onClick={() => onClick(value)}
-      className={`px-4 py-2 rounded-md mx-1 no-tap-highlight  ${
+      onClick={() => onClick({ target: { name: name, value: value } })}
+      className={`w-full px-4 py-2 rounded-md m-1 no-tap-highlight  ${
         selected
           ? "bg-black text-white"
           : "bg-gray-200 text-black hover:border-2 hover:border-webprimary"
@@ -16,37 +18,88 @@ const FilterButton = ({ label, value, selected, onClick }) => {
   );
 };
 
-export const FilterMenu = ({
-  filters,
-  onSortChange,
-  onCategoryChange,
-  clearAllFilters,
-  toggleFilter,
-}) => {
+export const FilterMenu = ({ sub_categories = [] }) => {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
+  const inputRefs = useRef([]);
+
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
 
   const toggleCategories = () => setCategoryOpen(!categoryOpen);
   const toggleSort = () => setSortOpen(!sortOpen);
 
+  const [filters, setFilters] = useState({
+    sort: "",
+    categories: [],
+  });
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    const params = new URLSearchParams(searchParams);
+    if (name === "collections") {
+      const categories = [...filters.categories];
+      if (categories.includes(value)) {
+        categories.splice(categories.indexOf(value), 1);
+      } else {
+        categories.push(value);
+      }
+      setFilters({ ...filters, categories });
+
+      if (categories.length > 0) {
+        params.set("collections", categories.join(","));
+      } else {
+        params.delete("collections");
+      }
+    } else {
+      setFilters({ ...filters, [name]: value });
+      params.set(name, value);
+
+      if (name === "min" || name === "max") {
+        if (value === "") {
+          params.delete(name);
+        }
+      }
+    }
+
+    replace(`${pathname}?${params.toString()}`);
+  };
+
+  const areFiltersEmpty = () => {
+    return (
+      filters?.categories.length === 0 &&
+      filters?.sort === "" &&
+      inputRefs.current.every((ref) => !ref.value)
+    );
+  };
+
+  const handleClearFilters = () => {
+    setFilters({
+      sort: "",
+      categories: [],
+    });
+    const params = new URLSearchParams(searchParams);
+    params.delete("sort");
+    params.delete("categories");
+    params.delete("min");
+    params.delete("max");
+    inputRefs.current.forEach((ref) => {
+      if (ref) ref.value = "";
+    });
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <aside className="text-webprimary w-full lg:pr-10">
-      <div className="flex flex-row items-center justify-between text-sm pb-6 lg:py-6 border-gray-200 ">
-        <button
-          className="lg:hidden text-webprimary z-50"
-          onClick={toggleFilter}
-        >
-          <XMarkIcon className="h-6 w-6" />
-        </button>
+      <div className="flex flex-row items-center justify-between text-sm pb-4 lg:py-6 border-gray-200 ">
         <h2 className="font-bold uppercase">Filter & Sort</h2>
         <button
           className={`text-webprimary ${
-            filters.categories.length === 0
-              ? "cursor-not-allowed opacity-50"
-              : ""
+            areFiltersEmpty ? "cursor-not-allowed opacity-50" : ""
           }`}
-          disabled={filters.categories.length === 0}
-          onClick={clearAllFilters}
+          disabled={areFiltersEmpty()}
+          onClick={handleClearFilters}
         >
           Clear All
         </button>
@@ -62,81 +115,93 @@ export const FilterMenu = ({
             <span className="text-xl font-bold ">{sortOpen ? "-" : "+"}</span>
           </div>
           <div
-            className={`flex flex-col lg:flex-wrap lg:flex-row text-sm font-semibold text-gray-500 space-y-2 transition-all duration-300 ease-in-out ${
+            className={`flex flex-col lg:flex-wrap lg:flex-row text-sm font-semibold text-gray-500 transition-all duration-300 ease-in-out ${
               sortOpen
                 ? "max-h-screen mb-4 opacity-100"
                 : "max-h-0 opacity-0 overflow-hidden"
             }`}
           >
             <FilterButton
+              name="sort"
               label="Price: Low to High"
-              value="priceLowHigh"
-              selected={filters.sort === "priceLowHigh"}
-              onClick={onSortChange}
+              value="asc price"
+              selected={filters?.sort === "asc price"}
+              onClick={handleFilterChange}
             />
             <FilterButton
+              name="sort"
               label="Price: High to Low"
-              value="priceHighLow"
-              selected={filters.sort === "priceHighLow"}
-              onClick={onSortChange}
+              value="desc price"
+              selected={filters?.sort === "desc price"}
+              onClick={handleFilterChange}
             />
             <FilterButton
-              label="Relevancy"
-              value="relevancy"
-              selected={filters.sort === "relevancy"}
-              onClick={onSortChange}
-            />
-            <FilterButton
+              name="sort"
               label="Newest"
-              value="newest"
-              selected={filters.sort === "newest"}
-              onClick={onSortChange}
+              value="desc lastUpdated"
+              selected={filters?.sort === "desc lastUpdated"}
+              onClick={handleFilterChange}
             />
+            <FilterButton
+              name="sort"
+              label="Oldest"
+              value="asc lastUpdated"
+              selected={filters?.sort === "asc lastUpdated"}
+              onClick={handleFilterChange}
+            />
+            <div className="mt-2">
+              <input
+                ref={(el) => (inputRefs.current[0] = el)}
+                name="min"
+                type="number"
+                className="w-full px-4 py-2 border border-double text-sm rounded mb-2"
+                placeholder="Min Price"
+                onChange={handleFilterChange}
+                required={false}
+              />
+              <input
+                ref={(el) => (inputRefs.current[1] = el)}
+                name="max"
+                type="number"
+                className="w-full px-4 py-2 border border-double text-sm rounded"
+                placeholder="Max Price"
+                onChange={handleFilterChange}
+                required={false}
+              />
+            </div>
           </div>
         </div>
-        <div className="w-full border-b">
-          <div
-            className="flex justify-between items-center cursor-pointer py-4 no-tap-highlight"
-            onClick={toggleCategories}
-          >
-            <h4 className="text-sm font-bold uppercase">Product Type</h4>
-            <span className="text-xl font-bold ">
-              {categoryOpen ? "-" : "+"}
-            </span>
+        {sub_categories.length > 0 && (
+          <div className="w-full border-b">
+            <div
+              className="flex justify-between items-center cursor-pointer py-4 no-tap-highlight"
+              onClick={toggleCategories}
+            >
+              <h4 className="text-sm font-bold uppercase">Product Type</h4>
+              <span className="text-xl font-bold ">
+                {categoryOpen ? "-" : "+"}
+              </span>
+            </div>
+            <div
+              className={`text-sm flex flex-col font-semibold text-gray-500 transition-all duration-300 ease-in-out ${
+                categoryOpen
+                  ? "max-h-screen mb-4 opacity-100"
+                  : "max-h-0 opacity-0 overflow-hidden"
+              } lg:flex-wrap lg:flex-row`}
+            >
+              {sub_categories.map((sub_category) => (
+                <FilterButton
+                  key={sub_category}
+                  name="collections"
+                  label={sub_category}
+                  value={sub_category}
+                  selected={filters?.categories.includes(sub_category)}
+                  onClick={handleFilterChange}
+                />
+              ))}
+            </div>
           </div>
-          <div
-            className={`text-sm flex flex-col font-semibold text-gray-500 space-y-2 transition-all duration-300 ease-in-out ${
-              categoryOpen
-                ? "max-h-screen mb-4 opacity-100"
-                : "max-h-0 opacity-0 overflow-hidden"
-            } lg:flex-wrap lg:flex-row`}
-          >
-            <FilterButton
-              label="Category 1"
-              value="category1"
-              selected={filters.categories.includes("category1")}
-              onClick={onCategoryChange}
-            />
-            <FilterButton
-              label="Category 2"
-              value="category2"
-              selected={filters.categories.includes("category2")}
-              onClick={onCategoryChange}
-            />
-            <FilterButton
-              label="Category 3"
-              value="category3"
-              selected={filters.categories.includes("category3")}
-              onClick={onCategoryChange}
-            />
-            <FilterButton
-              label="Category 4"
-              value="category4"
-              selected={filters.categories.includes("category4")}
-              onClick={onCategoryChange}
-            />
-          </div>
-        </div>
+        )}
       </div>
     </aside>
   );

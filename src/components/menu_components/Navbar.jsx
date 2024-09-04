@@ -2,16 +2,51 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { MagnifyingGlassIcon, Bars3Icon } from "@heroicons/react/24/outline";
-import Link from "next/link";
-import PageIcon from "../icon_components/PageIcon";
-import CartIcon from "../icon_components/CartIcon";
-import UserIcon from "../icon_components/UserIcon";
+import { useRouter } from "next/navigation";
+import { search_categories } from "@/data";
+import PageIcon from "@/components/icon_components/PageIcon";
+import CartIcon from "@/components/icon_components/CartIcon";
+import UserIcon from "@/components/icon_components/UserIcon";
 import MobileMenu from "./MobileMenu";
 import SearchMenu from "./SearchMenu";
 import BagMenu from "./BagMenu";
-import { main_categories } from "@/data";
 
-const Navbar = ({ user }) => {
+import { useWixClient } from "@/hooks/useWixClient";
+import dynamic from "next/dynamic";
+const UserMenu = dynamic(() => import("./UserMenu"), { ssr: false });
+
+const Navbar = () => {
+  const [categories, setCategories] = useState([]);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  const toggleProfile = () => {
+    setIsProfileOpen(!isProfileOpen);
+  };
+
+  const wixClient = useWixClient();
+  const router = useRouter();
+
+  let isLoggedIn = wixClient.auth.loggedIn();
+  const handleProfile = () => {
+    isLoggedIn = wixClient.auth.loggedIn();
+    if (!isLoggedIn) {
+      router.push("/login");
+    } else {
+      toggleProfile();
+    }
+  };
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const res = await wixClient.collections
+        .queryCollections()
+        .hasSome("name", search_categories)
+        .find();
+      setCategories(res.items);
+    };
+    getCategories();
+  }, [wixClient]);
+
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -78,12 +113,18 @@ const Navbar = ({ user }) => {
 
   // SHARED MENU LOGIC
   useEffect(() => {
-    if (isMenuOpen || isSearchOpen || isDesktopSearchOpen || isBagOpen) {
+    if (
+      isMenuOpen ||
+      isSearchOpen ||
+      isDesktopSearchOpen ||
+      isBagOpen ||
+      isProfileOpen
+    ) {
       document.body.classList.add("no-scroll");
     } else {
       document.body.classList.remove("no-scroll");
     }
-  }, [isMenuOpen, isSearchOpen, isDesktopSearchOpen, isBagOpen]);
+  }, [isMenuOpen, isSearchOpen, isDesktopSearchOpen, isBagOpen, isProfileOpen]);
 
   return (
     <div>
@@ -119,19 +160,6 @@ const Navbar = ({ user }) => {
           <PageIcon logo="black" />
         </div>
 
-        {/* CENTER HUB */}
-        <div className="hidden text-sm lg:flex gap-8 flex-1 justify-center uppercase">
-          {main_categories.map((category) => (
-            <Link
-              key={category.id}
-              href={category.ref}
-              className="text-webprimary relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[3px] after:bg-webprimary after:rounded-full after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100"
-            >
-              {category.title}
-            </Link>
-          ))}
-        </div>
-
         {/* RIGHT LINKS */}
         <div className="flex gap-4 items-center justify-end flex-1">
           <button
@@ -143,7 +171,8 @@ const Navbar = ({ user }) => {
               {searchText ? searchText : "Search for a Product"}
             </span>
           </button>
-          <UserIcon />
+
+          <UserIcon onClick={handleProfile} />
           <CartIcon onClick={toggleBag} />
         </div>
       </nav>
@@ -154,6 +183,7 @@ const Navbar = ({ user }) => {
       >
         {isMenuOpen && (
           <MobileMenu
+            categories={categories}
             toggleMenu={toggleMenu}
             searchText={searchText}
             toggleSearch={toggleSearch}
@@ -199,11 +229,11 @@ const Navbar = ({ user }) => {
         onClick={toggleBag}
       ></div>
       <div
-        className={`h-[90%] lg:h-full fixed bottom-0 lg:bottom-auto lg:top-0 lg:right-0 w-full lg:w-[40%] xl:w-[30%] bg-white z-50 transform ${
+        className={`h-full fixed ${
           isBagOpen
-            ? "translate-y-0 lg:translate-x-0"
-            : "translate-y-full lg:translate-x-full lg:translate-y-0"
-        } transition-transform duration-300 ease-in-out `}
+            ? "top-0 right-0 translate-x-0"
+            : "top-0 right-[-100%] translate-x-full"
+        } w-full lg:w-[40%] xl:w-[30%] bg-white z-50 transition-transform duration-300 ease-in-out`}
       >
         <div className="relative h-full">
           {isBagOpen && (
@@ -212,6 +242,19 @@ const Navbar = ({ user }) => {
             </div>
           )}
         </div>
+      </div>
+      <div
+        className={`fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity duration-300 ease-in-out ${
+          isProfileOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={toggleProfile}
+      ></div>
+      <div
+        className={`fixed w-full lg:w-[40%] xl:w-[30%] inset-y-0 right-0 bg-websecundary z-50 transform ${
+          isProfileOpen ? "translate-x-0" : "translate-x-full"
+        } transition-transform duration-300 ease-in-out`}
+      >
+        {isProfileOpen && <UserMenu toggleMenu={toggleProfile} />}
       </div>
     </div>
   );
