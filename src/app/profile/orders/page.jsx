@@ -61,7 +61,7 @@ const OrdersPage = async () => {
   });
 
   return (
-    <div className="flex flex-col md:flex-row gap-24 mt-24 md:mt-0 h-screen md:h-[calc(100vh-180px)] items-center px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
+    <div className="flex flex-col gap-12 pt-28 md:pt-44 h-screen items-center px-2 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
       <div className="w-full">
         <div className="flex justify-start">
           <Link
@@ -71,16 +71,34 @@ const OrdersPage = async () => {
             {"<-"} Go back to profile
           </Link>
         </div>
-        <h1 className="text-2xl font-bold">Your Orders</h1>
-        <div className="mt-12 flex flex-col">
+        <h1 className="text-xl md:text-2xl font-bold">Your Orders</h1>
+
+        {/* Header Section */}
+        {orderRes.orders.length > 0 && (
+          <div className="mt-6 flex justify-between px-2 py-3 font-bold border-b text-sm md:text-base">
+            <span className="w-1/4">Order ID</span>
+            <span className="w-1/4">Subtotal</span>
+            <span className="w-1/4">Date</span>
+            <span className="w-1/4">Status</span>
+          </div>
+        )}
+
+        {/* Orders List */}
+        <div className="mt-4 flex flex-col overflow-y-auto h-[60%] md:h-96 my-12">
           {orderRes.orders.length > 0 ? (
             orderRes.orders.map((order) => (
               <Link
-                href={`/orders/${order._id}`}
+                href={`/profile/orders/${order._id}`}
                 key={order._id}
-                className="flex justify-between px-2 py-6 rounded-md hover:bg-green-50 even:bg-slate-100"
+                className="flex justify-between px-2 py-4 rounded-md hover:bg-gray-100 even:bg-slate-100 text-sm md:text-base"
               >
-                <span className="w-1/4">{order._id?.substring(0, 10)}...</span>
+                <span className="w-1/4">
+                  {order._id?.substring(0, 4)}
+                  <span className="hidden sm:inline">
+                    {order._id?.substring(4, 10)}
+                  </span>
+                  ...
+                </span>
                 <span className="w-1/4">
                   ${order.priceSummary?.subtotal?.amount}
                 </span>
@@ -91,11 +109,11 @@ const OrdersPage = async () => {
               </Link>
             ))
           ) : (
-            <div className="flex flex-col items-center h-full justify-center gap-3 my-20">
-              <h2 className="font-bold uppercase">
-                You haven`t made any order yet
+            <div className="flex flex-col items-center h-screen justify-center gap-3 my-20">
+              <h2 className="font-bold uppercase text-center">
+                You haven’t made any order yet
               </h2>
-              <p className="text-gray-700 text-sm">
+              <p className="text-gray-700 text-sm text-center">
                 Shop now and get the best deals
               </p>
               <Link href="/collections?cat=women">
@@ -104,7 +122,7 @@ const OrdersPage = async () => {
                 </button>
               </Link>
               <Link href="/collections?cat=men">
-                <button className="text-sm w-60  font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase">
+                <button className="text-sm w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase">
                   Shop Women
                 </button>
               </Link>

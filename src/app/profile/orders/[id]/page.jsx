@@ -14,10 +14,27 @@ const OrderPage = async ({ params }) => {
     return notFound();
   }
 
+  // const order = {
+  //   _id: "123",
+  //   billingInfo: {
+  //     contactDetails: {
+  //       firstName: "John",
+  //       lastName: "Doe",
+  //     },
+  //     address: {
+  //       addressLine1: "123 Main St",
+  //       city: "New York",
+  //     },
+  //   },
+  //   buyerInfo: {
+  //     email: "",
+  //   },
+  // };
+
   return (
-    <div className="flex flex-col h-[calc(100vh-180px)] items-center justify-center ">
-      <div className="shadow-[rgba(0,_0,_0,_0.25)_0px_25px_50px_-12px] px-40 py-20">
-        <h1 className="text-xl">Order Details</h1>
+    <div className="flex flex-col h-screen items-center justify-center ">
+      <div className="md:shadow-[rgba(0,_0,_0,_0.25)_0px_25px_50px_-12px] md:mt-20 lg:mt-10 px-10 md:px-40 py-20">
+        <h1 className="text-xl font-bold">Order Details</h1>
         <div className="mt-12 flex flex-col gap-6">
           <div className="">
             <span className="font-medium">Order Id: </span>
@@ -55,7 +72,10 @@ const OrderPage = async ({ params }) => {
           </div>
         </div>
       </div>
-      <Link href="/" className="underline mt-6">
+      <Link href="/profile/orders" className="mt-6 flex font-bold">
+        {"<-"} Go back to your orders
+      </Link>
+      <Link href="/pages/contact-us" className="underline mt-6">
         Have a problem? Contact us
       </Link>
     </div>
