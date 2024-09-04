@@ -1,34 +1,16 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Image from "next/image";
 import { media as wixMedia } from "@wix/sdk";
-import CheckoutForm from "../form_components/CheckoutForm";
 import { useWixClient } from "@/hooks/useWixClient";
 import { useCartStore } from "@/hooks/useCartStore";
+import { currentCart } from "@wix/ecom";
 
 const BagMenu = ({ toggleMenu }) => {
-  // const [shippingMethod, setShippingMethod] = useState("Standard");
-  // const handleShippingChange = (event) => {
-  //   setShippingMethod(event.target.value);
-  // };
-
-  const cartItems = true;
-  const wixClient = useWixClient;
+  const wixClient = useWixClient();
   const { cart, isLoading, removeItem } = useCartStore();
-
-  // const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  // const toggleCheckout = () => setIsCheckoutOpen(!isCheckoutOpen);
-
-  // const [isPayed, setIsPayed] = useState(false);
-  // const togglePayed = () => {
-  //   setIsPayed(!isPayed);
-  //   setCurrentCart([]);
-  //   setShippingMethod("Standard");
-  //   toggleCheckout();
-  // };
 
   const handleCheckout = async () => {
     try {
@@ -105,7 +87,9 @@ const BagMenu = ({ toggleMenu }) => {
               </div>
               <div className="text-sm flex-2 w-full text-start py-4">
                 <h2 className="">{item.productName?.original}</h2>
-                <p className=" text-gray-600">{item.availability?.status}</p>
+                <p className=" text-gray-500 font-bold text-xs">
+                  {item.availability?.status}
+                </p>
                 {/* Quantity selector as dropdown */}
                 <div className="flex flex-col sm:flex-row justify-start items-start sm:justify-between sm:items-center mt-5 gap-3 sm:gap-0">
                   <button
@@ -129,7 +113,7 @@ const BagMenu = ({ toggleMenu }) => {
                     </svg>
                   </button>
                   <div className="font-bold flex flex-row items-center">
-                    <div className="p-1 bg-gray-50 rounded-sm flex items-center gap-2">
+                    <div className="p-1 rounded-sm flex items-center gap-2">
                       {item.quantity && item.quantity > 1 && (
                         <div className="text-xs text-gray-700">
                           {item.quantity} x{" "}
@@ -168,67 +152,7 @@ const BagMenu = ({ toggleMenu }) => {
           </div>
         </div>
       )}
-
-      {/* <div className="font-bold uppercase text-center">
-              Shipping Method
-            </div>
-            <select
-              className="w-full p-2 border border-gray-200 rounded"
-              value={shippingMethod}
-              onChange={handleShippingChange}
-            >
-              <option value="Standard">Standard Shipping</option>
-              <option value="Express">Express Shipping</option>
-              <option value="Overnight">Overnight Shipping</option>
-            </select> */}
     </div>
-    // ) : (
-    // <div className="flex flex-col items-center h-full justify-center gap-3 mb-20">
-    //   <h2 className="font-bold uppercase">Thanks for your preference!</h2>
-    //   <p className="text-gray-700 text-sm">Want to continue shopping?</p>
-    //   <Link href="/collections?cat=women">
-    //     <button
-    //       onClick={toggleMenu}
-    //       className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase"
-    //     >
-    //       Shop Men
-    //     </button>
-    //   </Link>
-    //   <Link href="/collections?cat=men">
-    //     <button
-    //       onClick={toggleMenu}
-    //       className="text-sm w-60  font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase"
-    //     >
-    //       Shop Women
-    //     </button>
-    //   </Link>
-    // </div>
-    // )}
-    /* {isCheckoutOpen && (
-        <div
-          className={`h-full fixed bottom-0 lg:bottom-auto lg:top-0 lg:right-0 w-full bg-white z-50 transform ${
-            isCheckoutOpen
-              ? "translate-y-0 lg:translate-x-0"
-              : "translate-y-full lg:translate-x-full lg:translate-y-0"
-          } transition-transform duration-300 ease-in-out `}
-        >
-          <div className="p-4">
-            <div className="fixed bg-white w-full px-6 flex flex-row justify-between gap-6 py-2 z-50 items-center">
-              <div className="flex font-bold text-xl"></div>
-              <div className="flex font-bold uppercase">Contact Info</div>
-              <div className="flex justify-end ">
-                <button onClick={toggleCheckout} className="text-gray-700">
-                  <XMarkIcon className="h-8 w-8" />
-                </button>
-              </div>
-            </div>
-            <CheckoutForm
-              showPopup={togglePayed}
-              shippingMethod={shippingMethod}
-            />
-          </div>
-        </div>
-      )} */
   );
 };
 
