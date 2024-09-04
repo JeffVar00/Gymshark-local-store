@@ -1,9 +1,11 @@
 "use client";
+
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
+import Spinner from "@/components/icon_components/Spinner";
 import Confetti from "react-confetti";
 
-const SuccessPage = () => {
+const SuccessContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -30,6 +32,14 @@ const SuccessPage = () => {
       </h2>
       <h3 className="">You are being redirected to the order page...</h3>
     </div>
+  );
+};
+
+const SuccessPage = () => {
+  return (
+    <Suspense fallback={<Spinner />}>
+      <SuccessContent />
+    </Suspense>
   );
 };
 
