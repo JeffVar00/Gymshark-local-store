@@ -41,10 +41,11 @@ const ProductCarousel = ({ imgs }) => {
               className="snap-center flex-shrink-0 w-full h-[120vw] relative"
             >
               <Image
+                priority={true}
                 src={image.image.url}
                 alt={`Product Image ${index + 1}`}
                 fill="responsive"
-                sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
                 className="w-full h-full object-cover"
               />
             </div>

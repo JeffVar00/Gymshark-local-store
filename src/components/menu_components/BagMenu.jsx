@@ -82,6 +82,7 @@ const BagMenu = ({ toggleMenu }) => {
                   src={wixMedia.getScaledToFillImageUrl(item.image, 72, 96, {})}
                   alt={item.productName?.original}
                   fill="responsive"
+                  sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-contain rounded-md"
                 />
               </div>

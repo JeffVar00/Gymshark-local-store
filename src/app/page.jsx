@@ -7,15 +7,6 @@ import Spinner from "@/components/icon_components/Spinner";
 
 import { Suspense } from "react";
 
-const SEARCH_CATEGORIES = [
-  "Accessories",
-  "Home",
-  "Men",
-  "Women",
-  "Kids",
-  "All Products",
-];
-
 export default async function Home() {
   return (
     <main>
@@ -54,10 +45,7 @@ export default async function Home() {
 
       <Suspense fallback={<Spinner></Spinner>}>
         <div>
-          <FeaturedCategories
-            title={"What you are looking for"}
-            search_categories={SEARCH_CATEGORIES}
-          />
+          <FeaturedCategories title={"What you are looking for"} />
         </div>
       </Suspense>
 

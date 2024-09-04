@@ -8,13 +8,15 @@ const ProductCard = ({ item, imageSize }) => {
     (option) => option.name === "Size"
   )?.choices;
 
+  console.log(item.media?.mainMedia?.image?.url); //static.wixstatic.com
+
   return (
     <div className="h-full">
       {/* IMAGE CONTAINER */}
       <div className={`relative w-full ${imageSize}`}>
         {item.media?.mainMedia?.image?.url ? (
-          <div className={`relative w-full h-full`}>
-            <Link href={`/products/${item.slug}`}>
+          <Link href={`/products/${item.slug}`}>
+            <div className={`relative w-full h-full`}>
               <Image
                 src={item.media?.mainMedia?.image?.url}
                 alt={item.name}
@@ -27,7 +29,7 @@ const ProductCard = ({ item, imageSize }) => {
                   {item.ribbon}
                 </div>
               )}
-            </Link>
+            </div>
 
             {/* SIZE SELECTION FOR FUTURE */}
             {/* <div
@@ -55,7 +57,7 @@ const ProductCard = ({ item, imageSize }) => {
                 </div>
               )}
             </div> */}
-          </div>
+          </Link>
         ) : (
           <div className="absolute inset-0 bg-noimagebackground flex items-center justify-center">
             {/* Placeholder for no image */}

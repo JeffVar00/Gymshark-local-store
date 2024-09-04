@@ -1,8 +1,9 @@
 "use client";
 
-import { useContext, useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { MagnifyingGlassIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
+import { search_categories } from "@/data";
 import PageIcon from "@/components/icon_components/PageIcon";
 import CartIcon from "@/components/icon_components/CartIcon";
 import UserIcon from "@/components/icon_components/UserIcon";
@@ -37,7 +38,10 @@ const Navbar = () => {
 
   useEffect(() => {
     const getCategories = async () => {
-      const res = await wixClient.collections.queryCollections().find();
+      const res = await wixClient.collections
+        .queryCollections()
+        .hasSome("name", search_categories)
+        .find();
       setCategories(res.items);
     };
     getCategories();

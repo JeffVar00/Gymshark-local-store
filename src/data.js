@@ -1,4 +1,13 @@
 
+export const search_categories = [
+  "Accessories",
+  "Home",
+  "Men",
+  "Women",
+  "Kids",
+  "All Products",
+];
+
 export const recomendedSearches = [
   "Shorts",
   "T-Shirts",
@@ -10,96 +19,3 @@ export const recomendedSearches = [
   "Joggers"
 ];
 
-export const featuredProducts = [
-  {
-    id: 1,
-    title: "American Muscle Extreme Oversized T-Shirt",
-    desc: "extreme oversized fit",
-    imgs: ["/clothexample.avif"],
-    price: 55,
-    isNew: true,
-    sizesAvailable: [],
-  },
-  {
-    id: 2,
-    title: "American Muscle Extreme Oversized T-Shirt",
-    desc: "extreme oversized fit",
-    imgs: ["/clothexample1.avif"],
-    price: 55,
-    isNew: true,
-    sizesAvailable: [
-      "XS", "S", "M", "XL"
-    ],
-  },
-  {
-    id: 3,
-    title: "American Muscle Extreme Oversized T-Shirt",
-    desc: "extreme oversized fit",
-    imgs: ["/clothexample3.jpg"],
-    price: 55,
-    isNew: true,
-    sizesAvailable: [
-      "M", "XL", "L"
-    ],
-  },
-  {
-    id: 4,
-    title: "Contour Heart Seamless Tank",
-    desc: "Black/Asphalt Grey",
-    imgs: ["/clothexample6.jpg"],
-    price: 55,
-    sizesAvailable: [
-      "XS", "S", "M", "XL", "L", "XXL", "3XL"  
-    ],
-  },
-  {
-    id: 5,
-    title: "Contour Heart Seamless Tank",
-    desc: "Black/Asphalt Grey",
-    imgs: ["/clothexample5.avif"],
-    price: 55,
-    sizesAvailable: [
-      "XS", "S", "M", "XL", "L", "XXL", "3XL"  
-    ],
-  },
-  {
-    id: 6,
-    title: "Contour Heart Seamless Tank",
-    desc: "Black/Asphalt Grey",
-    imgs: ["/clothexample4.avif"],
-    price: 55,
-    sizesAvailable: [
-      "XS", "S", "M", "XL", "L", "XXL", "3XL"  
-    ],
-  },
-  {
-    id: 7,
-    title: "Contour Heart Seamless Tank",
-    desc: "Black/Asphalt Grey",
-    imgs: ["/clothexample7.avif"],
-    price: 55,
-    sizesAvailable: [
-      "XS", "S", "M", "XL", "L", "XXL", "3XL"  
-    ],
-  },
-  {
-    id: 8,
-    title: "Contour Heart Seamless Tank",
-    desc: "Black/Asphalt Grey",
-    imgs: ["/clothexample8.avif"],
-    price: 55,
-    sizesAvailable: [
-      "XS", "S", "M", "XL", "L", "XXL", "3XL"  
-    ],
-  },
-  {
-    id: 9,
-    title: "Contour Heart Seamless Tank",
-    desc: "Black/Asphalt Grey",
-    imgs: ["/clothexample9.avif"],
-    price: 55,
-    sizesAvailable: [
-      "XS", "S", "M", "XL", "L", "XXL", "3XL"  
-    ],
-  },
-];

@@ -2,8 +2,9 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { wixClientServer } from "@/lib/wixClientServer";
+import { search_categories } from "@/data";
 
-const FeaturedCategories = async ({ title, search_categories }) => {
+const FeaturedCategories = async ({ title }) => {
   const wixClient = await wixClientServer();
   const categories = await wixClient.collections
     .queryCollections()
