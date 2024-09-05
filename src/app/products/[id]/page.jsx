@@ -3,6 +3,7 @@ import ProductCarousel from "@/components/section_components/ProductCarousel";
 import CopyButton from "@/components/icon_components/CopyButton";
 import CustomizeProducts from "@/components/section_components/CustomizeProducts";
 import Add from "@/components/menu_components/Add";
+import DOMPurify from "isomorphic-dompurify";
 
 import { wixClientServer } from "@/lib/wixClientServer";
 
