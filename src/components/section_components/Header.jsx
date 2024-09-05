@@ -24,14 +24,14 @@ const useWindowSize = () => {
 const Header = ({ details }) => {
   const { width } = useWindowSize();
   return (
-    <div className="flex flex-col h-[calc(100vh-6rem)] md:h-auto md:aspect-[21/9] bg-cover bg-center md:flex-row md:items-center relative">
+    <div className="flex flex-col h-[calc(80vh-6rem)] md:h-auto md:aspect-[21/9] bg-cover bg-center md:flex-row md:items-center relative">
       <Image
         src={width >= 768 ? details.mdsrc : details.smsrc}
         alt="Background Image"
         fill="responsive"
-        objectFit="cover"
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 object-cover"
         priority={true}
+        sizes="(max-width: 1080px) 100vw, 768px"
       />
       {/* TEXT CONTAINER */}
       <div className="flex-1 flex flex-col items-start bg-gradient-to-t md:bg-gradient-to-r via-80%  from-webprimary via-transparent to-transparent text-start gap-4 p-6 justify-end md:justify-center md:pb-0 md:px-14 relative z-10 h-full">
