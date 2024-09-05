@@ -23,8 +23,8 @@ export const updateUser = async (formData: FormData) => {
       profile: { nickname: username || undefined },
     });
 
-    console.log(response)
+    //console.log(response)
   } catch (err) {
-    console.log(err);
+    //console.log(err);
   }
 };

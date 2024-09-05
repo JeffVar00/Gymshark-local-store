@@ -131,7 +131,6 @@ const AuthPage = ({ searchParams }) => {
         wixClient.auth.setTokens(tokens);
         router.push("/");
       } else if (response?.loginState === LoginState.FAILURE) {
-        console.log(response?.errorCode);
         if (
           response.errorCode === "invalidEmail" ||
           response.errorCode === "invalidPassword"
@@ -156,7 +155,6 @@ const AuthPage = ({ searchParams }) => {
       } else {
       }
     } catch (err) {
-      console.log(err);
       setError("Something went wrong!");
     } finally {
       setIsLoading(false);

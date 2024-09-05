@@ -4,11 +4,9 @@ import Link from "next/link";
 import DOMPurify from "isomorphic-dompurify";
 
 const ProductCard = ({ item, imageSize }) => {
-  const sizes = item.productOptions.find(
-    (option) => option.name === "Size"
-  )?.choices;
-
-  console.log(item.media?.mainMedia?.image?.url); //static.wixstatic.com
+  // const sizes = item.productOptions.find(
+  //   (option) => option.name === "Size"
+  // )?.choices;
 
   return (
     <div className="h-full">

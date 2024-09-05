@@ -32,7 +32,7 @@ const BagMenu = ({ toggleMenu }) => {
         window.location.href = redirectSession.fullUrl;
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
