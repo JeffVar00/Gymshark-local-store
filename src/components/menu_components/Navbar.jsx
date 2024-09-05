@@ -47,38 +47,6 @@ const Navbar = () => {
     getCategories();
   }, [wixClient]);
 
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  const controlNavbar = useCallback(() => {
-    if (typeof window !== "undefined") {
-      if (window.innerWidth < 1000) {
-        if (window.scrollY > lastScrollY) {
-          // Scroll down
-          setShowNavbar(false);
-        } else {
-          // Scroll up
-          setShowNavbar(true);
-        }
-        setLastScrollY(window.scrollY);
-      } else {
-        setShowNavbar(true);
-      }
-    }
-  }, [lastScrollY]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", controlNavbar);
-      window.addEventListener("resize", controlNavbar);
-
-      return () => {
-        window.removeEventListener("scroll", controlNavbar);
-        window.removeEventListener("resize", controlNavbar);
-      };
-    }
-  }, [controlNavbar]);
-
   // SEARCH MENU LOGIC
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -129,9 +97,7 @@ const Navbar = () => {
   return (
     <div>
       <nav
-        className={`w-full z-50 flex justify-between items-center text-webprimary bg-websecundary font-bold h-14 px-4 lg:h-16 lg:px-16 transition-transform duration-300 fixed top-0 ${
-          showNavbar ? "transform translate-y-0" : "transform -translate-y-full"
-        }`}
+        className={`w-full z-50 flex justify-between items-center text-webprimary bg-websecundary font-bold h-14 px-4 lg:h-16 lg:px-16 transition-transform duration-300 fixed top-0 }`}
       >
         {/* MOBILE MENU */}
         <div className="flex gap-4 items-center justify-start flex-1 lg:hidden">

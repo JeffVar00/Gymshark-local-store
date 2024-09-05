@@ -1,23 +1,36 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+
+const useWindowSize = () => {
+  const [windowSize, setWindowSize] = useState({ width: undefined });
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({ width: window.innerWidth });
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return windowSize;
+};
 
 const Header = ({ details }) => {
+  const { width } = useWindowSize();
   return (
     <div className="flex flex-col h-[calc(100vh-6rem)] md:h-auto md:aspect-[21/9] bg-cover bg-center md:flex-row md:items-center relative">
       <Image
-        src={details.smsrc}
+        src={width >= 768 ? details.mdsrc : details.smsrc}
         alt="Background Image"
-        layout="fill"
+        fill="responsive"
         objectFit="cover"
-        className="absolute inset-0 z-0 md:hidden"
-        priority={true}
-      />
-      <Image
-        src={details.mdsrc}
-        alt="Background Image"
-        layout="fill"
-        objectFit="cover"
-        className="absolute inset-0 z-0 hidden md:flex"
+        className="absolute inset-0 z-0"
         priority={true}
       />
       {/* TEXT CONTAINER */}

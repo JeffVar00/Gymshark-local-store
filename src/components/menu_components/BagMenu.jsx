@@ -10,7 +10,7 @@ import { currentCart } from "@wix/ecom";
 
 const BagMenu = ({ toggleMenu }) => {
   const wixClient = useWixClient();
-  const { cart, isLoading, removeItem } = useCartStore();
+  const { cart, counter, isLoading, removeItem } = useCartStore();
 
   const handleCheckout = async () => {
     try {
@@ -130,7 +130,11 @@ const BagMenu = ({ toggleMenu }) => {
           <div className="fixed bottom-20 left-0 px-6 -0 flex flex-col w-full border-b-2 border-gray-200 text-base">
             <div className="pb-5 flex flex-col justify-center h-full w-full gap-3 text-gray-700 ">
               <div className="flex justify-between">
-                <span className="">Sub Total (3 elements)</span>
+                {counter > 1 ? (
+                  <span className="">Sub Total ({counter} elements)</span>
+                ) : (
+                  <span className="">Sub Total ({counter} element)</span>
+                )}
                 <span className="">{cart.subtotal.formattedAmount}</span>
               </div>
               <div className="flex justify-between font-bold">

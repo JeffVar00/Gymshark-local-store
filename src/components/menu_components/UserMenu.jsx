@@ -33,13 +33,13 @@ const UserMenu = ({ toggleMenu }) => {
   const OPTIONS = [
     {
       _id: "1",
-      name: "Your Profile",
+      name: "Profile",
       onClick: handleProfile,
       img: "/banner.jpg",
     },
     {
       _id: "2",
-      name: "Your Orders",
+      name: "Orders",
       onClick: handleOrders,
       img: "/banner2.jpg",
     },

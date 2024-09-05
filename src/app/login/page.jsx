@@ -377,7 +377,7 @@ const AuthPage = ({ searchParams }) => {
             </p>
           )}
           {message && (
-            <div className="text-green-600 font-semibold text-center">
+            <div className="text-green-800 text-sm font-semibold text-center mt-4">
               {message}
             </div>
           )}

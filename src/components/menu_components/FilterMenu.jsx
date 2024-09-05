@@ -34,6 +34,16 @@ export const FilterMenu = ({ sub_categories = [] }) => {
     sort: "",
     categories: [],
   });
+  const [emptyFilters, setEmptyFilters] = useState(true);
+
+  const areFiltersEmpty = () => {
+    return (
+      !searchParams.collections &&
+      !searchParams.min &&
+      !searchParams.max &&
+      !searchParams.sort
+    );
+  };
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -64,14 +74,7 @@ export const FilterMenu = ({ sub_categories = [] }) => {
     }
 
     replace(`${pathname}?${params.toString()}`);
-  };
-
-  const areFiltersEmpty = () => {
-    return (
-      filters?.categories.length === 0 &&
-      filters?.sort === "" &&
-      inputRefs.current.every((ref) => !ref.value)
-    );
+    areFiltersEmpty() ? setEmptyFilters(true) : setEmptyFilters(false);
   };
 
   const handleClearFilters = () => {
@@ -88,6 +91,7 @@ export const FilterMenu = ({ sub_categories = [] }) => {
       if (ref) ref.value = "";
     });
     replace(`${pathname}?${params.toString()}`);
+    setEmptyFilters(true);
   };
 
   return (
@@ -96,9 +100,9 @@ export const FilterMenu = ({ sub_categories = [] }) => {
         <h2 className="font-bold uppercase">Filter & Sort</h2>
         <button
           className={`text-webprimary ${
-            areFiltersEmpty ? "cursor-not-allowed opacity-50" : ""
+            emptyFilters ? "cursor-not-allowed opacity-50" : ""
           }`}
-          disabled={areFiltersEmpty()}
+          disabled={emptyFilters}
           onClick={handleClearFilters}
         >
           Clear All

@@ -116,12 +116,12 @@ const OrdersPage = async () => {
               <p className="text-gray-700 text-sm text-center">
                 Shop now and get the best deals
               </p>
-              <Link href="/collections?cat=women">
+              <Link href="/collections?cat=men">
                 <button className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase">
                   Shop Men
                 </button>
               </Link>
-              <Link href="/collections?cat=men">
+              <Link href="/collections?cat=women">
                 <button className="text-sm w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase">
                   Shop Women
                 </button>

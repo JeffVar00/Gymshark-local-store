@@ -2,6 +2,12 @@
 
 import { wixClientServer } from "./wixClientServer";
 
+type ContactUpdate = {
+  firstName?: string;
+  lastName?: string;
+  phones?: string[];
+};
+
 export const updateUser = async (formData: FormData) => {
   const wixClient = await wixClientServer();
 
@@ -13,18 +19,23 @@ export const updateUser = async (formData: FormData) => {
   const phone = formData.get("phone") as string;
 
   try {
+    const contactUpdate: ContactUpdate = {
+      firstName: firstName || undefined,
+      lastName: lastName || undefined,
+    };
+
+    if (phone && phone.trim()) {
+      contactUpdate["phones"] = [phone];
+    }
+
     const response = await wixClient.members.updateMember(id, {
-      contact: {
-        firstName: firstName || undefined,
-        lastName: lastName || undefined,
-        phones: [phone] || undefined,
-      },
+      contact: contactUpdate,
       loginEmail: email || undefined,
       profile: { nickname: username || undefined },
     });
 
-    //console.log(response)
+    console.log(response);
   } catch (err) {
-    //console.log(err);
+    console.log(err);
   }
 };

@@ -62,9 +62,11 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
     .hasSome("_id", uniqueCollectionIds)
     .find();
 
-  const namesToRemove = ["All Products", "Featured", searchParams.cat].map(
-    (name) => name.toLowerCase()
-  );
+  const namesToRemove = [
+    "All Products",
+    "Featured",
+    searchParams?.cat || "",
+  ].map((name) => name.toLowerCase());
 
   const filter_collectionNames = collections.items
     .map((collection) => collection.name)
