@@ -47,7 +47,7 @@ const BagMenu = ({ toggleMenu }) => {
           </button>
         </div>
       </div>
-      {!cart.lineItems ? (
+      {!cart.lineItems || cart.lineItems.length == 0 ? (
         <div className="flex flex-col items-center h-full justify-center gap-3 mb-20">
           <h2 className="font-bold uppercase">Your bag is empty</h2>
           <p className="text-gray-700 text-sm">

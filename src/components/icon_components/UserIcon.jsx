@@ -15,7 +15,11 @@ const UserIcon = ({ onClick }) => {
   return (
     <div>
       <div className="flex flex-row gap-4">
-        <button onClick={onClick} className="flex items-center gap-2">
+        <button
+          onClick={onClick}
+          className="flex items-center gap-2"
+          aria-label="Profile"
+        >
           <div className="relative w-6 h-6">
             <svg
               xmlns="http://www.w3.org/2000/svg"

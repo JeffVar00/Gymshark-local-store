@@ -1,31 +1,25 @@
-"use client";
+import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 const Header = ({ details }) => {
-  const [backgroundImageUrl, setBackgroundImageUrl] = useState("");
-
-  useEffect(() => {
-    const updateUrls = () => {
-      if (window.innerWidth >= 768) {
-        // For medium and larger screens
-        setBackgroundImageUrl(details.mdsrc);
-      } else {
-        // For small screens
-        setBackgroundImageUrl(details.smsrc);
-      }
-    };
-    updateUrls();
-    window.addEventListener("resize", updateUrls);
-
-    return () => window.removeEventListener("resize", updateUrls);
-  }, [details.smsrc, details.mdsrc]);
-
   return (
-    <div
-      className="flex flex-col h-[calc(100vh-6rem)] md:h-auto md:aspect-[21/9] bg-cover bg-center md:flex-row md:items-center relative"
-      style={{ backgroundImage: `url(${backgroundImageUrl})` }}
-    >
+    <div className="flex flex-col h-[calc(100vh-6rem)] md:h-auto md:aspect-[21/9] bg-cover bg-center md:flex-row md:items-center relative">
+      <Image
+        src={details.smsrc}
+        alt="Background Image"
+        layout="fill"
+        objectFit="cover"
+        className="absolute inset-0 z-0 md:hidden"
+        priority={true}
+      />
+      <Image
+        src={details.mdsrc}
+        alt="Background Image"
+        layout="fill"
+        objectFit="cover"
+        className="absolute inset-0 z-0 hidden md:flex"
+        priority={true}
+      />
       {/* TEXT CONTAINER */}
       <div className="flex-1 flex flex-col items-start bg-gradient-to-t md:bg-gradient-to-r via-80%  from-webprimary via-transparent to-transparent text-start gap-4 p-6 justify-end md:justify-center md:pb-0 md:px-14 relative z-10 h-full">
         <h1 className="text-websecundary text-2xl font-bold md:text-3xl md:max-w-xl xl:text-6xl">

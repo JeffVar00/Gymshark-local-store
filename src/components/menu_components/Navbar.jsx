@@ -140,6 +140,7 @@ const Navbar = () => {
             className="rounded-xl text-webprimary hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             aria-controls="mobile-menu"
             aria-expanded="false"
+            aria-label="Open main menu"
           >
             <span className="sr-only">Open main menu</span>
             <Bars3Icon className="block h-6 w-6" />
@@ -149,6 +150,7 @@ const Navbar = () => {
             className="rounded-xl text-webprimary hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             aria-controls="mobile-menu"
             aria-expanded="false"
+            aria-label="Open search menu"
           >
             <span className="sr-only">Open search menu</span>
             <MagnifyingGlassIcon className="block h-6 w-6" />

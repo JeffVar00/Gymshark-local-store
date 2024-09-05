@@ -2,7 +2,7 @@
 
 import { useCartStore } from "@/hooks/useCartStore";
 import { useWixClient } from "@/hooks/useWixClient";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Spinner from "@/components/icon_components/Spinner";
 
 const Add = ({ productId, variantId, stockStatus, stockNumber }) => {
@@ -29,15 +29,7 @@ const Add = ({ productId, variantId, stockStatus, stockNumber }) => {
   };
 
   const wixClient = useWixClient();
-  const { addItem, getCart, isLoading } = useCartStore();
-
-  useEffect(() => {
-    try {
-      getCart(wixClient);
-    } catch (e) {
-      null;
-    }
-  }, [wixClient, getCart]);
+  const { addItem, isLoading } = useCartStore();
 
   return (
     <div className="flex flex-col gap-4 w-full">

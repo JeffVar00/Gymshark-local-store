@@ -25,7 +25,7 @@ function ListToBottomList({ title, references }) {
         className="flex justify-between items-center cursor-pointer lg:cursor-default py-4 lg:py-0 no-tap-highlight"
         onClick={isMdOrSmaller ? togglePages : undefined}
       >
-        <h4 className="text-sm font-bold lg:mb-4">{title}</h4>
+        <h1 className="text-sm font-bold lg:mb-4">{title}</h1>
         <span className="text-xl font-bold lg:hidden">
           {pagesOpen ? "-" : "+"}
         </span>
