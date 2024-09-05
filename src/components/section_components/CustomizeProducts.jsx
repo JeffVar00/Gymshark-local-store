@@ -60,6 +60,13 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
     });
   };
 
+  let hasProperties = false;
+  for (const key in selectedOptions) {
+    if (Object.prototype.hasOwnProperty.call(selectedOptions, key)) {
+      hasProperties = true;
+      break;
+    }
+  }
   return (
     <div className="flex flex-col gap-6 items-center justify-center text-center h-full w-full">
       {productOptions.map((option) => (
@@ -126,12 +133,13 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
         variantId={
           selectedVariant?._id || "00000000-0000-0000-0000-000000000000"
         }
-        stockStatus={
+        stockNumber={
           selectedVariant?.stock?.trackQuantity
-            ? true
-            : selectedVariant?.stock?.inStock || false
+            ? selectedVariant?.stock?.quantity
+            : hasProperties
+            ? null
+            : false
         }
-        stockNumber={selectedVariant?.stock?.quantity || null}
       />
       {/* COLOR SELECTOR SKELETON */}
       {/* 

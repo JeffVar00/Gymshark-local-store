@@ -62,7 +62,7 @@ const ProductPage = async ({ params }) => {
           )}
           <CopyButton />
 
-          {product.variants && product.productOptions ? (
+          {product.variants && product.productOptions.length > 0 ? (
             <CustomizeProducts
               productId={product._id}
               variants={product.variants}
@@ -72,12 +72,11 @@ const ProductPage = async ({ params }) => {
             <Add
               productId={product._id}
               variantId="00000000-0000-0000-0000-000000000000"
-              stockStatus={
+              stockNumber={
                 product.stock?.trackInventory
-                  ? true
-                  : product.stock?.inventoryStatus || false
+                  ? product.stock?.quantity || 0
+                  : null
               }
-              stockNumber={product.stock?.quantity || 0}
             />
           )}
         </div>

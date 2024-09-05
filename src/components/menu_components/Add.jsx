@@ -5,25 +5,24 @@ import { useWixClient } from "@/hooks/useWixClient";
 import { useState } from "react";
 import Spinner from "@/components/icon_components/Spinner";
 
-const Add = ({ productId, variantId, stockStatus, stockNumber }) => {
+const Add = ({ productId, variantId, stockNumber }) => {
   const [quantity, setQuantity] = useState(1);
 
   const handleQuantity = (type) => {
     if (type === "d" && quantity > 1) {
       setQuantity((prev) => prev - 1);
     }
-    if (type === "i" && (quantity < stockNumber || isValidStock)) {
+    if (type === "i" && (stockNumber ? quantity < stockNumber : isValidStock)) {
       setQuantity((prev) => prev + 1);
     }
   };
 
   const isValidStock = () => {
-    if (stockStatus) {
-      if (stockNumber == null) {
-        return true;
-      } else if (stockNumber > 0) {
-        return true;
-      }
+    if (stockNumber > 0) {
+      return true;
+    }
+    if (stockNumber === null) {
+      return true;
     }
     return false;
   };
@@ -51,12 +50,14 @@ const Add = ({ productId, variantId, stockStatus, stockNumber }) => {
             <button
               className="cursor-pointer text-xl disabled:cursor-not-allowed disabled:opacity-20"
               onClick={() => handleQuantity("i")}
-              disabled={quantity === stockNumber || !isValidStock()}
+              disabled={
+                stockNumber ? quantity === stockNumber : !isValidStock()
+              }
             >
               +
             </button>
           </div>
-          {stockNumber < 1 && stockStatus === false ? (
+          {stockNumber && stockNumber < 1 ? (
             <div className="text-xs">Product is out of stock</div>
           ) : (
             stockNumber > 0 && (
