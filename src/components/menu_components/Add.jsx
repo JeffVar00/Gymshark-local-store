@@ -32,7 +32,11 @@ const Add = ({ productId, variantId, stockStatus, stockNumber }) => {
   const { addItem, getCart, isLoading } = useCartStore();
 
   useEffect(() => {
-    getCart(wixClient);
+    try {
+      getCart(wixClient);
+    } catch (e) {
+      null;
+    }
   }, [wixClient, getCart]);
 
   return (
