@@ -3,11 +3,7 @@ import "./globals.css";
 import Footer from "@/components/section_components/Footer";
 import { WixClientContextProvider } from "@/context/wixContext";
 
-import dynamic from "next/dynamic";
-
-const Navbar = dynamic(() =>
-  import("@/components/menu_components/Navbar", { ssr: false })
-);
+import NavbarModal from "@/components/section_components/NavbarModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +27,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <WixClientContextProvider>
-          <Navbar />
+          <NavbarModal />
           {children}
           <Footer />
         </WixClientContextProvider>
