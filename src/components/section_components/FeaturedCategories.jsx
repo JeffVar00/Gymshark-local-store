@@ -52,7 +52,6 @@ const FeaturedCategories = async ({ title }) => {
                     </h1>
                     <Link
                       href={`collections?cat=${item.slug}`}
-                      aria-label={`Explore ${item.slug} collection at MMClotheStore`}
                       className="bg-websecundary text-center text-webprimary md:w-36 rounded-full text-xs lg:text-sm py-3 px-6 lg:px-8 font-bold mt-2 uppercase"
                     >
                       Shop Now
