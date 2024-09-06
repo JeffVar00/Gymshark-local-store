@@ -1,7 +1,6 @@
 import React from "react";
 import SocialMedia from "./SocialMedia";
 import PhoneIcon from "@/components/icon_components/PhoneIcon";
-import Link from "next/link";
 import PageIcon from "../icon_components/PageIcon";
 
 function Contact() {

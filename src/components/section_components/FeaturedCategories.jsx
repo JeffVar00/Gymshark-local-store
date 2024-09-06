@@ -34,8 +34,10 @@ const FeaturedCategories = async ({ title }) => {
                       src={item.media?.mainMedia?.image?.url}
                       alt={item.name}
                       fill="responsive"
-                      sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 100vw"
                       className="w-full h-full object-cover rounded-md"
+                      loading="lazy"
+                      priority={false}
                     />
                   ) : (
                     <div className="w-full h-full bg-noimagebackground flex items-center justify-center">

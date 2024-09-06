@@ -1,38 +1,40 @@
-"use client";
-
-import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-
-const useWindowSize = () => {
-  const [windowSize, setWindowSize] = useState({ width: undefined });
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowSize({ width: window.innerWidth });
-    }
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return windowSize;
-};
+import { getImageProps } from "next/image";
 
 const Header = ({ details }) => {
-  const { width } = useWindowSize();
+  const common = { sizes: "100vw" };
+  const {
+    props: { srcSet: desktop },
+  } = getImageProps({
+    ...common,
+    width: 1440,
+    height: 875,
+    quality: 80,
+    src: details.mdsrc,
+  });
+  const {
+    props: { srcSet: mobile, ...rest },
+  } = getImageProps({
+    ...common,
+    width: 750,
+    height: 1334,
+    quality: 70,
+    src: details.smsrc,
+  });
+
   return (
-    <div className="flex flex-col h-[calc(80vh-6rem)] md:h-auto md:aspect-[21/9] bg-cover bg-center md:flex-row md:items-center relative">
-      <Image
-        src={width >= 768 ? details.mdsrc : details.smsrc}
-        alt="Background Image"
-        fill="responsive"
-        className="absolute inset-0 z-0 object-cover"
-        priority={true}
-        sizes="(max-width: 1080px) 100vw, 768px"
-      />
+    <div className="flex flex-col h-[calc(80vh-6rem)] md:h-auto md:aspect-[21/9] bg-cover bg-center md:flex-row md:items-center relative overflow-hidden">
+      <picture className="absolute inset-0 z-0 w-full h-full">
+        <source media="(min-width: 1000px)" srcSet={desktop} />
+        <source media="(min-width: 500px)" srcSet={mobile} />
+        <img
+          alt="Background Image"
+          {...rest}
+          className="w-full h-full object-cover" // Ensures the image scales to the container
+          loading="eager"
+        />
+      </picture>
+
       {/* TEXT CONTAINER */}
       <div className="flex-1 flex flex-col items-start bg-gradient-to-t md:bg-gradient-to-r via-80%  from-webprimary via-transparent to-transparent text-start gap-4 p-6 justify-end md:justify-center md:pb-0 md:px-14 relative z-10 h-full">
         <h1 className="text-websecundary text-2xl font-bold md:text-3xl md:max-w-xl xl:text-6xl">
