@@ -84,6 +84,7 @@ const BagMenu = ({ toggleMenu }) => {
                   fill="responsive"
                   sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-contain rounded-md"
+                  priority={true}
                 />
               </div>
               <div className="text-sm flex-2 w-full text-start py-4">

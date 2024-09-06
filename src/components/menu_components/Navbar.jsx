@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { MagnifyingGlassIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
-import { search_categories } from "@/data";
 import PageIcon from "@/components/icon_components/PageIcon";
 import CartIcon from "@/components/icon_components/CartIcon";
 import UserIcon from "@/components/icon_components/UserIcon";
@@ -16,7 +15,6 @@ import dynamic from "next/dynamic";
 const UserMenu = dynamic(() => import("./UserMenu"), { ssr: false });
 
 const Navbar = () => {
-  const [categories, setCategories] = useState([]);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const toggleProfile = () => {
@@ -35,17 +33,6 @@ const Navbar = () => {
       toggleProfile();
     }
   };
-
-  useEffect(() => {
-    const getCategories = async () => {
-      const res = await wixClient.collections
-        .queryCollections()
-        .hasSome("name", search_categories)
-        .find();
-      setCategories(res.items);
-    };
-    getCategories();
-  }, [wixClient]);
 
   // SEARCH MENU LOGIC
 
@@ -151,7 +138,6 @@ const Navbar = () => {
       >
         {isMenuOpen && (
           <MobileMenu
-            categories={categories}
             toggleMenu={toggleMenu}
             searchText={searchText}
             toggleSearch={toggleSearch}

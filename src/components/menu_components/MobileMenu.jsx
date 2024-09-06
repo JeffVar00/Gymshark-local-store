@@ -1,12 +1,27 @@
 "use client";
 
-import React from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useWixClient } from "@/hooks/useWixClient";
+import { search_categories } from "@/data";
 import { XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 import Image from "next/image";
 
-const MobileMenu = ({ categories, toggleMenu, searchText, toggleSearch }) => {
+const MobileMenu = ({ toggleMenu, searchText, toggleSearch }) => {
+  const [categories, setCategories] = useState([]);
+  const wixClient = useWixClient();
+  useEffect(() => {
+    const getCategories = async () => {
+      const res = await wixClient.collections
+        .queryCollections()
+        .hasSome("name", search_categories)
+        .find();
+      setCategories(res.items);
+    };
+    getCategories();
+  }, [wixClient]);
+
   return (
     <div className="flex flex-col  h-full overflow-y-auto ">
       <div className="sticky top-0 bg-white z-20">

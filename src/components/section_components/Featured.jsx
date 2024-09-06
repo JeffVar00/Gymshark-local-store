@@ -22,15 +22,15 @@ const Featured = async ({
     <div className="w-auto flex flex-col mt-10 mb-10 mx-4 md:mx-12 md:my-24 xl:mx-24 xl:my-20">
       {/* TITLE */}
       <div className="flex-1 flex flex-col items-start text-start px-1 justify-end z-10">
-        <h1 className="text-md md:font-bold">{subtitle}</h1>
+        <h1 className="text-xs lg:text-base md:font-bold">{subtitle}</h1>
         <div className="flex flex-row gap-4 items-end">
-          <h2 className="text-xl lg:text-2xl font-bold">{title}</h2>
+          <h2 className="text-sm lg:text-2xl font-bold">{title}</h2>
           {categoryName && (
             <Link
               href={`collections?cat=${categoryName}`}
-              className="font-bold underline hover:text-gray-600"
+              className="text-xs lg:text-base font-bold underline hover:text-gray-600"
             >
-              More of {categoryName}
+              More {categoryName}
             </Link>
           )}
         </div>
