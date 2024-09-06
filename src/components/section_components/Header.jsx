@@ -4,7 +4,9 @@ import Link from "next/link";
 import { getImageProps } from "next/image";
 
 const Header = ({ details }) => {
-  const common = { sizes: "100vw" };
+  const common = {
+    sizes: "(max-width: 768px) 90vw, (max-width: 1024px) 50vw, 1440px",
+  };
   const {
     props: { srcSet: desktop },
   } = getImageProps({
