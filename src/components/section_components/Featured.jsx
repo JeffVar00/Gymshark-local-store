@@ -30,7 +30,7 @@ const Featured = async ({
               href={`collections?cat=${categoryName}`}
               className="font-bold underline hover:text-gray-600"
             >
-              See more
+              More of {categoryName}
             </Link>
           )}
         </div>

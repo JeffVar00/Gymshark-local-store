@@ -5,7 +5,7 @@ import { getImageProps } from "next/image";
 
 const Header = ({ details }) => {
   const common = {
-    sizes: "(max-width: 768px) 90vw, (max-width: 1024px) 50vw, 1440px",
+    sizes: "100vw",
   };
   const {
     props: { srcSet: desktop },
