@@ -191,7 +191,8 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
             {/* SINGLE ITEM */}
             {searchResults.map((product) => (
               <div
-                key={product.id}
+                key={product._id}
+                onClick={toggleMenu}
                 className="mx-1 text-webprimary flex flex-col justify-around w-full lg:w-[22vw] xl:w-[18vw] group"
               >
                 <ProductCard

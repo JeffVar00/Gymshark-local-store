@@ -71,65 +71,74 @@ const BagMenu = ({ toggleMenu }) => {
           </Link>
         </div>
       ) : (
-        <div className="w-full px-4 flex flex-col gap-6 pb-36 mt-16 lg:pb-24 overflow-y-auto">
-          {cart.lineItems.map((item) => (
-            <div
-              key={item._id}
-              className={`items-center flex flex-row gap-4 pb-6 border-b-2 border-gray-200`}
-            >
-              <div className="relative w-48 h-full">
-                <Image
-                  src={wixMedia.getScaledToFillImageUrl(item.image, 72, 96, {})}
-                  alt={item.productName?.original}
-                  fill="responsive"
-                  sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-contain rounded-md"
-                  priority={true}
-                />
-              </div>
-              <div className="text-sm flex-2 w-full text-start py-4">
-                <h2 className="">{item.productName?.original}</h2>
-                <p className=" text-gray-500 font-bold text-xs">
-                  {item.availability?.status}
-                </p>
-                {/* Quantity selector as dropdown */}
-                <div className="flex flex-col sm:flex-row justify-start items-start sm:justify-between sm:items-center mt-5 gap-3 sm:gap-0">
-                  <button
-                    style={{ cursor: isLoading ? "not-allowed" : "pointer" }}
-                    onClick={() => removeItem(wixClient, item._id)}
-                    className="text-webprimary rounded-full bg-gray-200 hover:bg-gray-300 p-2"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="h-5 w-5 "
+        <div className="flex flex-col h-screen">
+          <div className="w-full px-4 flex flex-col gap-6 mt-16 overflow-y-auto">
+            {cart.lineItems.map((item) => (
+              <div
+                key={item._id}
+                className={`items-center flex flex-row gap-4 pb-6 border-b-2 border-gray-200`}
+              >
+                <div className="relative w-48 h-full">
+                  <Image
+                    src={wixMedia.getScaledToFillImageUrl(
+                      item.image,
+                      72,
+                      96,
+                      {}
+                    )}
+                    alt={item.productName?.original}
+                    fill="responsive"
+                    sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-contain rounded-md"
+                    priority={true}
+                  />
+                </div>
+                <div className="text-sm flex-2 w-full text-start py-4">
+                  <h2 className="">{item.productName?.original}</h2>
+                  <p className=" text-gray-500 font-bold text-xs">
+                    {item.availability?.status}
+                  </p>
+                  {/* Quantity selector as dropdown */}
+                  <div className="flex flex-col sm:flex-row justify-start items-start sm:justify-between sm:items-center mt-5 gap-3 sm:gap-0">
+                    <button
+                      style={{ cursor: isLoading ? "not-allowed" : "pointer" }}
+                      onClick={() => removeItem(wixClient, item._id)}
+                      className="text-webprimary rounded-full bg-gray-200 hover:bg-gray-300 p-2"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
-                      />
-                    </svg>
-                  </button>
-                  <div className="font-bold flex flex-row items-center">
-                    <div className="p-1 rounded-sm flex items-center gap-2">
-                      {item.quantity && item.quantity > 1 && (
-                        <div className="text-xs text-gray-700">
-                          {item.quantity} x{" "}
-                        </div>
-                      )}
-                      {item.price?.formattedAmount}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="h-5 w-5 "
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                        />
+                      </svg>
+                    </button>
+                    <div className="font-bold flex flex-row items-center">
+                      <div className="p-1 rounded-sm flex items-center gap-2">
+                        {item.quantity && item.quantity > 1 && (
+                          <div className="text-xs text-gray-700">
+                            {item.quantity} x{" "}
+                          </div>
+                        )}
+                        {item.price?.formattedAmount}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-          <div className="fixed bottom-20 left-0 px-6 -0 flex flex-col w-full border-b-2 border-gray-200 text-base">
-            <div className="pb-5 flex flex-col justify-center h-full w-full gap-3 text-gray-700 ">
+            ))}
+          </div>
+          <div
+            className={`bg-white w-full flex flex-col items-center justify-center `}
+          >
+            <div className="text-xs md:text-sm py-5 flex px-6 flex-col justify-center h-full w-full gap-3 text-gray-700 border-b-2">
               <div className="flex justify-between">
                 {counter > 1 ? (
                   <span className="">Sub Total ({counter} elements)</span>
@@ -144,14 +153,10 @@ const BagMenu = ({ toggleMenu }) => {
                 </span>
               </div>
             </div>
-          </div>
-          <div
-            className={`bg-white absolute bottom-0 left-0 w-full flex items-center justify-center`}
-          >
             <button
               disabled={isLoading}
               onClick={handleCheckout}
-              className="m-4 w-full font-bold rounded-xl flex items-center justify-center p-3 bg-webprimary text-websecundary"
+              className="my-8 md:my-0 w-full font-bold rounded-xl flex items-center justify-center p-3 bg-webprimary text-websecundary"
             >
               Checkout
             </button>
