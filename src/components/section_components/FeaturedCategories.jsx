@@ -34,7 +34,7 @@ const FeaturedCategories = async ({ title }) => {
                       src={item.media?.mainMedia?.image?.url}
                       alt={item.name}
                       fill="responsive"
-                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      sizes="100vw"
                       className="w-full h-full object-cover rounded-md"
                       loading="lazy"
                       priority={false}
@@ -52,6 +52,7 @@ const FeaturedCategories = async ({ title }) => {
                     </h1>
                     <Link
                       href={`collections?cat=${item.slug}`}
+                      aria-label={`Explore ${item.slug}collection at MMClotheStore`}
                       className="bg-websecundary text-center text-webprimary md:w-36 rounded-full text-xs lg:text-sm py-3 px-6 lg:px-8 font-bold mt-2 uppercase"
                     >
                       Shop Now
