@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const PageIcon = ({ logo }) => {
   const logoSrc =
-    logo === "white" ? "/pageiconwhite.png" : "/pageiconblack.png";
+    logo === "white" ? "/pageiconwhite.avif" : "/pageiconblack.avif";
 
   return (
     <Link href="/" className="flex items-center justify-center">

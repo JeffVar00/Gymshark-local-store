@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images : {
+        formats: ['image/avif', 'image/webp'],
         loader: 'custom',
         loaderFile: './loader.js',
         remotePatterns: [
@@ -8,7 +9,7 @@ const nextConfig = {
                 protocol: "https",
                 hostname: "static.wixstatic.com",
             },
-          ],
+        ],
     },
 }
 

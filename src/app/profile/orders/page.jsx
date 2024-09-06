@@ -16,7 +16,7 @@ const OrdersPage = async () => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/banner2.jpg')",
+            backgroundImage: "url('/banner2.avif')",
             filter: "blur(1px)",
             zIndex: -10,
           }}

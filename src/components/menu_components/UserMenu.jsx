@@ -35,19 +35,19 @@ const UserMenu = ({ toggleMenu }) => {
       _id: "1",
       name: "Profile",
       onClick: handleProfile,
-      img: "/banner.jpg",
+      img: "/banner.avif",
     },
     {
       _id: "2",
       name: "Orders",
       onClick: handleOrders,
-      img: "/banner2.jpg",
+      img: "/banner2.avif",
     },
     {
       _id: "3",
       name: "Logout",
       onClick: handleLogout,
-      img: "/banner3.jpg",
+      img: "/banner3.avif",
       disabled: isLoading,
     },
   ];

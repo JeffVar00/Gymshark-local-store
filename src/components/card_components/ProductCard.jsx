@@ -19,8 +19,10 @@ const ProductCard = ({ item, imageSize }) => {
                 src={item.media?.mainMedia?.image?.url}
                 alt={item.name}
                 fill="responsive"
-                sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 className="w-full h-full object-cover"
+                loading="lazy"
+                priority={false}
               />
               {item.ribbon && (
                 <div className="absolute bottom-0 left-0 bg-gray-800 text-white text-xs md:text-md px-2 py-1 rounded-md mb-2 ml-2">

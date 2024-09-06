@@ -14,7 +14,7 @@ const SocialMedia = () => {
       >
         <div className="relative w-7 h-7 lg:w-8 lg:h-8">
           <Image
-            src="/facebook.svg"
+            src="/facebook.avif"
             alt="facebook"
             fill="responsive"
             sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
@@ -31,7 +31,7 @@ const SocialMedia = () => {
       >
         <div className="relative w-7 h-7 lg:w-8 lg:h-8">
           <Image
-            src="/instagram.png"
+            src="/instagram.avif"
             alt="instagram"
             fill="responsive"
             sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
