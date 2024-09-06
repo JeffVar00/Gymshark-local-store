@@ -12,7 +12,7 @@ const SocialMedia = () => {
         rel="noopener noreferrer"
         target="_blank"
       >
-        <div className="relative w-7 h-7 lg:w-8 lg:h-8">
+        <div className="relative w-6 h-6 lg:w-7 lg:h-7">
           <Image
             src="/facebook.avif"
             alt="facebook"
