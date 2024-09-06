@@ -165,7 +165,7 @@ const AuthPage = ({ searchParams }) => {
     <div className="min-h-screen h-full flex flex-col lg:flex-row">
       <div
         className="bg-cover hidden lg:flex flex-1 bg-center"
-        style={{ backgroundImage: "url(/banner.jpg)" }}
+        style={{ backgroundImage: "url(/banner.avif)" }}
       >
         <div className="w-full flex items-center justify-start h-full bg-webprimary bg-opacity-50 p-4">
           <div className="text-white ml-8 xl:ml-12">
@@ -186,7 +186,7 @@ const AuthPage = ({ searchParams }) => {
           <div className="flex flex-col gap-4 items-center justify-center">
             <div className="hidden xl:flex relative w-16 h-16">
               <Image
-                src="/pageiconblack.png"
+                src="/pageiconblack.avif"
                 alt="Page icon"
                 fill="responsive"
                 sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"

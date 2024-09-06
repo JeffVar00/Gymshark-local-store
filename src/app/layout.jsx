@@ -15,12 +15,12 @@ export const metadata = {
   description:
     "Discover high-quality fitness and sports apparel at M&M Clothes CR Official Store. Shop Gymshark and top brands to elevate your performance and style.",
   icons: {
-    icon: "/icon.png",
-    shortcut: "/icon.png",
-    apple: "/apple-icon.png",
+    icon: "/icon.avif",
+    shortcut: "/icon.avif",
+    apple: "/apple-icon.avif",
     other: {
       rel: "apple-touch-icon-precomposed",
-      url: "/apple-icon.png",
+      url: "/apple-icon.avif",
     },
   },
 };

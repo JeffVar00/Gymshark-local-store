@@ -16,8 +16,8 @@ export default async function Home() {
           title: "Fashion just arrived",
           description:
             "We all know you’re gonna be wearing this days. Might as well grab them now.",
-          smsrc: "/banner.jpg",
-          mdsrc: "/banner.jpg",
+          smsrc: "/banner.avif",
+          mdsrc: "/banner.avif",
           buttons: [
             {
               text: "Shop Men",
@@ -54,8 +54,8 @@ export default async function Home() {
           title: "GYMSHARK MERCH",
           description:
             "For locking in. For life. For the love of the game. For levelling up. Go get it before it’s gone.",
-          smsrc: "/bannerbottom.jpg",
-          mdsrc: "/banner2.jpg",
+          smsrc: "/bannerbottom.avif",
+          mdsrc: "/banner2.avif",
           buttons: [
             {
               text: "Shop Now",
