@@ -12,8 +12,6 @@ const BagMenu = ({ toggleMenu }) => {
   const wixClient = useWixClient();
   const { cart, counter, isLoading, removeItem } = useCartStore();
 
-  console.log(cart);
-
   const handleCheckout = async () => {
     try {
       const checkout =
