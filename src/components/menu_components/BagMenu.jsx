@@ -142,7 +142,7 @@ const BagMenu = ({ toggleMenu }) => {
           </div>
 
           {/* Checkout Section */}
-          <div className="bg-white w-full flex-shrink-0 flex flex-col items-center justify-center">
+          <div className="bg-white w-full flex-shrink-0 flex flex-col items-center justify-center h-auto">
             <div className="text-xs md:text-sm py-5 flex px-6 flex-col justify-center w-full gap-3 text-gray-700 border-b-2">
               <div className="flex justify-between">
                 {counter > 1 ? (
@@ -159,7 +159,7 @@ const BagMenu = ({ toggleMenu }) => {
             <button
               disabled={isLoading}
               onClick={handleCheckout}
-              className="text-xs md:text-base my-8 w-full font-bold rounded-xl flex items-center justify-center p-3 bg-webprimary text-websecundary"
+              className="text-xs md:text-base mt-6 mb-12 w-full font-bold rounded-xl flex items-center justify-center p-3 bg-webprimary text-websecundary"
             >
               Checkout
             </button>
