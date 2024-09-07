@@ -11,16 +11,16 @@ const ProductCard = ({ item, imageSize }) => {
   return (
     <div className="h-full">
       {/* IMAGE CONTAINER */}
-      <div className={`relative w-full ${imageSize}`}>
+      <div className={`relative w-full ${imageSize} `}>
         {item.media?.mainMedia?.image?.url ? (
           <Link href={`/products/${item.slug}`}>
-            <div className={`relative w-full h-full`}>
+            <div className={`relative w-full h-full rounded-lg`}>
               <Image
                 src={item.media?.mainMedia?.image?.url}
                 alt={item.name}
                 fill="responsive"
                 sizes="100vw"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-lg"
                 loading="lazy"
                 priority={false}
               />

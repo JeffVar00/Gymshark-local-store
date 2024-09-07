@@ -48,7 +48,7 @@ const Featured = async ({
             >
               <ProductCard
                 item={product}
-                imageSize="h-[100vw] md:h-[30vw] xl:h-[28vw]"
+                imageSize="h-[113vw] md:h-[33vw] xl:h-[31vw]"
               />
             </div>
           ))}

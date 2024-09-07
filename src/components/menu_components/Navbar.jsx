@@ -84,7 +84,7 @@ const Navbar = () => {
   return (
     <div>
       <nav
-        className={`w-full z-50 flex justify-between items-center text-webprimary bg-websecundary font-bold h-14 px-4 lg:h-16 lg:px-16 transition-transform duration-300 fixed top-0 }`}
+        className={`w-full z-50 flex justify-between items-center text-webprimary bg-websecundary font-bold h-14 px-4 lg:h-16 lg:px-16 fixed top-0 }`}
       >
         {/* MOBILE MENU */}
         <div className="flex gap-4 items-center justify-start flex-1 lg:hidden">

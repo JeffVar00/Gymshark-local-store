@@ -12,6 +12,8 @@ const BagMenu = ({ toggleMenu }) => {
   const wixClient = useWixClient();
   const { cart, counter, isLoading, removeItem } = useCartStore();
 
+  console.log(cart);
+
   const handleCheckout = async () => {
     try {
       const checkout =
@@ -86,13 +88,13 @@ const BagMenu = ({ toggleMenu }) => {
                   <Image
                     src={wixMedia.getScaledToFillImageUrl(
                       item.image,
-                      72,
-                      96,
+                      120,
+                      170,
                       {}
                     )}
                     alt={item.productName?.original}
                     fill="responsive"
-                    sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 70vw, 150px"
                     className="object-contain rounded-md"
                     priority={true}
                   />
@@ -101,7 +103,19 @@ const BagMenu = ({ toggleMenu }) => {
                   <h2 className="text-xs md:text-sm">
                     {item.productName?.original}
                   </h2>
-                  <p className="text-gray-500 font-bold text-xs">
+                  {item.descriptionLines &&
+                    item.descriptionLines.map((line, index) => (
+                      <p
+                        key={index}
+                        className="text-web-primary font-bold text-xs"
+                      >
+                        {line.name.translated}:{" "}
+                        {line.colorInfo
+                          ? line.colorInfo.translated
+                          : line.plainText?.translated}
+                      </p>
+                    ))}
+                  <p className="text-gray-500 text-xs">
                     {item.availability?.status}
                   </p>
                   <div className="flex flex-col sm:flex-row justify-start items-start sm:justify-between sm:items-center mt-5 gap-3 sm:gap-0">

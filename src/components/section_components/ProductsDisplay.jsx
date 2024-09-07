@@ -96,7 +96,7 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
               </div>
               <div className="w-full">
                 <div
-                  className={`grid  md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 grid-cols-2`}
+                  className={`grid md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 grid-cols-2`}
                 >
                   {res.items.map((product) => (
                     <div
@@ -105,7 +105,7 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
                     >
                       <ProductCard
                         item={product}
-                        imageSize={`h-[60vw] md:h-[40vw] lg:h-[30vw] xl:h-[26vw] 2xl:h-[20vw]`}
+                        imageSize={`h-[67vw] md:h-[45vw] lg:h-[35vw] xl:h-[27.6vw] 2xl:h-[22.5vw]`}
                       />
                     </div>
                   ))}

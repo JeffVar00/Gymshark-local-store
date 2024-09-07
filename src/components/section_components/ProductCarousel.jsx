@@ -28,7 +28,7 @@ const ProductCarousel = ({ imgs }) => {
   }, [currentIndex]);
 
   return (
-    <div className="w-full md:w-1/2 overflow-y-auto mt-6 md:mt-0">
+    <div className="w-full md:w-1/2 mt-6 md:mt-0">
       {/* Carousel */}
       <div className="md:hidden w-full relative h-full overflow-hidden lg:items-center lg:justify-center">
         <div
@@ -38,7 +38,7 @@ const ProductCarousel = ({ imgs }) => {
           {imgs.map((image, index) => (
             <div
               key={index}
-              className="snap-center flex-shrink-0 w-full h-[120vw] relative"
+              className="snap-center flex-shrink-0 w-full h-[142vw] relative"
             >
               <Image
                 priority={true}
@@ -80,12 +80,14 @@ const ProductCarousel = ({ imgs }) => {
       {/* Grid for medium and up */}
 
       {imgs.length > 2 ? (
-        <div className="hidden md:grid grid-cols-1 h-screen lg:grid-cols-2 gap-1 mt-6 lg:mt-8">
+        <div className="hidden overflow-y-auto md:grid grid-cols-1 max-h-[calc(100vh-4rem)] lg:grid-cols-2 gap-1 mt-6 lg:mt-8">
           {imgs.map((image, index) => (
             <div
               key={index}
-              className={`w-full h-[59vw] relative ${
-                (index + 1) % 3 === 0 ? "lg:col-span-2 h-[73vw]" : "lg:h-[30vw]"
+              className={`w-full h-[69vw] relative ${
+                (index + 1) % 3 === 0
+                  ? "lg:col-span-2 h-[73vw]"
+                  : "lg:h-[34.6vw]"
               }`}
             >
               <Image
@@ -100,8 +102,8 @@ const ProductCarousel = ({ imgs }) => {
         </div>
       ) : imgs.length > 0 ? (
         <div
-          className={`items-center hidden h-screen md:grid md:grid-cols-1 gap-1 ${
-            imgs.length == 2 ? "mt-6 lg:mt-8" : ""
+          className={`h-[calc(100vh)] overflow-y-auto overflow-x-hidden items-center hidden md:grid md:grid-cols-1 gap-1 ${
+            imgs.length == 2 ? "mt-6 lg:mt-8" : "overflow-y-hidden"
           } `}
         >
           {imgs.map((image, index) => (
@@ -109,10 +111,9 @@ const ProductCarousel = ({ imgs }) => {
               key={index}
               className={`w-auto ${
                 imgs.length == 2
-                  ? "h-[56vw] lg:h-[48vw] "
-                  : "ml-6 h-[78vw] lg:h-[64vw] xl:h-[42vw]"
-              }
-           relative`}
+                  ? "h-[70vw] lg:[76vw] xl:h-[70vw] 2xl:h-[68vw]"
+                  : "max-h-[calc(100vh-6rem)] mx-6 h-[61vw] lg:h-[55vw] xl:h-[45vw]"
+              } relative`}
             >
               <Image
                 src={image.image.url}
