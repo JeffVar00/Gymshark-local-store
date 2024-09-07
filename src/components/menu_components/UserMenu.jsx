@@ -87,6 +87,7 @@ const UserMenu = ({ toggleMenu }) => {
                   sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
                   className="w-full h-full object-cover rounded-md"
                   priority={true}
+                  loading="eager"
                 />
               ) : (
                 <div className="w-full h-full bg-noimagebackground flex items-center justify-center">

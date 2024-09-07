@@ -1,11 +1,13 @@
 import FeaturedCategories from "../components/section_components/FeaturedCategories";
 import Featured from "@/components/section_components/Featured";
 import Header from "@/components/section_components/Header";
-import PageDescription from "@/components/section_components/PageDescription";
+// import PageDescription from "@/components/section_components/PageDescription";
 import Notification from "@/components/section_components/Notification";
 import Spinner from "@/components/icon_components/Spinner";
+import BackToTop from "@/components/icon_components/BackToTop";
 
 import { Suspense } from "react";
+import Link from "next/link";
 
 export default async function Home() {
   return (
@@ -77,7 +79,22 @@ export default async function Home() {
         </div>
       </Suspense>
 
-      <PageDescription />
+      <BackToTop />
+
+      <div className="w-full bg-webprimary mt-12 py-28 text-center text-websecundary items-center justify-center">
+        <h2 className="text-xl lg:text-3xl font-bold">
+          What are you waiting for?
+        </h2>
+        <p className="mt-4 text-center text-sm lg:text-lg px-8">
+          Start shopping the best products in the market.
+        </p>
+        <Link href={"/collections?cat=all-products"}>
+          <button className="text-sm lg:text-base mt-6 font-bold bg-websecundary text-webprimary px-6 lg:px-8 py-2 lg:py-4 rounded-md">
+            Our Products
+          </button>
+        </Link>
+      </div>
+      {/* <PageDescription /> */}
     </main>
   );
 }
