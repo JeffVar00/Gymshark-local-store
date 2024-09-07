@@ -37,17 +37,20 @@ const BagMenu = ({ toggleMenu }) => {
   };
 
   return (
-    <div className={`w-full h-screen flex flex-col items-center lg:gap-4`}>
+    <div className="w-full h-screen flex flex-col items-center lg:gap-4">
+      {/* Header Section */}
       <div className="bg-white w-full fixed px-6 flex flex-row justify-between gap-6 py-2 z-50 items-center">
         <div className="flex font-bold text-xl"></div>
         <div className="flex font-bold uppercase">Your Bag</div>
-        <div className="flex justify-end ">
+        <div className="flex justify-end">
           <button onClick={toggleMenu} className="text-gray-700">
             <XMarkIcon className="h-8 w-8" />
           </button>
         </div>
       </div>
-      {!cart.lineItems || cart.lineItems.length == 0 ? (
+
+      {/* Bag Items and Checkout Section */}
+      {!cart.lineItems || cart.lineItems.length === 0 ? (
         <div className="flex flex-col items-center h-full justify-center gap-3 mb-20">
           <h2 className="font-bold uppercase">Your bag is empty</h2>
           <p className="text-gray-700 text-sm">
@@ -64,19 +67,20 @@ const BagMenu = ({ toggleMenu }) => {
           <Link href="/collections?cat=men">
             <button
               onClick={toggleMenu}
-              className="text-sm w-60  font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase"
+              className="text-sm w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase"
             >
               Shop Women
             </button>
           </Link>
         </div>
       ) : (
-        <div className="flex flex-col h-screen">
-          <div className="w-full px-4 flex flex-col gap-6 mt-16 overflow-y-auto">
+        <div className="flex flex-col h-full w-full">
+          {/* Cart Items - scrollable */}
+          <div className="flex-grow w-full px-4 flex flex-col gap-6 mt-16 overflow-y-auto">
             {cart.lineItems.map((item) => (
               <div
                 key={item._id}
-                className={`items-center flex flex-row gap-4 pb-6 border-b-2 border-gray-200`}
+                className="items-center flex flex-row gap-4 pb-6 border-b-2 border-gray-200"
               >
                 <div className="relative w-48 h-full">
                   <Image
@@ -94,11 +98,12 @@ const BagMenu = ({ toggleMenu }) => {
                   />
                 </div>
                 <div className="text-sm flex-2 w-full text-start py-4">
-                  <h2 className="">{item.productName?.original}</h2>
-                  <p className=" text-gray-500 font-bold text-xs">
+                  <h2 className="text-xs md:text-sm">
+                    {item.productName?.original}
+                  </h2>
+                  <p className="text-gray-500 font-bold text-xs">
                     {item.availability?.status}
                   </p>
-                  {/* Quantity selector as dropdown */}
                   <div className="flex flex-col sm:flex-row justify-start items-start sm:justify-between sm:items-center mt-5 gap-3 sm:gap-0">
                     <button
                       style={{ cursor: isLoading ? "not-allowed" : "pointer" }}
@@ -111,7 +116,7 @@ const BagMenu = ({ toggleMenu }) => {
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="h-5 w-5 "
+                        className="h-5 w-5"
                       >
                         <path
                           strokeLinecap="round"
@@ -135,28 +140,26 @@ const BagMenu = ({ toggleMenu }) => {
               </div>
             ))}
           </div>
-          <div
-            className={`bg-white w-full flex flex-col items-center justify-center `}
-          >
-            <div className="text-xs md:text-sm py-5 flex px-6 flex-col justify-center h-full w-full gap-3 text-gray-700 border-b-2">
+
+          {/* Checkout Section */}
+          <div className="bg-white w-full flex-shrink-0 flex flex-col items-center justify-center">
+            <div className="text-xs md:text-sm py-5 flex px-6 flex-col justify-center w-full gap-3 text-gray-700 border-b-2">
               <div className="flex justify-between">
                 {counter > 1 ? (
-                  <span className="">Sub Total ({counter} elements)</span>
+                  <span>Sub Total ({counter} elements)</span>
                 ) : (
-                  <span className="">Sub Total ({counter} element)</span>
+                  <span>Sub Total ({counter} element)</span>
                 )}
-                <span className="">{cart.subtotal.formattedAmount}</span>
+                <span>{cart.subtotal.formattedAmount}</span>
               </div>
               <div className="flex justify-between font-bold">
-                <span className="">
-                  Shipping and taxes calculated at checkout.
-                </span>
+                <span>Shipping and taxes calculated at checkout.</span>
               </div>
             </div>
             <button
               disabled={isLoading}
               onClick={handleCheckout}
-              className="my-8 md:my-0 w-full font-bold rounded-xl flex items-center justify-center p-3 bg-webprimary text-websecundary"
+              className="text-xs md:text-base my-8 w-full font-bold rounded-xl flex items-center justify-center p-3 bg-webprimary text-websecundary"
             >
               Checkout
             </button>
