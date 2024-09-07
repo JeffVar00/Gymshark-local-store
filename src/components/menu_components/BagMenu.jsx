@@ -142,7 +142,7 @@ const BagMenu = ({ toggleMenu }) => {
           </div>
 
           {/* Checkout Section */}
-          <div className="bg-white w-full flex-shrink-0 flex flex-col items-center justify-center h-auto">
+          <div className="bg-white w-full flex-shrink-0 flex flex-col items-center justify-center h-auto pb-16 md:pb-0">
             <div className="text-xs md:text-sm py-5 flex px-6 flex-col justify-center w-full gap-3 text-gray-700 border-b-2">
               <div className="flex justify-between">
                 {counter > 1 ? (
