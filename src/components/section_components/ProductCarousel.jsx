@@ -86,7 +86,7 @@ const ProductCarousel = ({ imgs }) => {
               key={index}
               className={`w-full h-[69vw] relative ${
                 (index + 1) % 3 === 0
-                  ? "lg:col-span-2 h-[73vw]"
+                  ? "lg:col-span-2 h-[69vw]"
                   : "lg:h-[34.6vw]"
               }`}
             >
