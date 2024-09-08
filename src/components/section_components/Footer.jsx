@@ -52,22 +52,22 @@ const Footer = async () => {
                 {
                   id: 1,
                   title: "Terms and Conditions",
-                  link: "/pages/terms-and-conditions",
+                  link: "/info/terms-and-conditions",
                 },
-                { id: 2, title: "Terms of use", link: "/pages/terms-of-use" },
+                { id: 2, title: "Terms of use", link: "/info/terms-of-use" },
 
                 {
                   id: 3,
                   title: "Cookies Policy",
-                  link: "/pages/cookie-policy",
+                  link: "/info/cookie-policy",
                 },
               ]}
             />
             <ListToBottomList
               title={"Company"}
               references={[
-                { id: 1, title: "Contact Us", link: "/pages/contact-us" },
-                { id: 2, title: "About Us", link: "/pages/about-us" },
+                { id: 1, title: "Contact Us", link: "/info/contact-us" },
+                { id: 2, title: "About Us", link: "/info/about-us" },
               ]}
             />
             <ListToBottomList

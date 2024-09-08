@@ -1,0 +1,31 @@
+{
+    "HomePage":{
+        "header": {
+            "title": "Fashion just arrived",
+            "description": "We all know you’re gonna be wearing this days. Might as well grab them now.",
+            "button_men": "Shop Men",
+            "button_women": "Shop Women"
+        },
+        "featured": {
+            "title": "Our favorites",
+            "subtitle": "See what the people wants the most"
+        },
+        "categories": {
+            "title": "What you are looking for"
+        },
+        "gymshark": {
+            "title": "GYMSHARK MERCH",
+            "description": "For locking in. For life. For the love of the game. For levelling up. Go get it before it’s gone.",
+            "button": "Shop Now"
+        },
+        "gymshark_season": {
+            "title": "GYMSHARK SEASON",
+            "subtitle": "Everybody's Favorite"
+        },
+        "cta": {
+            "title": "What are you waiting for?",
+            "subtitle": "Start shopping the best products in the market.",
+            "button": "Our Products"
+        }
+    }
+}

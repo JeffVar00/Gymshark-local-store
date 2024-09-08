@@ -1,0 +1,39 @@
+{
+  "Featured" : {"message": "Ver más"},
+  "Notification" : {"message": ""},
+  "BackToTop": {"label": "Volver arriba"},
+  "HomePage":{
+    "header": {
+      "title": "La moda acaba de llegar",
+      "description": "Todos sabemos lo que vas a usar estos días. Mejor cómpralos ahora.",
+      "smsrc": "/banner.avif",
+      "mdsrc": "/banner.avif",
+      "button_1": "Para Hombres",
+      "ref_1": "/colecciones?cat=mujer",
+      "button_2": "Para Mujeres",
+      "ref_2": "/colecciones?cat=hombre"
+    },
+    "featured": {
+      "title": "Nuestros favoritos",
+      "subtitle": "Ve lo que la gente más quiere"
+    },
+    "categories": {
+      "title": "Lo que estás buscando"
+    },
+    "feature_header": {
+      "title": "GYMSHARK",
+      "description": "Para concentrarse. Para la vida. Por el amor al juego. Para subir de nivel. Ve por ello antes de que se acabe.",
+      "button": "Descubre más",
+      "category": "gymshark"
+    },
+    "gymshark_season": {
+      "title": "TEMPORADA GYMSHARK",
+      "subtitle": "El favorito de todos"
+    },
+    "cta": {
+      "title": "¿Qué estás esperando?",
+      "subtitle": "Comienza a comprar los mejores productos del mercado.",
+      "button": "Nuestros productos"
+    }
+  }
+}
