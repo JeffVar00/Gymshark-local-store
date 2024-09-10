@@ -2,7 +2,6 @@ import "./globals.css";
 
 import { Inter } from "next/font/google";
 import { WixClientContextProvider } from "@/context/wixContext";
-import React from "react";
 
 import NavbarModal from "@/components/section_components/NavbarModal";
 import Footer from "@/components/section_components/Footer";
@@ -24,26 +23,12 @@ export async function generateMetadata(locale) {
     title: title[locale] || title["es"],
     description: descriptions[locale] || descriptions["es"],
     icons: {
-      icon: {
-        src: "/icon.png",
-        sizes: "any",
-        type: "image/png",
-      },
-      shortcut: {
-        src: "/icon.png",
-        sizes: "any",
-        type: "image/png",
-      },
-      apple: {
-        src: "/icon.png",
-        sizes: "180x180",
-        type: "image/png",
-      },
+      icon: "/icon.png",
+      shortcut: "/icon.png",
+      apple: "/icon.png",
       other: {
         rel: "apple-touch-icon-precomposed",
         url: "/icon.png",
-        sizes: "180x180",
-        type: "image/png",
       },
     },
   };
@@ -57,10 +42,18 @@ export default async function RootLayout({ children }) {
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
-        <link rel="icon" href={metadata.icons.icon.src} />
-        <link rel="shortcut icon" href={metadata.icons.shortcut.src} />
-        <link rel="apple-touch-icon" href={metadata.icons.apple.src} />
-        <link rel={metadata.icons.other.rel} href={metadata.icons.other.url} />
+        <link rel="icon" href={metadata.icons.icon} sizes="any" />
+        <link rel="shortcut icon" href={metadata.icons.shortcut} sizes="any" />
+        <link
+          rel="apple-touch-icon"
+          href={metadata.icons.apple}
+          sizes="180x180"
+        />
+        <link
+          rel={metadata.icons.other.rel}
+          href={metadata.icons.other.url}
+          sizes="180x180"
+        />
       </head>
       <body className={inter.className}>
         <WixClientContextProvider>
