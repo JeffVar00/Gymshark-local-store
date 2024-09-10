@@ -5,7 +5,7 @@ import Link from "next/link";
 const PageIcon = ({ logo }) => {
   return (
     <Link href="/" className="flex items-center justify-center">
-      <div className="relative w-10 h-10 lg:w-12 lg:h-12">
+      <div className="relative w-10 h-10 lg:w-16 lg:h-16">
         <Image
           src={`/icons/${logo}.avif`}
           alt="Logo Tienda"

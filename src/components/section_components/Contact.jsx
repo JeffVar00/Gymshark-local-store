@@ -8,7 +8,7 @@ const Contact = () => {
   return (
     <div className="flex flex-col gap-3 md:gap-2 justify-center items-center md:items-start lg:items-end text-sm text-black">
       <div className="flex-1 justify-center lg:flex lg:justify-start ">
-        <PageIcon logo="iso_beige" />
+        <PageIcon logo="iso-beige" />
       </div>
       <div className="text-center md:text-start lg:text-end">
         <p>{contact.address}</p>
