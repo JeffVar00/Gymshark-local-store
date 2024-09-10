@@ -9,7 +9,7 @@ import Footer from "@/components/section_components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "M&M Store CR",
+  title: "Tienda M&M CR",
   description:
     "Descubre ropa deportiva y de fitness de alta calidad en la tienda oficial de M&M Clothes CR. Compra Gymshark y las mejores marcas para mejorar tu rendimiento y estilo.",
   icons: {
