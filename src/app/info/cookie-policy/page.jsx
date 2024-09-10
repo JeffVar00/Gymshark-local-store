@@ -32,18 +32,18 @@ const CookiePolicy = () => {
         <div>
           <h2 className="lg:text-lg font-bold">¿Qué son las cookies?</h2>
           <p className="mt-4 text-sm md:text-base">
-            Al igual que la mayoría de los sitios web, nuestros sitios web usan
+            {`Al igual que la mayoría de los sitios web, nuestros sitios web usan
             cookies para recopilar información. Las cookies son pequeños
             archivos de datos que se colocan en su computadora u otros
             dispositivos (como teléfonos inteligentes o tabletas) mientras
-            navega por nuestros sitios web. Se utilizan para 'recordar' cuando
+            navega por nuestros sitios web. Se utilizan para recordar' cuando
             su computadora o dispositivo accede a nuestros sitios web. Nos
             permiten recordar si ha iniciado sesión en el sitio y qué artículos
             tenía en su carrito de compras. Las cookies son esenciales para el
             funcionamiento efectivo de nuestros sitios web y para ayudarle a
             comprar con nosotros en línea. También se utilizan para personalizar
             los productos y servicios que se le ofrecen y publicitan, tanto en
-            nuestros sitios web como en otros lugares.
+            nuestros sitios web como en otros lugares.`}
           </p>
         </div>
 
