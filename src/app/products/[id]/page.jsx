@@ -22,7 +22,7 @@ const ProductPage = async ({ params }) => {
   const product = products.items[0];
 
   if (!product) {
-    return <div>Product not found</div>;
+    return <div>No encontramos el producto.</div>;
   }
 
   return (

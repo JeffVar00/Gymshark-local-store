@@ -20,15 +20,15 @@ const Pagination = ({ currentPage, totalPages, hasPrev, hasNext }) => {
         disabled={!hasPrev}
         onClick={() => createPageUrl(currentPage - 1)}
       >
-        {"< Prev"}
+        {"< Ant"}
       </button>
-      Page {currentPage + 1} of {totalPages}
+      Pagina {currentPage + 1} of {totalPages}
       <button
         className="rounded-md bg-webprimary text-white p-2 text-sm w-20 cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-300"
         disabled={!hasNext}
         onClick={() => createPageUrl(currentPage + 1)}
       >
-        {"Next >"}
+        {"Sig >"}
       </button>
     </div>
   );

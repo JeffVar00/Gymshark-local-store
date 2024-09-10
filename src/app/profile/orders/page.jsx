@@ -25,26 +25,26 @@ const OrdersPage = async () => {
         {/* Optional overlay for better text readability */}
         <div className="relative flex flex-col items-center h-full justify-center gap-3 mb-20">
           <h2 className="font-bold text-2xl uppercase text-websecundary mb-12">
-            You are not logged In
+            No has iniciado sesión
           </h2>
           <div className="flex flex-col md:flex-row gap-8">
             <div className="flex flex-col items-center justify-center">
               <h2 className="font-bold uppercase text-websecundary">
-                Already a user?
+                ¿Ya tienes una cuenta?
               </h2>
-              <Link href="/login">
+              <Link href="/iniciar-sesion">
                 <button className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-websecundary text-webprimary uppercase">
-                  Sign In
+                  Iniciar Sesión
                 </button>
               </Link>
             </div>
             <div className="flex flex-col items-center justify-center">
               <h2 className="font-bold uppercase text-websecundary">
-                Not an account?
+                ¿No tienes una cuenta?
               </h2>
-              <Link href="/login?mode=signUp">
+              <Link href="/iniciar-sesion?mode=signUp">
                 <button className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-websecundary text-webprimary uppercase">
-                  Sign Up
+                  Registrate
                 </button>
               </Link>
             </div>
@@ -65,21 +65,21 @@ const OrdersPage = async () => {
       <div className="w-full">
         <div className="flex justify-start">
           <Link
-            href="/profile"
+            href="/perfil"
             className="text-webprimary font-bold hover:underline"
           >
-            {"<-"} Go back to profile
+            {"<-"} Tu perfil
           </Link>
         </div>
-        <h1 className="text-xl md:text-2xl font-bold">Your Orders</h1>
+        <h1 className="text-xl md:text-2xl font-bold">Tus Pedidos</h1>
 
         {/* Header Section */}
         {orderRes.orders.length > 0 && (
           <div className="mt-6 flex justify-between px-2 py-3 font-bold border-b text-sm md:text-base">
             <span className="w-1/4">Order ID</span>
             <span className="w-1/4">Subtotal</span>
-            <span className="w-1/4">Date</span>
-            <span className="w-1/4">Status</span>
+            <span className="w-1/4">Fecha</span>
+            <span className="w-1/4">Estado</span>
           </div>
         )}
 
@@ -88,7 +88,7 @@ const OrdersPage = async () => {
           {orderRes.orders.length > 0 ? (
             orderRes.orders.map((order) => (
               <Link
-                href={`/profile/orders/${order._id}`}
+                href={`/perfil/pedidos/${order._id}`}
                 key={order._id}
                 className="flex justify-between px-2 py-4 rounded-md hover:bg-gray-100 even:bg-slate-100 text-sm md:text-base"
               >
@@ -111,19 +111,14 @@ const OrdersPage = async () => {
           ) : (
             <div className="flex flex-col items-center h-screen justify-center gap-3 my-20">
               <h2 className="font-bold uppercase text-center">
-                You haven’t made any order yet
+                No haz realizado compras aún.
               </h2>
               <p className="text-gray-700 text-sm text-center">
-                Shop now and get the best deals
+                Descubre nuestras colecciones y encuentra lo que necesitas.
               </p>
-              <Link href="/collections?cat=men">
-                <button className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase">
-                  Shop Men
-                </button>
-              </Link>
-              <Link href="/collections?cat=women">
+              <Link href="/colecciones?cat=all-products">
                 <button className="text-sm w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase">
-                  Shop Women
+                  Nuestros Productos
                 </button>
               </Link>
             </div>

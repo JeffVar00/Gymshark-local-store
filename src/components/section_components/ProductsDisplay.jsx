@@ -83,7 +83,7 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
         <>
           <div className="flex items-center justify-start w-full px-4 md:px-8 2xl:px-16 mb-6 lg:mb-0">
             <p className="text-xs md:text-sm text-gray-600">
-              {res._totalCount} products available
+              {res._totalCount} productos disponibles
             </p>
           </div>
 
@@ -125,18 +125,18 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
         </>
       ) : (
         <div className="flex flex-col items-center h-full justify-center gap-3 my-32">
-          <h2 className="font-bold uppercase">No results found</h2>
+          <h2 className="font-bold uppercase">Sin resultados.</h2>
           <div className="text-gray-700 text-sm text-center mx-6">
             <span className="block">
-              Sorry, we can`t find any products that match your filters.
+              No encontramos productos que coincidan con tu búsqueda.
             </span>
             <span className="block">
-              Please clear your selected filters and try again.
+              Intenta con otros criterios de búsqueda.
             </span>
           </div>
           <Link href="/">
             <button className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase">
-              Go Home
+              Ir al inicio
             </button>
           </Link>
         </div>

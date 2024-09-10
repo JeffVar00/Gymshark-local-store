@@ -26,26 +26,26 @@ const ProfilePage = async () => {
         {/* Optional overlay for better text readability */}
         <div className="relative flex flex-col items-center h-full justify-center gap-3 mb-20">
           <h2 className="font-bold text-2xl uppercase text-websecundary mb-12">
-            You are not logged In
+            No has iniciado sesión
           </h2>
           <div className="flex flex-col md:flex-row gap-8">
             <div className="flex flex-col items-center justify-center">
               <h2 className="font-bold uppercase text-websecundary">
-                Already a user?
+                ¿Ya tienes una cuenta?
               </h2>
-              <Link href="/login">
+              <Link href="/iniciar-sesion">
                 <button className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-websecundary text-webprimary uppercase">
-                  Sign In
+                  Iniciar Sesión
                 </button>
               </Link>
             </div>
             <div className="flex flex-col items-center justify-center">
               <h2 className="font-bold uppercase text-websecundary">
-                Not an account?
+                ¿No tienes una cuenta?
               </h2>
-              <Link href="/login?mode=signUp">
+              <Link href="/iniciar-sesion?mode=signUp">
                 <button className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-websecundary text-webprimary uppercase">
-                  Sign Up
+                  Registrate
                 </button>
               </Link>
             </div>
@@ -59,13 +59,15 @@ const ProfilePage = async () => {
     <div className="flex flex-col justify-center gap-24 mt-12 h-screen  md:h-[calc(100vh-60px)] items-center px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
       <div className="w-full ">
         <div className="flex flex-col md:flex-row items-start md:justify-between md:items-center">
-          <h1 className="text-2xl font-bold ">Your Profile Information</h1>
+          <h1 className="text-2xl font-bold ">
+            Bienvenido, {user.member?.profile?.nickname || "Usuario"}
+          </h1>
           <div className="flex justify-end mt-4 md:mt-0">
             <Link
-              href="/profile/orders"
+              href="/perfil/pedidos"
               className="text-webprimary font-bold hover:underline"
             >
-              Go to your orders {"->"}
+              Mis pedidos {"->"}
             </Link>
           </div>
         </div>
@@ -78,28 +80,30 @@ const ProfilePage = async () => {
             name="id"
             value={user.member.contactId}
           />
-          <label className="text-sm text-gray-700">Username</label>
+          <label className="text-sm text-gray-700">Nombre de usuario</label>
           <input
             type="text"
             name="username"
             placeholder={user.member?.profile?.nickname || ""}
             className="ring-1 ring-gray-300 rounded-md p-2 max-w-96"
           />
-          <label className="text-sm text-gray-700 font-bold">First Name</label>
+          <label className="text-sm text-gray-700 font-bold">Nombre</label>
           <input
             type="text"
             name="firstName"
             placeholder={user.member?.contact?.firstName || ""}
             className="ring-1 ring-gray-300 rounded-md p-2 max-w-96"
           />
-          <label className="text-sm text-gray-700 font-bold">Surname</label>
+          <label className="text-sm text-gray-700 font-bold">Apellido</label>
           <input
             type="text"
             name="lastName"
             placeholder={user.member?.contact?.lastName || ""}
             className="ring-1 ring-gray-300 rounded-md p-2 max-w-96"
           />
-          <label className="text-sm text-gray-700 font-bold">Phone</label>
+          <label className="text-sm text-gray-700 font-bold">
+            Número de Teléfono
+          </label>
           <input
             type="text"
             name="phone"

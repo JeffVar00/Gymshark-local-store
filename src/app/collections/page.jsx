@@ -25,24 +25,19 @@ const ProductCategoryPage = async ({ searchParams }) => {
       <div className="py-4">
         <div className="px-4 md:px-8 2xl:px-16">
           <p className="text-xs font-bold md:py-2 uppercase">
-            Category {">"} {category?.collection?.name || "All Products"}
+            Categoria {">"} {category?.collection?.name || "All Products"}
           </p>
           {searchParams.query && (
             <p className="text-xs md:pt-2">
-              Search results for{" "}
+              Resultados para:{" "}
               <span className="font-bold">{searchParams.query}</span>
             </p>
           )}
           <div className="flex flex-col md:flex-row md:items-center md:gap-4">
             <h1 className="text-xl md:text-4xl font-bold uppercase">
-              All Products
+              Productos
             </h1>
           </div>
-          <p className="text-xs md:text-sm py-4">
-            Stock up on your workout wardrobe or test a fresh `fit. Shop{" "}
-            <span className="font-bold">{category.collection?.name}</span>{" "}
-            products here.
-          </p>
         </div>
         <Suspense fallback={<Spinner />}>
           <ProductsDisplay

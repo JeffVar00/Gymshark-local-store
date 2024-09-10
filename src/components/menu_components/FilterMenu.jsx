@@ -9,7 +9,7 @@ const FilterButton = ({ name, label, value, selected, onClick }) => {
       onClick={() => onClick({ target: { name: name, value: value } })}
       className={`w-full px-4 py-2 rounded-md m-1 no-tap-highlight  ${
         selected
-          ? "bg-black text-white"
+          ? "bg-webprimary text-white"
           : "bg-gray-200 text-black hover:border-2 hover:border-webprimary"
       }`}
     >
@@ -97,7 +97,7 @@ export const FilterMenu = ({ sub_categories = [] }) => {
   return (
     <aside className="text-webprimary w-full lg:pr-10">
       <div className="flex flex-row items-center justify-between text-sm pb-4 lg:py-6 border-gray-200 ">
-        <h2 className="font-bold uppercase">Filter & Sort</h2>
+        <h2 className="font-bold uppercase">Ordenar y Filtrar</h2>
         <button
           className={`text-webprimary ${
             emptyFilters ? "cursor-not-allowed opacity-50" : ""
@@ -105,7 +105,7 @@ export const FilterMenu = ({ sub_categories = [] }) => {
           disabled={emptyFilters}
           onClick={handleClearFilters}
         >
-          Clear All
+          Limpiar Filtros
         </button>
       </div>
 
@@ -115,7 +115,7 @@ export const FilterMenu = ({ sub_categories = [] }) => {
             className="flex justify-between items-center cursor-pointer py-4 no-tap-highlight"
             onClick={toggleSort}
           >
-            <h4 className="text-sm font-bold uppercase">Sort by</h4>
+            <h4 className="text-sm font-bold uppercase">Ordenar por</h4>
             <span className="text-xl font-bold ">{sortOpen ? "-" : "+"}</span>
           </div>
           <div
@@ -127,28 +127,28 @@ export const FilterMenu = ({ sub_categories = [] }) => {
           >
             <FilterButton
               name="sort"
-              label="Price: Low to High"
+              label="Precio: Menor a Mayor"
               value="asc price"
               selected={filters?.sort === "asc price"}
               onClick={handleFilterChange}
             />
             <FilterButton
               name="sort"
-              label="Price: High to Low"
+              label="Precio: Mayor a Menor"
               value="desc price"
               selected={filters?.sort === "desc price"}
               onClick={handleFilterChange}
             />
             <FilterButton
               name="sort"
-              label="Newest"
+              label="Recientes"
               value="desc lastUpdated"
               selected={filters?.sort === "desc lastUpdated"}
               onClick={handleFilterChange}
             />
             <FilterButton
               name="sort"
-              label="Oldest"
+              label="Antiguos"
               value="asc lastUpdated"
               selected={filters?.sort === "asc lastUpdated"}
               onClick={handleFilterChange}
@@ -159,7 +159,7 @@ export const FilterMenu = ({ sub_categories = [] }) => {
                 name="min"
                 type="number"
                 className="w-full px-4 py-2 border border-double text-sm rounded mb-2"
-                placeholder="Min Price"
+                placeholder="Precio Min"
                 onChange={handleFilterChange}
                 required={false}
               />
@@ -168,7 +168,7 @@ export const FilterMenu = ({ sub_categories = [] }) => {
                 name="max"
                 type="number"
                 className="w-full px-4 py-2 border border-double text-sm rounded"
-                placeholder="Max Price"
+                placeholder="Precio Max"
                 onChange={handleFilterChange}
                 required={false}
               />
@@ -181,7 +181,7 @@ export const FilterMenu = ({ sub_categories = [] }) => {
               className="flex justify-between items-center cursor-pointer py-4 no-tap-highlight"
               onClick={toggleCategories}
             >
-              <h4 className="text-sm font-bold uppercase">Product Type</h4>
+              <h4 className="text-sm font-bold uppercase">Tipo de Producto</h4>
               <span className="text-xl font-bold ">
                 {categoryOpen ? "-" : "+"}
               </span>

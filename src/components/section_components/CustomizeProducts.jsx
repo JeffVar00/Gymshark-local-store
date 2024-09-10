@@ -72,7 +72,7 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
       {productOptions.map((option) => (
         <div className="flex flex-col gap-4" key={option.name}>
           <h4 className="block text-xs font-medium text-gray-500 ml-2">
-            Select a {option.name}
+            Selecciona {option.name}
           </h4>
           <ul className="flex items-center justify-center text-center gap-1 rounded-lg border-grey-200 border-2 px-2 py-1">
             {option.choices?.map((choice) => {

@@ -4,7 +4,7 @@ const CookiePolicy = () => {
     <div className="flex flex-col items-center px-4 py-12 lg:px-20 lg:py-16 h-auto mt-12 mx-6">
       <div className="flex flex-col items-center py-12 lg:py-40">
         <h1 className="text-2xl font-bold text-center lg:text-8xl ">
-          COOKIE POLICY
+          POLÍTICAS DE PRIVACIDAD
         </h1>
         <div className="flex flex-row mt-4 items-center">
           <svg
@@ -23,40 +23,44 @@ const CookiePolicy = () => {
           </svg>
 
           <p className="text-xs md:text-sm text-gray-500">
-            Last updated: {LASTUPDATED}
+            Última actualización: {LASTUPDATED}
           </p>
         </div>
       </div>
       <div className="max-w-6xl mt-18 space-y-8 text-left text-gray-800">
-        {/* What are cookies? Section */}
+        {/* ¿Qué son las cookies? Sección */}
         <div>
-          <h2 className="lg:text-lg font-bold">What are cookies?</h2>
+          <h2 className="lg:text-lg font-bold">¿Qué son las cookies?</h2>
           <p className="mt-4 text-sm md:text-base">
-            Like most websites, our websites use cookies to collect information.
-            Cookies are small data files which are placed on your computer or
-            other devices (such as smartphones or tablets) as you browse our
-            websites. They are used to ‘remember’ when your computer or device
-            accesses our websites. They allow us to remember whether you are
-            logged in to the site and what items you had in your shopping
-            basket. Cookies are essential for the effective operation of our
-            websites and to help you shop with us online. They are also used to
-            tailor the products and services offered and advertised to you, both
-            on our websites and elsewhere.
+            Al igual que la mayoría de los sitios web, nuestros sitios web usan
+            cookies para recopilar información. Las cookies son pequeños
+            archivos de datos que se colocan en su computadora u otros
+            dispositivos (como teléfonos inteligentes o tabletas) mientras
+            navega por nuestros sitios web. Se utilizan para 'recordar' cuando
+            su computadora o dispositivo accede a nuestros sitios web. Nos
+            permiten recordar si ha iniciado sesión en el sitio y qué artículos
+            tenía en su carrito de compras. Las cookies son esenciales para el
+            funcionamiento efectivo de nuestros sitios web y para ayudarle a
+            comprar con nosotros en línea. También se utilizan para personalizar
+            los productos y servicios que se le ofrecen y publicitan, tanto en
+            nuestros sitios web como en otros lugares.
           </p>
         </div>
 
-        {/* Information Collected Section */}
+        {/* Sección de Información Recopilada */}
         <div>
-          <h2 className="lg:text-lg font-bold">Information Collected</h2>
+          <h2 className="lg:text-lg font-bold">Información Recopilada</h2>
           <p className="mt-4 text-sm md:text-base">
-            Some cookies collect information about browsing and purchasing
-            behaviour when you access our websites via the same computer or
-            device. This includes information about pages viewed, products
-            purchased and your journey around a website. All data passed by
-            cookies is anonymous and will never contain individual detail such
-            as your name, address, telephone number or payment information but
-            may contain our customer reference number that is unique to you. For
-            more detailed information about how cookies work, please visit
+            Algunas cookies recopilan información sobre el comportamiento de
+            navegación y compra cuando accede a nuestros sitios web desde la
+            misma computadora o dispositivo. Esto incluye información sobre las
+            páginas visitadas, los productos comprados y su recorrido por un
+            sitio web. Todos los datos transmitidos por las cookies son anónimos
+            y nunca contendrán detalles individuales como su nombre, dirección,
+            número de teléfono o información de pago, pero pueden contener
+            nuestro número de referencia de cliente único para usted. Para
+            obtener información más detallada sobre cómo funcionan las cookies,
+            visite
             <a
               href="https://www.allaboutcookies.org"
               className="text-blue-600 hover:underline ml-1"
@@ -67,108 +71,121 @@ const CookiePolicy = () => {
           </p>
         </div>
 
-        {/* How are Cookies Managed Section */}
+        {/* Sección ¿Cómo se gestionan las cookies? */}
         <div>
-          <h2 className="lg:text-lg font-bold">How are cookies managed?</h2>
+          <h2 className="lg:text-lg font-bold">
+            ¿Cómo se gestionan las cookies?
+          </h2>
           <p className="mt-4 text-sm md:text-base">
-            The cookies stored on your computer or other device when you access
-            our websites are designed by:
+            Las cookies almacenadas en su computadora u otro dispositivo cuando
+            accede a nuestros sitios web son diseñadas por:
           </p>
           <ul className="text-sm md:text-base list-disc list-inside ml-4 mt-2">
             <li>
-              Gymshark Limited or on our behalf, and are necessary to enable you
-              to make purchases on our websites.
+              Gymshark Limited o en nuestro nombre, y son necesarias para que
+              pueda realizar compras en nuestros sitios web.
             </li>
           </ul>
         </div>
 
-        {/* What are Cookies Used For Section */}
+        {/* Sección ¿Para qué se usan las cookies? */}
         <div>
-          <h2 className="lg:text-lg font-bold">What are cookies used for?</h2>
+          <h2 className="lg:text-lg font-bold">
+            ¿Para qué se usan las cookies?
+          </h2>
           <p className="mt-4 text-sm md:text-base">
-            Cookies are used with our marketing partners to present you with
-            appropriate offers and advertising as you browse other sites on the
-            internet, based on your browsing activity while on our site. Cookies
-            also allow us to work alongside our web analytics partner, Google
-            Analytics, to see how you like to use our website, which pages or
-            special functions you prefer and help us to make them better.
+            Las cookies se utilizan con nuestros socios de marketing para
+            presentarle ofertas y publicidad adecuadas mientras navega por otros
+            sitios en Internet, en función de su actividad de navegación en
+            nuestro sitio. Las cookies también nos permiten trabajar junto con
+            nuestro socio de análisis web, Google Analytics, para ver cómo le
+            gusta usar nuestro sitio web, qué páginas o funciones especiales
+            prefiere y nos ayudan a mejorarlas.
           </p>
         </div>
 
-        {/* Cookie Types Section */}
+        {/* Sección Tipos de Cookies */}
         <div>
-          <h2 className="lg:text-lg font-bold">
-            What type of cookies do we use?
-          </h2>
+          <h2 className="lg:text-lg font-bold">¿Qué tipo de cookies usamos?</h2>
           <p className="mt-4 text-sm md:text-base">
-            There are two types of cookie that may be used during your visit to
-            our site:
+            Hay dos tipos de cookies que pueden usarse durante su visita a
+            nuestro sitio:
           </p>
           <ul className="text-sm md:text-base list-disc list-inside ml-4 mt-2">
             <li>
-              <strong>Session cookies:</strong> These are deleted after each
-              visit to our site. They allow you to add items to the basket and
-              move through the checkout. Disallowing these will prevent you from
-              placing orders.
+              <strong>Cookies de sesión:</strong> Estas se eliminan después de
+              cada visita a nuestro sitio. Le permiten agregar artículos al
+              carrito y avanzar en el proceso de compra. Deshabilitar estas
+              cookies impedirá que realice pedidos.
             </li>
           </ul>
         </div>
 
-        {/* Turning off Cookies Section */}
+        {/* Sección Desactivar y eliminar cookies */}
         <div>
           <h2 className="lg:text-lg font-bold">
-            Turning off and deleting cookies
+            Desactivar y eliminar cookies
           </h2>
           <p className="mt-4 text-sm md:text-base">
-            Most web browsers will provide the option to turn off or disallow
-            cookies. How you do this depends on the web browser you are using.
-            Instructions for disallowing cookies can usually be found in the
-            browser`s Help menu.
+            La mayoría de los navegadores web proporcionarán la opción de
+            desactivar o inhabilitar cookies. Cómo hacerlo depende del navegador
+            web que esté utilizando. Las instrucciones para inhabilitar cookies
+            generalmente se encuentran en el menú de Ayuda del navegador.
           </p>
-          {/* Browser Instructions */}
+          {/* Instrucciones del navegador */}
           <div className={`space-y-4 mt-4 text-sm md:text-base`}>
             <div>
-              <strong>For Microsoft Internet Explorer:</strong>
+              <strong>Para Microsoft Internet Explorer:</strong>
               <ul className={`list-disc list-inside ml-6 mt-2`}>
-                <li>Choose the menu Tools then Internet Options.</li>
-                <li>Click on the Privacy tab.</li>
-                <li>Select Advanced.</li>
-                <li>Choose the appropriate settings.</li>
+                <li>
+                  Elija el menú Herramientas y luego Opciones de Internet.
+                </li>
+                <li>Haga clic en la pestaña Privacidad.</li>
+                <li>Seleccione Avanzado.</li>
+                <li>Elija la configuración adecuada.</li>
               </ul>
             </div>
 
             <div>
-              <strong>For Google Chrome:</strong>
+              <strong>Para Google Chrome:</strong>
               <ul className={`list-disc list-inside ml-6 mt-2`}>
-                <li>Choose Settings and click on Advanced.</li>
-                <li>Under Privacy and Security click Content Settings.</li>
-                <li>Click Cookies.</li>
+                <li>Elija Configuración y haga clic en Avanzado.</li>
+                <li>
+                  En Privacidad y seguridad, haga clic en Configuración de
+                  contenido.
+                </li>
+                <li>Haga clic en Cookies.</li>
               </ul>
             </div>
 
             <div>
-              <strong>For Safari:</strong>
+              <strong>Para Safari:</strong>
               <ul className={`list-disc list-inside ml-6 mt-2`}>
-                <li>Choose Preferences &gt; Privacy.</li>
-                <li>Click on Block all cookies.</li>
+                <li>Elija Preferencias &gt; Privacidad.</li>
+                <li>Haga clic en Bloquear todas las cookies.</li>
               </ul>
             </div>
 
             <div>
-              <strong>For Mozilla Firefox:</strong>
+              <strong>Para Mozilla Firefox:</strong>
               <ul className={`list-disc list-inside ml-6 mt-2`}>
-                <li>Click on the menu icon then select Options.</li>
-                <li>Click on the icon Privacy & Security.</li>
-                <li>Find the menu cookie and select the relevant options.</li>
+                <li>
+                  Haga clic en el ícono del menú y luego seleccione Opciones.
+                </li>
+                <li>Haga clic en el ícono de Privacidad & Seguridad.</li>
+                <li>
+                  Encuentre el menú de cookies y seleccione las opciones
+                  correspondientes.
+                </li>
               </ul>
             </div>
 
             <div>
-              <strong>For Opera 6.0 and further:</strong>
+              <strong>Para Opera 6.0 y posteriores:</strong>
               <ul className={`list-disc list-inside ml-6 mt-2`}>
-                <li>Choose the menu icon and select Settings.</li>
-                <li>Click on Privacy & Security.</li>
-                <li>Choose the appropriate settings.</li>
+                <li>Elija el ícono del menú y seleccione Configuración.</li>
+                <li>Haga clic en Privacidad & Seguridad.</li>
+                <li>Elija la configuración adecuada.</li>
               </ul>
             </div>
           </div>

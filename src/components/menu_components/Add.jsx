@@ -62,10 +62,11 @@ const Add = ({ productId, variantId, stockNumber }) => {
           ) : (
             stockNumber > 0 && (
               <div className="text-xs">
-                Only{" "}
-                <span className="text-orange-500">{stockNumber} items</span>{" "}
-                left!
-                <br /> {"Don't"} miss it
+                {stockNumber === 1 ? "Queda" : "Quedan"}{" "}
+                <span className="text-orange-500">
+                  {stockNumber} {stockNumber === 1 ? "unidad" : "unidades"}
+                </span>{" "}
+                <br /> No te quedes sin el tuyo.
               </div>
             )
           )}
@@ -76,7 +77,7 @@ const Add = ({ productId, variantId, stockNumber }) => {
             disabled={isValidStock() ? false : true || isLoading}
             className="w-full mt-8 p-5 text-sm bg-webprimary text-websecundary font-bold rounded-full mb-6 uppercase justify-center  md:mb-6 md:mx-auto md:w-[98%] disabled:bg-gray-200 disabled:ring-0 disabled:text-white disabled:ring-none"
           >
-            Add to Bag
+            Agregar al carrito
           </button>
         ) : (
           <Spinner />
