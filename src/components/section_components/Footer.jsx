@@ -17,68 +17,75 @@ const Footer = async () => {
 
   return (
     <footer className="bg-websecundary text-webprimary">
-      <div className="px-4 lg:px-16 lg:py-8 border-t-2 border-b-2">
+      <div className="px-4 lg:px-16 lg:py-8 border-t-2 border-b-2 border-webprimary">
         <div className="flex flex-col lg:flex-row justify-between lg:gap-6 xl:gap-8">
           <div className="flex flex-col lg:flex-row justify-start lg:gap-4">
             <ListToBottomList
-              title={"Shop"}
+              title={"Tienda"}
               references={[
-                { id: 1, title: "Shop Central", link: "/" },
+                { id: 1, title: "Inicio", link: "/" },
                 {
                   id: 2,
-                  title: "All Products",
-                  link: "/collections?cat=all-products",
+                  title: "Todos los Productos",
+                  link: "/colecciones?cat=all-products",
                 },
                 {
                   id: 3,
-                  title: "Featured",
-                  link: "/collections?cat=featured",
+                  title: "Destacado",
+                  link: "/colecciones?cat=featured",
                 },
                 {
                   id: 4,
-                  title: "Home",
-                  link: "/collections?cat=home",
+                  title: "Hogar",
+                  link: "/colecciones?cat=home",
                 },
                 {
                   id: 5,
-                  title: "Clothes",
-                  link: "/collections?cat=clothes",
+                  title: "Ropa",
+                  link: "/colecciones?cat=clothes",
                 },
               ]}
             />
             <ListToBottomList
-              title={"Help"}
+              title={"Ayuda"}
               references={[
                 {
                   id: 1,
-                  title: "Terms and Conditions",
-                  link: "/info/terms-and-conditions",
+                  title: "Términos y Condiciones",
+                  link: "/info/terminos-condiciones",
                 },
-                { id: 2, title: "Terms of use", link: "/info/terms-of-use" },
-
+                { id: 2, title: "Términos de Uso", link: "/info/terminos-uso" },
                 {
                   id: 3,
-                  title: "Cookies Policy",
-                  link: "/info/cookie-policy",
+                  title: "Política de Privacidad",
+                  link: "/info/politica-privacidad",
                 },
               ]}
             />
             <ListToBottomList
-              title={"Company"}
+              title="Compañía"
               references={[
-                { id: 1, title: "Contact Us", link: "/info/contact-us" },
-                { id: 2, title: "About Us", link: "/info/about-us" },
+                { id: 1, title: "Contáctanos", link: "/info/contactanos" },
+                { id: 2, title: "Nosotros", link: "/info/nosotros" },
               ]}
             />
             <ListToBottomList
-              title={"My Account"}
+              title="Mi Cuenta"
               references={
                 !user?.member?.contactId
                   ? [
-                      { id: 1, title: "Login", link: "/login" },
-                      { id: 2, title: "Register", link: "/login?mode=signUp" },
+                      {
+                        id: 1,
+                        title: "Iniciar Sesión",
+                        link: "/iniciar-sesion",
+                      },
+                      {
+                        id: 2,
+                        title: "Registrarse",
+                        link: "/iniciar-sesion?mode=signUp",
+                      },
                     ]
-                  : [{ id: 1, title: "Profile", link: "/profile" }]
+                  : [{ id: 1, title: "Perfil", link: "/perfil" }]
               }
             />
           </div>
@@ -90,31 +97,37 @@ const Footer = async () => {
           <div className="flex lg:hidden">
             <Contact />
           </div>
-          <div className="flex flex-col gap-2 lg:hidden items-center md:items-end text-sm text-gray-500 font-semibold">
-            <div className="flex flex-row">
-              <span className="hidden md:flex font-bold mr-4">Language</span>
-              <span className="">United States | English</span>
+          <div className="flex flex-col gap-2 lg:hidden items-center md:items-end text-sm text-webprimary font-semibold">
+            <div className="flex flex-row ">
+              <span className="hidden md:flex font-bold mr-4">{"Idioma"}</span>
+              <span>
+                {"Costa Rica"} | {"Español"}
+              </span>
             </div>
             <div className="flex flex-row">
-              <span className="hidden md:flex font-bold mr-4">Currency</span>
-              <span className="">₡ CRC</span>
+              <span className="hidden md:flex font-bold mr-4">{"Moneda"}</span>
+              <span>{"₡ CRC"}</span>
             </div>
           </div>
         </div>
       </div>
       <div className="flex flex-col md:flex-row justify-start md:justify-between items-center py-4 px-6 text-center">
-        <p className="text-xs  xl:text-sm  font-semibold text-gray-500 ">
-          © 2024 Gymshark Limited | All Rights Reserved. | We Do Gym.
+        <p className="text-xs  xl:text-sm  font-semibold text-webprimary ">
+          {
+            "© 2024 Tienda M&M CR | Todos los Derechos Reservados. | Nos dedicamos a ti."
+          }
         </p>
-        <div className="hidden lg:flex justify-center space-x-4 text-xs xl:text-sm font-semibold text-gray-500">
+        <div className="hidden lg:flex justify-center space-x-4 text-xs xl:text-sm font-semibold text-webprimary">
           <div className="flex flex-col gap-8 md:flex-row">
             <div className="">
-              <span className="font-bold mr-4">Language</span>
-              <span className="font-medium">United States | English</span>
+              <span className="font-bold mr-4">{"Idioma"}</span>
+              <span className="font-medium">
+                {"Costa Rica"} | {"Español"}
+              </span>
             </div>
             <div className="">
-              <span className="font-bold mr-4">Currency</span>
-              <span className="font-medium">₡ CRC</span>
+              <span className="font-bold mr-4">{"Moneda"}</span>
+              <span className="font-medium">{"₡ CRC"}</span>
             </div>
           </div>
         </div>

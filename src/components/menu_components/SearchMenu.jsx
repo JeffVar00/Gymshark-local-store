@@ -88,23 +88,23 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
     <div
       className={`bg-white h-screen lg:h-auto flex flex-col lg:mt-8 items-center lg:gap-4`}
     >
-      <div className="sticky w-full flex flex-row justify-between gap-6 py-3 lg:py-6 px-4 lg:p-6  border-b border-gray-300 items-center">
+      <div className="sticky w-full flex flex-row justify-between gap-6 py-3 lg:py-6 px-4 lg:p-6  border-b border-webprimary items-center bg-websecundary">
         <div className="hidden lg:flex font-bold text-xl"></div>
-        <div className="lg:ml-8 flex justify-start items-center h-11 w-full lg:w-96 p-4 rounded-md text-start font-normal bg-websecundary focus-within:border-2 focus-within:border-webprimary">
-          <MagnifyingGlassIcon className="block h-6 w-6" />
+        <div className="lg:ml-8 flex justify-start items-center h-11 w-full lg:w-96 p-4 rounded-md text-start font-normal bg-white focus-within:border-2 focus-within:border-webprimary">
+          <MagnifyingGlassIcon className="block h-6 w-6 text-webprimary" />
           <input
             id="search_input"
             type="text"
             ref={inputRef}
             value={searchText}
             onChange={setSearch}
-            className="flex ml-3 text-sm bg-transparent outline-none text-gray-600 w-full"
+            className="flex ml-3 text-sm bg-transparent outline-none text-webprimary w-full"
           />
           <label
             htmlFor="search_input"
-            className="my-3 ml-9 text-sm absolute bg-transparent outline-none text-gray-600 pointer-events-none"
+            className="my-3 ml-9 text-sm absolute bg-transparent outline-none text-webprimary pointer-events-none"
           >
-            {searchText ? "" : "Search for a Product"}
+            {searchText ? "" : "Buscar productos"}
           </label>
           <div className={`flex justify-end ${searchText ? "" : "hidden"}`}>
             <button
@@ -183,7 +183,7 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
         >
           <div className={`py-2 px-1 w-full flex justify-start items-center`}>
             <h2 className="text-sm uppercase font-bold text-start mt-3">
-              Products
+              Resultados de la busqueda
             </h2>
           </div>
           {/* WRAPPER */}
@@ -209,21 +209,24 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
           >
             <Link
               href={`/collections?query=${searchText}`}
-              className="text-sm text-gray-700"
+              className="text-sm text-webpimary"
               onClick={toggleMenu}
             >
-              View All <span className="underline font-bold">{searchText}</span>
+              Buscar más{" "}
+              <span className="underline font-bold">{searchText}</span>
             </Link>
           </div>
         </div>
       ) : noResults ? (
-        <div className="flex flex-col items-center h-full justify-center gap-3 my-32">
-          <h2 className="font-bold uppercase">No results found</h2>
-          <div className="text-gray-700 text-sm text-center mx-6">
+        <div className="flex flex-col items-center h-full justify-center gap-3 my-32 text-webprimary">
+          <h2 className="font-bold uppercase">No se encontraron resultados.</h2>
+          <div className="text-black text-sm text-center mx-6">
             <span className="block">
-              Sorry, we can`t find any products that match your filters.
+              Parece que no hay productos que coincidan con tu búsqueda.
             </span>
-            <span className="block">Please search for something else.</span>
+            <span className="block">
+              Por favor intenta con otra palabra clave.
+            </span>
           </div>
         </div>
       ) : (

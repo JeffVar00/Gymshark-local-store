@@ -9,8 +9,8 @@ module.exports = {
     extend: {
       colors: {
         // Add your personalized colors here
-        webprimary: '#0B1215',
-        websecundary: '#f5f5f5',
+        webprimary: '#9b122c',
+        websecundary: '#f1e3d6',
         noimagebackground: "#e8e8e8",
         google : "#0085f8",
         facebook: "#25589a",

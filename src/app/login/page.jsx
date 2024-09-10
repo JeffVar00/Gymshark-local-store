@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { useWixClient } from "@/hooks/useWixClient";
 import { LoginState } from "@wix/sdk";
@@ -43,16 +43,16 @@ const AuthPage = ({ searchParams }) => {
     let error = "";
 
     if (password.length < 8) {
-      error = "Password must be at least 8 characters long";
+      error = "La contraseña debe tener al menos 8 caracteres";
     }
     if (!/[A-Z]/.test(password)) {
-      error = "Password must include at least one uppercase letter";
+      error = "La contraseña debe incluir al menos una letra mayúscula";
     }
     if (!/[a-z]/.test(password)) {
-      error = "Password must include at least one lowercase letter";
+      error = "La contraseña debe incluir al menos una letra minúscula";
     }
     if (!/\d/.test(password)) {
-      error = "Password must include at least one number";
+      error = "La contraseña debe incluir al menos un número";
     }
     if (error) {
       setError(error);
@@ -109,7 +109,9 @@ const AuthPage = ({ searchParams }) => {
             email,
             window.location.href
           );
-          setMessage("Password reset email sent. Please check your e-mail.");
+          setMessage(
+            "Email para restablecer contraseña enviado. Revisa tu correo electrónico."
+          );
           break;
         case MODE.EMAIL_VERIFICATION:
           response = await wixClient.auth.processVerification({
@@ -121,7 +123,7 @@ const AuthPage = ({ searchParams }) => {
       }
 
       if (response?.loginState === LoginState.SUCCESS) {
-        setMessage("Successful! You are being redirected.");
+        setMessage("Exito, redirigiendo...");
         const tokens = await wixClient.auth.getMemberTokensForDirectLogin(
           response.data.sessionToken
         );
@@ -135,27 +137,27 @@ const AuthPage = ({ searchParams }) => {
           response.errorCode === "invalidEmail" ||
           response.errorCode === "invalidPassword"
         ) {
-          setError("Invalid email or password!");
+          setError("La contraseña o el correo electrónico son incorrectos");
         } else if (response.errorCode === "emailAlreadyExists") {
-          setError("Email already exists!");
+          setError("El correo electrónico ya está registrado");
         } else if (response.errorCode === "resetPassword") {
-          setError("You need to reset your password!");
+          setError("Necesitas restablecer tu contraseña");
         } else {
-          setError("Something went wrong!");
+          setError("Algo salió mal");
         }
       } else if (
         response?.loginState === LoginState.EMAIL_VERIFICATION_REQUIRED
       ) {
         setMode(MODE.EMAIL_VERIFICATION);
         setMessage(
-          "Your account is pending approval, please check your email!"
+          "Tu cuenta necesita ser verificada. Por favor, revisa tu correo electrónico."
         );
       } else if (response?.loginState === LoginState.OWNER_APPROVAL_REQUIRED) {
-        setMessage("Your account is pending approval");
+        setMessage("Tu cuenta necesita ser aprobada por el administrador.");
       } else {
       }
     } catch (err) {
-      setError("Something went wrong!");
+      setError("Algo salió mal");
     } finally {
       setIsLoading(false);
     }
@@ -167,15 +169,15 @@ const AuthPage = ({ searchParams }) => {
         className="bg-cover hidden lg:flex flex-1 bg-center"
         style={{ backgroundImage: "url(/banner.avif)" }}
       >
-        <div className="w-full flex items-center justify-start h-full bg-webprimary bg-opacity-50 p-4">
+        <div className="w-full flex items-center justify-start h-full bg-black bg-opacity-50 p-4">
           <div className="text-white ml-8 xl:ml-12">
-            <p className="text-xs mb-4">Your account. Your rules.</p>
+            <p className="text-xs mb-4">Tu cuenta. Tus reglas.</p>
             <h1 className="text-3xl xl:text-4xl font-bold">
-              SAVE WHAT YOU SEE
+              Agiliza tus compras
             </h1>
             <p className="text-sm mt-4">
-              Save your most-loved activewear pieces to build your perfect
-              outfit
+              Crea una cuenta para acceder a tu información, historial de
+              compras y más.
             </p>
           </div>
         </div>
@@ -186,15 +188,15 @@ const AuthPage = ({ searchParams }) => {
           <div className="flex flex-col gap-4 items-center justify-center">
             <div className="hidden xl:flex relative w-16 h-16">
               <Image
-                src="/pageiconblack.avif"
-                alt="Page icon"
+                src="/icons/rounded_iso_beige.avif"
+                alt="Icono de la tienda"
                 fill="responsive"
                 sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
                 className="w-full h-full object-contain"
               />
             </div>
-            <h2 className="text-center text-lg font-bold uppercase">
-              My Gymshark
+            <h2 className="text-center text-lg font-bold uppercase text-webprimary">
+              Cuenta M&M
             </h2>
             {mode === MODE.SIGNIN || mode === MODE.SIGNUP ? (
               <div className="flex justify-center bg-websecundary rounded-full relative w-3/4 text-center items-center">
@@ -208,19 +210,19 @@ const AuthPage = ({ searchParams }) => {
                 <div className="flex flex-row w-full">
                   <button
                     className={`w-full py-3 text-xs font-bold relative no-tap-highlight flex justify-center ${
-                      isLogin ? "text-webprimary" : "text-gray-700"
+                      isLogin ? "text-webprimary" : "text-black"
                     }`}
                     onClick={() => handleChangeLogin("signIn")}
                   >
-                    <span className="z-20">LOG IN</span>
+                    <span className="z-20">Iniciar Sesión</span>
                   </button>
                   <button
                     className={`w-full py-3 relative text-xs font-bold no-tap-highlight flex justify-center ${
-                      !isLogin ? "text-webprimary" : "text-gray-700"
+                      !isLogin ? "text-webprimary" : "text-black"
                     }`}
                     onClick={() => handleChangeLogin("signOut")}
                   >
-                    <span className="z-20">SIGN UP</span>
+                    <span className="z-20">Registrarse</span>
                   </button>
                 </div>
               </div>
@@ -238,23 +240,25 @@ const AuthPage = ({ searchParams }) => {
                   onSubmit={handleSubmit}
                 >
                   <FormInput
-                    label="Username"
+                    label="Nombre de Usuario"
                     type="text"
                     name="username"
-                    overlay="Enter your username"
+                    overlay="Ingresa tu nombre de usuario"
                     handleChange={(e) => setUsername(e.target.value)}
+                    required={true}
                   />
                   <FormInput
-                    label="Email Address"
+                    label="Dirección de Correo Electrónico"
                     type="email"
                     name="email"
-                    overlay="Enter your email"
+                    overlay="Ingresa tu correo electrónico"
                     handleChange={(e) => setEmail(e.target.value)}
+                    required={true}
                   />
                   <FormInput
-                    label="Password"
+                    label="Contraseña"
                     type="password"
-                    overlay="Enter your password"
+                    overlay="Ingresa tu contraseña"
                     handleChange={(e) => handlePassword(e.target.value)}
                     required={true}
                   />
@@ -264,7 +268,7 @@ const AuthPage = ({ searchParams }) => {
                       type="submit"
                       className="w-full py-2 text-sm md:text-base bg-webprimary text-websecundary rounded-full font-bold"
                     >
-                      {isLoading ? "Loading..." : buttonTitle}
+                      {isLoading ? "Cargando..." : buttonTitle}
                     </button>
                   </div>
                 </form>
@@ -279,16 +283,17 @@ const AuthPage = ({ searchParams }) => {
                   onSubmit={handleSubmit}
                 >
                   <FormInput
-                    label="Email Address"
+                    label="Dirección de Correo Electrónico"
                     type="email"
-                    overlay="Enter your email"
+                    name="email"
+                    overlay="Ingresa tu correo electrónico"
                     handleChange={(e) => setEmail(e.target.value)}
                     required={true}
                   />
                   <FormInput
-                    label="Password"
+                    label="Contraseña"
                     type="password"
-                    overlay="Enter your password"
+                    overlay="Ingresa tu contraseña"
                     handleChange={(e) => setPassword(e.target.value)}
                     required={true}
                   />
@@ -297,9 +302,9 @@ const AuthPage = ({ searchParams }) => {
                     <div className="text-right mb-4">
                       <a
                         onClick={() => setMode(MODE.RESET_PASSWORD)}
-                        className="text-sm text-webprimary underline font-bold"
+                        className="text-sm text-webprimary underline font-bold cursor-pointer"
                       >
-                        Forgot Password?
+                        ¿Olvidaste tu contraseña?
                       </a>
                     </div>
                     <button
@@ -307,7 +312,7 @@ const AuthPage = ({ searchParams }) => {
                       disabled={isLoading}
                       className="w-full text-sm md:text-base py-2 bg-webprimary text-websecundary rounded-full font-bold"
                     >
-                      {isLoading ? "Loading..." : buttonTitle}
+                      {isLoading ? "Cargando..." : buttonTitle}
                     </button>
                   </div>
                 </form>
@@ -317,29 +322,31 @@ const AuthPage = ({ searchParams }) => {
           {mode === MODE.RESET_PASSWORD ? (
             <div className="relative flex-col flex items-center justify-center">
               <div className="flex w-3/4 bg-websecundary py-1 rounded-full items-center text-center justify-center mb-4">
-                <h1 className="text-sm font-bold w-[96%] px-1 py-1 bg-white rounded-full">
-                  Reset Your Password
+                <h1 className="text-sm font-bold w-[96%] px-1 py-1 bg-white rounded-full text-webprimary">
+                  Restablecer Contraseña
                 </h1>
               </div>
               <form onSubmit={handleSubmit} className="w-full">
                 <FormInput
-                  label="Email Address"
+                  label="Dirección de Correo Electrónico"
                   type="email"
-                  overlay="Enter your email"
+                  name="email"
+                  overlay="Ingresa tu correo electrónico"
                   handleChange={(e) => setEmail(e.target.value)}
+                  required={true}
                 />
                 <div className="flex flex-col items-center mt-8">
                   <div
-                    className="text-sm underline font-bold cursor-pointer mb-4"
+                    className="text-sm underline font-bold cursor-pointer mb-4 text-webprimary"
                     onClick={() => setMode(MODE.SIGNIN)}
                   >
-                    Go back to Login
+                    {"<-"} Regresar
                   </div>
                   <button
                     type="submit"
                     className="w-full py-2 text-sm md:text-base bg-webprimary text-websecundary rounded-full font-bold"
                   >
-                    {isLoading ? "Loading..." : buttonTitle}
+                    {isLoading ? "Cargando..." : buttonTitle}
                   </button>
                 </div>
               </form>
@@ -348,24 +355,25 @@ const AuthPage = ({ searchParams }) => {
           {mode === MODE.EMAIL_VERIFICATION ? (
             <div className="relative flex-col flex items-center justify-center">
               <div className="flex w-3/4 bg-websecundary py-1 rounded-full items-center text-center justify-center mb-4">
-                <h1 className="text-sm font-bold w-[96%] px-1 py-1 bg-white rounded-full">
-                  Email Verification
+                <h1 className="text-sm font-bold w-[96%] px-1 py-1 bg-white rounded-full text-webprimary">
+                  Verificación de Correo Electrónico
                 </h1>
               </div>
               <form onSubmit={handleSubmit} className="w-full">
                 <FormInput
-                  label="Email Code"
+                  label="Código de Verificación"
                   type="text"
                   name="emailCode"
-                  overlay="Enter your code"
+                  overlay="Ingresa el código de verificación"
                   handleChange={(e) => setEmailCode(e.target.value)}
+                  required={true}
                 />
                 <div className="flex flex-col items-center mt-8">
                   <button
                     type="submit"
                     className="w-full py-2 text-sm md:text-base bg-webprimary text-websecundary rounded-full font-bold"
                   >
-                    {isLoading ? "Loading..." : buttonTitle}
+                    {isLoading ? "Cargando..." : buttonTitle}
                   </button>
                 </div>
               </form>

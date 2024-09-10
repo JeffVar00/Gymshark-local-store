@@ -24,7 +24,7 @@ const BagMenu = ({ toggleMenu }) => {
           ecomCheckout: { checkoutId: checkout.checkoutId },
           callbacks: {
             postFlowUrl: window.location.origin,
-            thankYouPageUrl: `${window.location.origin}/success`,
+            thankYouPageUrl: `${window.location.origin}/exito`,
           },
         });
 
@@ -39,37 +39,30 @@ const BagMenu = ({ toggleMenu }) => {
   return (
     <div className="w-full h-screen flex flex-col items-center lg:gap-4">
       {/* Header Section */}
-      <div className="bg-white w-full fixed px-6 flex flex-row justify-between gap-6 py-2 z-50 items-center">
+      <div className="bg-white border-b-2 border-webprimary w-full fixed px-6 flex flex-row justify-between gap-6 py-2 z-50 items-center">
         <div className="flex font-bold text-xl"></div>
-        <div className="flex font-bold uppercase">Your Bag</div>
+        <div className="flex font-bold uppercase text-webprimary">
+          Tu Carrito
+        </div>
         <div className="flex justify-end">
           <button onClick={toggleMenu} className="text-gray-700">
             <XMarkIcon className="h-8 w-8" />
           </button>
         </div>
       </div>
-
       {/* Bag Items and Checkout Section */}
       {!cart.lineItems || cart.lineItems.length === 0 ? (
         <div className="flex flex-col items-center h-full justify-center gap-3 mb-20">
-          <h2 className="font-bold uppercase">Your bag is empty</h2>
+          <h2 className="font-bold uppercase">Tu carrito está vacío</h2>
           <p className="text-gray-700 text-sm">
-            There are no products in your bag
+            No tienes productos en tu carrito
           </p>
-          <Link href="/collections?cat=women">
+          <Link href="/colecciones?cat=all-products">
             <button
               onClick={toggleMenu}
               className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase"
             >
-              Shop Men
-            </button>
-          </Link>
-          <Link href="/collections?cat=men">
-            <button
-              onClick={toggleMenu}
-              className="text-sm w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase"
-            >
-              Shop Women
+              Explora nuestros productos
             </button>
           </Link>
         </div>
@@ -105,7 +98,7 @@ const BagMenu = ({ toggleMenu }) => {
                     item.descriptionLines.map((line, index) => (
                       <p
                         key={index}
-                        className="text-web-primary font-bold text-xs"
+                        className="text-web-primary font-bold text-xs text-webprimary"
                       >
                         {line.name.translated}:{" "}
                         {line.colorInfo
@@ -120,7 +113,7 @@ const BagMenu = ({ toggleMenu }) => {
                     <button
                       style={{ cursor: isLoading ? "not-allowed" : "pointer" }}
                       onClick={() => removeItem(wixClient, item._id)}
-                      className="text-webprimary rounded-full bg-gray-200 hover:bg-gray-300 p-2"
+                      className="text-black rounded-full bg-gray-200 hover:bg-websecundary hover:text-webprimary p-2"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +133,7 @@ const BagMenu = ({ toggleMenu }) => {
                     <div className="font-bold flex flex-row items-center">
                       <div className="p-1 rounded-sm flex items-center gap-2">
                         {item.quantity && item.quantity > 1 && (
-                          <div className="text-xs text-gray-700">
+                          <div className="text-xs text-webprimary">
                             {item.quantity} x{" "}
                           </div>
                         )}
@@ -158,14 +151,14 @@ const BagMenu = ({ toggleMenu }) => {
             <div className="text-xs md:text-sm py-5 flex px-6 flex-col justify-center w-full gap-3 text-gray-700 border-b-2">
               <div className="flex justify-between">
                 {counter > 1 ? (
-                  <span>Sub Total ({counter} elements)</span>
+                  <span>Sub. Total ({counter} productos)</span>
                 ) : (
-                  <span>Sub Total ({counter} element)</span>
+                  <span>Sub. Total ({counter} producto)</span>
                 )}
                 <span>{cart.subtotal.formattedAmount}</span>
               </div>
               <div className="flex justify-between font-bold">
-                <span>Shipping and taxes calculated at checkout.</span>
+                <span>El envío se calcula en el proceso de pago.</span>
               </div>
             </div>
             <button
@@ -173,7 +166,7 @@ const BagMenu = ({ toggleMenu }) => {
               onClick={handleCheckout}
               className="text-xs md:text-base mt-6 mb-12 w-full font-bold rounded-xl flex items-center justify-center p-3 bg-webprimary text-websecundary"
             >
-              Checkout
+              Continuar a pagar.
             </button>
           </div>
         </div>

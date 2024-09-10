@@ -49,7 +49,7 @@ const MobileMenu = ({ toggleMenu, searchText, toggleSearch }) => {
         {categories.map((category) => (
           <Link
             key={category._id}
-            href={`/collections?cat=${category.slug}`}
+            href={`/colecciones?cat=${category.slug}`}
             onClick={toggleMenu}
             className="group relative block w-full h-36 overflow-hidden rounded-lg"
           >

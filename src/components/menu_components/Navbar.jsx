@@ -93,9 +93,9 @@ const Navbar = () => {
             className="rounded-xl text-webprimary hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             aria-controls="mobile-menu"
             aria-expanded="false"
-            aria-label="Open main menu"
+            aria-label="Abrir menú principal"
           >
-            <span className="sr-only">Open main menu</span>
+            <span className="sr-only">Abrir menú principal</span>
             <Bars3Icon className="block h-6 w-6" />
           </button>
           <button
@@ -103,27 +103,27 @@ const Navbar = () => {
             className="rounded-xl text-webprimary hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             aria-controls="mobile-menu"
             aria-expanded="false"
-            aria-label="Open search menu"
+            aria-label="Abrir menú de búsqueda"
           >
-            <span className="sr-only">Open search menu</span>
+            <span className="sr-only">Abrir menú de búsqueda</span>
             <MagnifyingGlassIcon className="block h-6 w-6" />
           </button>
         </div>
 
         {/* Left LOGO */}
         <div className="flex-1 justify-center lg:flex lg:justify-start ">
-          <PageIcon logo="black" />
+          <PageIcon logo="beige" />
         </div>
 
         {/* RIGHT LINKS */}
         <div className="flex gap-4 items-center justify-end flex-1">
           <button
-            className="hidden lg:flex justify-end xl:justify-start items-center h-12 xl:w-64 xl:p-4 xl:bg-gray-200 rounded-md text-start font-normal"
+            className="hidden lg:flex justify-end xl:justify-start items-center h-12 xl:w-64 xl:p-4 xl:bg-white rounded-md text-start font-normal"
             onClick={toggleDesktopSearch}
           >
             <MagnifyingGlassIcon className="block h-6 w-6" />
-            <span className="hidden xl:flex ml-3 text-sm bg-transparent outline-none text-gray-500 w-full">
-              {searchText ? searchText : "Search for a Product"}
+            <span className="hidden xl:flex ml-3 text-sm bg-transparent outline-none text-webprimary w-full">
+              {searchText ? searchText : "Buscar productos"}
             </span>
           </button>
 

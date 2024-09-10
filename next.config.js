@@ -47,12 +47,7 @@ const nextConfig = {
                 locale: false,
             },
             {
-                source: '/info/politica-cookies',
-                destination: '/info/cookie-policy',
-                locale: false,
-            },
-            {
-                source: '/info/politica-cookies',
+                source: '/info/politica-privacidad',
                 destination: '/info/cookie-policy',
                 locale: false,
             },

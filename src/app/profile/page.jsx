@@ -13,7 +13,7 @@ const ProfilePage = async () => {
     });
   } catch (error) {
     return (
-      <div className="relative h-screen flex flex-col items-center justify-center mt-12 overflow-hidden">
+      <div className="relative h-screen flex flex-col items-center justify-center lg:mt-12 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -56,7 +56,7 @@ const ProfilePage = async () => {
   }
 
   return (
-    <div className="flex flex-col justify-center gap-24 md:mt-0 h-screen  md:h-[calc(100vh-60px)] items-center px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
+    <div className="flex flex-col justify-center gap-24 mt-12 h-screen  md:h-[calc(100vh-60px)] items-center px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
       <div className="w-full ">
         <div className="flex flex-col md:flex-row items-start md:justify-between md:items-center">
           <h1 className="text-2xl font-bold ">Your Profile Information</h1>

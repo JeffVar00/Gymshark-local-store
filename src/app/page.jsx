@@ -9,27 +9,25 @@ import BackToTop from "@/components/icon_components/BackToTop";
 import { Suspense } from "react";
 import Link from "next/link";
 
-import { useTranslations } from "next-intl";
-
 export default function Home() {
-  const t = useTranslations("HomePage");
   return (
     <main>
-      <Notification />
+      <Notification message="La moda acaba de llegar" />
       <Header
         details={{
-          title: t("header.title"),
-          description: t("header.description"),
-          smsrc: t("header.smsrc"),
-          mdsrc: t("header.mdsrc"),
+          title: "La moda acaba de llegar",
+          description:
+            "Todos sabemos lo que vas a usar estos días. Mejor cómpralos ahora.",
+          smsrc: "/banner.avif",
+          mdsrc: "/banner.avif",
           buttons: [
             {
-              text: t("header.button_1"),
-              ref: t("header.ref_1"),
+              text: "Para Hombres",
+              ref: "/colecciones?cat=mujer",
             },
             {
-              text: t("header.button_2"),
-              ref: t("header.ref_2"),
+              text: "Para Mujeres",
+              ref: "/colecciones?cat=hombre",
             },
           ],
         }}
@@ -38,9 +36,10 @@ export default function Home() {
       <Suspense fallback={<Spinner />}>
         <div>
           <Featured
-            categoryName={"featured"}
-            title={t("featured.title")}
-            subtitle={t("featured.subtitle")}
+            categoryName="featured"
+            title="Nuestros favoritos"
+            subtitle="Ve lo que la gente más quiere"
+            featured_message="Ver más"
             categoryId={process.env.NEXT_PUBLIC_FEATURED_PRODUCTS_CATEGORY_ID}
             limit={10}
           />
@@ -49,20 +48,21 @@ export default function Home() {
 
       <Suspense fallback={<Spinner />}>
         <div>
-          <FeaturedCategories title={t("categories.title")} />
+          <FeaturedCategories title="Lo que estás buscando" />
         </div>
       </Suspense>
 
       <Header
         details={{
-          title: t("feature_header.title"),
-          description: t("feature_header.description"),
+          title: "GYMSHARK",
+          description:
+            "Para concentrarse. Para la vida. Por el amor al juego. Para subir de nivel. Ve por ello antes de que se acabe.",
           smsrc: "/bannerbottom.avif",
           mdsrc: "/banner2.avif",
           buttons: [
             {
-              text: t("feature_header.button"),
-              ref: "/collections?cat=gymshark",
+              text: "Descubre más",
+              ref: "/colecciones?cat=gymshark",
             },
           ],
         }}
@@ -71,10 +71,11 @@ export default function Home() {
       <Suspense fallback={<Spinner />}>
         <div>
           <Featured
-            categoryName={"gymshark"}
-            title={t("gymshark_season.title")}
-            subtitle={t("gymshark_season.subtitle")}
-            categoryId={process.env.NEXT_PUBLIC_GYMSHARK_PRODUCTS_CATEGORY_ID}
+            categoryName="gymshark"
+            title="TEMPORADA GYMSHARK"
+            subtitle="El favorito de todos"
+            featured_message="Ver más"
+            categoryId={process.env.NEXT_PUBLIC_SEASON_PRODUCTS_CATEGORY_ID}
             limit={10}
           />
         </div>
@@ -83,13 +84,13 @@ export default function Home() {
       <BackToTop />
 
       <div className="w-full bg-webprimary mt-12 py-28 text-center text-websecundary items-center justify-center">
-        <h2 className="text-xl lg:text-3xl font-bold">{t("cta.title")}</h2>
+        <h2 className="text-xl lg:text-3xl font-bold">¿Qué estás esperando?</h2>
         <p className="mt-4 text-center text-sm lg:text-lg px-8">
-          {t("cta.subtitle")}
+          Comienza a comprar los mejores productos del mercado.
         </p>
         <Link href={"/collections?cat=all-products"}>
           <button className="text-sm lg:text-base mt-6 font-bold bg-websecundary text-webprimary px-6 lg:px-8 py-2 lg:py-4 rounded-md">
-            {t("cta.button")}
+            Nuestros productos
           </button>
         </Link>
       </div>

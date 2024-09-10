@@ -6,24 +6,27 @@ import { socials } from "@/data";
 
 const SocialMedia = () => {
   return (
-    <div className="flex flex-row gap-1">
+    <div className="flex flex-row gap-1 ">
       {socials.map((social, index) => (
         <Link
           href={social.link}
           key={index}
-          className="flex items-center "
+          className="flex flex-row items-center "
           passHref
           rel="noopener noreferrer"
           target="_blank"
         >
-          <div className={social.size}>
-            <Image
-              src={social.icon}
-              alt={social.name}
-              fill="responsive"
-              sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
-            />
-          </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            alt={social.name}
+            x="0px"
+            y="0px"
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+          >
+            <path d={social.icon}></path>
+          </svg>
         </Link>
       ))}
     </div>

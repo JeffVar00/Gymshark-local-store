@@ -20,7 +20,7 @@ function ListToBottomList({ title, references }) {
   const togglePages = () => setPagesOpen(!pagesOpen);
 
   return (
-    <div className="w-full lg:w-auto border-b-2 lg:border-0 lg:pr-4">
+    <div className="w-full lg:w-auto border-b-2 lg:border-0 lg:pr-4 ">
       <div
         className="flex justify-between items-center cursor-pointer lg:cursor-default py-4 lg:py-0 no-tap-highlight"
         onClick={isMdOrSmaller ? togglePages : undefined}
@@ -31,7 +31,7 @@ function ListToBottomList({ title, references }) {
         </span>
       </div>
       <ul
-        className={`text-sm font-semibold text-gray-500 space-y-2 transition-all duration-300 ease-in-out ${
+        className={`text-sm font-semibold text-black space-y-2 transition-all duration-300 ease-in-out ${
           pagesOpen
             ? "max-h-screen mb-4 opacity-100"
             : "max-h-0 opacity-0 overflow-hidden"

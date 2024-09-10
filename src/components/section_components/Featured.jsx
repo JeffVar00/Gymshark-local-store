@@ -2,7 +2,6 @@ import React from "react";
 import ProductCard from "../card_components/ProductCard";
 import { wixClientServer } from "@/lib/wixClientServer";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
 
 const PRODUCT_PER_PAGE = 20;
 const Featured = async ({
@@ -11,8 +10,8 @@ const Featured = async ({
   limit,
   title,
   subtitle,
+  featured_message,
 }) => {
-  const t = useTranslations("Featured");
   const wixClient = await wixClientServer();
   const res = await wixClient.products
     .queryProducts()
@@ -23,7 +22,7 @@ const Featured = async ({
   return (
     <div className="w-auto flex flex-col mt-10 mb-10 mx-4 md:mx-12 md:my-24 xl:mx-24 xl:my-20">
       {/* TITLE */}
-      <div className="flex-1 flex flex-col items-start text-start px-1 justify-end z-10">
+      <div className="flex-1 flex flex-col items-start text-start px-1 justify-end z-10 text-webprimary">
         <h1 className="text-xs lg:text-base md:font-bold">{subtitle}</h1>
         <div className="flex flex-row gap-4 items-end">
           <h2 className="text-sm lg:text-2xl font-bold">{title}</h2>
@@ -32,7 +31,7 @@ const Featured = async ({
               href={`collections?cat=${categoryName}`}
               className="text-xs lg:text-base font-bold underline hover:text-gray-600"
             >
-              {t("message")}
+              {featured_message}
             </Link>
           )}
         </div>

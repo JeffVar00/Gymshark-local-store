@@ -1,4 +1,5 @@
 "use client";
+
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
@@ -21,31 +22,31 @@ const UserMenu = ({ toggleMenu }) => {
   };
 
   const handleProfile = () => {
-    router.push("/profile");
+    router.push("/perfil");
     toggleMenu();
   };
 
   const handleOrders = () => {
-    router.push("/profile/orders");
+    router.push("/perfil/pedidos");
     toggleMenu();
   };
 
   const OPTIONS = [
     {
       _id: "1",
-      name: "Profile",
+      name: "Mi Perfil",
       onClick: handleProfile,
       img: "/banner.avif",
     },
     {
       _id: "2",
-      name: "Orders",
+      name: "Mis Ordenes",
       onClick: handleOrders,
       img: "/banner2.avif",
     },
     {
       _id: "3",
-      name: "Logout",
+      name: "Cerrar Sesión",
       onClick: handleLogout,
       img: "/banner3.avif",
       disabled: isLoading,
@@ -53,21 +54,20 @@ const UserMenu = ({ toggleMenu }) => {
   ];
 
   return (
-    <div className="flex flex-col h-full overflow-y-auto ">
-      <div className="sticky top-0 bg-white z-20">
-        <div className="flex justify-end p-4">
+    <div className="flex flex-col h-full overflow-y-auto bg-white">
+      <div className="bg-white border-b-2 border-webprimary w-full fixed px-6 flex flex-row justify-between gap-6 py-4 z-50 items-center">
+        <div className="flex font-bold text-xl"></div>
+        <div className="flex font-bold uppercase text-webprimary">
+          Central de usuario
+        </div>
+        <div className="flex justify-end">
           <button onClick={toggleMenu} className="text-gray-700">
-            <XMarkIcon className="h-6 w-6" />
+            <XMarkIcon className="h-8 w-8" />
           </button>
         </div>
       </div>
-      <div className="p-4 flex flex-col gap-4 items-center">
-        <h2 className="text-lg font-bold uppercase text-webprimary">
-          User Central
-        </h2>
-      </div>
 
-      <div className="px-4 scrollbar-hide flex flex-col gap-6 justify-evenly bg-white pb-4 pt-6 bg-gradient-to-b from-gray-200 via-transparent to-transparent">
+      <div className="mt-14 px-4 scrollbar-hide flex flex-col gap-6 justify-evenly bg-white pb-4 pt-6 bg-gradient-to-b from-gray-200 via-transparent to-transparent">
         {OPTIONS.map((option) => (
           <button
             key={option._id}

@@ -69,15 +69,15 @@ const ProductCard = ({ item, imageSize }) => {
       {/* TEXT CONTAINER */}
       <Link href={`/products/${item.slug}`}>
         <div className="text-start py-4">
-          <h2 className="text-xs md:text-md">{item.name}</h2>
+          <h2 className="text-xs md:text-md font-bold">{item.name}</h2>
           <div
-            className="text-xs  text-gray-400"
+            className="text-xs  text-gray-600"
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(item.description),
             }}
           ></div>
           <div
-            className="text-xs  text-gray-400"
+            className="text-xs  text-gray-600"
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(
                 item.additionalInfoSections.find(

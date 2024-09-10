@@ -1,8 +1,6 @@
 "use client";
-import { useTranslations } from "next-intl";
 
 const BackToTop = () => {
-  const t = useTranslations("BackToTop");
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -10,9 +8,9 @@ const BackToTop = () => {
     <div className="flex flex-col items-center justify-center mt-16">
       <button
         onClick={scrollToTop}
-        className="flex lg:text-lg items-center mt-4 md:mt-0 font-semibold text-webprimary hover:text-gray-500"
+        className="flex lg:text-lg items-center mt-4 md:mt-0 font-semibold text-webprimary hover:text-black"
       >
-        {t("label")}
+        {"Volver arriba"}
         <svg
           className="w-4 h-4 ml-2"
           fill="none"

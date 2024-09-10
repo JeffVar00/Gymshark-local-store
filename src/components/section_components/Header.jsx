@@ -40,17 +40,17 @@ const Header = ({ details }) => {
       </picture>
 
       {/* TEXT CONTAINER */}
-      <div className="flex-1 flex flex-col items-start bg-gradient-to-t md:bg-gradient-to-r via-80%  from-webprimary via-transparent to-transparent text-start gap-4 p-6 justify-end md:justify-center md:pb-0 md:px-14 relative z-10 h-full">
-        <h1 className="text-websecundary text-2xl font-bold md:text-3xl md:max-w-xl xl:text-6xl">
+      <div className="flex-1 flex flex-col items-start bg-gradient-to-t md:bg-gradient-to-r via-80%  from-black via-transparent to-transparent text-start gap-4 p-6 justify-end md:justify-center md:pb-0 md:px-14 relative z-10 h-full">
+        <h1 className="text-white text-2xl font-bold md:text-3xl md:max-w-xl xl:text-6xl">
           {details.title}
         </h1>
-        <p className="text-websecundary break-words md:max-w-sm text-md xl:max-w-xl xl:text-xl">
+        <p className="text-white break-words md:max-w-sm text-md xl:max-w-xl xl:text-xl">
           {details.description}
         </p>
         <div className="flex flex-col md:flex-row gap-4 mt-2 lg:mt-6 w-full">
           {details.buttons.map((button, index) => (
             <Link key={index} href={button.ref}>
-              <button className="bg-websecundary text-sm text-webprimary rounded-full py-3 px-8 font-bold w-full lg:w-48 uppercase">
+              <button className="bg-white text-sm text-webprimary rounded-full py-3 px-8 font-bold w-full lg:w-48 uppercase">
                 {button.text}
               </button>
             </Link>

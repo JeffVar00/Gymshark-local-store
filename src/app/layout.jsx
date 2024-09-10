@@ -2,12 +2,10 @@ import "./globals.css";
 
 import { Inter } from "next/font/google";
 import { WixClientContextProvider } from "@/context/wixContext";
+import React from "react";
 
 import NavbarModal from "@/components/section_components/NavbarModal";
 import Footer from "@/components/section_components/Footer";
-
-import { NextIntlClientProvider } from "next-intl";
-import { getLocale, getMessages } from "next-intl/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,37 +24,50 @@ export async function generateMetadata(locale) {
     title: title[locale] || title["es"],
     description: descriptions[locale] || descriptions["es"],
     icons: {
-      icon: "/icon.avif",
-      shortcut: "/icon.avif",
-      apple: "/apple-icon.avif",
+      icon: {
+        src: "/icon.png",
+        sizes: "any",
+        type: "image/png",
+      },
+      shortcut: {
+        src: "/icon.png",
+        sizes: "any",
+        type: "image/png",
+      },
+      apple: {
+        src: "/icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
       other: {
         rel: "apple-touch-icon-precomposed",
-        url: "/apple-icon.avif",
+        url: "/icon.png",
+        sizes: "180x180",
+        type: "image/png",
       },
     },
   };
 }
 
 export default async function RootLayout({ children }) {
-  const locale = await getLocale();
-  const messages = await getMessages();
-  const metadata = await generateMetadata(locale);
+  const metadata = await generateMetadata("es");
 
   return (
-    <html lang={locale}>
+    <html lang="es">
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
-        <link rel="icon" href={metadata.icons.icon} />
+        <link rel="icon" href={metadata.icons.icon.src} />
+        <link rel="shortcut icon" href={metadata.icons.shortcut.src} />
+        <link rel="apple-touch-icon" href={metadata.icons.apple.src} />
+        <link rel={metadata.icons.other.rel} href={metadata.icons.other.url} />
       </head>
       <body className={inter.className}>
-        <NextIntlClientProvider messages={messages}>
-          <WixClientContextProvider>
-            <NavbarModal />
-            {children}
-            <Footer />
-          </WixClientContextProvider>
-        </NextIntlClientProvider>
+        <WixClientContextProvider>
+          <NavbarModal />
+          {children}
+          <Footer />
+        </WixClientContextProvider>
       </body>
     </html>
   );
