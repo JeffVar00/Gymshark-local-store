@@ -64,7 +64,7 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
 
   const namesToRemove = [
     "All Products",
-    "Featured",
+    "Destacado",
     searchParams?.cat || "",
   ].map((name) => name.toLowerCase());
 

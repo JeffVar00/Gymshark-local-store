@@ -1,4 +1,4 @@
-const LASTUPDATED = "6 Sep 2024";
+const LASTUPDATED = "12 Sep 2024";
 const CookiePolicy = () => {
   return (
     <div className="flex flex-col items-center px-4 py-12 lg:px-20 lg:py-16 h-auto mt-12 mx-6">
@@ -32,18 +32,16 @@ const CookiePolicy = () => {
         <div>
           <h2 className="lg:text-lg font-bold">¿Qué son las cookies?</h2>
           <p className="mt-4 text-sm md:text-base">
-            {`Al igual que la mayoría de los sitios web, nuestros sitios web usan
-            cookies para recopilar información. Las cookies son pequeños
+            {`Al igual que la mayoría de los sitios web, nuestro sitio web 
+            para permitir una mejor experiencia de usuario. Las cookies son pequeños
             archivos de datos que se colocan en su computadora u otros
             dispositivos (como teléfonos inteligentes o tabletas) mientras
-            navega por nuestros sitios web. Se utilizan para recordar' cuando
+            navega por nuestros sitios web. Se utilizan para 'recordar' cuando
             su computadora o dispositivo accede a nuestros sitios web. Nos
             permiten recordar si ha iniciado sesión en el sitio y qué artículos
             tenía en su carrito de compras. Las cookies son esenciales para el
-            funcionamiento efectivo de nuestros sitios web y para ayudarle a
-            comprar con nosotros en línea. También se utilizan para personalizar
-            los productos y servicios que se le ofrecen y publicitan, tanto en
-            nuestros sitios web como en otros lugares.`}
+            funcionamiento efectivo de nuestro sitio web y para ayudarle a
+            comprar con nosotros en línea. `}
           </p>
         </div>
 
@@ -82,34 +80,18 @@ const CookiePolicy = () => {
           </p>
           <ul className="text-sm md:text-base list-disc list-inside ml-4 mt-2">
             <li>
-              Gymshark Limited o en nuestro nombre, y son necesarias para que
-              pueda realizar compras en nuestros sitios web.
+              Tienda M&M o en nuestro nombre, y son necesarias para que pueda
+              realizar compras en nuestros sitios web.
             </li>
           </ul>
-        </div>
-
-        {/* Sección ¿Para qué se usan las cookies? */}
-        <div>
-          <h2 className="lg:text-lg font-bold">
-            ¿Para qué se usan las cookies?
-          </h2>
-          <p className="mt-4 text-sm md:text-base">
-            Las cookies se utilizan con nuestros socios de marketing para
-            presentarle ofertas y publicidad adecuadas mientras navega por otros
-            sitios en Internet, en función de su actividad de navegación en
-            nuestro sitio. Las cookies también nos permiten trabajar junto con
-            nuestro socio de análisis web, Google Analytics, para ver cómo le
-            gusta usar nuestro sitio web, qué páginas o funciones especiales
-            prefiere y nos ayudan a mejorarlas.
-          </p>
         </div>
 
         {/* Sección Tipos de Cookies */}
         <div>
           <h2 className="lg:text-lg font-bold">¿Qué tipo de cookies usamos?</h2>
           <p className="mt-4 text-sm md:text-base">
-            Hay dos tipos de cookies que pueden usarse durante su visita a
-            nuestro sitio:
+            El tipo de cookies que pueden usarse durante su visita a nuestro
+            sitio:
           </p>
           <ul className="text-sm md:text-base list-disc list-inside ml-4 mt-2">
             <li>

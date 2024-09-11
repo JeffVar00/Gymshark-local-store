@@ -23,11 +23,11 @@ export default function Home() {
           buttons: [
             {
               text: "Para Hombres",
-              ref: "/colecciones?cat=mujer",
+              ref: "/colecciones?cat=woman",
             },
             {
               text: "Para Mujeres",
-              ref: "/colecciones?cat=hombre",
+              ref: "/colecciones?cat=men",
             },
           ],
         }}

@@ -1,10 +1,11 @@
 
 export const search_categories = [
-  "Accesorios",
+  "All Products",
+  "Destacado",
   "Hogar",
   "Hombre",
   "Mujer",
-  "All Products",
+  "Accesorios"
 ];
 
 export const socials = [
