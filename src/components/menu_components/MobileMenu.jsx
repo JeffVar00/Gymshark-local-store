@@ -23,7 +23,7 @@ const MobileMenu = ({ toggleMenu, searchText, toggleSearch }) => {
   }, [wixClient]);
 
   return (
-    <div className="flex flex-col  h-full overflow-y-auto ">
+    <div className="flex flex-col  h-full overflow-y-auto bg-white ">
       <div className="sticky top-0 z-20 bg-websecundary">
         {/* Add your menu content here */}
         <div className="p-4 flex flex-col gap-4">
