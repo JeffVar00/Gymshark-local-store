@@ -102,8 +102,10 @@ const ProductCarousel = ({ imgs }) => {
         </div>
       ) : imgs.length > 0 ? (
         <div
-          className={`h-[calc(100vh)] overflow-y-auto overflow-x-hidden items-center hidden md:grid md:grid-cols-1 gap-1 ${
-            imgs.length == 2 ? "mt-6 lg:mt-8" : "overflow-y-hidden"
+          className={` overflow-y-auto overflow-x-hidden items-center hidden md:grid md:grid-cols-1 gap-1 ${
+            imgs.length == 2
+              ? "h-[calc(100vh-4rem)] mt-6 lg:mt-8"
+              : "h-[calc(100vh)] overflow-y-hidden"
           } `}
         >
           {imgs.map((image, index) => (
