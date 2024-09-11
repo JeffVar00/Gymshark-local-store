@@ -14,6 +14,7 @@ const SocialMedia = () => {
           className="flex flex-row items-center "
           passHref
           rel="noopener noreferrer"
+          aria-label={social.name}
           target="_blank"
         >
           <svg

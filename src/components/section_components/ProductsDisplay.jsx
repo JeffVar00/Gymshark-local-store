@@ -135,7 +135,7 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
             </span>
           </div>
           <Link href="/">
-            <button className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase">
+            <button className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-white uppercase">
               Ir al inicio
             </button>
           </Link>

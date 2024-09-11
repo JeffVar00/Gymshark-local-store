@@ -55,7 +55,7 @@ const UserMenu = ({ toggleMenu }) => {
 
   return (
     <div className="flex flex-col h-full overflow-y-auto bg-white">
-      <div className="bg-white border-b-2 border-webprimary w-full fixed px-6 flex flex-row justify-between gap-6 py-4 z-50 items-center">
+      <div className="bg-websecundary border-b-2 border-webprimary w-full fixed px-6 flex flex-row justify-between gap-6 py-4 z-50 items-center">
         <div className="flex font-bold text-xl"></div>
         <div className="flex font-bold uppercase text-webprimary">
           Central de usuario
@@ -74,7 +74,7 @@ const UserMenu = ({ toggleMenu }) => {
             href={option.slug}
             onClick={option.onClick}
             disabled={option.disabled}
-            className="group relative block w-full h-36 overflow-hidden rounded-lg"
+            className="group relative block w-full h-36 overflow-hidden rounded-lg border-2 border-webprimary"
           >
             <div
               className={`absolute inset-0 bg-cover bg-center filter blur-0 group-hover:blur-0 transition duration-300 ease-in-out `}

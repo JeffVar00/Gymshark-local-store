@@ -50,11 +50,13 @@ const FeaturedCategories = async ({ title }) => {
 
                   <div className="absolute bottom-0 w-full bg-gradient-to-t from-black via-transparent to-transparent h-3/4 flex flex-col p-5">
                     <h1 className="text-white font-bold w-full text-xl md:text-2xl uppercase mt-auto ">
-                      {item.name}
+                      {item.name === "All Products"
+                        ? "Todos los productos"
+                        : item.name}
                     </h1>
                     <Link
                       href={`collections?cat=${item.slug}`}
-                      className="bg-white text-center text-webprimary md:w-36 rounded-full text-xs lg:text-sm py-3 px-6 lg:px-8 font-bold mt-2 uppercase"
+                      className="bg-white text-center text-webprimary md:w-44 rounded-full text-xs lg:text-sm py-3 px-6 lg:px-8 font-bold mt-2 uppercase"
                     >
                       Descubre más
                     </Link>

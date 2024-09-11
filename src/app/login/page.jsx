@@ -185,14 +185,14 @@ const AuthPage = ({ searchParams }) => {
 
       <div className="w-full flex flex-1 justify-center items-center p-4">
         <div className="w-full max-w-md flex flex-col gap-4 justify-center mx-6">
-          <div className="flex flex-col gap-4 items-center justify-center">
-            <div className="hidden xl:flex relative w-16 h-16">
+          <div className="flex flex-col gap-4 items-center">
+            <div className="hidden xl:flex relative w-24 h-20 rounded-xl">
               <Image
                 src="/icons/iso_beige.avif"
                 alt="Icono de la tienda"
                 fill="responsive"
                 sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
-                className="w-full h-full object-contain"
+                className="object-cover rounded-xl"
               />
             </div>
             <h2 className="text-center text-lg font-bold uppercase text-webprimary">

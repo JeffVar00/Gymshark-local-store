@@ -20,7 +20,7 @@ function ListToBottomList({ title, references }) {
   const togglePages = () => setPagesOpen(!pagesOpen);
 
   return (
-    <div className="w-full lg:w-auto border-b-2 lg:border-0 lg:pr-4 ">
+    <div className="w-full lg:w-auto border-b-2 border-webprimary lg:border-0 lg:pr-4 ">
       <div
         className="flex justify-between items-center cursor-pointer lg:cursor-default py-4 lg:py-0 no-tap-highlight"
         onClick={isMdOrSmaller ? togglePages : undefined}

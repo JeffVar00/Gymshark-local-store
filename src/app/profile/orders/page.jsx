@@ -109,7 +109,7 @@ const OrdersPage = async () => {
               </Link>
             ))
           ) : (
-            <div className="flex flex-col items-center h-screen justify-center gap-3 my-20">
+            <div className="flex flex-col items-center h-screen justify-center gap-3">
               <h2 className="font-bold uppercase text-center">
                 No haz realizado compras aún.
               </h2>
@@ -117,7 +117,7 @@ const OrdersPage = async () => {
                 Descubre nuestras colecciones y encuentra lo que necesitas.
               </p>
               <Link href="/colecciones?cat=all-products">
-                <button className="text-sm w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase">
+                <button className="text-sm w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-white uppercase">
                   Nuestros Productos
                 </button>
               </Link>

@@ -191,7 +191,7 @@ const Navbar = () => {
       >
         <div className="relative h-full">
           {isBagOpen && (
-            <div className="p-4">
+            <div className="px-4">
               <BagMenu toggleMenu={toggleBag} />
             </div>
           )}

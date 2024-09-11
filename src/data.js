@@ -1,10 +1,9 @@
 
 export const search_categories = [
-  "Accessories",
-  "Home",
-  "Men",
-  "Women",
-  "Kids",
+  "Accesorios",
+  "Hogar",
+  "Hombre",
+  "Mujer",
   "All Products",
 ];
 

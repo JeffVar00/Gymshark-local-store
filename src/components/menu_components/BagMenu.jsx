@@ -39,7 +39,7 @@ const BagMenu = ({ toggleMenu }) => {
   return (
     <div className="w-full h-screen flex flex-col items-center lg:gap-4">
       {/* Header Section */}
-      <div className="bg-white border-b-2 border-webprimary w-full fixed px-6 flex flex-row justify-between gap-6 py-2 z-50 items-center">
+      <div className="bg-websecundary border-b-2 border-webprimary w-full fixed px-6 flex flex-row justify-between gap-6 py-4 z-50 items-center">
         <div className="flex font-bold text-xl"></div>
         <div className="flex font-bold uppercase text-webprimary">
           Tu Carrito
@@ -60,7 +60,7 @@ const BagMenu = ({ toggleMenu }) => {
           <Link href="/colecciones?cat=all-products">
             <button
               onClick={toggleMenu}
-              className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-websecundary uppercase"
+              className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-white uppercase"
             >
               Explora nuestros productos
             </button>
@@ -69,7 +69,7 @@ const BagMenu = ({ toggleMenu }) => {
       ) : (
         <div className="flex flex-col h-full w-full">
           {/* Cart Items - scrollable */}
-          <div className="flex-grow w-full px-4 flex flex-col gap-6 mt-16 overflow-y-auto">
+          <div className="flex-grow w-full px-4 flex flex-col gap-6 mt-20 overflow-y-auto">
             {cart.lineItems.map((item) => (
               <div
                 key={item._id}
@@ -164,7 +164,7 @@ const BagMenu = ({ toggleMenu }) => {
             <button
               disabled={isLoading}
               onClick={handleCheckout}
-              className="text-xs md:text-base mt-6 mb-12 w-full font-bold rounded-xl flex items-center justify-center p-3 bg-webprimary text-websecundary"
+              className="text-xs md:text-base mt-6 mb-12 w-full font-bold rounded-xl flex items-center justify-center p-3 bg-webprimary text-white"
             >
               Continuar a pagar.
             </button>
