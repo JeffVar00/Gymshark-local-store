@@ -27,9 +27,9 @@ const Header = ({ details }) => {
   });
 
   return (
-    <div className="flex flex-col h-[calc(80vh-6rem)] md:h-auto md:aspect-[21/9] bg-cover bg-center md:flex-row md:items-center relative overflow-hidden">
+    <div className="flex flex-col h-[calc(100vh-6rem)] md:h-auto md:aspect-[21/9] md:flex-row md:items-center relative overflow-hidden">
       <picture className="absolute inset-0 z-0 w-full h-full">
-        <source media="(min-width: 1000px)" srcSet={desktop} />
+        <source media="(min-width: 700px)" srcSet={desktop} />
         <source media="(min-width: 500px)" srcSet={mobile} />
         <img
           alt="Background Image"
