@@ -63,7 +63,7 @@ const Add = ({ productId, variantId, stockNumber }) => {
             stockNumber > 0 && (
               <div className="text-xs">
                 {stockNumber === 1 ? "Queda" : "Quedan"}{" "}
-                <span className="text-orange-500">
+                <span className="text-webprimary">
                   {stockNumber} {stockNumber === 1 ? "unidad" : "unidades"}
                 </span>{" "}
                 <br /> No te quedes sin el tuyo.
