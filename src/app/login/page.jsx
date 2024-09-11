@@ -188,7 +188,7 @@ const AuthPage = ({ searchParams }) => {
           <div className="flex flex-col gap-4 items-center justify-center">
             <div className="hidden xl:flex relative w-16 h-16">
               <Image
-                src="/icons/rounded_iso_beige.png"
+                src="/icons/iso_beige.avif"
                 alt="Icono de la tienda"
                 fill="responsive"
                 sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
