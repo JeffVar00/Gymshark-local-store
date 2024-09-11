@@ -35,7 +35,7 @@ const Add = ({ productId, variantId, stockNumber }) => {
       <div className="flex flex-col ">
         <div className="flex flex-col items-center gap-4">
           <div
-            className={`bg-gray-100 py-2 px-4 rounded-3xl flex items-center justify-between w-32 ${
+            className={`bg-websecundary text-webprimary py-2 px-4 rounded-3xl flex items-center justify-between w-32 ${
               isValidStock() ? "opacity-100" : "opacity-50"
             } `}
           >

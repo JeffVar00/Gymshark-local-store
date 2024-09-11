@@ -38,7 +38,7 @@ const ProductPage = async ({ params }) => {
               {product.ribbon}
             </div>
           )}
-          <h1 className="text-xl md:text-2xl font-bold text-center">
+          <h1 className="text-xl md:text-2xl font-bold text-center text-webprimary">
             {product.name}
           </h1>
           <div
