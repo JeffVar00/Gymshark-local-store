@@ -124,7 +124,7 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
           <BackToTop />
         </>
       ) : (
-        <div className="flex flex-col items-center h-full justify-center gap-3 my-32">
+        <div className="flex flex-col items-center justify-center gap-3 my-32">
           <h2 className="font-bold uppercase">Sin resultados.</h2>
           <div className="text-gray-700 text-sm text-center mx-6">
             <span className="block">

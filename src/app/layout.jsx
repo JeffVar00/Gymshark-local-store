@@ -28,9 +28,11 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <body className={inter.className}>
         <WixClientContextProvider>
-          <NavbarModal />
-          {children}
-          <Footer />
+          <div className="flex flex-col min-h-screen">
+            <NavbarModal />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </div>
         </WixClientContextProvider>
       </body>
     </html>
