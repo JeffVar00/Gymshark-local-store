@@ -12,7 +12,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main>
-      <Notification message="La moda acaba de llegar" />
+      <Notification notification_message="" />
       <Header
         details={{
           title: "La moda acaba de llegar",
