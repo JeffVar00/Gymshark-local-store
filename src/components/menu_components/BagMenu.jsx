@@ -107,7 +107,7 @@ const BagMenu = ({ toggleMenu }) => {
                       </p>
                     ))}
                   <p className="text-gray-500 text-xs">
-                    {item.availability?.status}
+                    {/* {item.availability?.status} */}
                   </p>
                   <div className="flex flex-col sm:flex-row justify-start items-start sm:justify-between sm:items-center mt-5 gap-3 sm:gap-0">
                     <button
