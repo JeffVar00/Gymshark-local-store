@@ -48,6 +48,7 @@ export const FilterMenu = ({ sub_categories = [] }) => {
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     const params = new URLSearchParams(searchParams);
+    params.delete("page");
     if (name === "collections") {
       const categories = [...filters.categories];
       if (categories.includes(value)) {

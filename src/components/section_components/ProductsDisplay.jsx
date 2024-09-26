@@ -37,8 +37,20 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
         : 0
     );
 
+  let productCollectionsQuery = wixClient.products
+    .queryProducts()
+    .startsWith("name", searchParams?.query || "")
+    .eq("collectionIds", category_id)
+    .gt("priceData.price", searchParams?.min || 0)
+    .lt("priceData.price", searchParams?.max || 999999)
+    .limit(100);
+
   if (collectionIds.length > 0) {
     productQuery = productQuery.hasSome("collectionIds", collectionIds);
+    productCollectionsQuery = productCollectionsQuery.hasSome(
+      "collectionIds",
+      collectionIds
+    );
   }
 
   // Determine sorting based on `searchParams.sort`
@@ -52,8 +64,11 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
   }
 
   const res = await productQuery.find();
+  const allCollectionsQuery = await productCollectionsQuery.find();
 
-  const allCollectionIds = res.items.map((item) => item.collectionIds);
+  const allCollectionIds = allCollectionsQuery.items.map(
+    (item) => item.collectionIds
+  );
   const flattenedCollectionIds = allCollectionIds.flat();
   const uniqueCollectionIds = [...new Set(flattenedCollectionIds)];
 
