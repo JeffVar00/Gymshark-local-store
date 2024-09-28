@@ -46,7 +46,7 @@ const ProductCarousel = ({ imgs }) => {
                 alt={`Product Image ${index + 1}`}
                 fill="responsive"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </div>
           ))}
@@ -95,7 +95,7 @@ const ProductCarousel = ({ imgs }) => {
                 alt={`Product Image ${index + 1}`}
                 fill="responsive"
                 sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </div>
           ))}
@@ -124,8 +124,8 @@ const ProductCarousel = ({ imgs }) => {
                 sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
                 className={
                   imgs.length == 2
-                    ? "object-cover"
-                    : "object-cover lg:object-contain lg:ml-12"
+                    ? "object-contain"
+                    : "object-contain lg:object-contain lg:ml-12"
                 }
               />
             </div>

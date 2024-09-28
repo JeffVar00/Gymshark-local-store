@@ -20,7 +20,7 @@ const ProductCard = ({ item, imageSize }) => {
                 alt={item.name}
                 fill="responsive"
                 sizes="100vw"
-                className="w-full h-full object-cover rounded-lg"
+                className="w-full h-full object-contain rounded-lg"
                 loading="lazy"
                 priority={false}
               />

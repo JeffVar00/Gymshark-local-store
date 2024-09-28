@@ -107,7 +107,7 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
                 </li>
               ) : (
                 <li
-                  className={`flex flex-row flex-wrap items-center justify-center w-[12vw] h-12 md:h-12 md:w-12 lg:w-12 my-1 p-3 text-xs rounded-sm border-webprimary ${
+                  className={`flex flex-row flex-wrap items-center justify-center w-full h-8 text-center my-1 px-3 text-xs rounded-md border-webprimary ${
                     disabled
                       ? "bg-gray-200 text-gray-500 cursor-not-allowed"
                       : selected
