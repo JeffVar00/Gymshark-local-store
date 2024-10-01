@@ -4,15 +4,17 @@ import CopyButton from "@/components/icon_components/CopyButton";
 import CustomizeProducts from "@/components/section_components/CustomizeProducts";
 import Add from "@/components/menu_components/Add";
 import DOMPurify from "isomorphic-dompurify";
+import { notFound } from "next/navigation";
 
 import { wixClientServer } from "@/lib/wixClientServer";
 
 const ProductPage = async ({ params }) => {
   const wixClient = await wixClientServer();
 
+  const id = decodeURIComponent(params.id);
   const products = await wixClient.products
     .queryProducts()
-    .eq("slug", params.id)
+    .eq("slug", id)
     .find();
 
   if (!products.items[0]) {

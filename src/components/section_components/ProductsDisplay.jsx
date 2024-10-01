@@ -114,7 +114,8 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
                   className={`grid md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 grid-cols-2`}
                 >
                   {res.items.map((product) => (
-                    <div
+                    <Link
+                      href={`/products/${product.slug}`}
                       key={product._id}
                       className="h-full text-webprimary flex flex-col justify-around transition-all duration-300 group"
                     >
@@ -122,7 +123,7 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
                         item={product}
                         imageSize={`h-[67vw] md:h-[45vw] lg:h-[35vw] xl:h-[27.6vw] 2xl:h-[22.5vw]`}
                       />
-                    </div>
+                    </Link>
                   ))}
                 </div>
                 {searchParams?.cat || searchParams?.name ? (

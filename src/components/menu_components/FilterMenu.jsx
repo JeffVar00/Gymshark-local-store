@@ -188,11 +188,11 @@ export const FilterMenu = ({ sub_categories = [] }) => {
               </span>
             </div>
             <div
-              className={`text-sm flex flex-col font-semibold text-gray-500 transition-all duration-300 ease-in-out ${
+              className={`text-sm flex flex-col items-center font-semibold text-gray-500 transition-all duration-300 ease-in-out ${
                 categoryOpen
-                  ? "max-h-screen mb-4 opacity-100"
+                  ? "max-h-[50vh] mb-4 opacity-100 overflow-y-auto overflow-x-hidden"
                   : "max-h-0 opacity-0 overflow-hidden"
-              } lg:flex-wrap lg:flex-row`}
+              }`}
             >
               {sub_categories.map((sub_category) => (
                 <FilterButton
@@ -202,6 +202,7 @@ export const FilterMenu = ({ sub_categories = [] }) => {
                   value={sub_category}
                   selected={filters?.categories.includes(sub_category)}
                   onClick={handleFilterChange}
+                  className="w-full max-w-[90%] px-4 py-2 mx-auto" // Max width and auto margins for centering
                 />
               ))}
             </div>
