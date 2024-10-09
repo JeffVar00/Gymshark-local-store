@@ -61,6 +61,8 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
     } else if (sortType === "desc") {
       productQuery = productQuery.descending(sortBy);
     }
+  } else {
+    productQuery = productQuery.descending("name");
   }
 
   const res = await productQuery.find();
