@@ -62,7 +62,7 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
       productQuery = productQuery.descending(sortBy);
     }
   } else {
-    productQuery = productQuery.descending("name");
+    productQuery = productQuery.ascending("name");
   }
 
   const res = await productQuery.find();
