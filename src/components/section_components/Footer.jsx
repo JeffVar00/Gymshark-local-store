@@ -31,30 +31,30 @@ const Footer = async () => {
                 },
                 {
                   id: 3,
-                  title: "Destacado",
-                  link: "/colecciones?cat=featured",
+                  title: "Accesorios",
+                  link: "/colecciones?cat=accesorios",
                 },
                 {
                   id: 4,
                   title: "Hogar",
-                  link: "/colecciones?cat=home",
+                  link: "/colecciones?cat=hogar",
                 },
                 {
                   id: 5,
                   title: "Ropa",
-                  link: "/colecciones?cat=clothes",
+                  link: "/colecciones?cat=all-products&collections=Hombre%2CMujer",
                 },
               ]}
             />
             <ListToBottomList
               title={"Ayuda"}
               references={[
-                {
-                  id: 1,
-                  title: "Términos y Condiciones",
-                  link: "/info/terminos-condiciones",
-                },
-                { id: 2, title: "Términos de Uso", link: "/info/terminos-uso" },
+                // {
+                //   id: 1,
+                //   title: "Términos y Condiciones",
+                //   link: "/info/terminos-condiciones",
+                // },
+                // { id: 2, title: "Términos de Uso", link: "/info/terminos-uso" },
                 {
                   id: 3,
                   title: "Política de Privacidad",
@@ -66,7 +66,7 @@ const Footer = async () => {
               title="Compañía"
               references={[
                 { id: 1, title: "Contáctanos", link: "/info/contactanos" },
-                { id: 2, title: "Nosotros", link: "/info/nosotros" },
+                // { id: 2, title: "Nosotros", link: "/info/nosotros" },
               ]}
             />
             <ListToBottomList

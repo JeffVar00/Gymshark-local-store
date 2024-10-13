@@ -55,7 +55,7 @@ const FeaturedCategories = async ({ title }) => {
                         : item.name}
                     </h1>
                     <Link
-                      href={`collections?cat=${item.slug}`}
+                      href={`colecciones?cat=${item.slug}`}
                       className="bg-white text-center text-webprimary md:w-44 rounded-full text-xs lg:text-sm py-3 px-6 lg:px-8 font-bold mt-2 uppercase"
                     >
                       Descubre más
