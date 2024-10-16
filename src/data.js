@@ -5,6 +5,7 @@ export const search_categories = [
   "Hogar",
   "Hombre",
   "Mujer",
+  "Ropa Interior",
   "Accesorios"
 ];
 

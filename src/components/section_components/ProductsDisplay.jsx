@@ -80,14 +80,18 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
     .find();
 
   const namesToRemove = [
-    "All Products",
+    "All-Products",
     "Destacado",
     searchParams?.cat || "",
   ].map((name) => name.toLowerCase());
 
   const filter_collectionNames = collections.items
     .map((collection) => collection.name)
-    .filter((name) => !namesToRemove.includes(name.toLowerCase()));
+    .filter(
+      (name) => !namesToRemove.includes(name.toLowerCase().replace(" ", "-"))
+    );
+
+  console.log(collections.items);
 
   const totalPages = Math.max(
     1,
