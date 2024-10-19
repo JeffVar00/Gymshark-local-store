@@ -13,6 +13,7 @@ export const filterBrands = [
   "Adidas",
   "Columbia",
   "Lacoste",
+  "Gymshark",
   "Nike",
   "Puma",
   "Tommy Hilfiger",
