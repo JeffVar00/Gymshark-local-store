@@ -6,7 +6,17 @@ import BackToTop from "@/components/icon_components/BackToTop";
 import Pagination from "@/components/section_components/Pagination";
 import { wixClientServer } from "@/lib/wixClientServer";
 
-const PRODUCT_PER_PAGE = 30;
+import {
+  filterAccesories,
+  filterBrands,
+  filterClothes,
+  filterHome,
+  filterMen,
+  filterUnderwear,
+  filterWomen,
+} from "@/data";
+
+const PRODUCT_PER_PAGE = 100;
 
 const ProductDisplay = async ({ category_id, limit, searchParams }) => {
   const wixClient = await wixClientServer();
@@ -43,7 +53,7 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
     .eq("collectionIds", category_id)
     .gt("priceData.price", searchParams?.min || 0)
     .lt("priceData.price", searchParams?.max || 999999)
-    .limit(100);
+    .limit(PRODUCT_PER_PAGE);
 
   if (collectionIds.length > 0) {
     productQuery = productQuery.hasSome("collectionIds", collectionIds);
@@ -85,13 +95,62 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
     searchParams?.cat || "",
   ].map((name) => name.toLowerCase());
 
-  const filter_collectionNames = collections.items
+  let filter_collectionNames = collections.items
     .map((collection) => collection.name)
     .filter(
       (name) => !namesToRemove.includes(name.toLowerCase().replace(" ", "-"))
     );
 
-  console.log(collections.items);
+  if (searchParams.cat === "all-products") {
+    filter_collectionNames = [
+      ...new Set([
+        ...filter_collectionNames,
+        ...filterBrands,
+        ...filterAccesories,
+        ...filterHome,
+        ...filterClothes,
+        ...filterMen,
+        ...filterUnderwear,
+        ...filterWomen,
+      ]),
+    ];
+  } else if (searchParams.cat === "mujer") {
+    filter_collectionNames = [
+      ...new Set([
+        ...filter_collectionNames,
+        ...filterWomen,
+        ...filterClothes,
+        ...filterBrands,
+      ]),
+    ];
+  } else if (searchParams.cat === "hombre") {
+    filter_collectionNames = [
+      ...new Set([
+        ...filter_collectionNames,
+        ...filterMen,
+        ...filterClothes,
+        ...filterBrands,
+      ]),
+    ];
+  } else if (searchParams.cat === "ropa-interior") {
+    filter_collectionNames = [
+      ...new Set([...filter_collectionNames, ...filterUnderwear]),
+    ];
+  } else if (searchParams.cat === "hogar") {
+    filter_collectionNames = [
+      ...new Set([...filter_collectionNames, ...filterHome]),
+    ];
+  } else if (searchParams.cat === "accesorios") {
+    filter_collectionNames = [
+      ...new Set([
+        ...filter_collectionNames,
+        ...filterAccesories,
+        ...filterBrands,
+      ]),
+    ];
+  }
+
+  filter_collectionNames = [...new Set(filter_collectionNames)];
 
   const totalPages = Math.max(
     1,
@@ -100,21 +159,21 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
 
   return (
     <div className="flex flex-col mx-auto">
-      {res.items.length > 0 ? (
-        <>
-          <div className="flex items-center justify-start w-full px-4 md:px-8 2xl:px-16 mb-6 lg:mb-0">
-            <p className="text-xs md:text-sm text-gray-600">
-              {res._totalCount} productos disponibles
-            </p>
-          </div>
+      <>
+        <div className="flex items-center justify-start w-full px-4 md:px-8 2xl:px-16 mb-6 lg:mb-0">
+          <p className="text-xs md:text-sm text-gray-600">
+            {res._totalCount || 0} productos disponibles
+          </p>
+        </div>
 
-          <div>
-            <div className="flex flex-col lg:flex-row py-2 px-2 lg:px-6 2xl:px-16">
-              <div className="w-full lg:w-72 flex flex-col items-start pb-6 lg:pb-0 px-2 md:px-6 lg:px-0">
-                <div className="w-full lg:sticky h-full lg:overflow-y-auto top-[64px] max-h-[calc(100vh-64px)]">
-                  <FilterMenu sub_categories={filter_collectionNames} />
-                </div>
+        <div>
+          <div className="flex flex-col lg:flex-row py-2 px-2 lg:px-6 2xl:px-16">
+            <div className="w-full lg:w-72 flex flex-col items-start pb-6 lg:pb-0 px-2 md:px-6 lg:px-0">
+              <div className="w-full lg:sticky h-full lg:overflow-y-auto top-[64px] max-h-[calc(100vh-64px)]">
+                <FilterMenu sub_categories={filter_collectionNames} />
               </div>
+            </div>
+            {res.items.length > 0 ? (
               <div className="w-full">
                 <div
                   className={`grid md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 grid-cols-2`}
@@ -141,28 +200,28 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
                   />
                 ) : null}
               </div>
-            </div>
+            ) : (
+              <div className="w-full flex flex-col items-center justify-center gap-3 my-32">
+                <h2 className="font-bold uppercase">Sin resultados.</h2>
+                <div className="text-gray-700 text-sm text-center mx-6">
+                  <span className="block">
+                    No encontramos productos que coincidan con tu búsqueda.
+                  </span>
+                  <span className="block">
+                    Intenta con otros criterios de búsqueda.
+                  </span>
+                </div>
+                <Link href="/">
+                  <button className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-white uppercase">
+                    Ir al inicio
+                  </button>
+                </Link>
+              </div>
+            )}
           </div>
-          <BackToTop />
-        </>
-      ) : (
-        <div className="flex flex-col items-center justify-center gap-3 my-32">
-          <h2 className="font-bold uppercase">Sin resultados.</h2>
-          <div className="text-gray-700 text-sm text-center mx-6">
-            <span className="block">
-              No encontramos productos que coincidan con tu búsqueda.
-            </span>
-            <span className="block">
-              Intenta con otros criterios de búsqueda.
-            </span>
-          </div>
-          <Link href="/">
-            <button className="text-sm mt-2 w-60 font-bold rounded-full flex items-center justify-center p-3 bg-webprimary text-white uppercase">
-              Ir al inicio
-            </button>
-          </Link>
         </div>
-      )}
+        <BackToTop />
+      </>
     </div>
   );
 };

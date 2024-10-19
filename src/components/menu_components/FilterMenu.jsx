@@ -88,6 +88,7 @@ export const FilterMenu = ({ sub_categories = [] }) => {
     params.delete("categories");
     params.delete("min");
     params.delete("max");
+    params.delete("collections");
     inputRefs.current.forEach((ref) => {
       if (ref) ref.value = "";
     });

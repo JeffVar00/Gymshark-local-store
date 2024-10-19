@@ -9,6 +9,52 @@ export const search_categories = [
   "Accesorios"
 ];
 
+export const filterBrands = [
+  "Adidas",
+  "Columbia",
+  "Gymshark",
+  "Lacoste",
+  "Nike",
+  "Puma",
+  "Tommy Hilfiger",
+]
+
+export const filterAccesories = [
+  "Stanleys",
+  "Yeti"
+]
+
+export const filterHome = [
+  "Edredones",
+]
+
+export const filterClothes = [
+  "Abrigos",
+  "Deportiva",
+  "Pantalones",
+  "Pijamas",
+  "Polo"
+]
+
+export const filterMen = [
+  "Volcom",
+  "Camisetas",
+  "Camisas Manga Larga",
+  "Nautica",
+  "Shorts Y Pantalones"
+]
+
+export const filterWomen = [
+  "Vestidos",
+  "Trajes De Baño",
+  "Enaguas y Shorts",
+  "Enterizos"
+]
+
+export const filterUnderwear = [
+  "Medias",
+]
+
 export const socials = [
   {
     name: "Facebook",
