@@ -40,8 +40,10 @@ const Featured = async ({
         {/* WRAPPER */}
         <div className="w-max flex animate-scroll-indicator mt-4">
           {/* SINGLE ITEM */}
+
           {res.items.map((product) => (
-            <div
+            <Link
+              href={`/products/${product.slug}`}
               key={product._id}
               className="w-[80vw] mx-1 text-webprimary flex flex-col
           justify-around transition-all duration-300 md:w-[23vw]
@@ -51,7 +53,7 @@ const Featured = async ({
                 item={product}
                 imageSize="h-[113vw] md:h-[33vw] xl:h-[31vw]"
               />
-            </div>
+            </Link>
           ))}
         </div>
       </div>
