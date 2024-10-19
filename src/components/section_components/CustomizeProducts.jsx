@@ -68,13 +68,13 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
     }
   }
   return (
-    <div className="flex flex-col gap-6 items-center justify-center text-center h-full w-full">
+    <div className="flex flex-col gap-6 items-center justify-center text-center h-full w-full mt-2">
       {productOptions.map((option) => (
         <div className="flex flex-col gap-4" key={option.name}>
           <h4 className="block text-xs font-medium text-gray-500 ml-2">
             Selecciona {option.name}
           </h4>
-          <ul className="flex items-center justify-center text-center gap-1 rounded-lg border-grey-200 border-2 px-2 py-1">
+          <ul className="flex flex-row flex-wrap items-center justify-center text-center gap-1 rounded-lg border-grey-200 border-2 px-2 py-1">
             {option.choices?.map((choice) => {
               const disabled = !isVariantInStock({
                 ...selectedOptions,
@@ -107,7 +107,7 @@ const CustomizeProducts = ({ productId, variants, productOptions }) => {
                 </li>
               ) : (
                 <li
-                  className={`flex flex-row flex-wrap items-center justify-center w-full h-8 text-center my-1 px-3 text-xs rounded-md border-webprimary ${
+                  className={`flex flex-row flex-wrap items-center justify-center w-10 h-10 text-center my-1 px-3 text-xs rounded-md border-webprimary ${
                     disabled
                       ? "bg-gray-200 text-gray-500 cursor-not-allowed"
                       : selected

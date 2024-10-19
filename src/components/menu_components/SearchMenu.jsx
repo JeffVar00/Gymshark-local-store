@@ -190,8 +190,9 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
           <div className="mr-2 grid grid-cols-2 gap-2 lg:gap-0 lg:flex lg:pt-4 border-b lg:border-y border-gray-300 ">
             {/* SINGLE ITEM */}
             {searchResults.map((product) => (
-              <div
+              <Link
                 key={product._id}
+                href={`/products/${product.slug}`}
                 onClick={toggleMenu}
                 className="mx-1 text-webprimary flex flex-col justify-around w-full lg:w-[22vw] xl:w-[18vw] group"
               >
@@ -199,7 +200,7 @@ const SearchMenu = ({ toggleMenu, historySearch, setGlobalSearch }) => {
                   item={product}
                   imageSize="h-[60vw] md:h-[60vw] lg:h-[30vw] xl:h-[22vw] 2xl:h-[24vw]"
                 />
-              </div>
+              </Link>
             ))}
           </div>
           <div

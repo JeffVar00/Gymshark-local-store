@@ -33,32 +33,32 @@ const ProductPage = async ({ params }) => {
       <ProductCarousel imgs={product.media?.items} />
 
       {/* Right Section - Product Details */}
-      <div className="flex flex-col w-full md:w-1/2 md:pl-4 items-center justify-evenly">
-        <div className="flex flex-col justify-center items-center gap-2 my-10 w-1/2">
+      <div className="flex flex-col w-full md:w-1/2 md:pl-4 items-center justify-evenly mt-4">
+        <div className="flex flex-col justify-center items-center gap-2 my-10 mx-8 md:mx-0 ">
           {product.ribbon && (
-            <div className="flex bg-websecundary text-webprimary font-bold text-xs md:text-md px-2 py-1 rounded-md">
+            <div className="flex bg-websecundary text-webprimary font-bold text-xs lg:text-md px-2 py-1 rounded-md">
               {product.ribbon}
             </div>
           )}
-          <h1 className="text-xl md:text-2xl font-bold text-center text-webprimary">
+          <h1 className="text-xl lg:text-2xl font-bold text-center text-webprimary">
             {product.name}
           </h1>
           <div
-            className="text-sm text-gray-500  text-center"
+            className="text-xs lg:text-sm text-gray-500  text-center"
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(product.description),
             }}
           ></div>
           {product.priceData?.price === product.priceData?.discountedPrice ? (
-            <h2 className="text-sm text-webprimary font-bold">
+            <h2 className="text-xs lg:text-sm text-webprimary font-bold">
               {product.priceData?.formatted?.price}
             </h2>
           ) : (
             <div className="flex items-center gap-4">
-              <h3 className="text-sm text-webprimary font-bold line-through">
+              <h3 className="text-xs lg:text-sm text-webprimary font-bold line-through">
                 {product.priceData?.formatted?.price}
               </h3>
-              <h2 className="text-sm text-webprimary font-bold">
+              <h2 className="text-xs lg:text-sm text-webprimary font-bold">
                 {product.priceData?.formatted?.discountedPrice}
               </h2>
             </div>

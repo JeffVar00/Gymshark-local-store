@@ -75,7 +75,7 @@ const Add = ({ productId, variantId, stockNumber }) => {
           <button
             onClick={() => addItem(wixClient, productId, variantId, quantity)}
             disabled={isValidStock() ? false : true || isLoading}
-            className="w-full mt-8 p-5 text-sm bg-webprimary text-white font-bold rounded-full mb-6 uppercase justify-center  md:mb-6 md:mx-auto md:w-[98%] disabled:bg-gray-200 disabled:ring-0 disabled:text-white disabled:ring-none"
+            className="w-full mt-8 p-4 text-xs bg-webprimary text-white font-bold rounded-full mb-2 uppercase justify-center lg:mb-6 md:mx-auto md:w-[98%] disabled:bg-gray-200 disabled:ring-0 disabled:text-white disabled:ring-none"
           >
             Agregar al carrito
           </button>
