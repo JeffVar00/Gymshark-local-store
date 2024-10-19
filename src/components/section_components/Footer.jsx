@@ -46,27 +46,29 @@ const Footer = async () => {
                 },
               ]}
             />
-            <ListToBottomList
+            {/* <ListToBottomList
               title={"Ayuda"}
-              references={[
-                // {
-                //   id: 1,
-                //   title: "Términos y Condiciones",
-                //   link: "/info/terminos-condiciones",
-                // },
-                // { id: 2, title: "Términos de Uso", link: "/info/terminos-uso" },
-                {
-                  id: 3,
-                  title: "Política de Privacidad",
-                  link: "/info/politica-privacidad",
-                },
-              ]}
-            />
+              references={
+                [
+                  // {
+                  //   id: 1,
+                  //   title: "Términos y Condiciones",
+                  //   link: "/info/terminos-condiciones",
+                  // },
+                  // { id: 2, title: "Términos de Uso", link: "/info/terminos-uso" },
+                ]
+              }
+            /> */}
             <ListToBottomList
               title="Compañía"
               references={[
                 { id: 1, title: "Contáctanos", link: "/info/contactanos" },
                 // { id: 2, title: "Nosotros", link: "/info/nosotros" },
+                {
+                  id: 3,
+                  title: "Política de Privacidad",
+                  link: "/info/politica-privacidad",
+                },
               ]}
             />
             <ListToBottomList
