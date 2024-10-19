@@ -142,11 +142,7 @@ const ProductDisplay = async ({ category_id, limit, searchParams }) => {
     ];
   } else if (searchParams.cat === "accesorios") {
     filter_collectionNames = [
-      ...new Set([
-        ...filter_collectionNames,
-        ...filterAccesories,
-        ...filterBrands,
-      ]),
+      ...new Set([...filter_collectionNames, ...filterAccesories]),
     ];
   }
 

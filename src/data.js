@@ -12,7 +12,6 @@ export const search_categories = [
 export const filterBrands = [
   "Adidas",
   "Columbia",
-  "Gymshark",
   "Lacoste",
   "Nike",
   "Puma",
@@ -21,7 +20,8 @@ export const filterBrands = [
 
 export const filterAccesories = [
   "Stanleys",
-  "Yeti"
+  "Yeti",
+  "Gymshark"
 ]
 
 export const filterHome = [
