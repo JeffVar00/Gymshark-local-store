@@ -5,7 +5,7 @@
 $ git clone repository_url
 
 # Navigate into the project folder:
-$ cd gymshark-local-store
+$ cd tienda-mym
 
 # Install all dependencies of the project:
 $ npm install
