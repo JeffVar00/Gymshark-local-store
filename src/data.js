@@ -48,6 +48,7 @@ export const filterMen = [
 export const filterWomen = [
   "Vestidos",
   "Trajes De Baño",
+  "Blusas",
   "Enaguas y Shorts",
   "Enterizos"
 ]
