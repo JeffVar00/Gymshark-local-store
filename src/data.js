@@ -51,7 +51,8 @@ export const filterWomen = [
   "Trajes De Baño",
   "Blusas",
   "Enaguas y Shorts",
-  "Enterizos"
+  "Enterizos",
+  "Bodys"
 ]
 
 export const filterUnderwear = [
