@@ -1,10 +1,11 @@
 
 export const search_categories = [
   "All Products",
-  "Destacado",
-  "Hogar",
   "Hombre",
   "Mujer",
+  "Botellas",
+  "Productos Naturales",
+  "Hogar",
   "Ropa Interior",
   "Accesorios"
 ];
