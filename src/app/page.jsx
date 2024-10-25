@@ -37,8 +37,8 @@ export default function Home() {
         <div>
           <Featured
             categoryName="featured"
-            title="Nuestros favoritos"
-            subtitle="Ve lo que la gente más quiere"
+            title="Novedades"
+            subtitle="Mira lo último que tenemos para ti"
             featured_message="Ver más"
             categoryId={process.env.NEXT_PUBLIC_FEATURED_PRODUCTS_CATEGORY_ID}
             limit={10}
